@@ -1,0 +1,260 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        //Get all the click events
+        //1.Baseball is checkbox
+        var total = 0;
+        var oldBaseBalls = 0;
+        var oldNeePads = 0;
+        $('#chkBaseball').change(function () {
+            if ($(this).is(":checked")) {
+                //  alert("checked");
+                var value = $("#chkBaseball:checkbox:checked").val();
+                    total += parseInt(value);
+                    $('#txtBaseball').val("Baseball:$1250");
+            }
+            else {
+              //  alert(total);
+                var value2 = $("#chkBaseball").val();
+
+                total -= parseInt(value2);
+                $('#txtBaseball').val("");
+            }
+            $('#totalPrice').val(total);
+            $("#txttotalPrice").val(total);
+        });
+     
+        $('#chkVollyball').change(function () {
+            if ($(this).is(":checked")) {
+                //  alert("checked");
+                var value = $("#chkVollyball:checkbox:checked").val();
+                //  var value =  $("#chkBaseball").val();
+                //    $('input.qty').each(function () {
+                total += parseInt(value);
+                $('#txtVolleyball').val("Volleyball:$1000");
+                //   });
+            }
+            else {
+                //  alert(total);
+                var value2 = $("#chkVollyball").val();
+
+                total -= parseInt(value2);
+                $('#txtVolleyball').val("");
+                //  total += parseFloat(this.value2);
+                // total -=value2;
+            }
+            $('#totalPrice').val(total);
+            $("#txttotalPrice").val(total);
+        });
+        $('#chkJerseysBaseball').change(function () {
+            if ($(this).is(":checked")) {
+                //  alert("checked");
+                var value = $("#chkJerseysBaseball:checkbox:checked").val();
+               
+                total += parseInt(value);
+                $('#txtJerseysBaseball').val("Jerseys for baseball:$300");
+            }
+            else {
+               
+                var value2 = $("#chkJerseysBaseball").val();
+
+                total -= parseInt(value2);
+                $('#txtJerseysBaseball').val("");
+           
+            }
+            $('#totalPrice').val(total);
+            $("#txttotalPrice").val(total);
+        });
+     
+        $('#chkJerseysVollyball').change(function () {
+            if ($(this).is(":checked")) {
+                //  alert("checked");
+                var value = $("#chkJerseysVollyball:checkbox:checked").val();
+                //  var value =  $("#chkBaseball").val();
+                //    $('input.qty').each(function () {
+                total += parseInt(value);
+                $('#txtJerseysVollyball').val("Jerseys for Vollyball:$300");
+                //   });
+            }
+            else {
+                //  alert(total);
+                var value2 = $("#chkJerseysVollyball").val();
+
+                total -= parseInt(value2);
+                $('#txtJerseysVollyball').val("");
+                //  total += parseFloat(this.value2);
+                // total -=value2;
+            }
+            $('#totalPrice').val(total);
+            $("#txttotalPrice").val(total);
+        });
+        $('#txtDozenBalls').change(function () {
+            
+                //  alert("checked");
+                var value = $("#txtDozenBalls").val();
+                //  var value =  $("#chkBaseball").val();
+               var newVal = value * 75;
+               if (value == 0)
+               {
+                   total -= oldBaseBalls;
+                   oldBaseBalls = 0;
+               }
+               else {
+                   oldBaseBalls = newVal;
+                   total += parseInt(newVal);
+                   $('#txtDozenBall').val(" Dozen Baseballs:$75--QTY--" + value);
+               }
+              
+               $('#totalPrice').val(total);
+               $("#txttotalPrice").val(total);
+        });
+        $('#txtNeePads').change(function () {
+
+            //  alert("checked");
+            var value = $("#txtNeePads").val();
+            //  var value =  $("#chkBaseball").val();
+            var newVal = value * 25;
+            if (value == 0) {
+                total -= oldNeePads;
+                oldNeePads = 0;
+                $('#txtNeePad').val("");
+            }
+            else {
+                oldNeePads = newVal;
+                total += parseInt(newVal);
+                $('#txtNeePad').val(" Nee Pads:$25--QTY--" + value);
+            }
+
+            $('#totalPrice').val(total);
+            $("#txttotalPrice").val(total);
+        });
+        $('#chkPayLater').change(function () {
+            if ($(this).is(":checked")) {
+                $('#txtPayLater').val("true");
+            }
+            else {
+                $('#txtPayLater').val("false");
+            }
+        });
+        
+        $('#txtDozenBalls').keydown(function (e) {
+            if (e.shiftKey || e.ctrlKey || e.altKey) {
+                e.preventDefault();
+            } else {
+                var key = e.keyCode;
+                if (!((key == 8) || (key == 46) || (key >= 35 && key <= 40) || (key >= 48 && key <= 57) || (key >= 96 && key <= 105))) {
+                    e.preventDefault();
+                }
+            }
+        });
+
+    });
+</script>
+<h2>Payment</h2>
+
+<div class="row">
+    <div class="col-lg-10">
+        <h2>Welcome</h2>
+        <p>Thank you for registering your team for the 2014 season!</p>
+
+        <p>Please note: To assist in securing one of your preferred schedule choices, you must pay now via credit/debit card. MBBL cannot guarantee your schedule choices as allocation is based on a first come/first served registration and date paid basis, however paying now will improve your chances.</p>
+
+        <p>Credit Card/Debit card payment: If you would like to make payment please click the payment button. (Please note: LJS Enterprises will appear on your credit card statement as the merchant. Also, you may not return to make payment at a later date for online registration. It must be completed now.)</p>
+        2014 MBBL League Fees
+        <p>As in past years, teams that participated in the previous season will be given the opportunity to enter the league before new teams. New teams will be eligible for entry provided enough diamond space is secured.</p>
+
+    </div>
+</div>
+@using (Html.BeginForm("ValidateCommand", "PayPal"))
+{
+     @Html.ValidationSummary()
+    <div class="jumbotron">
+    <div class="form-group">
+        <div>
+            <table>
+                <tr>
+                    <td>
+                        Baseball:$1250
+                    </td>
+                    <td>
+                        <input type="checkbox" name="chkBaseball" id="chkBaseball" value="1250" />
+                        <input type="hidden" id="txtBaseball" name="txtBaseball" value="" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Vollyball:$1000
+                    </td>
+                    <td>
+                        <input type="checkbox" id="chkVollyball" name="chkVollyball" value="1000" />
+                        <input type="hidden" id="txtVolleyball" name="txtVolleyball" value="" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Jerseys for baseball:$300
+                    </td>
+                    <td>
+                        <input type="checkbox" id="chkJerseysBaseball" value="300" readonly />
+                        <input type="hidden" id="txtJerseysBaseball" name="txtJerseysBaseball" value="" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Jerseys for Volleyball:$300
+                    </td>
+                    <td>
+                        <input type="checkbox" id="chkJerseysVollyball" value="300" readonly />
+                        <input type="hidden" id="txtJerseysVollyball" name="txtJerseysVollyball" value="" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Dozen Baseballs:$75
+                    </td>
+                    <td>
+                        <input type="text"  name="txtDozenBalls" id="txtDozenBalls" class="txtHeight" value="" placeholder="0" />
+                        <input type="hidden" id="txtDozenBall" name="txtDozenBall" value="" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Nee Pads:$25
+                    </td>
+                    <td>
+                        <input type="text" name="txtNeePads" id="txtNeePads" value="" class="txtHeight" placeholder="0" />
+                        <input type="hidden" id="txtNeePad" name="txtNeePad" value="" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Total Price:
+                    </td>
+                    <td>
+                        $<input type="text" disabled name="totalPrice" id="totalPrice" class="txtHeight" value="0" />
+                        <input type="hidden" name="txttotalPrice" id="txttotalPrice" />
+                    </td>
+                </tr>
+                <tr>
+                    
+                    <td>
+                        <input type="submit" class="btn btn-default" name="btnConfirm" value="Check Out with Paypal" />
+                    </td>
+                    
+                </tr>
+                <tr>
+                    <td>
+                        Pay Later
+                    </td>
+                    <td>
+                        <input type="checkbox" id="chkPayLater" value="" />
+                        <input type="hidden" id="txtPayLater" name="txtPayLater" value="" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+    }

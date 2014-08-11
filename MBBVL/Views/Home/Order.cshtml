@@ -1,0 +1,172 @@
+﻿@model MBBVL.Models.WrapperModel
+
+@{
+    ViewBag.Title = "Order";
+}
+
+<h2>Order</h2>
+@using (Html.BeginForm("SubmitOrder", "Home")) {
+    @Html.ValidationSummary(true)
+    <form class="form-horizontal">
+        <ul class="nav nav-pills">
+            <li class="active"><a href="#home" data-toggle="tab">Home</a></li>
+            <li><a href="#profile" data-toggle="tab">Profile</a></li>
+            <li><a href="#messages" data-toggle="tab">DNA</a></li>
+        </ul>
+
+        <div id='content' class="tab-content">
+            <div class="tab-pane active" id="home">
+                <fieldset>
+                    <legend>Oligonucleotide Order Form</legend>
+                    <div class="control-group">
+                        @Html.LabelFor(m => m.shipping.Date, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.shipping.Date, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        @Html.LabelFor(m => m.shipping.FullName, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.shipping.FullName, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        @Html.LabelFor(m => m.shipping.Institution, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.shipping.Institution, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        @Html.LabelFor(m => m.shipping.ShippingAddress, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.shipping.ShippingAddress, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        @Html.LabelFor(m => m.shipping.Phone, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.shipping.Phone, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        @Html.LabelFor(m => m.shipping.Email, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.shipping.Email, new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                </fieldset>
+
+            </div>
+            <div class="tab-pane" id="profile">
+                <fieldset>
+                    <legend>Billing Information</legend>
+                    <div class="control-group">
+                        @Html.LabelFor(m => m.billing.Quotenumber, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.billing.Quotenumber, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        @Html.LabelFor(m => m.billing.FullName, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.billing.FullName, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        @Html.LabelFor(m => m.billing.Institution, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.billing.Institution, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        @Html.LabelFor(m => m.billing.BillingAddress, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.billing.BillingAddress, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        @Html.LabelFor(m => m.billing.Phone, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.billing.Phone, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        @Html.LabelFor(m => m.billing.Email, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.billing.Email, new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                </fieldset>
+            </div>
+            <div class="tab-pane" id="messages">
+                <fieldset>
+
+                    <legend>Oligonucleotide Order Form</legend>
+                    <div class="col-lg-3">
+                        <div class="well">
+                            <div class="form-group row">
+                                <div class="col-lg-10">
+                                    <input type="text" id="Onum" name="oNum">
+
+                                    <input type="button" name="Command" id="btnAdd" value="Add" />
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </fieldset>
+                <table id="addRow">
+                    <caption>Oligonucleotide Order</caption>
+                    <thead>
+                        <tr>
+                            <th>Primer Name</th>
+                            <th>QTY</th>
+                            <th>Oligonucleotide Sequence</th>
+                            <th>Synthesis Scale1(μmole)</th>
+                            <th>GMP2(Y/N)</th>
+                            <th>Modification</th>
+                            <th>Final Delivery Form3</th>
+                            <th>Purification4</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (ViewBag.MakeCount != null) {
+                            for (int i = 0; i < ViewBag.MakeCount; i++) {
+                                <tr>
+                                    <td>@Html.TextBoxFor(m => m.oligosequence[i].PrimerName, new { @class = "form-control" })</td>
+                                    <td>@Html.TextBoxFor(m => m.oligosequence[i].Qty, new { @class = "form-control" })</td>
+                                    <td>@Html.TextBoxFor(m => m.oligosequence[i].OligonucleotideSequence, new { @class = "form-control" })</td>
+                                    <td>@Html.DropDownListFor(m => m.oligosequence[i].SynthesisScale1, new SelectList(ViewBag.Synthesis, "Value", "Text"), new { @class = "form-control" })</td>
+                                    <td>@Html.CheckBoxFor(m => m.oligosequence[i].GMP2, new { @class = "form-control" })</td>
+                                    <td>@Html.TextBoxFor(m => m.oligosequence[i].Modification, new { @class = "form-control" })</td>
+                                    <td>@Html.DropDownListFor(m => m.oligosequence[i].FinalDeliveryForm, new SelectList(ViewBag.FinalDelivery, "Value", "Text"), new { @class = "form-control" })</td>
+                                    <td>@Html.DropDownListFor(m => m.oligosequence[i].Purification, new SelectList(ViewBag.Purification, "Value", "Text"), new { @class = "form-control" })</td>
+                                </tr>
+                            }
+                        } else {
+                            for (int i = 0; i < 1; i++) {
+                                <tr>
+                                    <td>@Html.TextBoxFor(m => m.oligosequence[i].PrimerName, new { @class = "form-control" })</td>
+                                    <td>@Html.TextBoxFor(m => m.oligosequence[i].Qty, new { @class = "form-control" })</td>
+                                    <td>@Html.TextBoxFor(m => m.oligosequence[i].OligonucleotideSequence, new { @class = "form-control" })</td>
+                                    <td>@Html.DropDownListFor(m => m.oligosequence[i].SynthesisScale1, new SelectList(ViewBag.Synthesis, "Value", "Text"), new { @class = "form-control" })</td>
+                                    <td>@Html.CheckBoxFor(m => m.oligosequence[i].GMP2, new { @class = "form-control" })</td>
+                                    <td>@Html.TextBoxFor(m => m.oligosequence[i].Modification, new { @class = "form-control" })</td>
+                                    <td>@Html.DropDownListFor(m => m.oligosequence[i].FinalDeliveryForm, new SelectList(ViewBag.FinalDelivery, "Value", "Text"), new { @class = "form-control" })</td>
+                                    <td>@Html.DropDownListFor(m => m.oligosequence[i].Purification, new SelectList(ViewBag.Purification, "Value", "Text"), new { @class = "form-control" })</td>
+                                </tr>
+                            }
+                        }
+
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        <input type="submit" class="btn btn-lg btn-primary" name="btnConfirm" value="SignUp" />
+    </form>
+}

@@ -11,18 +11,15 @@ using System.Web.Security;
 
 namespace MBBVL.Controllers {
     public class HomeController : Controller {
-       
+
 
         public ActionResult Index() {
             //Check if the user is logged in..
-            try
-            {
-               
-                    return View();
-                
-            }
-            catch(Exception ex)
-            {
+            try {
+
+                return View();
+
+            } catch (Exception ex) {
                 string error = ex.InnerException.ToString();
             }
             return View();
@@ -39,35 +36,8 @@ namespace MBBVL.Controllers {
 
             return View();
         }
-        public ActionResult Vbrules()
-        {
-            ViewBag.Message = "Vollyball Rules";
 
-            return View();
-        }
-        public ActionResult BaseballRules()
-        {
-            ViewBag.Message = "Baseball Rules";
-
-            return View();
-        }
-        public ActionResult Maps()
-        {
-            ViewBag.Message = "Maps";
-            return View();
-        }
-        public ActionResult LeagueInfo()
-        {
-            ViewBag.Message = "League Info";
-            return View();
-        }
-        public ActionResult Price()
-        {
-            ViewBag.Message = "Price and Cost";
-            return View();
-        }
-       
-          public ActionResult Order(int? oligonucleotideNum) {
+        public ActionResult Order(int? oligonucleotideNum) {
 
             var model = new WrapperModel();
             ViewBag.Message = "Your contact page.";
@@ -82,7 +52,76 @@ namespace MBBVL.Controllers {
             }
             return View(model);
         }
-        
-        
+        public ActionResult SubmitOrder(WrapperModel model, FormCollection form) {
+
+            var num = form["oNum"];
+            if (ModelState.IsValid) {
+                //Submit
+                //Logic
+                //Insert all the billing 
+                Billing bill = new Billing();
+                //  bill.Date = DateTime.Now;
+                bill.FullName = model.billing.FullName;
+                bill.Institution = model.billing.Institution;
+                bill.BillingAddress = model.billing.BillingAddress;
+                bill.Phone = model.billing.Phone;
+                bill.Email = model.billing.Email;
+
+                //Shipping
+                Shipping ship = new Shipping();
+                ship.Date = model.shipping.Date;
+                ship.FullName = model.shipping.FullName;
+                ship.Institution = model.shipping.Institution;
+                ship.ShippingAddress = model.shipping.ShippingAddress;
+                ship.Phone = model.shipping.Phone;
+                ship.Email = model.shipping.Email;
+                //Oligosequence
+                for (int i = 0; i < model.oligosequence.Count(); i++) {
+                    Oligosequence ol = new Oligosequence();
+                    ol.PrimerName = model.oligosequence[1].PrimerName;
+                    var getSynthesisScale1 = Core.StaticValues.SynthesisD.SingleOrDefault(x => x.Value == Convert.ToInt32(model.oligosequence[i].SynthesisScale1));
+                    var ti = getSynthesisScale1.Key;
+                }
+            }
+            return View(model);
+        }
+        private void CreateOrder(WrapperModel model) {
+            ApplicationDbContext ab;
+
+
+            using (var ctx = new ApplicationDbContext()) {
+                Billing bill = new Billing();
+                //  bill.Date = DateTime.Now;
+                bill.FullName = model.billing.FullName;
+                bill.Institution = model.billing.Institution;
+                bill.BillingAddress = model.billing.BillingAddress;
+                bill.Phone = model.billing.Phone;
+                bill.Email = model.billing.Email;
+                ctx.Billing.Add(bill);
+
+                //Shipping
+                Shipping ship = new Shipping();
+                ship.Date = model.shipping.Date;
+                ship.FullName = model.shipping.FullName;
+                ship.Institution = model.shipping.Institution;
+                ship.ShippingAddress = model.shipping.ShippingAddress;
+                ship.Phone = model.shipping.Phone;
+                ship.Email = model.shipping.Email;
+                ctx.Shipping.Add(ship);
+
+                //Oligosequence
+                for (int i = 0; i < model.oligosequence.Count(); i++) {
+                    Oligosequence ol = new Oligosequence();
+                    ol.PrimerName = model.oligosequence[1].PrimerName;
+                    var getSynthesisScale1 = Core.StaticValues.SynthesisD.SingleOrDefault(x => x.Value == Convert.ToInt32(model.oligosequence[i].SynthesisScale1));
+                    var ti = getSynthesisScale1.Key;
+                    ctx.Oligosequence.Add(ol);
+                }
+                
+                ctx.SaveChanges();
+            }
+        }
+
+
     }
 }

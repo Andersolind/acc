@@ -307,10 +307,7 @@ namespace MBBVL.Controllers
             AuthenticationManager.SignOut();
             return RedirectToAction("Index", "Home");
         }
-
-     
-
-       
+   
         //
         // GET: /Account/ExternalLoginFailure
         [AllowAnonymous]

@@ -7,10 +7,12 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <script src="~/Scripts/jquery-1.10.2.js"></script>
-
+    
     <script src="~/js/NewRows.js"></script>
+    <script src="~/js/Angular.js"></script>
 </head>
 <body>
+
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
 
@@ -34,7 +36,7 @@
         </div>
     </div>
     <div class="container body-content">
-        <img src="~/Content/Logo.png" />
+
         @RenderBody()
         <hr />
         <footer>
@@ -45,5 +47,6 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
 </body>
 </html>

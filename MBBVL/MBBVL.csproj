@@ -200,17 +200,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Bootstrap\simple-sidebar.css" />
-    <Content Include="Content\Images\1.jpg" />
-    <Content Include="Content\Images\2.jpg" />
-    <Content Include="Content\Images\background.png" />
-    <Content Include="Content\Images\footer.png" />
-    <Content Include="Content\Images\header.png" />
-    <Content Include="Content\Images\Logo.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Images\logo3.png" />
-    <Content Include="Content\Images\signup-blue.png" />
-    <Content Include="Content\Images\volly.png" />
     <Content Include="Content\Logo.png" />
     <Content Include="css\style.css" />
     <Content Include="favicon.ico" />
@@ -224,6 +213,8 @@
     <Content Include="images\manequine.jpg" />
     <Content Include="images\reflection2.jpg" />
     <Content Include="images\reflection3.jpg" />
+    <Content Include="js\Angular.js" />
+    <Content Include="js\bootstrap-datepicker.js" />
     <Content Include="js\infinite-rotator.js" />
     <Content Include="js\NewRows.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -281,6 +272,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Images\" />
     <Folder Include="Content\themes\base\images\" />
     <Folder Include="Content\themes\base\minified\images\" />
     <Folder Include="NewFolder1\" />

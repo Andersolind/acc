@@ -199,6 +199,7 @@
     <Content Include="Content\Bootstrap\bootstrap.min.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Bootstrap\datepicker.css" />
     <Content Include="Content\Bootstrap\simple-sidebar.css" />
     <Content Include="Content\Logo.png" />
     <Content Include="css\style.css" />
@@ -214,6 +215,7 @@
     <Content Include="images\reflection2.jpg" />
     <Content Include="images\reflection3.jpg" />
     <Content Include="js\Angular.js" />
+    <Content Include="js\Angular\app.js" />
     <Content Include="js\bootstrap-datepicker.js" />
     <Content Include="js\infinite-rotator.js" />
     <Content Include="js\NewRows.js" />

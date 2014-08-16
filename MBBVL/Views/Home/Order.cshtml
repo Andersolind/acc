@@ -4,33 +4,36 @@
     ViewBag.Title = "Order";
 }
 
+<script src="~/js/NewRows.js"></script>
+<script src="~/js/Angular.js"></script>
+<script src="~/js/Angular/app.js"></script>
+
 <h2>Order</h2>
 @using (Html.BeginForm("SubmitOrder", "Home")) {
     @Html.ValidationSummary(true)
     <form class="form-horizontal">
         <ul class="nav nav-pills">
             <li><a class="active" href="#messages" data-toggle="tab">DNA</a></li>
-            <li ><a href="#home" data-toggle="tab">Home</a></li>
+            <li><a href="#home" data-toggle="tab">Home</a></li>
             <li><a href="#profile" data-toggle="tab">Profile</a></li>
-            
+
         </ul>
 
         <div id='content' class="tab-content">
             <div class="tab-pane active" id="messages">
                 <fieldset>
-                    <div class="input-append date" id="dp3" data-date="12-02-2012" data-date-format="dd-mm-yyyy"> <input class="span2" size="16" type="text" value="12-02-2012"> <span class="add-on"><i class="icon-th"></i></span> </div>
                     <legend>Oligonucleotide Order Form</legend>
                     <div class="col-lg-3">
-                        
-                            <div class="form-group row">
-                                <div class="col-lg-10">
-                                    <input type="text" id="Onum" name="oNum">
 
-                                    <input class="img-rounded" type="button" name="Command" id="btnAdd" value="Add more rows" />
-                                </div>
+                        <div class="form-group row">
+                            <div class="col-lg-10">
+                                <input type="text" id="Onum" name="oNum">
+
+                                <input class="img-rounded" type="button" name="Command" id="btnAdd" value="Add more rows" />
                             </div>
+                        </div>
 
-                    
+
                     </div>
 
                 </fieldset>
@@ -125,7 +128,7 @@
                 </fieldset>
 
             </div>
-           
+
             <div class="tab-pane" id="profile">
                 <fieldset>
                     <legend>Billing Information</legend>
@@ -168,7 +171,7 @@
 
                 </fieldset>
             </div>
-        
+
         </div>
         <input type="submit" class="btn btn-lg btn-primary" name="btnConfirm" value="SignUp" />
     </form>

@@ -4,10 +4,15 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Xml.Serialization;
 
 namespace MBBVL.Controllers {
     public class HomeController : Controller {
@@ -41,64 +46,63 @@ namespace MBBVL.Controllers {
 
             var model = new WrapperModel();
             ViewBag.Message = "Your contact page.";
+            Createviewbags();
+            if (oligonucleotideNum != null) {
+                ViewBag.MakeCount = oligonucleotideNum;
+            }
+            return View(model);
+        }
+        private void Createviewbags() {
             var getSynthesis = Core.StaticValues.Synthesis.ToList();
             var getFinalDelivery = Core.StaticValues.FinalDelivery.ToList();
             var purifcation = Core.StaticValues.Purification.ToList();
             ViewBag.Purification = purifcation;
             ViewBag.Synthesis = getSynthesis;
             ViewBag.FinalDelivery = getFinalDelivery;
-            if (oligonucleotideNum != null) {
-                ViewBag.MakeCount = oligonucleotideNum;
-            }
-            return View(model);
+        }
+        private ActionResult CreateExcel(IEnumerable<WrapperModel> model) {
+
+            var stream = new MemoryStream();
+            var serializer = new XmlSerializer(typeof(List<WrapperModel>));
+
+            //We load the data
+            List<WrapperModel> data = model.ToList();
+
+            //We turn it into an XML and save it in the memory
+            serializer.Serialize(stream, data);
+            stream.Position = 0;
+
+            //We return the XML from the memory as a .xls file
+            return File(stream, "application/vnd.ms-excel", "Orders.xls");
         }
         public ActionResult SubmitOrder(WrapperModel model, FormCollection form) {
 
             var num = form["oNum"];
             if (ModelState.IsValid) {
-                //Submit
-                //Logic
-                //Insert all the billing 
-                Billing bill = new Billing();
-                //  bill.Date = DateTime.Now;
-                bill.FullName = model.billing.FullName;
-                bill.Institution = model.billing.Institution;
-                bill.BillingAddress = model.billing.BillingAddress;
-                bill.Phone = model.billing.Phone;
-                bill.Email = model.billing.Email;
-
-                //Shipping
-                Shipping ship = new Shipping();
-                ship.Date = model.shipping.Date;
-                ship.FullName = model.shipping.FullName;
-                ship.Institution = model.shipping.Institution;
-                ship.ShippingAddress = model.shipping.ShippingAddress;
-                ship.Phone = model.shipping.Phone;
-                ship.Email = model.shipping.Email;
-                //Oligosequence
-                for (int i = 0; i < model.oligosequence.Count(); i++) {
-                    Oligosequence ol = new Oligosequence();
-                    ol.PrimerName = model.oligosequence[1].PrimerName;
-                    var getSynthesisScale1 = Core.StaticValues.SynthesisD.SingleOrDefault(x => x.Value == Convert.ToInt32(model.oligosequence[i].SynthesisScale1));
-                    var ti = getSynthesisScale1.Key;
-                }
+                var myList = CreateOrder(model);
+                var productList = new List<WrapperModel> { model };
+                return CreateExcel(productList);
+                // RedirectToAction("CheckEmail");
+            } else {
+                Createviewbags();
+                return View("Order", model);
             }
-            return View(model);
+
         }
-        private void CreateOrder(WrapperModel model) {
-            ApplicationDbContext ab;
-
-
+        private List<object> CreateOrder(WrapperModel model) {
+            List<object> ob = new List<object>();
             using (var ctx = new ApplicationDbContext()) {
                 Billing bill = new Billing();
                 //  bill.Date = DateTime.Now;
                 bill.FullName = model.billing.FullName;
+                bill.Quotenumber = model.billing.Quotenumber;
                 bill.Institution = model.billing.Institution;
                 bill.BillingAddress = model.billing.BillingAddress;
                 bill.Phone = model.billing.Phone;
                 bill.Email = model.billing.Email;
                 ctx.Billing.Add(bill);
-
+                // model.billing = bill;
+                ob.Add(bill);
                 //Shipping
                 Shipping ship = new Shipping();
                 ship.Date = model.shipping.Date;
@@ -108,17 +112,38 @@ namespace MBBVL.Controllers {
                 ship.Phone = model.shipping.Phone;
                 ship.Email = model.shipping.Email;
                 ctx.Shipping.Add(ship);
-
+                ob.Add(ship);
                 //Oligosequence
+                Oligosequence ol = new Oligosequence();
                 for (int i = 0; i < model.oligosequence.Count(); i++) {
-                    Oligosequence ol = new Oligosequence();
-                    ol.PrimerName = model.oligosequence[1].PrimerName;
+
+                    ol.PrimerName = model.oligosequence[i].PrimerName;
                     var getSynthesisScale1 = Core.StaticValues.SynthesisD.SingleOrDefault(x => x.Value == Convert.ToInt32(model.oligosequence[i].SynthesisScale1));
                     var ti = getSynthesisScale1.Key;
                     ctx.Oligosequence.Add(ol);
                 }
-                
-                ctx.SaveChanges();
+
+                try {
+                    ob.Add(ol);
+                    ctx.SaveChanges();
+                    return ob;
+                } catch (DbEntityValidationException ex) {
+                    // Retrieve the error messages as a list of strings.
+                    var errorMessages = ex.EntityValidationErrors
+                        .SelectMany(x => x.ValidationErrors)
+                        .Select(x => x.ErrorMessage);
+
+                    // Join the list to a single string.
+                    var fullErrorMessage = string.Join("; ", errorMessages);
+
+                    // Combine the original exception message with the new one.
+                    var exceptionMessage = string.Concat(ex.Message, " The validation errors are: ", fullErrorMessage);
+
+                    // Throw a new DbEntityValidationException with the improved exception message.
+                    throw new DbEntityValidationException(exceptionMessage, ex.EntityValidationErrors);
+                }
+
+                //   DbAcces.ApplicationDbContext.SaveChanges();
             }
         }
 

@@ -184,6 +184,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="HelperClass\Help.cs" />
+    <Compile Include="HelperClass\Smtp.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -221,6 +222,9 @@
     <Content Include="js\NewRows.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="zip\Ionic.BZip2.dll" />
+    <Content Include="zip\Ionic.Zip.dll" />
+    <Content Include="zip\Ionic.Zlib.dll" />
     <None Include="Properties\PublishProfiles\mbsl.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Cycle.js" />

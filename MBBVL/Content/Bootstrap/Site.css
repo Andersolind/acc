@@ -18,6 +18,65 @@
     
 }
 
+      html,
+      body {
+        height: 100%;
+        /* The html and body elements cannot have any padding or margin. */
+      }
+
+      /* Wrapper for page content to push down footer */
+      #wrap {
+        min-height: 100%;
+        height: auto !important;
+        height: 100%;
+        /* Negative indent footer by it's height */
+        margin: 0 auto -150px;
+      }
+
+      /* Set the fixed height of the footer here */
+      #push,
+      #footer {
+        height: 150px;
+      }
+      #footer {
+        background-color: white;
+      }
+
+      /* Lastly, apply responsive CSS fixes as necessary */
+      @media (max-width: 767px) {
+        #footer {
+          margin-left: -20px;
+          margin-right: -20px;
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+      }
+
+
+
+a.site-logo  {     
+
+ background: url(/Content/Navigationicon.jpg) no-repeat top left;
+
+ display: block;       
+
+ width: 100px;       
+
+ height: 70px;       
+
+ text-indent: -9999px; /* hides the link text */
+
+  } 
+#site-order  {     
+
+ background: url(/Content/OrderNow.png);
+  
+ text-indent: -9999px; /* hides the link text */
+
+  } 
+
+
+
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,

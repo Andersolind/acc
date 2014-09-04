@@ -30,9 +30,12 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>
+    </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PublishDatabases>false</PublishDatabases>
+    <ExcludeGeneratedDebugSymbol>true</ExcludeGeneratedDebugSymbol>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -43,7 +46,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="itextsharp">
+      <HintPath>..\packages\iTextSharp.4.1.2\lib\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="RazorEngine">
+      <HintPath>..\packages\RazorEngine.3.4.1\lib\net45\RazorEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="RazorPDF">
+      <HintPath>..\packages\RazorPDF.1.0.0\lib\net45\RazorPDF.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -175,6 +187,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Core\Helper.cs" />
+    <Compile Include="Core\SendEmail.cs" />
     <Compile Include="Core\StaticValues.cs" />
     <Compile Include="HelperClass\BooleanRequiredAttribute.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -193,22 +206,18 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Footer.png" />
+    <Content Include="Content\Navigationicon.jpg" />
     <Content Include="Content\Background.png" />
-    <Content Include="Content\Bootstrap\bootstrap.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Bootstrap\bootstrap.min.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Content\Bootstrap\bootstrap.css" />
     <Content Include="Content\Bootstrap\datepicker.css" />
     <Content Include="Content\Bootstrap\simple-sidebar.css" />
     <Content Include="Content\Logo.png" />
+    <Content Include="Content\OrderNow.png" />
     <Content Include="css\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Bootstrap\Site.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Content\Bootstrap\Site.css" />
     <Content Include="images\bluepeople.jpg" />
     <Content Include="images\entrance.jpg" />
     <Content Include="images\greenpeople.jpg" />
@@ -220,8 +229,16 @@
     <Content Include="js\bootstrap-datepicker.js" />
     <Content Include="js\infinite-rotator.js" />
     <Content Include="js\NewRows.js" />
+    <Content Include="Rotativa\libeay32.dll" />
+    <Content Include="Rotativa\libgcc_s_dw2-1.dll" />
+    <Content Include="Rotativa\mingwm10.dll" />
+    <Content Include="Rotativa\README.txt" />
+    <Content Include="Rotativa\ssleay32.dll" />
+    <Content Include="Rotativa\wkhtmltopdf.exe" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="templates\addorder.html" />
+    <None Include="templates\OrderForm.cshtml" />
     <Content Include="zip\Ionic.BZip2.dll" />
     <Content Include="zip\Ionic.Zip.dll" />
     <Content Include="zip\Ionic.Zlib.dll" />
@@ -275,6 +292,7 @@
     <Content Include="Views\PayPal\NotifyFromPaypal.cshtml" />
     <Content Include="Views\PayPal\CancelFromPaypal.cshtml" />
     <Content Include="Views\Home\Order.cshtml" />
+    <Content Include="Views\Home\Thankyou.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

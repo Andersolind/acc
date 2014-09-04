@@ -1,23 +1,19 @@
-﻿using MBBVL.DbAccess;
-using MBBVL.Models;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
+﻿using MBBVL.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.IO;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Security;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using System.Xml.Serialization;
-
+using iTextSharp.text;
+using RazorEngine;
+using MBBVL.Core;
 namespace MBBVL.Controllers {
     public class HomeController : Controller {
 
-
+        public ApplicationDbContext db = new ApplicationDbContext();
         public ActionResult Index() {
             //Check if the user is logged in..
             try {
@@ -60,13 +56,13 @@ namespace MBBVL.Controllers {
             ViewBag.Synthesis = getSynthesis;
             ViewBag.FinalDelivery = getFinalDelivery;
         }
-        private ActionResult CreateExcel(IEnumerable<WrapperModel> model) {
+        private ActionResult CreateExcel(IEnumerable<object> model) {
 
             var stream = new MemoryStream();
             var serializer = new XmlSerializer(typeof(List<WrapperModel>));
 
             //We load the data
-            List<WrapperModel> data = model.ToList();
+            List<object> data = model.ToList();
 
             //We turn it into an XML and save it in the memory
             serializer.Serialize(stream, data);
@@ -80,18 +76,29 @@ namespace MBBVL.Controllers {
             var num = form["oNum"];
             if (ModelState.IsValid) {
                 var myList = CreateOrder(model);
-                var productList = new List<WrapperModel> { model };
-                return CreateExcel(productList);
-                // RedirectToAction("CheckEmail");
+
+                ///Generate(model);
+                //   var productList = new List<object> { myList.ToList() };
+                //   Createviewbags();
+
+                return RedirectToAction("Thankyou");
             } else {
                 Createviewbags();
                 return View("Order", model);
             }
 
         }
+        public ActionResult PDF(WrapperModel m) {
+
+            return new RazorPDF.PdfResult(m, "PDF");
+        }
+
+        //  public ActionResult GeneratePDF() { return new Rotativa.ActionAsPdf("Orders"); }
         private List<object> CreateOrder(WrapperModel model) {
             List<object> ob = new List<object>();
-            using (var ctx = new ApplicationDbContext()) {
+            Guid g = Guid.NewGuid();
+            try {
+
                 Billing bill = new Billing();
                 //  bill.Date = DateTime.Now;
                 bill.FullName = model.billing.FullName;
@@ -100,9 +107,14 @@ namespace MBBVL.Controllers {
                 bill.BillingAddress = model.billing.BillingAddress;
                 bill.Phone = model.billing.Phone;
                 bill.Email = model.billing.Email;
-                ctx.Billing.Add(bill);
-                // model.billing = bill;
+                bill.UserId = g;
                 ob.Add(bill);
+               
+                db.Entry(bill).State = EntityState.Added;
+                db.Billing.Add(bill);
+
+                // model.billing = bill;
+                //    ob.Add(bill);
                 //Shipping
                 Shipping ship = new Shipping();
                 ship.Date = model.shipping.Date;
@@ -111,21 +123,38 @@ namespace MBBVL.Controllers {
                 ship.ShippingAddress = model.shipping.ShippingAddress;
                 ship.Phone = model.shipping.Phone;
                 ship.Email = model.shipping.Email;
-                ctx.Shipping.Add(ship);
+                ship.UserId = g;
+                db.Shipping.Add(ship);
+                db.Entry(ship).State = EntityState.Added;
                 ob.Add(ship);
+                
                 //Oligosequence
                 Oligosequence ol = new Oligosequence();
                 for (int i = 0; i < model.oligosequence.Count(); i++) {
 
+                    var final = Core.StaticValues.FinalDelivery.SingleOrDefault(x => x.Value == Convert.ToString(model.oligosequence[i].FinalDeliveryForm));
+                    ol.FinalDeliveryForm = final.Value;
+                    ol.GMP2 = model.oligosequence[i].GMP2;
+                    ol.Modification = model.oligosequence[i].Modification;
+                    ol.OligonucleotideSequence = model.oligosequence[i].OligonucleotideSequence;
                     ol.PrimerName = model.oligosequence[i].PrimerName;
+                    ol.Purification = model.oligosequence[i].Purification;
+                    ol.Qty = model.oligosequence[i].Qty;
                     var getSynthesisScale1 = Core.StaticValues.SynthesisD.SingleOrDefault(x => x.Value == Convert.ToInt32(model.oligosequence[i].SynthesisScale1));
-                    var ti = getSynthesisScale1.Key;
-                    ctx.Oligosequence.Add(ol);
-                }
+                    ol.SynthesisScale1 = getSynthesisScale1.Key;
+                    ol.UserId = g;
+                    //Ties into the other id's
+                    db.Oligosequence.Add(ol);
 
+                }
+                db.Entry(ol).State = EntityState.Added;
                 try {
                     ob.Add(ol);
-                    ctx.SaveChanges();
+                    //Create email template!
+                    SendEmail email = new SendEmail();
+                    email.SetUpbill(ob);
+                   // ParseTemplate(ob);
+                    db.SaveChanges();
                     return ob;
                 } catch (DbEntityValidationException ex) {
                     // Retrieve the error messages as a list of strings.
@@ -143,10 +172,33 @@ namespace MBBVL.Controllers {
                     throw new DbEntityValidationException(exceptionMessage, ex.EntityValidationErrors);
                 }
 
-                //   DbAcces.ApplicationDbContext.SaveChanges();
+            } catch (Exception ex) {
+                string error = ex.InnerException.ToString();
+                return null;
             }
-        }
 
+        }
+        public ActionResult Thankyou() { return View(); }
+
+        public void ParseTemplate(List<object> model) {
+            var html = "";
+            html += "<table class='colorful'>";
+            foreach (var item in model) {
+                html += "<tr>";
+                html += "<td class='boldCell'>" + item + "</td>";
+                // more cells here as needed
+                html += "</tr>";
+            }
+            html += "</table>";
+
+            //string template = null;
+            //String path = HttpContext.Server.MapPath("~/Templates/Orderform.chtml");
+            //using (StreamReader reader = System.IO.File.OpenText(path)) {
+            //    template = reader.ReadToEnd();
+            //}
+
+            //string renderedEmailBody = Razor.Parse(template, model);
+        }
 
     }
 }

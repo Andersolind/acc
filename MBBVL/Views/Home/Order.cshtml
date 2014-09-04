@@ -5,24 +5,26 @@
 }
 
 <script src="~/js/NewRows.js"></script>
-<script src="~/js/Angular.js"></script>
-<script src="~/js/Angular/app.js"></script>
-
+<style>
+    .table {
+        max-width: none;
+        table-layout: fixed;
+        word-wrap: break-word;
+    }
+</style>
 <h2>Order</h2>
 @using (Html.BeginForm("SubmitOrder", "Home")) {
     @Html.ValidationSummary(false)
     <form class="form-horizontal">
-        <ul class="nav nav-pills">
-            <li><a class="active" href="#messages" data-toggle="tab">DNA</a></li>
-            <li><a href="#home" data-toggle="tab">Home</a></li>
-            <li><a href="#profile" data-toggle="tab">Profile</a></li>
-
-        </ul>
-
-        <div id='content' class="tab-content">
-            <div  class="tab-pane active jumbotron" id="messages">
+       
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Oligonucleotide Order Form</h3>
+            </div>
+            <div class="panel-body">
                 <fieldset>
                     <legend>Oligonucleotide Order Form</legend>
+
                     <div class="col-lg-3">
 
                         <div class="form-group row">
@@ -32,13 +34,11 @@
                                 <input class="img-rounded" type="button" name="Command" id="btnAdd" value="Add more rows" />
                             </div>
                         </div>
-
-
                     </div>
 
                 </fieldset>
-                <table id="addRow">
-                    <caption>Oligonucleotide Order</caption>
+                <table class="panel-body" id="addRow">
+                 
                     <thead>
                         <tr>
                             <th>Primer Name</th>
@@ -80,14 +80,16 @@
                             }
                         }
 
-
-                    </tbody>
                 </table>
             </div>
-
-            <div class="tab-pane " id="home">
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Shipping Info</h3>
+            </div>
+            <div class="panel-body">
                 <fieldset>
-                    <legend>Oligonucleotide Order Form</legend>
+                    <legend></legend>
                     <div class="control-group">
                         @Html.LabelFor(m => m.shipping.Date, new { @class = "col-md-2 control-label" })
                         <div class="col-md-10">
@@ -126,53 +128,57 @@
                     </div>
 
                 </fieldset>
-
             </div>
-
-            <div class="tab-pane" id="profile">
-                <fieldset>
-                    <legend>Billing Information</legend>
-                    <div class="control-group">
-                        @Html.LabelFor(m => m.billing.Quotenumber, new { @class = "col-md-2 control-label" })
-                        <div class="col-md-10">
-                            @Html.TextBoxFor(m => m.billing.Quotenumber, new { @class = "form-control" })
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        @Html.LabelFor(m => m.billing.FullName, new { @class = "col-md-2 control-label" })
-                        <div class="col-md-10">
-                            @Html.TextBoxFor(m => m.billing.FullName, new { @class = "form-control" })
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        @Html.LabelFor(m => m.billing.Institution, new { @class = "col-md-2 control-label" })
-                        <div class="col-md-10">
-                            @Html.TextBoxFor(m => m.billing.Institution, new { @class = "form-control" })
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        @Html.LabelFor(m => m.billing.BillingAddress, new { @class = "col-md-2 control-label" })
-                        <div class="col-md-10">
-                            @Html.TextBoxFor(m => m.billing.BillingAddress, new { @class = "form-control" })
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        @Html.LabelFor(m => m.billing.Phone, new { @class = "col-md-2 control-label" })
-                        <div class="col-md-10">
-                            @Html.TextBoxFor(m => m.billing.Phone, new { @class = "form-control" })
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        @Html.LabelFor(m => m.billing.Email, new { @class = "col-md-2 control-label" })
-                        <div class="col-md-10">
-                            @Html.TextBoxFor(m => m.billing.Email, new { @class = "form-control" })
-                        </div>
-                    </div>
-
-                </fieldset>
-            </div>
-
         </div>
-        <input type="submit" class="btn btn-lg btn-primary" name="btnConfirm" value="SignUp" />
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Billing Information</h3>
+            </div>
+            <div class="panel-body">
+                <div class="tab-pane" id="profile">
+                    <fieldset>
+                        <div class="control-group">
+                            @Html.LabelFor(m => m.billing.Quotenumber, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(m => m.billing.Quotenumber, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            @Html.LabelFor(m => m.billing.FullName, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(m => m.billing.FullName, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            @Html.LabelFor(m => m.billing.Institution, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(m => m.billing.Institution, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            @Html.LabelFor(m => m.billing.BillingAddress, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(m => m.billing.BillingAddress, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            @Html.LabelFor(m => m.billing.Phone, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(m => m.billing.Phone, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            @Html.LabelFor(m => m.billing.Email, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(m => m.billing.Email, new { @class = "form-control" })
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+       
+        <input type="submit" class="btn btn-lg btn-primary" name="btnConfirm" value="Submit" />
     </form>
 }

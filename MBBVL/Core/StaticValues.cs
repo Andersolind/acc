@@ -22,7 +22,7 @@ namespace MBBVL.Core {
                 List<SelectListItem> items = new List<SelectListItem>();
                 items.Add(new SelectListItem { Text = "--Select--", Value = "0" });
                 items.Add(new SelectListItem { Text = "0.02", Value = "1" });
-                items.Add(new SelectListItem { Text = "0,04", Value = "2" });
+                items.Add(new SelectListItem { Text = "0.04", Value = "2" });
                 items.Add(new SelectListItem { Text = "0.2", Value = "3" });
                 items.Add(new SelectListItem { Text = "1", Value = "4" });
                 return items;

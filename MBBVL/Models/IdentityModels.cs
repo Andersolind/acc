@@ -31,6 +31,7 @@ namespace MBBVL.Models
         [Display(Name = "Email")]
         [EmailAddress]
         public string Email { get; set; }
+        public Guid UserId { get; set; }
     }
 
     public class Billing {
@@ -52,6 +53,7 @@ namespace MBBVL.Models
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
+        public Guid UserId { get; set; }
 
     }
     public class Oligosequence {
@@ -75,6 +77,7 @@ namespace MBBVL.Models
         public string FinalDeliveryForm { get; set; }
         [Display(Name = "Purification")]
         public string Purification { get; set; }
+        public Guid UserId { get; set; }
 
     }
     public class OrderForm {
@@ -83,6 +86,7 @@ namespace MBBVL.Models
         public int ShippingId { get; set; }
         public int OrderFormId { get; set; }
         public int BillingId { get; set; }
+        public Guid UserId { get; set; }
     }
     public class WrapperModel {
         public Shipping shipping { get; set; }

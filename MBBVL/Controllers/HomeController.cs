@@ -94,8 +94,10 @@ namespace MBBVL.Controllers {
         }
 
         //  public ActionResult GeneratePDF() { return new Rotativa.ActionAsPdf("Orders"); }
-        private List<object> CreateOrder(WrapperModel model) {
-            List<object> ob = new List<object>();
+        private WrapperModel CreateOrder(WrapperModel model) {
+
+            WrapperModel templateData = new WrapperModel();
+            List<Oligosequence> getList = new List<Oligosequence>();
             Guid g = Guid.NewGuid();
             try {
 
@@ -108,13 +110,12 @@ namespace MBBVL.Controllers {
                 bill.Phone = model.billing.Phone;
                 bill.Email = model.billing.Email;
                 bill.UserId = g;
-                ob.Add(bill);
-               
+                templateData.billing = bill;
+
                 db.Entry(bill).State = EntityState.Added;
                 db.Billing.Add(bill);
 
-                // model.billing = bill;
-                //    ob.Add(bill);
+
                 //Shipping
                 Shipping ship = new Shipping();
                 ship.Date = model.shipping.Date;
@@ -126,10 +127,11 @@ namespace MBBVL.Controllers {
                 ship.UserId = g;
                 db.Shipping.Add(ship);
                 db.Entry(ship).State = EntityState.Added;
-                ob.Add(ship);
-                
+                templateData.shipping = ship;
+
                 //Oligosequence
                 Oligosequence ol = new Oligosequence();
+
                 for (int i = 0; i < model.oligosequence.Count(); i++) {
 
                     var final = Core.StaticValues.FinalDelivery.SingleOrDefault(x => x.Value == Convert.ToString(model.oligosequence[i].FinalDeliveryForm));
@@ -145,37 +147,34 @@ namespace MBBVL.Controllers {
                     ol.UserId = g;
                     //Ties into the other id's
                     db.Oligosequence.Add(ol);
-
+                    getList.Add(ol);
                 }
                 db.Entry(ol).State = EntityState.Added;
-                try {
-                    ob.Add(ol);
-                    //Create email template!
-                    SendEmail email = new SendEmail();
-                    email.SetUpbill(ob);
-                   // ParseTemplate(ob);
-                    db.SaveChanges();
-                    return ob;
-                } catch (DbEntityValidationException ex) {
-                    // Retrieve the error messages as a list of strings.
-                    var errorMessages = ex.EntityValidationErrors
-                        .SelectMany(x => x.ValidationErrors)
-                        .Select(x => x.ErrorMessage);
 
-                    // Join the list to a single string.
-                    var fullErrorMessage = string.Join("; ", errorMessages);
+                //Create email template!
+                SendEmail email = new SendEmail();
+                templateData.oligosequence = getList;
+                email.SetUpbill(templateData);
+                // ParseTemplate(ob);
+                db.SaveChanges();
+                return templateData;
+            } catch (DbEntityValidationException ex) {
+                // Retrieve the error messages as a list of strings.
+                var errorMessages = ex.EntityValidationErrors
+                    .SelectMany(x => x.ValidationErrors)
+                    .Select(x => x.ErrorMessage);
 
-                    // Combine the original exception message with the new one.
-                    var exceptionMessage = string.Concat(ex.Message, " The validation errors are: ", fullErrorMessage);
+                // Join the list to a single string.
+                var fullErrorMessage = string.Join("; ", errorMessages);
 
-                    // Throw a new DbEntityValidationException with the improved exception message.
-                    throw new DbEntityValidationException(exceptionMessage, ex.EntityValidationErrors);
-                }
+                // Combine the original exception message with the new one.
+                var exceptionMessage = string.Concat(ex.Message, " The validation errors are: ", fullErrorMessage);
 
-            } catch (Exception ex) {
-                string error = ex.InnerException.ToString();
-                return null;
+                // Throw a new DbEntityValidationException with the improved exception message.
+                throw new DbEntityValidationException(exceptionMessage, ex.EntityValidationErrors);
             }
+
+
 
         }
         public ActionResult Thankyou() { return View(); }

@@ -1,0 +1,142 @@
+﻿@Model MBBVL.Models.WrapperModel
+<h1>Order Placed!</h1>
+Dear @Model.billing.FullName
+
+<h2>Thank you.</h2>
+<p>
+
+</p>
+    <strong>Order date: </strong> @Model.shipping.Date
+<table>
+          <thead>
+              <tr>
+                  <th>Primer Name</th>
+                  <th>QTY</th>
+                  <th>Oligonucleotide Sequence</th>
+                  <th>Synthesis Scale1(μmole)</th>
+                  <th>GMP2(Y/N)</th>
+                  <th>Modification</th>
+                  <th>Final Delivery Form3</th>
+                  <th>Purification4</th>
+              </tr>
+          </thead>
+<tbody>
+    @foreach(var product in Model.oligosequence){
+    <tr>
+        <td>
+            @product.PrimerName
+        </td>
+        <td>
+            @product.Qty
+        </td>
+        <td>
+            @product.OligonucleotideSequence
+        </td>
+        <td>
+            @product.SynthesisScale1
+        </td>
+        <td>
+            @product.GMP2
+        </td>
+        <td>
+            @product.Modification
+        </td>
+        <td>
+            @product.FinalDeliveryForm
+        </td>
+        <td>
+            @product.Purification
+        </td>
+    </tr>
+    }
+</tbody>
+</table>
+<table>
+    <thead>
+        <tr>
+            <th>Shipping Date</th>
+            <th>Full Name</th>
+            <th>Institution</th>
+            <th>ShippingAddress</th>
+            <th>Phone</th>
+            <th>Modification</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var ship in Model.shipping){
+        <tr>
+            <td>
+                @ship.Date
+            </td>
+            <td>
+                @ship.FullName
+            </td>
+            <td>
+                @ship.Institution
+            </td>
+            <td>
+                @ship.ShippingAddress
+            </td>
+            <td>
+                @ship.Phone
+            </td>
+            <td>
+                @ship.Email
+            </td>
+            <td>
+                @ship.FinalDeliveryForm
+            </td>
+            <td>
+                @ship.Purification
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+<table>
+    <thead>
+        <tr>
+            <th>Quotenumber</th>
+            <th>Full Name</th>
+            <th>Institution</th>
+            <th>BillingAddress</th>
+            <th>Phone</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var bill in Model.Billing){
+        <tr>
+            <td>
+                @bill.Quotenumber
+            </td>
+            <td>
+                @bill.FullName
+            </td>
+            <td>
+                @bill.Institution
+            </td>
+            <td>
+                @bill.ShippingAddress
+            </td>
+            <td>
+                @bill.Phone
+            </td>
+            <td>
+                @bill.Email
+            </td>
+            <td>
+                @bill.FinalDeliveryForm
+            </td>
+            <td>
+                @bill.Purification
+            </td>
+        </tr>
+        }
+    </tbody>
+</table><p>
+If you have any questions on the order, please contact andersolind@gmail.com
+</p><p>
+Thank you for your business,
+</p><strong></strong>

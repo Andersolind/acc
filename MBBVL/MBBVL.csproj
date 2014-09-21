@@ -190,6 +190,7 @@
     <Compile Include="Controllers\QualitySystemsController.cs" />
     <Compile Include="Controllers\ResearchAndDevelopmentController.cs" />
     <Compile Include="Controllers\SequencingController.cs" />
+    <Compile Include="Controllers\TechSupportController.cs" />
     <Compile Include="Core\Helper.cs" />
     <Compile Include="Core\SendEmail.cs" />
     <Compile Include="Core\StaticValues.cs" />
@@ -329,6 +330,8 @@
     <Content Include="Views\Sequencing\FAQ.cshtml" />
     <Content Include="Views\ResearchAndDevelopment\Index.cshtml" />
     <Content Include="Views\ResearchAndDevelopment\Jason.cshtml" />
+    <Content Include="Views\TechSupport\Index.cshtml" />
+    <Content Include="Views\TechSupport\Test.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -19,6 +19,7 @@ namespace MBBVL {
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/js/bootstrap-datepicker.js",
+                      "~/js/Angular.js",
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(

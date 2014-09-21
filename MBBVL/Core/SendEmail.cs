@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Mail;
 using System.Web;
 
@@ -9,15 +10,46 @@ namespace MBBVL.Core {
     public class SendEmail {
         public void CreateEmail(string toSender, string fromSender, string body) {
             try {
-                MailAddress SendFrom = new MailAddress(fromSender);
-                MailAddress SendTo = new MailAddress(toSender);
-                MailMessage MyMessage = new MailMessage(SendFrom, SendTo);
-                MyMessage.Subject = "Your order form";
-                MyMessage.Body = body;
-                MyMessage.IsBodyHtml = true;
-                SmtpClient smtp = new SmtpClient("relay-hosting.secureserver.net");
-                smtp.Send(MyMessage);
 
+           
+                //Create the msg object to be sent
+                MailMessage msg = new MailMessage();
+                //Add your email address to the recipients
+                msg.To.Add(toSender);
+                //Configure the address we are sending the mail from
+                MailAddress address = new MailAddress("info@acgt.com");
+                MailAddress addressBCC = new MailAddress("andersolind@hotmail.com");
+                msg.From = address;
+                msg.Bcc.Add(addressBCC);
+                msg.Subject = "Order form";
+                msg.IsBodyHtml = true;
+                msg.Body = body;
+
+                ////Configure an SmtpClient to send the mail.            
+                SmtpClient smptc = new SmtpClient(); // Here SMTP Client object is created
+             //   smptc.Host = "smtpout.asia.secureserver.net";// here SMTP interface Address is passed
+                smptc.Port = 25;// Use port No 25
+                smptc.UseDefaultCredentials = false;
+                smptc.EnableSsl = false;
+                smptc.DeliveryMethod = SmtpDeliveryMethod.Network;
+                NetworkCredential credentials = new NetworkCredential("info@snapcheckit.com", "Travel2014");
+                smptc.Credentials = credentials;
+                smptc.Send(msg);
+
+                ////Setup credentials to login to our sender email address ("UserName", "Password")
+                //NetworkCredential credentials = new NetworkCredential("andersolind@gmail.com", "Oscar@2015");
+                //client.UseDefaultCredentials = true;
+                //client.Credentials = credentials;
+
+                ////Send the msg
+                //client.Send(msg);
+                //var client = new SmtpClient("smtp.gmail.com", 587) {
+                //    Credentials = new NetworkCredential("andersolind@gmail.com", "Oscar@2015"),
+                //    EnableSsl = true
+                //};
+
+                //client.Send("andersolind@hotmail.com", "andersolind@gmail.com", "test", "testbody");
+           
 
             } catch (Exception ex) {
                 string er = ex.InnerException.ToString();
@@ -25,13 +57,14 @@ namespace MBBVL.Core {
         }
         public string SetUpbill(WrapperModel model) {
             WrapperModel m = new WrapperModel();
-
+             
             m.billing = model.billing;
             m.shipping = model.shipping;
             m.oligosequence = model.oligosequence;
             //headers
-            var bill = "";
-            bill += "<table class='colorful'>";
+            var bill = "<h1>Dear"+ model.billing.FullName+ "Here is your Order <br>Billing</h1>";
+            
+            bill += "<table style='width:100%' class='panel-title'>";
             bill += "<tr>";
             bill += "<td class='boldCell'>Quote Number</td>";
             bill += "<td class='boldCell'>Full Name</td>";
@@ -43,7 +76,7 @@ namespace MBBVL.Core {
             bill += "</tr>";
             //Content
 
-            bill += "<tr>";
+            bill += "<tr  style='width:100%'>";
             bill += "<td class='boldCell'>" + m.billing.Quotenumber + "</td>";
             bill += "<td class='boldCell'>" + m.billing.FullName + "</td>";
             bill += "<td class='boldCell'>" + m.billing.Institution + "</td>";
@@ -54,9 +87,9 @@ namespace MBBVL.Core {
             bill += "</tr>";
             //shipping
 
-            var ship = "";
-            ship += "</table><table class='colorful'>";
-            ship += "<tr>";
+            var ship = "<h1>Shipping</h1>";
+            ship += "</table><table  style='width:100%' class='colorful'>";
+            ship += "<tr style='width:100%'>";
             ship += "<td class='boldCell'>Date</td>";
             ship += "<td class='boldCell'>Full name</td>";
             ship += "<td class='boldCell'>Institution</td>";
@@ -76,23 +109,26 @@ namespace MBBVL.Core {
             ship += "<td class='boldCell'>" + m.shipping.Email + "</td>";
             // more cells here as needed
             ship += "</tr>";
-            var olForm = "";
-            olForm += "</table><table class='colorful'>";
+            var olForm = "<h1>Oligosequence</h1>"; ;
+            olForm += "</table><table style='width:100%' class='colorful'>";
 
-            olForm += "<tr>";
-            olForm += "<td class='boldCell'>Date</td>";
-            olForm += "<td class='boldCell'>Full name</td>";
-            olForm += "<td class='boldCell'>Institution</td>";
-            olForm += "<td class='boldCell'>Shipping Address</td>";
-            olForm += "<td class='boldCell'>Phone</td>";
-            olForm += "<td class='boldCell'>Email</td>";
+            olForm += "<tr  style='width:100%'>";
+            olForm += "<td class='boldCell'>PrimerName</td>";
+            olForm += "<td class='boldCell'>Qty</td>";
+            olForm += "<td class='boldCell'>OligonucleotideSequence</td>";
+            olForm += "<td class='boldCell'>SynthesisScale1</td>";
+            olForm += "<td class='boldCell'>GMP2</td>";
+            olForm += "<td class='boldCell'>Modification</td>";
+            olForm += "<td class='boldCell'>FinalDeliveryForm</td>";
+            olForm += "<td class='boldCell'>Purification</td>";
             // more cells here as needed
             olForm += "</tr>";
+            
 
             for (int i = 0; i < m.oligosequence.Count(); i++) {
                 olForm += "<tr>";
-                olForm += "<td class='boldCell'>" + m.oligosequence[i].PrimerName + "</td>";
-                olForm += "<td class='boldCell'>" + m.oligosequence[i].Qty + "</td>";
+                olForm += "<td class='boldCell'>" + m.oligosequence[i].PrimerName.SingleOrDefault() + "</td>";
+                olForm += "<td class='boldCell'>" + m.oligosequence[i].Qty.SingleOrDefault() + "</td>";
                 olForm += "<td class='boldCell'>" + m.oligosequence[i].OligonucleotideSequence + "</td>";
                 olForm += "<td class='boldCell'>" + m.oligosequence[i].SynthesisScale1 + "</td>";
                 olForm += "<td class='boldCell'>" + m.oligosequence[i].GMP2 + "</td>";
@@ -103,7 +139,8 @@ namespace MBBVL.Core {
                 olForm += "</tr>";
             }
             olForm += "</table>";
-            CreateEmail(m.shipping.Email, "Andersolind@gmail.com", olForm);
+         var template =   bill + ship + olForm;
+         CreateEmail(m.shipping.Email, "Andersolind@gmail.com", template);
             return olForm;
         }
     }

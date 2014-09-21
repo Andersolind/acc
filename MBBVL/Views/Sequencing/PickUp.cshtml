@@ -1,0 +1,117 @@
+﻿
+@{
+    ViewBag.Title = "PickUp";
+}
+
+<h2>Schedule Pick-up</h2>
+<p>To schedule a sample pick-up, please fill out the form below. Your request must be submitted by 11:30am for same-day pick-up. Please have the samples and completed DNA Sequencing Order form ready for pick-up. Sample pick-up is offered free of charge from the following locations:</p>
+<p>BEST Institute – 112 College Street</p>
+<p>CCBR – 160 College Street</p>
+<p>Faculty of Pharmacy – 144 College Street</p>
+<p>Fitzgerald Bldg – 150 College Street</p>
+<p>HSC – 555 University Avenue</p>
+<p>MSH – SLRI at 600 University Avenue & TCP at 25 Orde/60 Murray Street</p>
+<p>MSB – 1 King’s College Circle</p>
+<p>PMH / OCI – 620 University Avenue</p>
+<p>Tanz Neuroscience Bldg – 6 Queens Park Crescent</p>
+<p>TMDT & MaRS South Tower – 101 College Street</p>
+<p>Fill out to schedule a pickup</p>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+            <form role="form">
+                <h2>Fill out to schedule a pickup</h2>
+                <hr class="colorgraph">
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <input type="text" name="first_name" id="first_name" class="form-control input-lg" placeholder="First Name" tabindex="1">
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <input type="text" name="last_name" id="last_name" class="form-control input-lg" placeholder="Last Name" tabindex="2">
+                        </div>
+                    </div>
+                </div>
+               
+                <div class="form-group">
+                    <input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" tabindex="4">
+                </div>
+                <div class="row">
+                   
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <select id="ddlInstitute" name="ddlInstitute">
+
+                                <option value="BEST Institute – 112 College Street">BEST Institute – 112 College Street</option>
+
+                                <option value="CCBR – 160 College Street">CCBR – 160 College Street</option>
+
+                                <option value="Faculty of Pharmacy – 144 College Street">Faculty of Pharmacy – 144 College Street</option>
+
+                                <option value="Fitzgerald Bldg – 150 College Street">Fitzgerald Bldg – 150 College Street</option>
+
+                                <option value="HSC – 555 University Avenue">HSC – 555 University Avenue</option>
+
+                                <option value="MSH   – SLRI at 600 University Avenue &amp; TCP at 25 Orde/60 Murray Street">MSH – SLRI at 600 University Avenue &amp; TCP at 25 Orde/60 Murray Street</option>
+
+                                <option value="MSB – 1 King’s College Circle">MSB – 1 King’s College Circle</option>
+
+                                <option value="PMH / OCI – 620 University Avenue">PMH / OCI – 620 University Avenue</option>
+
+                                <option value="Tanz Neuroscience Bldg – 6 Queens Park Crescent">Tanz Neuroscience Bldg – 6 Queens Park Crescent</option>
+
+                                <option value="TMDT &amp; MaRS South Tower – 101 College Street">TMDT &amp; MaRS South Tower – 101 College Street</option>
+
+                            </select> </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                        <div class="form-group">
+                         
+                            <textarea  rows="5" id="txtMessege" class="form-control input-lg" placeholder="Message"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3 col-sm-3 col-md-3">
+                        <span class="button-checkbox">
+                            <button type="button" class="btn" data-color="info" tabindex="7">I Agree</button>
+                            <input type="checkbox" name="t_and_c" id="t_and_c" class="hidden" value="1">
+                        </span>
+                    </div>
+                    <div class="col-xs-9 col-sm-9 col-md-9">
+                        By clicking <strong class="label label-primary">Register</strong>, you agree to the <a href="#" data-toggle="modal" data-target="#t_and_c_m">Terms and Conditions</a> set out by this site, including our Cookie Use.
+                    </div>
+                </div>
+
+                <hr class="colorgraph">
+                <div class="row">
+                    <div class="col-xs-6 col-md-6"><input type="submit" value="Submit" class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
+                 
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="t_and_c_m" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel">Terms & Conditions</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
+                 </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">I Agree</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+</div>

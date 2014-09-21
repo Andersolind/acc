@@ -179,6 +179,22 @@ namespace MBBVL.Controllers {
         }
         public ActionResult Thankyou() { return View(); }
 
+        public ActionResult CompanyPeople() {
+            return View();
+        }
+        public ActionResult PublicationServices() {
+            return View();
+        }
+        public ActionResult Careers() {
+            return View();
+        }
+        public ActionResult TermsAndConditions() {
+            return View();
+        }
+        public ActionResult GeneralOverview() {
+            return View();
+        }
+
         public void ParseTemplate(List<object> model) {
             var html = "";
             html += "<table class='colorful'>";

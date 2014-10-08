@@ -5,8 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 
-namespace MBBVL.Models
-{
+namespace MBBVL.Models {
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser {
 
@@ -80,6 +79,64 @@ namespace MBBVL.Models
         public Guid UserId { get; set; }
 
     }
+
+    public class SequencingModel {
+        [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+        public int SequencingId { get; set; }
+        [Required]
+        [Display(Name = "Sample Name")]
+        public string SampleName { get; set; }
+        [Display(Name = "SampleCon")]
+        public string SampleCon { get; set; }
+        [Display(Name = "Vector Name or PCR Product")]
+        public string VectorName { get; set; }
+        [Display(Name = "Length")]
+        public string Length { get; set; }
+        [Display(Name = "Primer Name")]
+        public string PrimerName { get; set; }
+        [Display(Name = "Primer Conc.2 ")]
+        public string PrimerConc { get; set; }
+        [Display(Name = "GMP3")]
+        public string GMP3 { get; set; }
+
+
+        public Guid UserId { get; set; }
+
+    }
+    public class CustomPrimers {
+        [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+        public int CustomPrimerId { get; set; }
+        [Required]
+        [Display(Name = "Primer Name")]
+        public string PrimerName { get; set; }
+        [Display(Name = "Scale")]
+        public string Scale { get; set; }
+        [Display(Name = "Sequence")]
+        public string Sequence { get; set; }
+        [Display(Name = "GMP")]
+        public string Gmp { get; set; }
+        public Guid UserId { get; set; }
+
+    }
+    public class DataDeliveryOptions {
+        [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+        public int DataDeliveryId { get; set; }
+        [Display(Name = "Unedited Sequence Result")]
+        public bool ChromatogramTrace { get; set; }
+
+        [Display(Name = " Edited Sequence Results")]
+        public bool TextData { get; set; }
+
+        [Display(Name = " Unedited Sequence Results")]
+        public bool TextAndChromatogramTrace { get; set; }
+        [Display(Name = "Edited Sequence Results ")]
+        public bool TextDataAndChromatogramTrace { get; set; }
+
+        public Guid UserId { get; set; }
+    }
     public class OrderForm {
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
@@ -94,6 +151,15 @@ namespace MBBVL.Models
         public List<Oligosequence> oligosequence { get; set; }
     }
 
+    public class SequencingWrapperModel {
+        public Shipping shipping { get; set; }
+        public Billing billing { get; set; }
+
+        public DataDeliveryOptions dataDeliveryOptions { get; set; }
+        public List<SequencingModel> sequencingModel { get; set; }
+        public List<CustomPrimers> customPrimers { get; set; }
+    }
+
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser> {
         public ApplicationDbContext()
             : base("DefaultConnection") {
@@ -102,5 +168,9 @@ namespace MBBVL.Models
         public DbSet<Billing> Billing { get; set; }
         public DbSet<Oligosequence> Oligosequence { get; set; }
         public DbSet<OrderForm> OrderForm { get; set; }
+        public DbSet<SequencingModel> SequencingModel { get; set; }
+        public DbSet<DataDeliveryOptions> dataDeliveryOptions { get; set; }
+        public DbSet<CustomPrimers> CustomPrimers { get; set; }
+
     }
 }

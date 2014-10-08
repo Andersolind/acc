@@ -1,0 +1,295 @@
+﻿@model MBBVL.Models.SequencingWrapperModel
+
+@{
+    ViewBag.Title = "Sequencing";
+}
+
+<script src="~/js/NewRows.js"></script>
+<style>
+    .table {
+        max-width: none;
+        table-layout: fixed;
+        word-wrap: break-word;
+    }
+</style>
+<h2>Order</h2>
+@using (Html.BeginForm("SubmitOrder", "Sequencing")) {
+    <span style="padding-top:100px">
+
+    </span>
+    @Html.ValidationSummary(false)
+    <form class="form-horizontal">
+        <div ng-app="acgt" >
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title"> DNA Sequencing Order Form</h3>
+                </div>
+                <div class="panel-body" ng-controller="OrderSequencing">
+    <fieldset>
+        <legend> DNA Sequencing Order Form</legend>
+        <div class="col-lg-3">
+
+            <div class="form-group row">
+                <div class="col-lg-10">
+                    <button class="btn btn-default" ng-click="AddRow()"><span class="glyphicon glyphicon-plus-sign"></span> Add Row</button>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <table class="panel-body">
+        <thead>
+            <tr>
+                <th>Sample Name</th>
+                <th>Sample  Conc. (ng/µl)</th>
+                <th>Vector Name1 or PCR Product</th>
+                <th>Length (bases)</th>
+                <th>Primer Name </th>
+                <th>Primer Conc.2 (ng/µl) </th>
+                <th>GMP3 (Y/N) </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="dna in NavigationConfig">
+
+                <td>
+                    <input type="text" class="form-control" id="txtSampleName" name="txtSampleName" ng-model="dna.SampleName" placeholder="Enter Sample Name" title="Sample Name">
+
+                </td>
+                <td>
+                    <input type="text" class="form-control" id="txtSameConc" name="txtSameConc" ng-model="dna.SameConc" placeholder="EnterSample  Conc" title="Sample  Conc. (ng/µl)">
+
+                </td>
+                <td>
+                    <input type="text" class="form-control" id="txtColumnName" name="txtVectorName" ng-model="dna.VectorName" placeholder="Vector Name1 or PCR Product" title="Vector Name">
+
+                </td>
+                <td>
+                    <input type="text" class="form-control" id="txtColumnName" name="txtLengthBases" ng-model="nav.LengthBases" placeholder="Enter Length (bases)" title="Length (bases)">
+
+                </td>
+                <td>
+                    <input type="text" class="form-control" id="txtPrimerName" name="txtPrimerName" ng-model="nav.PrimerName" placeholder="Enter Primer Name" title="Enter Primer Name">
+
+                </td>
+                <td>
+                    <input type="text" class="form-control" id="txtPrimerConc" name="txtPrimerConc" ng-model="nav.PrimerConc" placeholder="Enter Primer Conc" title="Primer Conc.2 (ng/µl)">
+
+                </td>
+                <td>
+                    <select id="orderSequencingSelect" name="ordersequencingSelect" ng-model=" nav.GMP3" ng-options="user.value as user.name for user in NavigationConfig.GMP3"></select>
+
+                </td>
+
+
+                        </tr>
+                        </tbody>
+                </table>
+            </div>
+            </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Select Data Delivery Options</h3>
+                </div>
+                <div class="panel-body">
+                    <fieldset>
+                        <legend>All sequencing results are sent by email. (Please select only one option) </legend>
+                    </fieldset>
+
+
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                            @Html.LabelFor(m => m.dataDeliveryOptions.ChromatogramTrace, new { @class = "col-md-4 control-label" })
+                            <div class="col-md-10">
+                                @Html.CheckBoxFor(m => m.dataDeliveryOptions.ChromatogramTrace, new { @class = "col-md-2 control-label" })
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                            @Html.LabelFor(m => m.dataDeliveryOptions.TextData, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-10">
+                                @Html.CheckBoxFor(m => m.dataDeliveryOptions.TextData, new { @class = "col-md-2 control-label" })
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                            @Html.LabelFor(m => m.dataDeliveryOptions.TextAndChromatogramTrace, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-10">
+                                @Html.CheckBoxFor(m => m.dataDeliveryOptions.TextAndChromatogramTrace, new { @class = "col-md-2 control-label" })
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                            @Html.LabelFor(m => m.dataDeliveryOptions.TextDataAndChromatogramTrace, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-10">
+                                @Html.CheckBoxFor(m => m.dataDeliveryOptions.TextDataAndChromatogramTrace, new { @class = "col-md-2 control-label" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Custom Primers to be Synthesized & Used for Sequencing</h3>
+                </div>
+                <div class="panel-body">
+                    <fieldset>
+                        <legend>Custom Primers to be Synthesized & Used for Sequencing</legend>
+                        <div class="col-lg-3">
+
+                            <div class="form-group row">
+                                <div class="col-lg-10">
+                                    <input type="text" id="Onum" name="oNum">
+
+                                    <input class="img-rounded" type="button" name="Command" id="btnAddCustomPrimers" value="Add more rows" />
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </fieldset>
+                    <table class="panel-body" id="addRow">
+
+                        <thead>
+                            <tr>
+                                <th>Primer Name</th>
+                                <th>Scale</th>
+                                <th>Sequence</th>
+                                <th>Purification</th>
+                                <th>GMP Y/N </th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (ViewBag.MakeCount != null) {
+                                for (int i = 0; i < ViewBag.MakeCount; i++) {
+                                    <tr>
+                                        <td>@Html.TextBoxFor(m => m.sequencingModel[i].SampleName, new { @class = "form-control" })</td>
+                                        <td>@Html.TextBoxFor(m => m.sequencingModel[i].SampleCon, new { @class = "form-control" })</td>
+                                        <td>@Html.TextBoxFor(m => m.sequencingModel[i].VectorName, new { @class = "form-control" })</td>
+                                        <td>@Html.TextBoxFor(m => m.sequencingModel[i].Length, new { @class = "form-control" })</td>
+                                        <td>@Html.TextBoxFor(m => m.sequencingModel[i].PrimerName, new { @class = "form-control" })</td>
+                                        <td>@Html.TextBoxFor(m => m.sequencingModel[i].PrimerConc, new { @class = "form-control" })</td>
+                                        <td>@Html.DropDownListFor(m => m.sequencingModel[i].GMP3, new SelectList(ViewBag.GMP3, "Value", "Text"), new { @class = "form-control" })</td>
+
+
+                                    </tr>
+                                }
+                            } else {
+                                for (int i = 0; i < 1; i++) {
+                                    <tr>
+                                        <td>@Html.TextBoxFor(m => m.sequencingModel[i].SampleName, new { @class = "form-control" })</td>
+                                        <td>@Html.TextBoxFor(m => m.sequencingModel[i].SampleCon, new { @class = "form-control" })</td>
+                                        <td>@Html.TextBoxFor(m => m.sequencingModel[i].VectorName, new { @class = "form-control" })</td>
+                                        <td>@Html.TextBoxFor(m => m.sequencingModel[i].Length, new { @class = "form-control" })</td>
+                                        <td>@Html.TextBoxFor(m => m.sequencingModel[i].PrimerName, new { @class = "form-control" })</td>
+                                        <td>@Html.TextBoxFor(m => m.sequencingModel[i].PrimerConc, new { @class = "form-control" })</td>
+                                        <td>@Html.DropDownListFor(m => m.sequencingModel[i].GMP3, new SelectList(ViewBag.GMP3, "Value", "Text"), new { @class = "form-control" })</td>
+
+                                    </tr>
+                                }
+                            }
+
+                    </table>
+                </div>
+            </div>
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Shipping Info</h3>
+                </div>
+                <div class="panel-body">
+                    <fieldset>
+                        <legend></legend>
+                        <div class="control-group">
+                            @Html.LabelFor(m => m.shipping.Date, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(m => m.shipping.Date, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            @Html.LabelFor(m => m.shipping.FullName, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(m => m.shipping.FullName, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            @Html.LabelFor(m => m.shipping.Institution, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(m => m.shipping.Institution, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            @Html.LabelFor(m => m.shipping.ShippingAddress, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(m => m.shipping.ShippingAddress, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            @Html.LabelFor(m => m.shipping.Phone, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(m => m.shipping.Phone, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            @Html.LabelFor(m => m.shipping.Email, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(m => m.shipping.Email, new { @class = "form-control" })
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </div>
+            </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Billing Information</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="tab-pane" id="profile">
+                        <fieldset>
+                            <div class="control-group">
+                                @Html.LabelFor(m => m.billing.Quotenumber, new { @class = "col-md-2 control-label" })
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(m => m.billing.Quotenumber, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                @Html.LabelFor(m => m.billing.FullName, new { @class = "col-md-2 control-label" })
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(m => m.billing.FullName, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                @Html.LabelFor(m => m.billing.Institution, new { @class = "col-md-2 control-label" })
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(m => m.billing.Institution, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                @Html.LabelFor(m => m.billing.BillingAddress, new { @class = "col-md-2 control-label" })
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(m => m.billing.BillingAddress, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                @Html.LabelFor(m => m.billing.Phone, new { @class = "col-md-2 control-label" })
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(m => m.billing.Phone, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                @Html.LabelFor(m => m.billing.Email, new { @class = "col-md-2 control-label" })
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(m => m.billing.Email, new { @class = "form-control" })
+                                </div>
+                            </div>
+
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+
+            <input type="submit" class="btn btn-lg btn-primary" name="btnConfirm" value="Submit" />
+        </div>
+    </form>
+}

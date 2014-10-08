@@ -19,6 +19,12 @@ $(function () {
         return false;
     });
 
+    $("#btnAddSequencingForm").click(function () {
+        var getVal = $("#Onum").val();
+        var url = "/Sequencing/Order?oligonucleotideNum=" + getVal + "";
+        window.location = url;
+    });
+
 });
 
 

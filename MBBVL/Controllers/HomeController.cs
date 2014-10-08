@@ -40,7 +40,7 @@ namespace MBBVL.Controllers {
 
         public ActionResult Order(int? oligonucleotideNum) {
 
-            var model = new WrapperModel();
+            var model = new SequencingWrapperModel();
             ViewBag.Message = "Your contact page.";
             Createviewbags();
             if (oligonucleotideNum != null) {

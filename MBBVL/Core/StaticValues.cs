@@ -50,5 +50,15 @@ namespace MBBVL.Core {
             }
         }
 
+        public static List<SelectListItem> GMP3 {
+            get {
+                List<SelectListItem> items = new List<SelectListItem>();
+                items.Add(new SelectListItem { Text = "--Select--", Value = "0" });
+                items.Add(new SelectListItem { Text = "Yes", Value = "Yes" });
+                items.Add(new SelectListItem { Text = "No", Value = "No" });
+                return items;
+            }
+        }
+
     }
 }

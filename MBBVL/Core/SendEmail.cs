@@ -11,7 +11,7 @@ namespace MBBVL.Core {
         public void CreateEmail(string toSender, string fromSender, string body) {
             try {
 
-           
+
                 //Create the msg object to be sent
                 MailMessage msg = new MailMessage();
                 //Add your email address to the recipients
@@ -27,7 +27,7 @@ namespace MBBVL.Core {
 
                 ////Configure an SmtpClient to send the mail.            
                 SmtpClient smptc = new SmtpClient(); // Here SMTP Client object is created
-             //   smptc.Host = "smtpout.asia.secureserver.net";// here SMTP interface Address is passed
+                //   smptc.Host = "smtpout.asia.secureserver.net";// here SMTP interface Address is passed
                 smptc.Port = 25;// Use port No 25
                 smptc.UseDefaultCredentials = false;
                 smptc.EnableSsl = false;
@@ -49,21 +49,108 @@ namespace MBBVL.Core {
                 //};
 
                 //client.Send("andersolind@hotmail.com", "andersolind@gmail.com", "test", "testbody");
-           
+
 
             } catch (Exception ex) {
                 string er = ex.InnerException.ToString();
             }
         }
+        public string SetUpSequence(SequencingWrapperModel model) {
+            SequencingWrapperModel m = new SequencingWrapperModel();
+
+            m.billing = model.billing;
+            m.shipping = model.shipping;
+            m.sequencingModel = model.sequencingModel;
+            //headers
+            var bill = "<h1>Dear" + model.billing.FullName + "Here is your Order <br>Billing</h1>";
+
+            bill += "<table style='width:100%' class='panel-title'>";
+            bill += "<tr>";
+            bill += "<td class='boldCell'>Quote Number</td>";
+            bill += "<td class='boldCell'>Full Name</td>";
+            bill += "<td class='boldCell'>Institution</td>";
+            bill += "<td class='boldCell'>Billing Address </td>";
+            bill += "<td class='boldCell'>Phone</td>";
+            bill += "<td class='boldCell'>Email</td>";
+            // more cells here as needed
+            bill += "</tr>";
+            //Content
+
+            bill += "<tr  style='width:100%'>";
+            bill += "<td class='boldCell'>" + m.billing.Quotenumber + "</td>";
+            bill += "<td class='boldCell'>" + m.billing.FullName + "</td>";
+            bill += "<td class='boldCell'>" + m.billing.Institution + "</td>";
+            bill += "<td class='boldCell'>" + m.billing.BillingAddress + "</td>";
+            bill += "<td class='boldCell'>" + m.billing.Phone + "</td>";
+            bill += "<td class='boldCell'>" + m.billing.Email + "</td>";
+            // more cells here as needed
+            bill += "</tr>";
+            //shipping
+
+            var ship = "<h1>Shipping</h1>";
+            ship += "</table><table  style='width:100%' class='colorful'>";
+            ship += "<tr style='width:100%'>";
+            ship += "<td class='boldCell'>Date</td>";
+            ship += "<td class='boldCell'>Full name</td>";
+            ship += "<td class='boldCell'>Institution</td>";
+            ship += "<td class='boldCell'>Shipping Address</td>";
+            ship += "<td class='boldCell'>Phone</td>";
+            ship += "<td class='boldCell'>Email</td>";
+            // more cells here as needed
+            ship += "</tr>";
+
+
+            ship += "<tr>";
+            ship += "<td class='boldCell'>" + m.shipping.Date + "</td>";
+            ship += "<td class='boldCell'>" + m.shipping.FullName + "</td>";
+            ship += "<td class='boldCell'>" + m.shipping.Institution + "</td>";
+            ship += "<td class='boldCell'>" + m.shipping.ShippingAddress + "</td>";
+            ship += "<td class='boldCell'>" + m.shipping.Phone + "</td>";
+            ship += "<td class='boldCell'>" + m.shipping.Email + "</td>";
+            // more cells here as needed
+            ship += "</tr>";
+            var olForm = "<h1>Sequencing</h1>"; ;
+            olForm += "</table><table style='width:100%' class='colorful'>";
+
+            olForm += "<tr  style='width:100%'>";
+            olForm += "<td class='boldCell'>Sample Name</td>";
+            olForm += "<td class='boldCell'>Sample Conc</td>";
+            olForm += "<td class='boldCell'>Vector Name</td>";
+            olForm += "<td class='boldCell'>Length</td>";
+            olForm += "<td class='boldCell'>Primer Name</td>";
+            olForm += "<td class='boldCell'>Primer Conc</td>";
+            olForm += "<td class='boldCell'>GMP3</td>";
+
+            // more cells here as needed
+            olForm += "</tr>";
+
+
+            for (int i = 0; i < m.sequencingModel.Count(); i++) {
+                olForm += "<tr>";
+                olForm += "<td class='boldCell'>" + m.sequencingModel[i].SampleName.SingleOrDefault() + "</td>";
+                olForm += "<td class='boldCell'>" + m.sequencingModel[i].SampleCon.SingleOrDefault() + "</td>";
+                olForm += "<td class='boldCell'>" + m.sequencingModel[i].VectorName + "</td>";
+                olForm += "<td class='boldCell'>" + m.sequencingModel[i].Length + "</td>";
+                olForm += "<td class='boldCell'>" + m.sequencingModel[i].PrimerConc + "</td>";
+                olForm += "<td class='boldCell'>" + m.sequencingModel[i].GMP3 + "</td>";
+                // more cells here as needed
+                olForm += "</tr>";
+            }
+            olForm += "</table>";
+            var template = bill + ship + olForm;
+            CreateEmail(m.shipping.Email, "Andersolind@gmail.com", template);
+            return olForm;
+        }
+
         public string SetUpbill(WrapperModel model) {
             WrapperModel m = new WrapperModel();
-             
+
             m.billing = model.billing;
             m.shipping = model.shipping;
             m.oligosequence = model.oligosequence;
             //headers
-            var bill = "<h1>Dear"+ model.billing.FullName+ "Here is your Order <br>Billing</h1>";
-            
+            var bill = "<h1>Dear" + model.billing.FullName + "Here is your Order <br>Billing</h1>";
+
             bill += "<table style='width:100%' class='panel-title'>";
             bill += "<tr>";
             bill += "<td class='boldCell'>Quote Number</td>";
@@ -123,7 +210,7 @@ namespace MBBVL.Core {
             olForm += "<td class='boldCell'>Purification</td>";
             // more cells here as needed
             olForm += "</tr>";
-            
+
 
             for (int i = 0; i < m.oligosequence.Count(); i++) {
                 olForm += "<tr>";
@@ -139,8 +226,8 @@ namespace MBBVL.Core {
                 olForm += "</tr>";
             }
             olForm += "</table>";
-         var template =   bill + ship + olForm;
-         CreateEmail(m.shipping.Email, "Andersolind@gmail.com", template);
+            var template = bill + ship + olForm;
+            CreateEmail(m.shipping.Email, "Andersolind@gmail.com", template);
             return olForm;
         }
     }

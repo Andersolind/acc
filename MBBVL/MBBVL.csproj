@@ -236,7 +236,9 @@
     <Content Include="images\Synthesizer1.JPG" />
     <Content Include="js\Angular.js" />
     <Content Include="js\Angular\app.js" />
+    <Content Include="js\Angular\Controller\OrderSequencingctrl.js" />
     <Content Include="js\Angular\Controller\PriceListCtrl.js" />
+    <Content Include="js\Angular\Service\acgtService.js" />
     <Content Include="js\bootstrap-datepicker.js" />
     <Content Include="js\infinite-rotator.js" />
     <Content Include="js\NewRows.js" />
@@ -332,13 +334,13 @@
     <Content Include="Views\ResearchAndDevelopment\Jason.cshtml" />
     <Content Include="Views\TechSupport\Index.cshtml" />
     <Content Include="Views\TechSupport\Test.cshtml" />
+    <Content Include="Views\Sequencing\Order.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Images\" />
     <Folder Include="Content\themes\base\images\" />
     <Folder Include="Content\themes\base\minified\images\" />
-    <Folder Include="NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

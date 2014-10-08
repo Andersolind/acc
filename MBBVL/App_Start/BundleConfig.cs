@@ -20,6 +20,9 @@ namespace MBBVL {
                       "~/Scripts/bootstrap.js",
                       "~/js/bootstrap-datepicker.js",
                       "~/js/Angular.js",
+                      "~/js/angular/app.js",
+                       "~/js/angular/Service/acgtService.js",
+                          "~/js/angular/Controller/OrderSequencingctrl.js",
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(

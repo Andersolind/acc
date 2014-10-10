@@ -19,219 +19,286 @@
 </span>
 @Html.ValidationSummary(false)
 <form class="form-horizontal">
-    @if (Request.IsAuthenticated) {
-        <div ng-app="acgt" ng-controller="OrderSequencing">
+@if (!Request.IsAuthenticated) { 
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title"> You have an option to log in so we can keep you in our records</h3>
+            <a class="btn btn-lg btn-primary" href="@Url.Action("Login", "Account")">Log in </a>
 
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title"> DNA Sequencing Order Form</h3>
-                </div>
+        </div>
+    </div>
+}
 
-                <div class="panel-body">
-                    <fieldset>
-                        <legend> DNA Sequencing Order Form</legend>
-                        <div class="col-lg-3">
+    <div ng-app="acgt" ng-controller="OrderSequencing">
 
-                            <div class="form-group row">
-                                <div class="col-lg-10">
-                                    <button class="btn btn-default" ng-click="AddSampleRow()"><span class="glyphicon glyphicon-plus-sign"></span> Add Row</button>
-                                </div>
-                            </div>
-                        </div>
-                    </fieldset>
-                    <table class="panel-body">
-                        <thead>
-                            <tr>
-                                <th>Sample Name</th>
-                                <th>Sample  Conc. (ng/µl)</th>
-                                <th>Vector Name or PCR Product</th>
-                                <th>Length (bases)</th>
-                                <th>Primer Name </th>
-                                <th>Primer Conc (ng/µl) </th>
-                                <th>GMP (Y/N) </th>
-
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="dna in NavigationConfig">
-
-                                <td>
-                                    <input type="text" class="form-control" id="txtSampleName" name="txtSampleName" ng-model="dna.SampleName" placeholder="Enter Sample Name" title="Sample Name">
-
-                                </td>
-                                <td>
-                                    <input type="text" class="form-control" id="txtSameConc" name="txtSameConc" ng-model="dna.SameConc" placeholder="EnterSample  Conc" title="Sample  Conc. (ng/µl)">
-
-                                </td>
-                                <td>
-                                    <input type="text" class="form-control" id="txtColumnName" name="txtVectorName" ng-model="dna.VectorName" placeholder="Vector Name or PCR Product" title="Vector Name or PCR Product">
-
-                                </td>
-                                <td>
-                                    <input type="text" class="form-control" id="txtColumnName" name="txtLengthBases" ng-model="dna.LengthBases" placeholder="Enter Length (bases)" title="Length (bases)">
-
-                                </td>
-                                <td>
-                                    <input type="text" class="form-control" id="txtPrimerName" name="txtPrimerName" ng-model="dna.PrimerName" placeholder="Enter Primer Name" title="Enter Primer Name">
-
-                                </td>
-                                <td>
-                                    <input type="text" class="form-control" id="txtPrimerConc" name="txtPrimerConc" ng-model="dna.PrimerConc" placeholder="Enter Primer Conc" title="Primer Conc (ng/µl)">
-
-                                </td>
-                                <td>
-                                    <select id="orderSequencingSelect" name="ordersequencingSelect" ng-model="test" ng-options="user.value as user.name for user in dna.GMP3"></select>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title"> DNA Sequencing Order Form</h3>
             </div>
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Select Data Delivery Options</h3>
-                </div>
-                <div class="panel-body">
-                    <fieldset>
-                        <legend>All sequencing results are sent by email. (Please select only one option) </legend>
-                    </fieldset>
 
+            <div class="panel-body">
+                <fieldset>
+                    <legend> DNA Sequencing Order Form</legend>
+                    <div class="col-lg-3">
 
-                    <div class="row">
-                        <div class="col-md-2 control-label">
-                            <label for="InputFieldA">($5.00) Unedited Sequence Results [Chromatogram Trace]</label>
-                            <div class="col-md-10">
-                                <input type="checkbox" ng-model="formData.chkUneditedChromatogramTrace" ng-true-value="yes" ng-false-value="no" />
+                        <div class="form-group row">
+                            <div class="col-lg-10">
+                                <button class="btn btn-default" ng-click="AddSampleRow()"><span class="glyphicon glyphicon-plus-sign"></span> Add Row</button>
                             </div>
                         </div>
-                        <div class="col-md-2 control-label">
-                            <label for="InputFieldA">($10.00) Edited sequence results [Text Data]</label>
+                    </div>
+                </fieldset>
+                <table class="panel-body">
+                    <thead>
+                        <tr>
+                            <th>Sample Name</th>
+                            <th>Sample  Conc. (ng/µl)</th>
+                            <th>Vector Name or PCR Product</th>
+                            <th>Length (bases)</th>
+                            <th>Primer Name </th>
+                            <th>Primer Conc (ng/µl) </th>
+                            <th>GMP (Y/N) </th>
 
-                            <div class="col-md-10">
-                                <input type="checkbox" ng-model="formData.chkEditedTextData" ng-true-value="yes" ng-false-value="no" />
-                            </div>
-                        </div>
-                        <div class="col-lg-2 control-label">
-                            <label for="InputFieldA">($10.00) Edited Sequence Results [Text Data + Chromatogram Trace]</label>
-                            <div class="col-md-10">
-                                <input type="checkbox" ng-model="formData.chkTextDataAndChromatogramTrace" ng-true-value="yes" ng-false-value="no" />
-                            </div>
-                        </div>
-                        <div class="col-md-2 control-label">
-                            <label for="InputFieldA">($5.00) Unedited Sequence Results [Text + Chromatogram Trace]</label>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="dna in NavigationConfig">
 
-                            <div class="col-md-10">
-                                <input type="checkbox" ng-model="formData.ChkUneditedTextAndChromatogramTrace" ng-true-value="yes" ng-false-value="no" />
-                            </div>
+                            <td>
+                                <input type="text" class="form-control" id="txtSampleName" name="txtSampleName" ng-model="dna.SampleName" placeholder="Enter Sample Name" title="Sample Name">
+
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" id="txtSameConc" name="txtSameConc" ng-model="dna.SameConc" placeholder="EnterSample  Conc" title="Sample  Conc. (ng/µl)">
+
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" id="txtColumnName" name="txtVectorName" ng-model="dna.VectorName" placeholder="Vector Name or PCR Product" title="Vector Name or PCR Product">
+
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" id="txtColumnName" name="txtLengthBases" ng-model="dna.LengthBases" placeholder="Enter Length (bases)" title="Length (bases)">
+
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" id="txtPrimerName" name="txtPrimerName" ng-model="dna.PrimerName" placeholder="Enter Primer Name" title="Enter Primer Name">
+
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" id="txtPrimerConc" name="txtPrimerConc" ng-model="dna.PrimerConc" placeholder="Enter Primer Conc" title="Primer Conc (ng/µl)">
+
+                            </td>
+                            <td>
+                                <select id="orderSequencingSelect" name="ordersequencingSelect" ng-model="test" ng-options="user.value as user.name for user in dna.GMP3"></select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Select Data Delivery Options</h3>
+            </div>
+            <div class="panel-body">
+                <fieldset>
+                    <legend>All sequencing results are sent by email. (Please select only one option) </legend>
+                </fieldset>
+
+
+                <div class="row">
+                    <div class="col-md-2 control-label">
+                        <label for="InputFieldA">($5.00) Unedited Sequence Results [Chromatogram Trace]</label>
+                        <div class="col-md-10">
+                            <input type="checkbox" ng-model="formData.chkUneditedChromatogramTrace" ng-true-value="yes" ng-false-value="no" />
+                        </div>
+                    </div>
+                    <div class="col-md-2 control-label">
+                        <label for="InputFieldA">($10.00) Edited sequence results [Text Data]</label>
+
+                        <div class="col-md-10">
+                            <input type="checkbox" ng-model="formData.chkEditedTextData" ng-true-value="yes" ng-false-value="no" />
+                        </div>
+                    </div>
+                    <div class="col-lg-2 control-label">
+                        <label for="InputFieldA">($10.00) Edited Sequence Results [Text Data + Chromatogram Trace]</label>
+                        <div class="col-md-10">
+                            <input type="checkbox" ng-model="formData.chkTextDataAndChromatogramTrace" ng-true-value="yes" ng-false-value="no" />
+                        </div>
+                    </div>
+                    <div class="col-md-2 control-label">
+                        <label for="InputFieldA">($5.00) Unedited Sequence Results [Text + Chromatogram Trace]</label>
+
+                        <div class="col-md-10">
+                            <input type="checkbox" ng-model="formData.ChkUneditedTextAndChromatogramTrace" ng-true-value="yes" ng-false-value="no" />
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Custom Primers to be Synthesized & Used for Sequencing</h3>
-                </div>
-                <div class="panel-body">
-                    <fieldset>
-                        <legend>Custom Primers to be Synthesized & Used for Sequencing</legend>
-                        <div class="col-lg-3">
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Custom Primers to be Synthesized & Used for Sequencing</h3>
+            </div>
+            <div class="panel-body">
+                <fieldset>
+                    <legend>Custom Primers to be Synthesized & Used for Sequencing</legend>
+                    <div class="col-lg-3">
 
-                            <div class="form-group row">
-                                <div class="col-lg-10">
-                                    <input class="img-rounded" type="button" ng-click="AddCustomPrimer()" id="btnAddCustomPrimers" value="Add more rows" />
-                                </div>
+                        <div class="form-group row">
+                            <div class="col-lg-10">
+                                <input class="img-rounded" type="button" ng-click="AddCustomPrimer()" id="btnAddCustomPrimers" value="Add more rows" />
                             </div>
                         </div>
+                    </div>
 
 
-                    </fieldset>
-                    <table class="panel-body" id="addRow">
-                        <thead>
-                            <tr>
-                                <th>Primer Name</th>
-                                <th>Scale</th>
-                                <th>Sequence</th>
-                                <th>Purification</th>
-                                <th>GMP Y/N </th>
+                </fieldset>
+                <table class="panel-body" id="addRow">
+                    <thead>
+                        <tr>
+                            <th>Primer Name</th>
+                            <th>Scale</th>
+                            <th>Sequence</th>
+                            <th>Purification</th>
+                            <th>GMP Y/N </th>
 
 
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="rows in CustomPrimer">
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="rows in CustomPrimer">
 
-                                <td>
-                                    <input type="text" class="form-control" id="txtPrimerName" name="txtPrimerName" ng-model="rows.PrimerName" placeholder="Enter Primer Name" title="Sample Name">
+                            <td>
+                                <input type="text" class="form-control" id="txtPrimerName" name="txtPrimerName" ng-model="rows.PrimerName" placeholder="Enter Primer Name" title="Sample Name">
 
-                                </td>
-                                <td>
-                                    <select id="ddlScale" name="ddlScale" ng-model="scale2" ng-options="user.name as user.value for user in rows.Scale"></select>
-                                </td>
-                                <td>
-                                    <input type="text" class="form-control" id="txtSequence" name="txtSequence" ng-model="row.Sequence" placeholder="Sequence" title="Sequence">
+                            </td>
+                            <td>
+                                <select id="ddlScale" name="ddlScale" ng-model="scale2" ng-options="user.name as user.value for user in rows.Scale"></select>
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" id="txtSequence" name="txtSequence" ng-model="row.Sequence" placeholder="Sequence" title="Sequence">
 
-                                </td>
-                                <td>
-                                    <select id="ddlPurification" name="ddlPurification" ng-model="Purification2" ng-options="user.value as user.name for user in rows.Purification"></select>
-                                </td>
+                            </td>
+                            <td>
+                                <select id="ddlPurification" name="ddlPurification" ng-model="Purification2" ng-options="user.value as user.name for user in rows.Purification"></select>
+                            </td>
 
-                                <td>
-                                    <select id="ddlGmp" name="ddlGmp" ng-model="ddlGmp" ng-options="user.value as user.name for user in rows.GMP"></select>
-                                </td>
-                            </tr>
-                        <tbody>
-                    </table>
-                </div>
+                            <td>
+                                <select id="ddlGmp" name="ddlGmp" ng-model="ddlGmp" ng-options="user.value as user.name for user in rows.GMP"></select>
+                            </td>
+                        </tr>
+                    <tbody>
+                </table>
             </div>
+        </div>
 
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Shipping Info</h3>
-                </div>
-                <div class="panel-body">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Request for Pick Up</h3>
+            </div>
+            <div class="panel-body">
+                <fieldset>
+                    <legend></legend>
+                    <div class="control-group">
+                        <label class="col-md-2 control-label" for="InputFieldA">Date</label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" id="shipping_Date" name="txtShipping" ng-model="ShippingDate" placeholder="Shipping Date" title="Shipping Date">
+
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="col-md-2 control-label" for="InputFieldA">Full Name</label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" id="shippingFullName" name="shippingFullName" ng-model="shippingFullName" placeholder="Full Name" title="Full Name">
+
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="col-md-2 control-label" for="InputFieldA">Institution</label>
+
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" id="txtInstitution" name="formData.txtInstitution" ng-model="txtInstitution" placeholder="Institution" title="Institution">
+
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="col-md-2 control-label" for="InputFieldA">Shipping Address</label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" id="txtShippingAddress" name="txtShippingAddress" ng-model="txtShippingAddress" placeholder="Shipping Address" title="Shipping Address">
+
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="col-md-2 control-label" for="InputFieldA">Phone</label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" id="txtShippingPhone" name="txtShippingPhone" ng-model="txtShippingPhone" placeholder="Shipping Phone" title="Shipping Phone">
+
+
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="col-md-2 control-label" for="InputFieldA">Email</label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" id="txtShippingEmail" name="txtShippingEmail" ng-model="txtShippingEmail" placeholder="Shipping Email" title="Shipping Email">
+
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="col-xs-9 col-sm-9 col-md-9">
+                            <a href="#" data-toggle="modal" data-target="#t_and_c_m">Pick up policy</a>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Billing Information</h3>
+            </div>
+            <div class="panel-body">
+                <div class="tab-pane" id="profile">
                     <fieldset>
-                        <legend></legend>
                         <div class="control-group">
-                            <label class="col-md-2 control-label" for="InputFieldA">Date</label>
+                            <label class="col-md-2 control-label" for="InputFieldA">Quote number</label>
+
                             <div class="col-md-10">
-                                <input type="text" class="form-control" id="shipping_Date" name="txtShipping" ng-model="ShippingDate" placeholder="Shipping Date" title="Shipping Date">
+                                <input type="text" class="form-control" id="txtQuotenumber" name="txtQuotenumber" ng-model="txtQuotenumber" placeholder="Quote number" title="Quote number">
 
                             </div>
                         </div>
                         <div class="control-group">
                             <label class="col-md-2 control-label" for="InputFieldA">Full Name</label>
                             <div class="col-md-10">
-                                <input type="text" class="form-control" id="shippingFullName" name="shippingFullName" ng-model="shippingFullName" placeholder="Full Name" title="Full Name">
+                                <input type="text" class="form-control" id="txtBillingFullName" name="txtBillingFullName" ng-model="txtBillingFullName" placeholder="Full Name" title="Full Name">
 
                             </div>
                         </div>
                         <div class="control-group">
                             <label class="col-md-2 control-label" for="InputFieldA">Institution</label>
-
                             <div class="col-md-10">
-                                <input type="text" class="form-control" id="txtInstitution" name="formData.txtInstitution" ng-model="txtInstitution" placeholder="Institution" title="Institution">
+                                <input type="text" class="form-control" id="txtBillingInstitution" name="txtBillingInstitution" ng-model="txtBillingInstitution" placeholder="Billing Institution" title="Billing Institution">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="col-md-2 control-label" for="InputFieldA">BillingAddress</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" id="txtBillingAddress" name="txtBillingAddress" ng-model="txtBillingAddress" placeholder="Billing Address" title="Billing Institution">
 
                             </div>
                         </div>
                         <div class="control-group">
-                            <label class="col-md-2 control-label" for="InputFieldA">Shipping Address</label>
+                            <label class="col-md-2 control-label" for="InputFieldA">Billing Phone</label>
                             <div class="col-md-10">
-                                <input type="text" class="form-control" id="txtShippingAddress" name="txtShippingAddress" ng-model="txtShippingAddress" placeholder="Shipping Address" title="Shipping Address">
+                                <input type="text" class="form-control" id="txtBillingPhone" name="txtBillingPhone" ng-model="txtBillingPhone" placeholder="Billing Phone" title="Billing Phone">
 
                             </div>
                         </div>
                         <div class="control-group">
-                            <label class="col-md-2 control-label" for="InputFieldA">Phone</label>
+                            <label class="col-md-2 control-label" for="InputFieldA">Billing Email</label>
                             <div class="col-md-10">
-                                <input type="text" class="form-control" id="txtShippingPhone" name="txtShippingPhone" ng-model="txtShippingPhone" placeholder="Shipping Phone" title="Shipping Phone">
-
-
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="col-md-2 control-label" for="InputFieldA">Email</label>
-                            <div class="col-md-10">
-                                <input type="text" class="form-control" id="txtShippingEmail" name="txtShippingEmail" ng-model="txtShippingEmail" placeholder="Shipping Email" title="Shipping Email">
+                                <input type="text" class="form-control" id="txtBillingEmail" name="txtBillingEmail" ng-model="txtBillingEmail" placeholder="Billing Email" title="Billing Email">
 
                             </div>
                         </div>
@@ -239,78 +306,35 @@
                     </fieldset>
                 </div>
             </div>
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Billing Information</h3>
-                </div>
-                <div class="panel-body">
-                    <div class="tab-pane" id="profile">
-                        <fieldset>
-                            <div class="control-group">
-                                <label class="col-md-2 control-label" for="InputFieldA">Quote number</label>
-
-                                <div class="col-md-10">
-                                    <input type="text" class="form-control" id="txtQuotenumber" name="txtQuotenumber" ng-model="txtQuotenumber" placeholder="Quote number" title="Quote number">
-
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="col-md-2 control-label" for="InputFieldA">Full Name</label>
-                                <div class="col-md-10">
-                                    <input type="text" class="form-control" id="txtBillingFullName" name="txtBillingFullName" ng-model="txtBillingFullName" placeholder="Full Name" title="Full Name">
-
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="col-md-2 control-label" for="InputFieldA">Institution</label>
-                                <div class="col-md-10">
-                                    <input type="text" class="form-control" id="txtBillingInstitution" name="txtBillingInstitution" ng-model="txtBillingInstitution" placeholder="Billing Institution" title="Billing Institution">
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="col-md-2 control-label" for="InputFieldA">BillingAddress</label>
-                                <div class="col-md-10">
-                                    <input type="text" class="form-control" id="txtBillingAddress" name="txtBillingAddress" ng-model="txtBillingAddress" placeholder="Billing Address" title="Billing Institution">
-
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="col-md-2 control-label" for="InputFieldA">Billing Phone</label>
-                                <div class="col-md-10">
-                                    <input type="text" class="form-control" id="txtBillingPhone" name="txtBillingPhone" ng-model="txtBillingPhone" placeholder="Billing Phone" title="Billing Phone">
-
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="col-md-2 control-label" for="InputFieldA">Billing Email</label>
-                                <div class="col-md-10">
-                                    <input type="text" class="form-control" id="txtBillingEmail" name="txtBillingEmail" ng-model="txtBillingEmail" placeholder="Billing Email" title="Billing Email">
-
-                                </div>
-                            </div>
-
-                        </fieldset>
-                    </div>
-                </div>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Notes</h3>
             </div>
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Notes</h3>
-                </div>
-                <div class="panel-body">
-                    <textarea name="txtNotes" ng-model="txtNotes" cols="100" rows="5"></textarea>
-                    </div>
-                </div>
-                
+            <div class="panel-body">
+                <textarea name="txtNotes" ng-model="txtNotes" cols="100" rows="5"></textarea>
+            </div>
+        </div>
 
-                    <input type="submit" class="btn btn-lg btn-primary" name="btnConfirm" ng-click="AddForm() " value="Submit" />
-                </div>
-                } else {
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h3 class="panel-title"> Please log in First to submit this order</h3>
-                    </div>
-                </div>
-                }
+
+        <input type="submit" class="btn btn-lg btn-primary" name="btnConfirm" ng-click="submitForm() " value="Submit" />
+    </div>
 
 </form>
+<!-- Modal -->
+<div class="modal fade" id="t_and_c_m" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">Terms & Conditions</h4>
+            </div>
+            <div class="modal-body">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">I Agree</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

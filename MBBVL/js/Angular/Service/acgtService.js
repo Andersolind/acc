@@ -1,14 +1,15 @@
 ﻿app.service('GenericHelpers', function () {
 
     //returns our list
-    this.list = function () {
-        var properties = { SampleName: "", SameConc: "", VectorName: '', LengthBases: "", PrimerName: "", PrimerConc: "", GMP3: createGmp3 };
+    this.list = function (gmp3) {
+        var properties = { SampleName: "", SameConc: "", VectorName: '', LengthBases: "", PrimerName: "", PrimerConc: "", GMP3: gmp3 };
+        return properties;
+    }
+    this.custom = function (gmp3) {
+        var properties = { PrimerName: "", Scale: $scope.scale, Sequence: '', Purification: $scope.purification, GMP: gmp3 };
         return properties;
     }
  
-    this.createGmp3 = function () {
-        var Gmp3 = [{ name: 'Yes', value: 'Yes' }, { name: 'No', value: 'No' }];
-        return Gmp3;
-    }
+    
 
 });

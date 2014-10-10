@@ -335,6 +335,8 @@
     <Content Include="Views\TechSupport\Index.cshtml" />
     <Content Include="Views\TechSupport\Test.cshtml" />
     <Content Include="Views\Sequencing\Order.cshtml" />
+    <Content Include="Views\Home\News.cshtml" />
+    <Content Include="Views\Home\Location.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

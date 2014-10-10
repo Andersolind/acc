@@ -37,10 +37,20 @@ namespace MBBVL.Controllers {
 
             return View();
         }
+        public ActionResult News() {
+            ViewBag.Message = "Your News page.";
+
+            return View();
+        }
+          public ActionResult Location() {
+            ViewBag.Message = "Your Location page.";
+
+            return View();
+        }
 
         public ActionResult Order(int? oligonucleotideNum) {
 
-            var model = new SequencingWrapperModel();
+            var model = new WrapperModel();
             ViewBag.Message = "Your contact page.";
             Createviewbags();
             if (oligonucleotideNum != null) {

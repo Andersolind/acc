@@ -13,80 +13,79 @@
     }
 </style>
 <h2>Order</h2>
-@using (Html.BeginForm("SubmitOrder", "Sequencing")) {
-    <span style="padding-top:100px">
 
-    </span>
-    @Html.ValidationSummary(false)
-    <form class="form-horizontal">
-        <div ng-app="acgt" >
+<span style="padding-top:100px">
+
+</span>
+@Html.ValidationSummary(false)
+<form class="form-horizontal">
+    @if (Request.IsAuthenticated) {
+        <div ng-app="acgt" ng-controller="OrderSequencing">
 
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title"> DNA Sequencing Order Form</h3>
                 </div>
-                <div class="panel-body" ng-controller="OrderSequencing">
-    <fieldset>
-        <legend> DNA Sequencing Order Form</legend>
-        <div class="col-lg-3">
 
-            <div class="form-group row">
-                <div class="col-lg-10">
-                    <button class="btn btn-default" ng-click="AddRow()"><span class="glyphicon glyphicon-plus-sign"></span> Add Row</button>
-                </div>
-            </div>
-        </div>
-    </fieldset>
-    <table class="panel-body">
-        <thead>
-            <tr>
-                <th>Sample Name</th>
-                <th>Sample  Conc. (ng/µl)</th>
-                <th>Vector Name1 or PCR Product</th>
-                <th>Length (bases)</th>
-                <th>Primer Name </th>
-                <th>Primer Conc.2 (ng/µl) </th>
-                <th>GMP3 (Y/N) </th>
+                <div class="panel-body">
+                    <fieldset>
+                        <legend> DNA Sequencing Order Form</legend>
+                        <div class="col-lg-3">
 
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="dna in NavigationConfig">
+                            <div class="form-group row">
+                                <div class="col-lg-10">
+                                    <button class="btn btn-default" ng-click="AddSampleRow()"><span class="glyphicon glyphicon-plus-sign"></span> Add Row</button>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <table class="panel-body">
+                        <thead>
+                            <tr>
+                                <th>Sample Name</th>
+                                <th>Sample  Conc. (ng/µl)</th>
+                                <th>Vector Name or PCR Product</th>
+                                <th>Length (bases)</th>
+                                <th>Primer Name </th>
+                                <th>Primer Conc (ng/µl) </th>
+                                <th>GMP (Y/N) </th>
 
-                <td>
-                    <input type="text" class="form-control" id="txtSampleName" name="txtSampleName" ng-model="dna.SampleName" placeholder="Enter Sample Name" title="Sample Name">
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="dna in NavigationConfig">
 
-                </td>
-                <td>
-                    <input type="text" class="form-control" id="txtSameConc" name="txtSameConc" ng-model="dna.SameConc" placeholder="EnterSample  Conc" title="Sample  Conc. (ng/µl)">
+                                <td>
+                                    <input type="text" class="form-control" id="txtSampleName" name="txtSampleName" ng-model="dna.SampleName" placeholder="Enter Sample Name" title="Sample Name">
 
-                </td>
-                <td>
-                    <input type="text" class="form-control" id="txtColumnName" name="txtVectorName" ng-model="dna.VectorName" placeholder="Vector Name1 or PCR Product" title="Vector Name">
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" id="txtSameConc" name="txtSameConc" ng-model="dna.SameConc" placeholder="EnterSample  Conc" title="Sample  Conc. (ng/µl)">
 
-                </td>
-                <td>
-                    <input type="text" class="form-control" id="txtColumnName" name="txtLengthBases" ng-model="nav.LengthBases" placeholder="Enter Length (bases)" title="Length (bases)">
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" id="txtColumnName" name="txtVectorName" ng-model="dna.VectorName" placeholder="Vector Name or PCR Product" title="Vector Name or PCR Product">
 
-                </td>
-                <td>
-                    <input type="text" class="form-control" id="txtPrimerName" name="txtPrimerName" ng-model="nav.PrimerName" placeholder="Enter Primer Name" title="Enter Primer Name">
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" id="txtColumnName" name="txtLengthBases" ng-model="dna.LengthBases" placeholder="Enter Length (bases)" title="Length (bases)">
 
-                </td>
-                <td>
-                    <input type="text" class="form-control" id="txtPrimerConc" name="txtPrimerConc" ng-model="nav.PrimerConc" placeholder="Enter Primer Conc" title="Primer Conc.2 (ng/µl)">
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" id="txtPrimerName" name="txtPrimerName" ng-model="dna.PrimerName" placeholder="Enter Primer Name" title="Enter Primer Name">
 
-                </td>
-                <td>
-                    <select id="orderSequencingSelect" name="ordersequencingSelect" ng-model=" nav.GMP3" ng-options="user.value as user.name for user in NavigationConfig.GMP3"></select>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" id="txtPrimerConc" name="txtPrimerConc" ng-model="dna.PrimerConc" placeholder="Enter Primer Conc" title="Primer Conc (ng/µl)">
 
-                </td>
-
-
-                        </tr>
+                                </td>
+                                <td>
+                                    <select id="orderSequencingSelect" name="ordersequencingSelect" ng-model="test" ng-options="user.value as user.name for user in dna.GMP3"></select>
+                                </td>
+                            </tr>
                         </tbody>
-                </table>
-            </div>
+                    </table>
+                </div>
             </div>
             <div class="panel panel-primary">
                 <div class="panel-heading">
@@ -99,28 +98,30 @@
 
 
                     <div class="row">
-                        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-                            @Html.LabelFor(m => m.dataDeliveryOptions.ChromatogramTrace, new { @class = "col-md-4 control-label" })
+                        <div class="col-md-2 control-label">
+                            <label for="InputFieldA">($5.00) Unedited Sequence Results [Chromatogram Trace]</label>
                             <div class="col-md-10">
-                                @Html.CheckBoxFor(m => m.dataDeliveryOptions.ChromatogramTrace, new { @class = "col-md-2 control-label" })
+                                <input type="checkbox" ng-model="formData.chkUneditedChromatogramTrace" ng-true-value="yes" ng-false-value="no" />
                             </div>
                         </div>
-                        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-                            @Html.LabelFor(m => m.dataDeliveryOptions.TextData, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-2 control-label">
+                            <label for="InputFieldA">($10.00) Edited sequence results [Text Data]</label>
+
                             <div class="col-md-10">
-                                @Html.CheckBoxFor(m => m.dataDeliveryOptions.TextData, new { @class = "col-md-2 control-label" })
+                                <input type="checkbox" ng-model="formData.chkEditedTextData" ng-true-value="yes" ng-false-value="no" />
                             </div>
                         </div>
-                        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-                            @Html.LabelFor(m => m.dataDeliveryOptions.TextAndChromatogramTrace, new { @class = "col-md-2 control-label" })
+                        <div class="col-lg-2 control-label">
+                            <label for="InputFieldA">($10.00) Edited Sequence Results [Text Data + Chromatogram Trace]</label>
                             <div class="col-md-10">
-                                @Html.CheckBoxFor(m => m.dataDeliveryOptions.TextAndChromatogramTrace, new { @class = "col-md-2 control-label" })
+                                <input type="checkbox" ng-model="formData.chkTextDataAndChromatogramTrace" ng-true-value="yes" ng-false-value="no" />
                             </div>
                         </div>
-                        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-                            @Html.LabelFor(m => m.dataDeliveryOptions.TextDataAndChromatogramTrace, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-2 control-label">
+                            <label for="InputFieldA">($5.00) Unedited Sequence Results [Text + Chromatogram Trace]</label>
+
                             <div class="col-md-10">
-                                @Html.CheckBoxFor(m => m.dataDeliveryOptions.TextDataAndChromatogramTrace, new { @class = "col-md-2 control-label" })
+                                <input type="checkbox" ng-model="formData.ChkUneditedTextAndChromatogramTrace" ng-true-value="yes" ng-false-value="no" />
                             </div>
                         </div>
                     </div>
@@ -137,9 +138,7 @@
 
                             <div class="form-group row">
                                 <div class="col-lg-10">
-                                    <input type="text" id="Onum" name="oNum">
-
-                                    <input class="img-rounded" type="button" name="Command" id="btnAddCustomPrimers" value="Add more rows" />
+                                    <input class="img-rounded" type="button" ng-click="AddCustomPrimer()" id="btnAddCustomPrimers" value="Add more rows" />
                                 </div>
                             </div>
                         </div>
@@ -147,7 +146,6 @@
 
                     </fieldset>
                     <table class="panel-body" id="addRow">
-
                         <thead>
                             <tr>
                                 <th>Primer Name</th>
@@ -160,35 +158,28 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @if (ViewBag.MakeCount != null) {
-                                for (int i = 0; i < ViewBag.MakeCount; i++) {
-                                    <tr>
-                                        <td>@Html.TextBoxFor(m => m.sequencingModel[i].SampleName, new { @class = "form-control" })</td>
-                                        <td>@Html.TextBoxFor(m => m.sequencingModel[i].SampleCon, new { @class = "form-control" })</td>
-                                        <td>@Html.TextBoxFor(m => m.sequencingModel[i].VectorName, new { @class = "form-control" })</td>
-                                        <td>@Html.TextBoxFor(m => m.sequencingModel[i].Length, new { @class = "form-control" })</td>
-                                        <td>@Html.TextBoxFor(m => m.sequencingModel[i].PrimerName, new { @class = "form-control" })</td>
-                                        <td>@Html.TextBoxFor(m => m.sequencingModel[i].PrimerConc, new { @class = "form-control" })</td>
-                                        <td>@Html.DropDownListFor(m => m.sequencingModel[i].GMP3, new SelectList(ViewBag.GMP3, "Value", "Text"), new { @class = "form-control" })</td>
+                            <tr ng-repeat="rows in CustomPrimer">
 
+                                <td>
+                                    <input type="text" class="form-control" id="txtPrimerName" name="txtPrimerName" ng-model="rows.PrimerName" placeholder="Enter Primer Name" title="Sample Name">
 
-                                    </tr>
-                                }
-                            } else {
-                                for (int i = 0; i < 1; i++) {
-                                    <tr>
-                                        <td>@Html.TextBoxFor(m => m.sequencingModel[i].SampleName, new { @class = "form-control" })</td>
-                                        <td>@Html.TextBoxFor(m => m.sequencingModel[i].SampleCon, new { @class = "form-control" })</td>
-                                        <td>@Html.TextBoxFor(m => m.sequencingModel[i].VectorName, new { @class = "form-control" })</td>
-                                        <td>@Html.TextBoxFor(m => m.sequencingModel[i].Length, new { @class = "form-control" })</td>
-                                        <td>@Html.TextBoxFor(m => m.sequencingModel[i].PrimerName, new { @class = "form-control" })</td>
-                                        <td>@Html.TextBoxFor(m => m.sequencingModel[i].PrimerConc, new { @class = "form-control" })</td>
-                                        <td>@Html.DropDownListFor(m => m.sequencingModel[i].GMP3, new SelectList(ViewBag.GMP3, "Value", "Text"), new { @class = "form-control" })</td>
+                                </td>
+                                <td>
+                                    <select id="ddlScale" name="ddlScale" ng-model="scale2" ng-options="user.name as user.value for user in rows.Scale"></select>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" id="txtSequence" name="txtSequence" ng-model="row.Sequence" placeholder="Sequence" title="Sequence">
 
-                                    </tr>
-                                }
-                            }
+                                </td>
+                                <td>
+                                    <select id="ddlPurification" name="ddlPurification" ng-model="Purification2" ng-options="user.value as user.name for user in rows.Purification"></select>
+                                </td>
 
+                                <td>
+                                    <select id="ddlGmp" name="ddlGmp" ng-model="ddlGmp" ng-options="user.value as user.name for user in rows.GMP"></select>
+                                </td>
+                            </tr>
+                        <tbody>
                     </table>
                 </div>
             </div>
@@ -201,39 +192,47 @@
                     <fieldset>
                         <legend></legend>
                         <div class="control-group">
-                            @Html.LabelFor(m => m.shipping.Date, new { @class = "col-md-2 control-label" })
+                            <label class="col-md-2 control-label" for="InputFieldA">Date</label>
                             <div class="col-md-10">
-                                @Html.TextBoxFor(m => m.shipping.Date, new { @class = "form-control" })
+                                <input type="text" class="form-control" id="shipping_Date" name="txtShipping" ng-model="ShippingDate" placeholder="Shipping Date" title="Shipping Date">
+
                             </div>
                         </div>
                         <div class="control-group">
-                            @Html.LabelFor(m => m.shipping.FullName, new { @class = "col-md-2 control-label" })
+                            <label class="col-md-2 control-label" for="InputFieldA">Full Name</label>
                             <div class="col-md-10">
-                                @Html.TextBoxFor(m => m.shipping.FullName, new { @class = "form-control" })
+                                <input type="text" class="form-control" id="shippingFullName" name="shippingFullName" ng-model="shippingFullName" placeholder="Full Name" title="Full Name">
+
                             </div>
                         </div>
                         <div class="control-group">
-                            @Html.LabelFor(m => m.shipping.Institution, new { @class = "col-md-2 control-label" })
+                            <label class="col-md-2 control-label" for="InputFieldA">Institution</label>
+
                             <div class="col-md-10">
-                                @Html.TextBoxFor(m => m.shipping.Institution, new { @class = "form-control" })
+                                <input type="text" class="form-control" id="txtInstitution" name="formData.txtInstitution" ng-model="txtInstitution" placeholder="Institution" title="Institution">
+
                             </div>
                         </div>
                         <div class="control-group">
-                            @Html.LabelFor(m => m.shipping.ShippingAddress, new { @class = "col-md-2 control-label" })
+                            <label class="col-md-2 control-label" for="InputFieldA">Shipping Address</label>
                             <div class="col-md-10">
-                                @Html.TextBoxFor(m => m.shipping.ShippingAddress, new { @class = "form-control" })
+                                <input type="text" class="form-control" id="txtShippingAddress" name="txtShippingAddress" ng-model="txtShippingAddress" placeholder="Shipping Address" title="Shipping Address">
+
                             </div>
                         </div>
                         <div class="control-group">
-                            @Html.LabelFor(m => m.shipping.Phone, new { @class = "col-md-2 control-label" })
+                            <label class="col-md-2 control-label" for="InputFieldA">Phone</label>
                             <div class="col-md-10">
-                                @Html.TextBoxFor(m => m.shipping.Phone, new { @class = "form-control" })
+                                <input type="text" class="form-control" id="txtShippingPhone" name="txtShippingPhone" ng-model="txtShippingPhone" placeholder="Shipping Phone" title="Shipping Phone">
+
+
                             </div>
                         </div>
                         <div class="control-group">
-                            @Html.LabelFor(m => m.shipping.Email, new { @class = "col-md-2 control-label" })
+                            <label class="col-md-2 control-label" for="InputFieldA">Email</label>
                             <div class="col-md-10">
-                                @Html.TextBoxFor(m => m.shipping.Email, new { @class = "form-control" })
+                                <input type="text" class="form-control" id="txtShippingEmail" name="txtShippingEmail" ng-model="txtShippingEmail" placeholder="Shipping Email" title="Shipping Email">
+
                             </div>
                         </div>
 
@@ -248,39 +247,45 @@
                     <div class="tab-pane" id="profile">
                         <fieldset>
                             <div class="control-group">
-                                @Html.LabelFor(m => m.billing.Quotenumber, new { @class = "col-md-2 control-label" })
+                                <label class="col-md-2 control-label" for="InputFieldA">Quote number</label>
+
                                 <div class="col-md-10">
-                                    @Html.TextBoxFor(m => m.billing.Quotenumber, new { @class = "form-control" })
+                                    <input type="text" class="form-control" id="txtQuotenumber" name="txtQuotenumber" ng-model="txtQuotenumber" placeholder="Quote number" title="Quote number">
+
                                 </div>
                             </div>
                             <div class="control-group">
-                                @Html.LabelFor(m => m.billing.FullName, new { @class = "col-md-2 control-label" })
+                                <label class="col-md-2 control-label" for="InputFieldA">Full Name</label>
                                 <div class="col-md-10">
-                                    @Html.TextBoxFor(m => m.billing.FullName, new { @class = "form-control" })
+                                    <input type="text" class="form-control" id="txtBillingFullName" name="txtBillingFullName" ng-model="txtBillingFullName" placeholder="Full Name" title="Full Name">
+
                                 </div>
                             </div>
                             <div class="control-group">
-                                @Html.LabelFor(m => m.billing.Institution, new { @class = "col-md-2 control-label" })
+                                <label class="col-md-2 control-label" for="InputFieldA">Institution</label>
                                 <div class="col-md-10">
-                                    @Html.TextBoxFor(m => m.billing.Institution, new { @class = "form-control" })
+                                    <input type="text" class="form-control" id="txtBillingInstitution" name="txtBillingInstitution" ng-model="txtBillingInstitution" placeholder="Billing Institution" title="Billing Institution">
                                 </div>
                             </div>
                             <div class="control-group">
-                                @Html.LabelFor(m => m.billing.BillingAddress, new { @class = "col-md-2 control-label" })
+                                <label class="col-md-2 control-label" for="InputFieldA">BillingAddress</label>
                                 <div class="col-md-10">
-                                    @Html.TextBoxFor(m => m.billing.BillingAddress, new { @class = "form-control" })
+                                    <input type="text" class="form-control" id="txtBillingAddress" name="txtBillingAddress" ng-model="txtBillingAddress" placeholder="Billing Address" title="Billing Institution">
+
                                 </div>
                             </div>
                             <div class="control-group">
-                                @Html.LabelFor(m => m.billing.Phone, new { @class = "col-md-2 control-label" })
+                                <label class="col-md-2 control-label" for="InputFieldA">Billing Phone</label>
                                 <div class="col-md-10">
-                                    @Html.TextBoxFor(m => m.billing.Phone, new { @class = "form-control" })
+                                    <input type="text" class="form-control" id="txtBillingPhone" name="txtBillingPhone" ng-model="txtBillingPhone" placeholder="Billing Phone" title="Billing Phone">
+
                                 </div>
                             </div>
                             <div class="control-group">
-                                @Html.LabelFor(m => m.billing.Email, new { @class = "col-md-2 control-label" })
+                                <label class="col-md-2 control-label" for="InputFieldA">Billing Email</label>
                                 <div class="col-md-10">
-                                    @Html.TextBoxFor(m => m.billing.Email, new { @class = "form-control" })
+                                    <input type="text" class="form-control" id="txtBillingEmail" name="txtBillingEmail" ng-model="txtBillingEmail" placeholder="Billing Email" title="Billing Email">
+
                                 </div>
                             </div>
 
@@ -288,8 +293,24 @@
                     </div>
                 </div>
             </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Notes</h3>
+                </div>
+                <div class="panel-body">
+                    <textarea name="txtNotes" ng-model="txtNotes" cols="100" rows="5"></textarea>
+                    </div>
+                </div>
+                
 
-            <input type="submit" class="btn btn-lg btn-primary" name="btnConfirm" value="Submit" />
-        </div>
-    </form>
-}
+                    <input type="submit" class="btn btn-lg btn-primary" name="btnConfirm" ng-click="AddForm() " value="Submit" />
+                </div>
+                } else {
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"> Please log in First to submit this order</h3>
+                    </div>
+                </div>
+                }
+
+</form>

@@ -11,6 +11,8 @@ $(function () {
         }
     });
 
+   // $('#shipping_Date').datepicker();
+
     $('#shipping_Date').datepicker();
 
     $('.dropdown-toggle').click(function () {
@@ -19,11 +21,11 @@ $(function () {
         return false;
     });
 
-    $("#btnAddSequencingForm").click(function () {
-        var getVal = $("#Onum").val();
-        var url = "/Sequencing/Order?oligonucleotideNum=" + getVal + "";
-        window.location = url;
-    });
+    //$("#btnAddSequencingForm").click(function () {
+    //    var getVal = $("#Onum").val();
+    //    var url = "/Sequencing/Order?oligonucleotideNum=" + getVal + "";
+    //    window.location = url;
+    //});
 
 });
 

@@ -23,7 +23,7 @@
 
     $scope.AddCustomPrimer = function () {
         //Push a new row
-        $scope.CustomPrimer.push(GenericHelpers.list($scope.gmp3));
+        $scope.CustomPrimer.push(GenericHelpers.custom($scope.scale, $scope.purification,$scope.gmp3));
     };
 
    

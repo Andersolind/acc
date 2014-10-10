@@ -5,8 +5,8 @@
         var properties = { SampleName: "", SameConc: "", VectorName: '', LengthBases: "", PrimerName: "", PrimerConc: "", GMP3: gmp3 };
         return properties;
     }
-    this.custom = function (gmp3) {
-        var properties = { PrimerName: "", Scale: $scope.scale, Sequence: '', Purification: $scope.purification, GMP: gmp3 };
+    this.custom = function (scope,purification,gmp3) {
+        var properties = { PrimerName: "", Scale: scope, Sequence: '', Purification: purification, GMP: gmp3 };
         return properties;
     }
  

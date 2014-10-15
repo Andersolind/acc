@@ -1,9 +1,11 @@
-﻿using System;
+﻿using MBBVL.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Description;
 
 namespace MBBVL.Controllers.Sequencing {
     public class SequenceController : ApiController {
@@ -18,7 +20,15 @@ namespace MBBVL.Controllers.Sequencing {
         }
 
         // POST api/<controller>
-        public void Post([FromBody]string value) {
+        [HttpPost]
+        public void Post(SequencingWrapperModel model) {
+        }
+
+        [HttpPost]
+        [ResponseType(typeof(SequenceController))]
+        [Route("CreateEmail")]
+        public IHttpActionResult CreateEmail(SequencingWrapperModel model) {
+            return Ok("");
         }
 
         // PUT api/<controller>/5

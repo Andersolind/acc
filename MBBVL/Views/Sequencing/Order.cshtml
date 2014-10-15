@@ -18,16 +18,16 @@
 
 </span>
 @Html.ValidationSummary(false)
-<form class="form-horizontal">
-@if (!Request.IsAuthenticated) { 
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h3 class="panel-title"> You have an option to log in so we can keep you in our records</h3>
-            <a class="btn btn-lg btn-primary" href="@Url.Action("Login", "Account")">Log in </a>
+<form id="dnaForm" class="form-horizontal" ng-submit="submitForm(dnaForm.$valid)">
+    @if (!Request.IsAuthenticated) {
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title"> You have an option to log in so we can keep you in our records</h3>
+                <a class="btn btn-lg btn-primary" href="@Url.Action("Login", "Account")">Log in </a>
 
+            </div>
         </div>
-    </div>
-}
+    }
 
     <div ng-app="acgt" ng-controller="OrderSequencing">
 
@@ -110,27 +110,27 @@
                     <div class="col-md-2 control-label">
                         <label for="InputFieldA">($5.00) Unedited Sequence Results [Chromatogram Trace]</label>
                         <div class="col-md-10">
-                            <input type="checkbox" ng-model="formData.chkUneditedChromatogramTrace" ng-true-value="yes" ng-false-value="no" />
+                            <input type="checkbox" ng-model="SequencingWrapperModel.DataDeliveryOptions.UneditedChromatogramTrace" ng-true-value="yes" ng-false-value="no" />
                         </div>
                     </div>
                     <div class="col-md-2 control-label">
                         <label for="InputFieldA">($10.00) Edited sequence results [Text Data]</label>
 
                         <div class="col-md-10">
-                            <input type="checkbox" ng-model="formData.chkEditedTextData" ng-true-value="yes" ng-false-value="no" />
+                            <input type="checkbox" ng-model="SequencingWrapperModel.DataDeliveryOptions.EditedTextData" ng-true-value="yes" ng-false-value="no" />
                         </div>
                     </div>
                     <div class="col-lg-2 control-label">
                         <label for="InputFieldA">($10.00) Edited Sequence Results [Text Data + Chromatogram Trace]</label>
                         <div class="col-md-10">
-                            <input type="checkbox" ng-model="formData.chkTextDataAndChromatogramTrace" ng-true-value="yes" ng-false-value="no" />
+                            <input type="checkbox" ng-model="SequencingWrapperModel.DataDeliveryOptions.TextDataAndChromatogramTrace" ng-true-value="yes" ng-false-value="no" />
                         </div>
                     </div>
                     <div class="col-md-2 control-label">
                         <label for="InputFieldA">($5.00) Unedited Sequence Results [Text + Chromatogram Trace]</label>
 
                         <div class="col-md-10">
-                            <input type="checkbox" ng-model="formData.ChkUneditedTextAndChromatogramTrace" ng-true-value="yes" ng-false-value="no" />
+                            <input type="checkbox" ng-model="SequencingWrapperModel.DataDeliveryOptions.UneditedTextAndChromatogramTrace" ng-true-value="yes" ng-false-value="no" />
                         </div>
                     </div>
                 </div>
@@ -174,7 +174,7 @@
 
                             </td>
                             <td>
-                                <select id="ddlScale" name="ddlScale" ng-model="scale2" ng-options="user.name as user.value for user in rows.Scale"></select>
+                                <select id="scaleValues2" name="scaleValues2" ng-change="keyPressCustomPrimer($index,scaleValues2)" ng-model="scaleValues2" ng-options="user.name as user.value for user in rows.Scale"></select>
                             </td>
                             <td>
                                 <input type="text" class="form-control" id="txtSequence" name="txtSequence" ng-model="row.Sequence" placeholder="Sequence" title="Sequence">
@@ -185,7 +185,7 @@
                             </td>
 
                             <td>
-                                <select id="ddlGmp" name="ddlGmp" ng-model="ddlGmp" ng-options="user.value as user.name for user in rows.GMP"></select>
+                                <select id="ddlGmp" name="ddlGmp" ng-model="ddlGmp" ng-change="keyPressGmp($index,ddlGmp)" ng-options="user.value as user.name for user in rows.GMP"></select>
                             </td>
                         </tr>
                     <tbody>
@@ -197,60 +197,67 @@
             <div class="panel-heading">
                 <h3 class="panel-title">Request for Pick Up</h3>
             </div>
+
             <div class="panel-body">
-                <fieldset>
-                    <legend></legend>
-                    <div class="control-group">
-                        <label class="col-md-2 control-label" for="InputFieldA">Date</label>
-                        <div class="col-md-10">
-                            <input type="text" class="form-control" id="shipping_Date" name="txtShipping" ng-model="ShippingDate" placeholder="Shipping Date" title="Shipping Date">
 
-                        </div>
+
+                <div class="row">
+                    <label class="col-md-2 control-label" for="InputFieldA">
+
+                        <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+
+                    </label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="SequencingWrapperModel.Shipping.ShippingDate" is-open="opened" min-date="minDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+
                     </div>
-                    <div class="control-group">
-                        <label class="col-md-2 control-label" for="InputFieldA">Full Name</label>
-                        <div class="col-md-10">
-                            <input type="text" class="form-control" id="shippingFullName" name="shippingFullName" ng-model="shippingFullName" placeholder="Full Name" title="Full Name">
+                </div>
 
-                        </div>
+
+                <div class="control-group">
+                    <label class="col-md-2 control-label" for="InputFieldA">Full Name</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" id="FullName" name="FullName" ng-model="SequencingWrapperModel.Shipping.FullName" placeholder="FullName" title="FullName">
+
                     </div>
-                    <div class="control-group">
-                        <label class="col-md-2 control-label" for="InputFieldA">Institution</label>
+                </div>
+                <div class="control-group">
+                    <label class="col-md-2 control-label" for="InputFieldA">Institution</label>
 
-                        <div class="col-md-10">
-                            <input type="text" class="form-control" id="txtInstitution" name="formData.txtInstitution" ng-model="txtInstitution" placeholder="Institution" title="Institution">
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" id="Institution" name="Institution" ng-model="SequencingWrapperModel.Shipping.Institution" placeholder="Institution" title="Institution">
 
-                        </div>
                     </div>
-                    <div class="control-group">
-                        <label class="col-md-2 control-label" for="InputFieldA">Shipping Address</label>
-                        <div class="col-md-10">
-                            <input type="text" class="form-control" id="txtShippingAddress" name="txtShippingAddress" ng-model="txtShippingAddress" placeholder="Shipping Address" title="Shipping Address">
+                </div>
+                <div class="control-group">
+                    <label class="col-md-2 control-label" for="InputFieldA">Shipping Address</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" id="txtShippingAddress" name="txtShippingAddress" ng-model="SequencingWrapperModel.Shipping.ShippingAddress" placeholder="Shipping Address" title="Shipping Address">
 
-                        </div>
                     </div>
-                    <div class="control-group">
-                        <label class="col-md-2 control-label" for="InputFieldA">Phone</label>
-                        <div class="col-md-10">
-                            <input type="text" class="form-control" id="txtShippingPhone" name="txtShippingPhone" ng-model="txtShippingPhone" placeholder="Shipping Phone" title="Shipping Phone">
+                </div>
+                <div class="control-group">
+                    <label class="col-md-2 control-label" for="InputFieldA">Phone</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" id="Phone" name="Phone" ng-model="SequencingWrapperModel.Shipping.Phone" placeholder="Shipping Phone" title="Shipping Phone">
 
 
-                        </div>
                     </div>
-                    <div class="control-group">
-                        <label class="col-md-2 control-label" for="InputFieldA">Email</label>
-                        <div class="col-md-10">
-                            <input type="text" class="form-control" id="txtShippingEmail" name="txtShippingEmail" ng-model="txtShippingEmail" placeholder="Shipping Email" title="Shipping Email">
+                </div>
+                <div class="control-group">
+                    <label class="col-md-2 control-label" for="InputFieldA">Email</label>
+                    <div class="col-md-10">
+                        <input type="email" class="form-control" id="Email" name="SequencingWrapperModel.Shipping.Email" ng-model="SequencingWrapperModel.Shipping.Email" placeholder="Shipping Email" title="Shipping Email" required>
 
-                        </div>
                     </div>
-                    <div class="row">
+                </div>
+                <div class="row">
 
-                        <div class="col-xs-9 col-sm-9 col-md-9">
-                            <a href="#" data-toggle="modal" data-target="#t_and_c_m">Pick up policy</a>
-                        </div>
+                    <div class="col-xs-9 col-sm-9 col-md-9">
+                        <a href="#" data-toggle="modal" data-target="#t_and_c_m">Pick up policy</a>
                     </div>
-                </fieldset>
+                </div>
+
             </div>
         </div>
         <div class="panel panel-primary">
@@ -264,41 +271,41 @@
                             <label class="col-md-2 control-label" for="InputFieldA">Quote number</label>
 
                             <div class="col-md-10">
-                                <input type="text" class="form-control" id="txtQuotenumber" name="txtQuotenumber" ng-model="txtQuotenumber" placeholder="Quote number" title="Quote number">
+                                <input type="text" class="form-control" id="txtQuotenumber" name="txtQuotenumber" ng-model="SequencingWrapperModel.Billing.Quotenumber" placeholder="Quote number" title="Quote number">
 
                             </div>
                         </div>
                         <div class="control-group">
                             <label class="col-md-2 control-label" for="InputFieldA">Full Name</label>
                             <div class="col-md-10">
-                                <input type="text" class="form-control" id="txtBillingFullName" name="txtBillingFullName" ng-model="txtBillingFullName" placeholder="Full Name" title="Full Name">
+                                <input type="text" class="form-control" id="txtBillingFullName" name="txtBillingFullName" ng-model="SequencingWrapperModel.Billing.FullName" placeholder="Full Name" title="Full Name">
 
                             </div>
                         </div>
                         <div class="control-group">
                             <label class="col-md-2 control-label" for="InputFieldA">Institution</label>
                             <div class="col-md-10">
-                                <input type="text" class="form-control" id="txtBillingInstitution" name="txtBillingInstitution" ng-model="txtBillingInstitution" placeholder="Billing Institution" title="Billing Institution">
+                                <input type="text" class="form-control" id="txtBillingInstitution" name="txtBillingInstitution" ng-model="SequencingWrapperModel.Billing.Institution" placeholder="Billing Institution" title="Billing Institution">
                             </div>
                         </div>
                         <div class="control-group">
                             <label class="col-md-2 control-label" for="InputFieldA">BillingAddress</label>
                             <div class="col-md-10">
-                                <input type="text" class="form-control" id="txtBillingAddress" name="txtBillingAddress" ng-model="txtBillingAddress" placeholder="Billing Address" title="Billing Institution">
+                                <input type="text" class="form-control" id="Address" name="Address" ng-model="SequencingWrapperModel.Billing.BillingAddress" placeholder="Billing Address" title="Billing Institution">
 
                             </div>
                         </div>
                         <div class="control-group">
                             <label class="col-md-2 control-label" for="InputFieldA">Billing Phone</label>
                             <div class="col-md-10">
-                                <input type="text" class="form-control" id="txtBillingPhone" name="txtBillingPhone" ng-model="txtBillingPhone" placeholder="Billing Phone" title="Billing Phone">
+                                <input type="text" class="form-control" id="Phone" name="Phone" ng-model="SequencingWrapperModel.Billing.Phone" placeholder="Billing Phone" title="Billing Phone">
 
                             </div>
                         </div>
                         <div class="control-group">
                             <label class="col-md-2 control-label" for="InputFieldA">Billing Email</label>
                             <div class="col-md-10">
-                                <input type="text" class="form-control" id="txtBillingEmail" name="txtBillingEmail" ng-model="txtBillingEmail" placeholder="Billing Email" title="Billing Email">
+                                <input type="email" class="form-control" id="Email" name="Email" ng-model="SequencingWrapperModel.Billing.Email" placeholder="Billing Email" title="Billing Email" required>
 
                             </div>
                         </div>
@@ -312,12 +319,12 @@
                 <h3 class="panel-title">Notes</h3>
             </div>
             <div class="panel-body">
-                <textarea name="txtNotes" ng-model="txtNotes" cols="100" rows="5"></textarea>
+                <textarea name="txtNotes" ng-model="SequencingWrapperModel.Billing.Notes" cols="100" rows="5"></textarea>
             </div>
         </div>
 
 
-        <input type="submit" class="btn btn-lg btn-primary" name="btnConfirm" ng-click="submitForm() " value="Submit" />
+        <input type="submit" class="btn btn-lg btn-primary" name="btnConfirm" ng-click="submitForm(dnaForm.$valid) " value="Submit" />
     </div>
 
 </form>

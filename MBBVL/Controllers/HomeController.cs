@@ -42,7 +42,7 @@ namespace MBBVL.Controllers {
 
             return View();
         }
-          public ActionResult Location() {
+        public ActionResult Location() {
             ViewBag.Message = "Your Location page.";
 
             return View();
@@ -128,7 +128,7 @@ namespace MBBVL.Controllers {
 
                 //Shipping
                 Shipping ship = new Shipping();
-                ship.Date = model.shipping.Date;
+                ship.ShippingDate = model.shipping.ShippingDate;
                 ship.FullName = model.shipping.FullName;
                 ship.Institution = model.shipping.Institution;
                 ship.ShippingAddress = model.shipping.ShippingAddress;

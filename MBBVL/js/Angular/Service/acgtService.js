@@ -6,7 +6,7 @@
         return properties;
     }
     this.custom = function (scope,purification,gmp3) {
-        var properties = { PrimerName: "", Scale: scope, Sequence: '', Purification: purification, GMP: gmp3 };
+        var properties = { PrimerName: "", Scale: scope, ScaleValue: "", Sequence: '', Purification: purification, GMP: gmp3, GmpValue: "" };
         return properties;
     }
  

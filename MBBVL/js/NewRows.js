@@ -13,7 +13,7 @@ $(function () {
 
    // $('#shipping_Date').datepicker();
 
-    $('#shipping_Date').datepicker();
+   // $('#shipping_Date').datepicker();
 
     $('.dropdown-toggle').click(function () {
         var location = $(this).attr('href');

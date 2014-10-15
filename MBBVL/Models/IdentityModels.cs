@@ -16,7 +16,7 @@ namespace MBBVL.Models {
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int ShippingId { get; set; }
-        public DateTime Date { get; set; }
+        public DateTime ShippingDate { get; set; }
         [Required]
         [Display(Name = "Full Name")]
         public string FullName { get; set; }
@@ -52,6 +52,7 @@ namespace MBBVL.Models {
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
+        public string Notes { get; set; }
         public Guid UserId { get; set; }
 
     }
@@ -112,11 +113,11 @@ namespace MBBVL.Models {
         [Display(Name = "Primer Name")]
         public string PrimerName { get; set; }
         [Display(Name = "Scale")]
-        public string Scale { get; set; }
+        public string ScaleValue { get; set; }
         [Display(Name = "Sequence")]
         public string Sequence { get; set; }
         [Display(Name = "GMP")]
-        public string Gmp { get; set; }
+        public string GmpValue { get; set; }
         public Guid UserId { get; set; }
 
     }
@@ -124,16 +125,15 @@ namespace MBBVL.Models {
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int DataDeliveryId { get; set; }
-        [Display(Name = "Unedited Sequence Result")]
-        public bool ChromatogramTrace { get; set; }
+        [Display(Name = "($5.00) Unedited Sequence Results [Chromatogram Trace]")]
+        public string UneditedChromatogramTrace { get; set; }
 
-        [Display(Name = " Edited Sequence Results")]
-        public bool TextData { get; set; }
-
-        [Display(Name = " Unedited Sequence Results")]
-        public bool TextAndChromatogramTrace { get; set; }
-        [Display(Name = "Edited Sequence Results ")]
-        public bool TextDataAndChromatogramTrace { get; set; }
+        [Display(Name = "($10.00) Edited sequence results [Text Data]")]
+        public string EditedTextData { get; set; }
+        [Display(Name = "($10.00) Edited Sequence Results [Text Data + Chromatogram Trace]")]
+        public string TextDataAndChromatogramTrace { get; set; }
+        [Display(Name = "($5.00) Unedited Sequence Results [Text + Chromatogram Trace]")]
+        public string UneditedTextAndChromatogramTrace { get; set; }
 
         public Guid UserId { get; set; }
     }
@@ -151,9 +151,10 @@ namespace MBBVL.Models {
         public List<Oligosequence> oligosequence { get; set; }
     }
 
+
     public class SequencingWrapperModel {
-        public Shipping shipping { get; set; }
-        public Billing billing { get; set; }
+        public Shipping Shipping { get; set; }
+        public Billing Billing { get; set; }
 
         public DataDeliveryOptions dataDeliveryOptions { get; set; }
         public List<SequencingModel> sequencingModel { get; set; }

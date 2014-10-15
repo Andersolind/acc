@@ -58,11 +58,11 @@ namespace MBBVL.Core {
         public string SetUpSequence(SequencingWrapperModel model) {
             SequencingWrapperModel m = new SequencingWrapperModel();
 
-            m.billing = model.billing;
-            m.shipping = model.shipping;
+            m.Billing = model.Billing;
+            m.Shipping = model.Shipping;
             m.sequencingModel = model.sequencingModel;
             //headers
-            var bill = "<h1>Dear" + model.billing.FullName + "Here is your Order <br>Billing</h1>";
+            var bill = "<h1>Dear" + model.Billing.FullName + "Here is your Order <br>Billing</h1>";
 
             bill += "<table style='width:100%' class='panel-title'>";
             bill += "<tr>";
@@ -77,12 +77,12 @@ namespace MBBVL.Core {
             //Content
 
             bill += "<tr  style='width:100%'>";
-            bill += "<td class='boldCell'>" + m.billing.Quotenumber + "</td>";
-            bill += "<td class='boldCell'>" + m.billing.FullName + "</td>";
-            bill += "<td class='boldCell'>" + m.billing.Institution + "</td>";
-            bill += "<td class='boldCell'>" + m.billing.BillingAddress + "</td>";
-            bill += "<td class='boldCell'>" + m.billing.Phone + "</td>";
-            bill += "<td class='boldCell'>" + m.billing.Email + "</td>";
+            bill += "<td class='boldCell'>" + m.Billing.Quotenumber + "</td>";
+            bill += "<td class='boldCell'>" + m.Billing.FullName + "</td>";
+            bill += "<td class='boldCell'>" + m.Billing.Institution + "</td>";
+            bill += "<td class='boldCell'>" + m.Billing.BillingAddress + "</td>";
+            bill += "<td class='boldCell'>" + m.Billing.Phone + "</td>";
+            bill += "<td class='boldCell'>" + m.Billing.Email + "</td>";
             // more cells here as needed
             bill += "</tr>";
             //shipping
@@ -101,12 +101,12 @@ namespace MBBVL.Core {
 
 
             ship += "<tr>";
-            ship += "<td class='boldCell'>" + m.shipping.Date + "</td>";
-            ship += "<td class='boldCell'>" + m.shipping.FullName + "</td>";
-            ship += "<td class='boldCell'>" + m.shipping.Institution + "</td>";
-            ship += "<td class='boldCell'>" + m.shipping.ShippingAddress + "</td>";
-            ship += "<td class='boldCell'>" + m.shipping.Phone + "</td>";
-            ship += "<td class='boldCell'>" + m.shipping.Email + "</td>";
+            ship += "<td class='boldCell'>" + m.Shipping.ShippingDate + "</td>";
+            ship += "<td class='boldCell'>" + m.Shipping.FullName + "</td>";
+            ship += "<td class='boldCell'>" + m.Shipping.Institution + "</td>";
+            ship += "<td class='boldCell'>" + m.Shipping.ShippingAddress + "</td>";
+            ship += "<td class='boldCell'>" + m.Shipping.Phone + "</td>";
+            ship += "<td class='boldCell'>" + m.Shipping.Email + "</td>";
             // more cells here as needed
             ship += "</tr>";
             var olForm = "<h1>Sequencing</h1>"; ;
@@ -138,7 +138,7 @@ namespace MBBVL.Core {
             }
             olForm += "</table>";
             var template = bill + ship + olForm;
-            CreateEmail(m.shipping.Email, "Andersolind@gmail.com", template);
+            CreateEmail(m.Shipping.Email, "Andersolind@gmail.com", template);
             return olForm;
         }
 
@@ -188,7 +188,7 @@ namespace MBBVL.Core {
 
 
             ship += "<tr>";
-            ship += "<td class='boldCell'>" + m.shipping.Date + "</td>";
+            ship += "<td class='boldCell'>" + m.shipping.ShippingDate + "</td>";
             ship += "<td class='boldCell'>" + m.shipping.FullName + "</td>";
             ship += "<td class='boldCell'>" + m.shipping.Institution + "</td>";
             ship += "<td class='boldCell'>" + m.shipping.ShippingAddress + "</td>";

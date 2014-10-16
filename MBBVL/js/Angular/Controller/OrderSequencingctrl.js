@@ -82,9 +82,9 @@
 
     $scope.submitForm = function () {
         //Get all the form variables from the page and get ready to submit to our model
-        if (!$valid) {
+    
             var url = "/api/Sequence/"
-            var test = $scope.CustomPrimer;
+         //   var test = $scope.CustomPrimer;
             var model = $scope.SequencingWrapperModel;
             ACGTFactory.serverService(url, "Post", model).success(function (model, status) {
                 if (status == 200) {
@@ -95,10 +95,7 @@
                 var err = error;
                 //   SetAlert(error, 'error');
             });
-        }
-
     }
-   
-
-
 }]);
+
+// directive that prevents submit if there are still form errors  

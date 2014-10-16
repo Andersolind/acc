@@ -17,19 +17,17 @@
 <span style="padding-top:100px">
 
 </span>
-@Html.ValidationSummary(false)
-<form id="dnaForm" class="form-horizontal" ng-submit="submitForm(dnaForm.$valid)">
+
+<form name="dnaForm" ng-app="acgt" ng-controller="OrderSequencing" class="form-horizontal" novalidate>
     @if (!Request.IsAuthenticated) {
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h3 class="panel-title"> You have an option to log in so we can keep you in our records</h3>
                 <a class="btn btn-lg btn-primary" href="@Url.Action("Login", "Account")">Log in </a>
-
             </div>
         </div>
     }
-
-    <div ng-app="acgt" ng-controller="OrderSequencing">
+    <div>
 
         <div class="panel panel-primary">
             <div class="panel-heading">
@@ -65,8 +63,9 @@
                         <tr ng-repeat="dna in NavigationConfig">
 
                             <td>
-                                <input type="text" class="form-control" id="txtSampleName" name="txtSampleName" ng-model="dna.SampleName" placeholder="Enter Sample Name" title="Sample Name">
-
+                                <input type="text" class="form-control" id="txtSampleName" name="SampleName" ng-model="dna.SampleName" placeholder="Enter Sample Name" title="Sample Name" required>
+                                <span ng-show="dnaForm.SampleName.$dirty && dnaForm.SampleName.$invalid">  </span>
+                                <span style="color:red" ng-show="dnaForm.SampleName.$error.required">Sample Name is required.</span>
                             </td>
                             <td>
                                 <input type="text" class="form-control" id="txtSameConc" name="txtSameConc" ng-model="dna.SameConc" placeholder="EnterSample  Conc" title="Sample  Conc. (ng/µl)">
@@ -197,19 +196,18 @@
             <div class="panel-heading">
                 <h3 class="panel-title">Request for Pick Up</h3>
             </div>
-
             <div class="panel-body">
-
-
                 <div class="row">
                     <label class="col-md-2 control-label" for="InputFieldA">
-
-                        <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-
+                       
+                            <button type="button" style="color:red" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                       
                     </label>
                     <div class="col-md-10">
-                        <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="SequencingWrapperModel.Shipping.ShippingDate" is-open="opened" min-date="minDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
-
+                        <input type="text" name="RequestDate" class="form-control" datepicker-popup="{{format}}" ng-model="SequencingWrapperModel.Shipping.ShippingDate" is-open="opened" min-date="minDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" close-text="Close" required />
+                        <span  ng-show="dnaForm.RequestDate.$dirty && dnaForm.RequestDate.$invalid">  </span>
+                        <span style="color:red" ng-show="dnaForm.RequestDate.$error.required">Date is required.</span>
+                      
                     </div>
                 </div>
 
@@ -245,10 +243,12 @@
                     </div>
                 </div>
                 <div class="control-group">
-                    <label class="col-md-2 control-label" for="InputFieldA">Email</label>
-                    <div class="col-md-10">
-                        <input type="email" class="form-control" id="Email" name="SequencingWrapperModel.Shipping.Email" ng-model="SequencingWrapperModel.Shipping.Email" placeholder="Shipping Email" title="Shipping Email" required>
 
+                    <label class="col-md-2 control-label" for="ShippingEmail">Email</label>
+                    <div class="col-md-10">
+                        <input type="email" class="form-control" name="ShippingEmail" ng-model="SequencingWrapperModel.Shipping.Email" placeholder="Shipping Email" title="Shipping Email" required>
+                        <span style="color:red" ng-show="dnaForm.ShippingEmail.$dirty && dnaForm.ShippingEmail.$invalid"></span>
+                        <span ng-show="dnaForm.ShippingEmail.$error.required">Email is required.</span>
                     </div>
                 </div>
                 <div class="row">
@@ -305,11 +305,10 @@
                         <div class="control-group">
                             <label class="col-md-2 control-label" for="InputFieldA">Billing Email</label>
                             <div class="col-md-10">
-                                <input type="email" class="form-control" id="Email" name="Email" ng-model="SequencingWrapperModel.Billing.Email" placeholder="Billing Email" title="Billing Email" required>
+                                <input type="email" class="form-control" id="Email" name="Email" ng-model="SequencingWrapperModel.Billing.Email" placeholder="Billing Email" title="Billing Email">
 
                             </div>
                         </div>
-
                     </fieldset>
                 </div>
             </div>
@@ -322,10 +321,8 @@
                 <textarea name="txtNotes" ng-model="SequencingWrapperModel.Billing.Notes" cols="100" rows="5"></textarea>
             </div>
         </div>
-
-
-        <input type="submit" class="btn btn-lg btn-primary" name="btnConfirm" ng-click="submitForm(dnaForm.$valid) " value="Submit" />
-    </div>
+        <input type="submit" class="btn btn-primary" ng-click="submitForm()" ng-disabled="!dnaForm.$valid">
+ </div>
 
 </form>
 <!-- Modal -->

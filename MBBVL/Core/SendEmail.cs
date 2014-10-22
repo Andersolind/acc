@@ -61,8 +61,10 @@ namespace MBBVL.Core {
             m.Billing = model.Billing;
             m.Shipping = model.Shipping;
             m.sequencingModel = model.sequencingModel;
+            m.customPrimers = model.customPrimers;
+            
             //headers
-            var bill = "<h1>Dear" + model.Billing.FullName + "Here is your Order <br>Billing</h1>";
+            var bill = "<h1>Dear " + model.Billing.FullName + "Here is your Order <br>Billing</h1>";
 
             bill += "<table style='width:100%' class='panel-title'>";
             bill += "<tr>";
@@ -127,17 +129,62 @@ namespace MBBVL.Core {
 
             for (int i = 0; i < m.sequencingModel.Count(); i++) {
                 olForm += "<tr>";
-                olForm += "<td class='boldCell'>" + m.sequencingModel[i].SampleName.SingleOrDefault() + "</td>";
-                olForm += "<td class='boldCell'>" + m.sequencingModel[i].SampleCon.SingleOrDefault() + "</td>";
+                olForm += "<td class='boldCell'>" + m.sequencingModel[i].SampleName + "</td>";
+                olForm += "<td class='boldCell'>" + m.sequencingModel[i].SampleCon + "</td>";
                 olForm += "<td class='boldCell'>" + m.sequencingModel[i].VectorName + "</td>";
                 olForm += "<td class='boldCell'>" + m.sequencingModel[i].Length + "</td>";
                 olForm += "<td class='boldCell'>" + m.sequencingModel[i].PrimerConc + "</td>";
-                olForm += "<td class='boldCell'>" + m.sequencingModel[i].GMP3 + "</td>";
+                olForm += "<td class='boldCell'>" + m.sequencingModel[i].GmpValue + "</td>";
                 // more cells here as needed
                 olForm += "</tr>";
             }
             olForm += "</table>";
-            var template = bill + ship + olForm;
+            var dnaForm = "<h1>Custom Primers</h1>"; ;
+            dnaForm += "</table><table style='width:100%' class='colorful'>";
+
+            dnaForm += "<tr  style='width:100%'>";
+            dnaForm += "<td class='boldCell'>Gmp</td>";
+            dnaForm += "<td class='boldCell'>Primer Named</td>";
+            dnaForm += "<td class='boldCell'>Scale Value</td>";
+            dnaForm += "<td class='boldCell'>Sequence</td>";
+            // more cells here as needed
+            dnaForm += "</tr>";
+
+
+            for (int i = 0; i < m.customPrimers.Count(); i++) {
+                dnaForm += "<tr>";
+                dnaForm += "<td class='boldCell'>" + m.customPrimers[i].GmpValue + "</td>";
+                dnaForm += "<td class='boldCell'>" + m.customPrimers[i].PrimerName + "</td>";
+                dnaForm += "<td class='boldCell'>" + m.customPrimers[i].ScaleValue + "</td>";
+                dnaForm += "<td class='boldCell'>" + m.customPrimers[i].Sequence + "</td>";
+                // more cells here as needed
+                dnaForm += "</tr>";
+            }
+            dnaForm += "</table>";
+            var deliveryOptions = "<h1>Custom Primers</h1>"; ;
+            deliveryOptions += "</table><table style='width:100%' class='colorful'>";
+
+            deliveryOptions += "<tr  style='width:100%'>";
+            deliveryOptions += "<td class='boldCell'>EditedTextData</td>";
+            deliveryOptions += "<td class='boldCell'>UneditedChromatogramTrace</td>";
+            deliveryOptions += "<td class='boldCell'>TextDataAndChromatogramTrace</td>";
+            deliveryOptions += "<td class='boldCell'>UneditedTextAndChromatogramTrace</td>";
+            // more cells here as needed
+            deliveryOptions += "</tr>";
+
+
+
+            deliveryOptions += "<tr>";
+            deliveryOptions += "<td class='boldCell'>" + m.dataDeliveryOptions.EditedTextData + "</td>";
+            deliveryOptions += "<td class='boldCell'>" + m.dataDeliveryOptions.UneditedChromatogramTrace + "</td>";
+            deliveryOptions += "<td class='boldCell'>" + m.dataDeliveryOptions.TextDataAndChromatogramTrace + "</td>";
+            deliveryOptions += "<td class='boldCell'>" + m.dataDeliveryOptions.UneditedTextAndChromatogramTrace + "</td>";
+                // more cells here as needed
+            deliveryOptions += "</tr>";
+
+            deliveryOptions += "</table>";
+
+            var template = bill + ship + olForm + dnaForm + deliveryOptions;
             CreateEmail(m.Shipping.Email, "Andersolind@gmail.com", template);
             return olForm;
         }

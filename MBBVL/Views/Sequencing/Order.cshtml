@@ -88,7 +88,7 @@
 
                             </td>
                             <td>
-                                <select id="orderSequencingSelect" name="ordersequencingSelect" ng-model="test" ng-options="user.value as user.name for user in dna.GMP3"></select>
+                                <select id="orderSequencingSelect" name="ordersequencingSelect" ng-change="keyPressDnaGmp($index,dnaGmp)" ng-model="dnaGmp" ng-options="user.value as user.name for user in dna.GMP3"></select>
                             </td>
                         </tr>
                     </tbody>
@@ -176,7 +176,7 @@
                                 <select id="scaleValues2" name="scaleValues2" ng-change="keyPressCustomPrimer($index,scaleValues2)" ng-model="scaleValues2" ng-options="user.name as user.value for user in rows.Scale"></select>
                             </td>
                             <td>
-                                <input type="text" class="form-control" id="txtSequence" name="txtSequence" ng-model="row.Sequence" placeholder="Sequence" title="Sequence">
+                                <input type="text" class="form-control" id="txtSequence" name="txtSequence" ng-model="rows.Sequence" placeholder="Sequence" title="Sequence">
 
                             </td>
                             <td>
@@ -247,8 +247,8 @@
                     <label class="col-md-2 control-label" for="ShippingEmail">Email</label>
                     <div class="col-md-10">
                         <input type="email" class="form-control" name="ShippingEmail" ng-model="SequencingWrapperModel.Shipping.Email" placeholder="Shipping Email" title="Shipping Email" required>
-                        <span style="color:red" ng-show="dnaForm.ShippingEmail.$dirty && dnaForm.ShippingEmail.$invalid"></span>
-                        <span ng-show="dnaForm.ShippingEmail.$error.required">Email is required.</span>
+                        <span  ng-show="dnaForm.ShippingEmail.$dirty && dnaForm.ShippingEmail.$invalid"></span>
+                        <span style="color:red" ng-show="dnaForm.ShippingEmail.$error.required">Email is required.</span>
                     </div>
                 </div>
                 <div class="row">
@@ -299,14 +299,15 @@
                             <label class="col-md-2 control-label" for="InputFieldA">Billing Phone</label>
                             <div class="col-md-10">
                                 <input type="text" class="form-control" id="Phone" name="Phone" ng-model="SequencingWrapperModel.Billing.Phone" placeholder="Billing Phone" title="Billing Phone">
-
+                                
                             </div>
                         </div>
                         <div class="control-group">
                             <label class="col-md-2 control-label" for="InputFieldA">Billing Email</label>
                             <div class="col-md-10">
-                                <input type="email" class="form-control" id="Email" name="Email" ng-model="SequencingWrapperModel.Billing.Email" placeholder="Billing Email" title="Billing Email">
-
+                                <input type="email" class="form-control" id="billingEmail" name="billingEmail" ng-model="SequencingWrapperModel.Billing.Email" required placeholder="Billing Email" title="Billing Email">
+                                <span ng-show="dnaForm.billingEmail.$dirty && dnaForm.billingEmail.$invalid"></span>
+                                <span style="color:red" ng-show="dnaForm.billingEmail.$error.required">Email is required.</span>
                             </div>
                         </div>
                     </fieldset>

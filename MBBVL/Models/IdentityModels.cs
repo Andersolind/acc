@@ -100,7 +100,7 @@ namespace MBBVL.Models {
         public string PrimerConc { get; set; }
         [Display(Name = "GMP3")]
         public string GMP3 { get; set; }
-
+        public string GmpValue { get; set; }
 
         public Guid UserId { get; set; }
 

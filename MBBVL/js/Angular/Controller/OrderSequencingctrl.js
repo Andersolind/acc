@@ -16,6 +16,9 @@
     $scope.keyPressGmp = function (index, value) {
         $scope.CustomPrimer[index].GmpValue = value;
     };
+    $scope.keyPressDnaGmp = function (index, value) {
+        $scope.NavigationConfig[index].GmpValue = value;
+    };
     function SetupInitialRows() {
         $scope.scaleValues = [{ name: '0.02', value: '0.02' }, { name: '0.04', value: '0.04' }, { name: '0.2', value: '0.2' }, { name: '1', value: '1' }];
         //
@@ -23,7 +26,7 @@
 
         $scope.gmp3 = [{ name: 'yes', value: 'yes' }, { name: 'no', value: 'no' }];
         //Dna Form
-        $scope.NavigationConfig = [{ SampleName: "", SameConc: "", VectorName: '', LengthBases: "", PrimerName: "", PrimerConc: "", GMP3: $scope.gmp3 }];
+        $scope.NavigationConfig = [{ SampleName: "", SameConc: "", VectorName: '', LengthBases: "", PrimerName: "", PrimerConc: "", GMP3: $scope.gmp3,GmpValue:"" }];
         //
         $scope.CustomPrimer = [{ PrimerName: "", Scale: $scope.scaleValues, ScaleValue: "", Sequence: '', Purification: $scope.purification, GMP: $scope.gmp3, GmpValue: "" }];
    

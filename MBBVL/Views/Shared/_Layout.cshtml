@@ -66,7 +66,16 @@
                     </li>
                     <li>@Html.ActionLink("Quality Systems", "Index", "QualitySystems")</li>
                     <li>@Html.ActionLink("Research and Development", "Index", "ResearchAndDevelopment")</li>
-                    <li>@Html.ActionLink("Technical Support", "Index", "TechSupport")</li>
+                    <li class="dropdown">
+                        <a href="@Url.Action("General", "Sequencing")" class="dropdown-toggle" data-toggle="dropdown">Technical Support<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("General", "General", "TechSupport")</li>
+                            <li>@Html.ActionLink("Glossary", "Glossary", "TechSupport")</li>
+                            <li>@Html.ActionLink("FAQs", "FAQs", "TechSupport")</li>
+                            <li>@Html.ActionLink("Tools", "Tools", "TechSupport")</li>
+
+                        </ul>
+                    </li>
 
                 </ul>
                 @Html.Partial("_LoginPartial")

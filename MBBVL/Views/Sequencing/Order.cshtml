@@ -52,7 +52,7 @@
                             <th>Sample Name</th>
                             <th>Sample  Conc. (ng/µl)</th>
                             <th>Vector Name or PCR Product</th>
-                            <th>Length (bases)</th>
+                            <th>Sequence (ACGT)</th>
                             <th>Primer Name </th>
                             <th>Primer Conc (ng/µl) </th>
                             <th>GMP (Y/N) </th>
@@ -321,7 +321,7 @@
                 <h3 class="panel-title">Notes</h3>
             </div>
             <div class="panel-body">
-                <textarea name="txtNotes" ng-model="SequencingWrapperModel.Billing.Notes" cols="100" rows="5"></textarea>
+                <textarea name="txtNotes" ng-model="SequencingWrapperModel.Billing.Notes" cols="200" rows="5"></textarea>
             </div>
         </div>
         <input type="submit" class="btn btn-primary" ng-click="submitForm()" ng-disabled="!dnaForm.$valid">

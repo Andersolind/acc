@@ -14,5 +14,21 @@ namespace MBBVL.Controllers
         {
             return View();
         }
+        public ActionResult General()
+        {
+            return View();
+        }
+        public ActionResult Glossary()
+        {
+            return View();
+        }
+        public ActionResult FAQs()
+        {
+            return View();
+        }
+        public ActionResult Tools()
+        {
+            return View();
+        }
 	}
 }

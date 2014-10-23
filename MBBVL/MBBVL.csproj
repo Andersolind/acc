@@ -201,6 +201,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\OligoController.cs" />
+    <Compile Include="Controllers\PersonalizedProjectsController.cs" />
     <Compile Include="Controllers\QualitySystemsController.cs" />
     <Compile Include="Controllers\ResearchAndDevelopmentController.cs" />
     <Compile Include="Controllers\SequencingController.cs" />
@@ -245,6 +246,7 @@
     <Content Include="images\entrance.jpg" />
     <Content Include="images\greenpeople.jpg" />
     <Content Include="images\HPLC.JPG" />
+    <Content Include="images\Lab Hood.jpg" />
     <Content Include="images\manequine.jpg" />
     <Content Include="images\Nanophotometer2.JPG" />
     <Content Include="images\OLIGONUCLEOTIDE SERVICES.jpg" />
@@ -359,6 +361,8 @@
     <Content Include="Views\TechSupport\Glossary.cshtml" />
     <Content Include="Views\TechSupport\FAQs.cshtml" />
     <Content Include="Views\TechSupport\Tools.cshtml" />
+    <Content Include="Views\PersonalizedProjects\PersonalizedCustomProjects.cshtml" />
+    <Content Include="Views\PersonalizedProjects\SiteDirectedMutagenesis.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

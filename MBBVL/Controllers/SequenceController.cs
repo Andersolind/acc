@@ -50,18 +50,19 @@ namespace MBBVL.Controllers.Sequencing {
                 db.Billing.Add(bill);
 
 
-                //Shipping
-                Shipping ship = new Shipping();
-                ship.ShippingDate = model.Shipping.ShippingDate;
-                ship.FullName = model.Shipping.FullName;
-                ship.Institution = model.Shipping.Institution;
-                ship.ShippingAddress = model.Shipping.ShippingAddress;
-                ship.Phone = model.Shipping.Phone;
-                ship.Email = model.Shipping.Email;
+                //Pickup
+                PickUp ship = new PickUp();
+                ship.PickUpDate = model.PickUp.PickUpDate;
+                ship.FullName = model.PickUp.FullName;
+                ship.Institution = model.PickUp.Institution;
+                ship.ShippingAddress = model.PickUp.ShippingAddress;
+                ship.Phone = model.PickUp.Phone;
+                ship.Email = model.PickUp.Email;
+                
                 ship.UserId = g;
-                db.Shipping.Add(ship);
+                db.PickUp.Add(ship);
                 db.Entry(ship).State = EntityState.Added;
-                templateData.Shipping = ship;
+                templateData.PickUp = ship;
 
                 //DNA
                 SequencingModel ol = new SequencingModel();

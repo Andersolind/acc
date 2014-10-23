@@ -59,7 +59,7 @@ namespace MBBVL.Core {
             SequencingWrapperModel m = new SequencingWrapperModel();
 
             m.Billing = model.Billing;
-            m.Shipping = model.Shipping;
+            m.PickUp = model.PickUp;
             m.sequencingModel = model.sequencingModel;
             m.customPrimers = model.customPrimers;
             
@@ -103,12 +103,12 @@ namespace MBBVL.Core {
 
 
             ship += "<tr>";
-            ship += "<td class='boldCell'>" + m.Shipping.ShippingDate + "</td>";
-            ship += "<td class='boldCell'>" + m.Shipping.FullName + "</td>";
-            ship += "<td class='boldCell'>" + m.Shipping.Institution + "</td>";
-            ship += "<td class='boldCell'>" + m.Shipping.ShippingAddress + "</td>";
-            ship += "<td class='boldCell'>" + m.Shipping.Phone + "</td>";
-            ship += "<td class='boldCell'>" + m.Shipping.Email + "</td>";
+            ship += "<td class='boldCell'>" + m.PickUp.PickUpDate + "</td>";
+            ship += "<td class='boldCell'>" + m.PickUp.FullName + "</td>";
+            ship += "<td class='boldCell'>" + m.PickUp.Institution + "</td>";
+            ship += "<td class='boldCell'>" + m.PickUp.ShippingAddress + "</td>";
+            ship += "<td class='boldCell'>" + m.PickUp.Phone + "</td>";
+            ship += "<td class='boldCell'>" + m.PickUp.Email + "</td>";
             // more cells here as needed
             ship += "</tr>";
             var olForm = "<h1>Sequencing</h1>"; ;
@@ -185,7 +185,7 @@ namespace MBBVL.Core {
             deliveryOptions += "</table>";
 
             var template = bill + ship + olForm + dnaForm + deliveryOptions;
-            CreateEmail(m.Shipping.Email, "Andersolind@gmail.com", template);
+            CreateEmail(m.Billing.Email, "Andersolind@gmail.com", template);
             return olForm;
         }
 

@@ -43,7 +43,7 @@
     $scope.SequencingWrapperModel = {
 
         Billing: {},
-        Shipping: {},
+        PickUp: {},
         DataDeliveryOptions: {},
         CustomPrimers: $scope.CustomPrimer,
         SequencingModel: $scope.NavigationConfig,
@@ -85,7 +85,7 @@
 
     $scope.submitForm = function () {
         //Get all the form variables from the page and get ready to submit to our model
-    
+        var getVal = $scope.ddlInstitute;
             var url = "/api/Sequence/"
          //   var test = $scope.CustomPrimer;
             var model = $scope.SequencingWrapperModel;

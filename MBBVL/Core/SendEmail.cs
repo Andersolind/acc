@@ -161,7 +161,7 @@ namespace MBBVL.Core {
                 dnaForm += "</tr>";
             }
             dnaForm += "</table>";
-            var deliveryOptions = "<h1>Custom Primers</h1>"; ;
+            var deliveryOptions = "<h1>Delivery Options</h1>"; ;
             deliveryOptions += "</table><table style='width:100%' class='colorful'>";
 
             deliveryOptions += "<tr  style='width:100%'>";

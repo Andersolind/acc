@@ -32,6 +32,26 @@ namespace MBBVL.Models {
         public string Email { get; set; }
         public Guid UserId { get; set; }
     }
+    public class PickUp {
+        [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+        public int PickUpId { get; set; }
+        public DateTime PickUpDate { get; set; }
+        [Required]
+        [Display(Name = "Full Name")]
+        public string FullName { get; set; }
+        [Display(Name = "Institution")]
+        public string Institution { get; set; }
+        [Display(Name = "Pickup Address")]
+        public string ShippingAddress { get; set; }
+        [Display(Name = "Phone")]
+        public string Phone { get; set; }
+        
+        [Display(Name = "Email")]
+        [EmailAddress]
+        public string Email { get; set; }
+        public Guid UserId { get; set; }
+    }
 
     public class Billing {
         [Key]
@@ -153,7 +173,7 @@ namespace MBBVL.Models {
 
 
     public class SequencingWrapperModel {
-        public Shipping Shipping { get; set; }
+        public PickUp PickUp { get; set; }
         public Billing Billing { get; set; }
 
         public DataDeliveryOptions dataDeliveryOptions { get; set; }
@@ -166,6 +186,7 @@ namespace MBBVL.Models {
             : base("DefaultConnection") {
         }
         public DbSet<Shipping> Shipping { get; set; }
+        public DbSet<PickUp> PickUp { get; set; }
         public DbSet<Billing> Billing { get; set; }
         public DbSet<Oligosequence> Oligosequence { get; set; }
         public DbSet<OrderForm> OrderForm { get; set; }

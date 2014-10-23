@@ -62,11 +62,12 @@ namespace MBBVL.Core {
             m.PickUp = model.PickUp;
             m.sequencingModel = model.sequencingModel;
             m.customPrimers = model.customPrimers;
+            m.dataDeliveryOptions = model.dataDeliveryOptions;
             
             //headers
             var bill = "<h1>Dear " + model.Billing.FullName + "Here is your Order <br>Billing</h1>";
 
-            bill += "<table style='width:100%' class='panel-title'>";
+            bill += "<table style='width:100%' class='panel-title'  border='1'>";
             bill += "<tr>";
             bill += "<td class='boldCell'>Quote Number</td>";
             bill += "<td class='boldCell'>Full Name</td>";
@@ -90,7 +91,7 @@ namespace MBBVL.Core {
             //shipping
 
             var ship = "<h1>Shipping</h1>";
-            ship += "</table><table  style='width:100%' class='colorful'>";
+            ship += "</table><table style='width:100%' class='panel-title'  border='1'>";
             ship += "<tr style='width:100%'>";
             ship += "<td class='boldCell'>Date</td>";
             ship += "<td class='boldCell'>Full name</td>";
@@ -112,7 +113,7 @@ namespace MBBVL.Core {
             // more cells here as needed
             ship += "</tr>";
             var olForm = "<h1>Sequencing</h1>"; ;
-            olForm += "</table><table style='width:100%' class='colorful'>";
+            olForm += "</table><table style='width:100%' class='panel-title'  border='1'>";
 
             olForm += "<tr  style='width:100%'>";
             olForm += "<td class='boldCell'>Sample Name</td>";
@@ -140,7 +141,7 @@ namespace MBBVL.Core {
             }
             olForm += "</table>";
             var dnaForm = "<h1>Custom Primers</h1>"; ;
-            dnaForm += "</table><table style='width:100%' class='colorful'>";
+            dnaForm += "</table><table style='width:100%' class='panel-title'  border='1'>";
 
             dnaForm += "<tr  style='width:100%'>";
             dnaForm += "<td class='boldCell'>Gmp</td>";
@@ -162,7 +163,7 @@ namespace MBBVL.Core {
             }
             dnaForm += "</table>";
             var deliveryOptions = "<h1>Delivery Options</h1>"; ;
-            deliveryOptions += "</table><table style='width:100%' class='colorful'>";
+            deliveryOptions += "</table><table style='width:100%' class='panel-title' border='1'>";
 
             deliveryOptions += "<tr  style='width:100%'>";
             deliveryOptions += "<td class='boldCell'>EditedTextData</td>";

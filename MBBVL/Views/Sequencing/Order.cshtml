@@ -245,13 +245,13 @@
                 </div>
             </div>
         </div>
-       
+
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h3 class="panel-title">Request for Pick Up</h3>
 
-                    <a style="color: white; text-decoration: underline;" href="/Sequencing/Pickup">Pick up policy</a><div style="float:right;"><input type="checkbox" id="Pickup" name="Pickup" ng-model="Pickup" /> Do you need a pick up</div>
- 
+                <a style="color: white; text-decoration: underline;" href="/Sequencing/Pickup">Pick up policy</a><div style="float:right;"><input type="checkbox" id="Pickup" name="Pickup" ng-model="Pickup" /> Do you need a pick up</div>
+
             </div>
             <div class="panel-body" ng-show="Pickup">
                 <div class="row">
@@ -262,7 +262,7 @@
                     </label>
                     <div class="col-md-10">
                         <input type="text" name="RequestDate" class="form-control" datepicker-popup="{{format}}" ng-model="SequencingWrapperModel.PickUp.PickUpDate" is-open="opened" min-date="minDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" close-text="Close" />
-                     </div>
+                    </div>
                 </div>
 
 
@@ -277,7 +277,7 @@
                     <label class="col-md-2 control-label" for="InputFieldA">Institution</label>
 
                     <div class="col-md-10">
-                        <select id="ddlInstitute" ng-model="SequencingWrapperModel.PickUp.Institution" name="ddlInstitute">
+                        <select id="ddlInstitute" class="form-control" ng-model="SequencingWrapperModel.PickUp.Institution" name="ddlInstitute">
 
                             <option value="BEST Institute – 112 College Street">BEST Institute – 112 College Street</option>
 
@@ -322,20 +322,20 @@
                     <label class="col-md-2 control-label" for="ShippingEmail">Email</label>
                     <div class="col-md-10">
                         <input type="email" class="form-control" name="ShippingEmail" ng-model="SequencingWrapperModel.PickUp.Email" placeholder="Shipping Email" title="Shipping Email">
-                      </div>
+                    </div>
                 </div>
-        </div>
-      
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h3 class="panel-title">Notes</h3>
             </div>
-            <div class="panel-body">
-                <textarea name="txtNotes" ng-model="SequencingWrapperModel.Billing.Notes" cols="200" rows="5"></textarea>
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Notes</h3>
+                </div>
+                <div class="panel-body">
+                    <textarea name="txtNotes" ng-model="SequencingWrapperModel.Billing.Notes" cols="200" rows="5"></textarea>
+                </div>
             </div>
+            <input type="submit" class="btn btn-primary" ng-click="submitForm()" ng-disabled="!dnaForm.$valid">
         </div>
-        <input type="submit" class="btn btn-primary" ng-click="submitForm()" ng-disabled="!dnaForm.$valid">
- </div>
 
 </form>
 <!-- Modal -->

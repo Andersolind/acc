@@ -245,11 +245,15 @@
     <Content Include="images\entrance.jpg" />
     <Content Include="images\greenpeople.jpg" />
     <Content Include="images\HPLC.JPG" />
+    <Content Include="images\location.png" />
     <Content Include="images\manequine.jpg" />
     <Content Include="images\Nanophotometer2.JPG" />
+    <Content Include="images\news.png" />
     <Content Include="images\OLIGONUCLEOTIDE SERVICES.jpg" />
+    <Content Include="images\quicklinks.png" />
     <Content Include="images\reflection2.jpg" />
     <Content Include="images\reflection3.jpg" />
+    <Content Include="images\smallLogo.png" />
     <Content Include="images\Synthesizer1.JPG" />
     <Content Include="js\Angular.js" />
     <Content Include="js\Angular\app.js" />

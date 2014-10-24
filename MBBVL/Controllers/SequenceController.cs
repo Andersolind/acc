@@ -43,6 +43,7 @@ namespace MBBVL.Controllers.Sequencing {
                 bill.BillingAddress = model.Billing.BillingAddress;
                 bill.Phone = model.Billing.Phone;
                 bill.Email = model.Billing.Email;
+                bill.Notes = model.Billing.Notes;
                 bill.UserId = g;
                 templateData.Billing = bill;
 

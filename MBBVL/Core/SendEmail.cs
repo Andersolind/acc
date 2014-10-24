@@ -65,7 +65,7 @@ namespace MBBVL.Core {
             m.dataDeliveryOptions = model.dataDeliveryOptions;
             
             //headers
-            var bill = "<h1>Dear " + model.Billing.FullName + "Here is your Order <br>Billing</h1>";
+            var bill = "<h1>Dear</br> " + model.Billing.FullName + "Here is your Order <br>Billing</h1>";
 
             bill += "<table style='width:100%' class='panel-title'  border='1'>";
             bill += "<tr>";
@@ -75,6 +75,8 @@ namespace MBBVL.Core {
             bill += "<td class='boldCell'>Billing Address </td>";
             bill += "<td class='boldCell'>Phone</td>";
             bill += "<td class='boldCell'>Email</td>";
+            bill += "<td class='boldCell'>Notes</td>";
+
             // more cells here as needed
             bill += "</tr>";
             //Content
@@ -86,6 +88,7 @@ namespace MBBVL.Core {
             bill += "<td class='boldCell'>" + m.Billing.BillingAddress + "</td>";
             bill += "<td class='boldCell'>" + m.Billing.Phone + "</td>";
             bill += "<td class='boldCell'>" + m.Billing.Email + "</td>";
+            bill += "<td class='boldCell'>" + m.Billing.Notes + "</td>";
             // more cells here as needed
             bill += "</tr>";
             //shipping

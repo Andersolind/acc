@@ -89,8 +89,10 @@
             var url = "/api/Sequence/"
          //   var test = $scope.CustomPrimer;
             var model = $scope.SequencingWrapperModel;
+            $scope.disableSubmit = true;
             ACGTFactory.serverService(url, "Post", model).success(function (model, status) {
                 if (status == 200) {
+
                     //  ResetReportEdit($scope.OldReportId);
                     //   SetAlert("Updated", 'success');
                 }

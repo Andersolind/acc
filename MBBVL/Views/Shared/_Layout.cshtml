@@ -7,7 +7,7 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
-
+    <link href="~/Content/Bootstrap/simple-sidebar.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-1.10.2.js"></script>
     @Scripts.Render("~/bundles/bootstrap")
     <script src="~/js/bootstrap-datepicker.js"></script>
@@ -17,7 +17,8 @@
 
 </head>
 <body ng-app="acgt">
-
+    <div id="wrapper">
+        <div id="sidebar-wrapper">
     <div class="sidebar-nav">
         <div class="navbar navbar-default" role="navigation">
             <div class="navbar-header">
@@ -94,10 +95,11 @@
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
+                    </div>
         </div><!--/.nav-collapse -->
+
     </div>
-    </div>
-    <div id="wrap">
+            <div id="page-content-wrapper">
         <div class="container body-content">
 
             @RenderBody()
@@ -143,6 +145,7 @@
 
         </div>
     </div>
+        </div>
 
 
 

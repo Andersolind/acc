@@ -7,7 +7,7 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
-
+    <link href="~/Content/Bootstrap/simple-sidebar.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-1.10.2.js"></script>
     @Scripts.Render("~/bundles/bootstrap")
     <script src="~/js/bootstrap-datepicker.js"></script>
@@ -17,132 +17,135 @@
 
 </head>
 <body ng-app="acgt">
+    <div id="wrapper">
+        <div id="sidebar-wrapper">
+            <div class="sidebar-nav">
+                <div class="navbar navbar-default" role="navigation">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        @Html.ActionLink("Index", "Home", null, new { @class = "site-logo" })
 
-    <div class="sidebar-nav">
-        <div class="navbar navbar-default" role="navigation">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Index", "Home", null, new { @class = "site-logo" })
+                    </div>
+                    <div class="navbar-collapse collapse sidebar-navbar-collapse">
+                        <ul class="nav navbar-nav">
+                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                            <li class="dropdown">
+                                <a href="@Url.Action("About", "Home")" class="dropdown-toggle" data-toggle="dropdown">About<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("Location", "Location", "Home")</li>
+                                    <li>@Html.ActionLink("History", "About", "Home")</li>
+                                    <li>@Html.ActionLink("Company People", "CompanyPeople", "Home")</li>
+                                    <li>@Html.ActionLink("Careers", "Careers", "Home")</li>
+                                    <li>@Html.ActionLink("Publications that used acgts services", "PublicationServices", "Home")</li>
+                                    <li>@Html.ActionLink("Terms and Conditions", "TermsAndConditions", "Home")</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="@Url.Action("GeneralOverview", "Home")" class="dropdown-toggle" data-toggle="dropdown">Oligo Synthesis<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("General Overview", "GeneralOverview", "Home")</li>
+                                    <li>@Html.ActionLink("GMP", "GMP", "Oligo")</li>
+                                    <li>@Html.ActionLink("Synthesis Technology", "SynthesisTechnology", "Oligo")</li>
+                                    <li>@Html.ActionLink("Purification & Modifications", "PurificationModifications", "Oligo")</li>
+                                    <li>@Html.ActionLink("Oligo Synthesis Order Form", "oligosynthesisorderform", "Oligo")</li>
+                                    <li>@Html.ActionLink("Price List", "PriceList", "Oligo")</li>
+                                    <li>@Html.ActionLink("FAQ", "FAQ", "Oligo")</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="@Url.Action("Index", "Sequencing")" class="dropdown-toggle" data-toggle="dropdown">Sequencing<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("General Overview", "Index", "Sequencing")</li>
+                                    <li>@Html.ActionLink("Sequencing Technology", "SequencingTechnology", "Sequencing")</li>
+                                    <li>@Html.ActionLink("DNA submission form", "SamplePreparation", "Sequencing")</li>
+                                    <li>@Html.ActionLink("Sequencing Order Form", "SequencingOrderForm", "Sequencing")</li>
+                                    <li>@Html.ActionLink("Inhouse Primers", "InhousePrimers", "Sequencing")</li>
+                                    <li>@Html.ActionLink("Price List", "PriceList", "Sequencing")</li>
+                                    <li>@Html.ActionLink("FAQ", "FAQ", "Sequencing")</li>
+                                </ul>
+                            </li>
+                            <li>@Html.ActionLink("Quality Systems", "Index", "QualitySystems")</li>
+                            <li>@Html.ActionLink("Research and Development", "Index", "ResearchAndDevelopment")</li>
+                            <li class="dropdown">
+                                <a href="@Url.Action("General", "Sequencing")" class="dropdown-toggle" data-toggle="dropdown">Technical Support<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("General", "General", "TechSupport")</li>
+                                    <li>@Html.ActionLink("Glossary", "Glossary", "TechSupport")</li>
+                                    <li>@Html.ActionLink("FAQs", "FAQs", "TechSupport")</li>
+                                    <li>@Html.ActionLink("Tools", "Tools", "TechSupport")</li>
+
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="@Url.Action("PersonalizedCustomProjects", "PersonalizedProjects")" class="dropdown-toggle" data-toggle="dropdown">Personalized Projects<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("PersonalizedCustomProjects", "PersonalizedCustomProjects", "PersonalizedProjects")</li>
+                                    <li>@Html.ActionLink("SiteDirectedMutagenesis", "SiteDirectedMutagenesis", "PersonalizedProjects")</li>
+
+
+                                </ul>
+                            </li>
+
+
+                        </ul>
+                        @Html.Partial("_LoginPartial")
+                        </div>
+                    </div>
+                </div><!--/.nav-collapse -->
 
             </div>
-            <div class="navbar-collapse collapse sidebar-navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li class="dropdown">
-                        <a href="@Url.Action("About", "Home")" class="dropdown-toggle" data-toggle="dropdown">About<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Location", "Location", "Home")</li>
-                            <li>@Html.ActionLink("History", "About", "Home")</li>
-                            <li>@Html.ActionLink("Company People", "CompanyPeople", "Home")</li>
-                            <li>@Html.ActionLink("Careers", "Careers", "Home")</li>
-                            <li>@Html.ActionLink("Publications that used acgts services", "PublicationServices", "Home")</li>
-                            <li>@Html.ActionLink("Terms and Conditions", "TermsAndConditions", "Home")</li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="@Url.Action("GeneralOverview", "Home")" class="dropdown-toggle" data-toggle="dropdown">Oligo Synthesis<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("General Overview", "GeneralOverview", "Home")</li>
-                            <li>@Html.ActionLink("GMP", "GMP", "Oligo")</li>
-                            <li>@Html.ActionLink("Synthesis Technology", "SynthesisTechnology", "Oligo")</li>
-                            <li>@Html.ActionLink("Purification & Modifications", "PurificationModifications", "Oligo")</li>
-                            <li>@Html.ActionLink("Oligo Synthesis Order Form", "oligosynthesisorderform", "Oligo")</li>
-                            <li>@Html.ActionLink("Price List", "PriceList", "Oligo")</li>
-                            <li>@Html.ActionLink("FAQ", "FAQ", "Oligo")</li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="@Url.Action("Index", "Sequencing")" class="dropdown-toggle" data-toggle="dropdown">Sequencing<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("General Overview", "Index", "Sequencing")</li>
-                            <li>@Html.ActionLink("Sequencing Technology", "SequencingTechnology", "Sequencing")</li>
-                            <li>@Html.ActionLink("DNA submission form", "SamplePreparation", "Sequencing")</li>
-                            <li>@Html.ActionLink("Sequencing Order Form", "SequencingOrderForm", "Sequencing")</li>
-                            <li>@Html.ActionLink("Inhouse Primers", "InhousePrimers", "Sequencing")</li>
-                            <li>@Html.ActionLink("Price List", "PriceList", "Sequencing")</li>
-                            <li>@Html.ActionLink("FAQ", "FAQ", "Sequencing")</li>
-                        </ul>
-                    </li>
-                    <li>@Html.ActionLink("Quality Systems", "Index", "QualitySystems")</li>
-                    <li>@Html.ActionLink("Research and Development", "Index", "ResearchAndDevelopment")</li>
-                    <li class="dropdown">
-                        <a href="@Url.Action("General", "Sequencing")" class="dropdown-toggle" data-toggle="dropdown">Technical Support<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("General", "General", "TechSupport")</li>
-                            <li>@Html.ActionLink("Glossary", "Glossary", "TechSupport")</li>
-                            <li>@Html.ActionLink("FAQs", "FAQs", "TechSupport")</li>
-                            <li>@Html.ActionLink("Tools", "Tools", "TechSupport")</li>
+            <div id="page-content-wrapper">
+                <div class="container body-content">
 
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="@Url.Action("PersonalizedCustomProjects", "PersonalizedProjects")" class="dropdown-toggle" data-toggle="dropdown">Personalized Projects<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("PersonalizedCustomProjects", "PersonalizedCustomProjects", "PersonalizedProjects")</li>
-                            <li>@Html.ActionLink("SiteDirectedMutagenesis", "SiteDirectedMutagenesis", "PersonalizedProjects")</li>
-
-
-                        </ul>
-                    </li>
-
-
-                </ul>
-                @Html.Partial("_LoginPartial")
+                    @RenderBody()
+                    <hr /><div id="push"></div>
+                </div>
             </div>
-        </div><!--/.nav-collapse -->
-    </div>
-    </div>
-    <div id="wrap">
-        <div class="container body-content">
+            <div id="footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4 portfolio-item">
 
-            @RenderBody()
-            <hr /><div id="push"></div>
+                            <img src="~/images/news.png" />
+                            <p>New Oligonucleotide Synthesis Scale and Sequencing Pricing</p>
+                            <p>Site-Directed Mutagenesis Services and Offered at ACGT</p>
+                            <p>Custom Projects - Let ACGT assit you</p>
+
+                        </div>
+                        <div class="col-md-4 portfolio-item">
+
+                            <img src="~/images/quicklinks.png" />
+
+                            <p>Oligio Order Form </p>
+                            <p>DNA Submission Guidelines</p>
+                            <p>Site Directed Mutagenesis</p>
+                        </div>
+                        <div class="col-md-2 portfolio-item">
+
+                            <img src="~/images/location.png" />
+                            <p>700 bay street suite 1100 </p>
+                            <p>Toronto,Ontario</p>
+                            <p>Canada M5G 1Z6</p>
+                            <p>Tel : 416-977-2228</p>
+                            <p>1-800-735-0847</p>
+                            <p>Fax: 416-977-7111</p>
+                        </div>
+                        <div class="col-md-2 portfolio-item">
+                            <a href="#">
+                                <img src="~/images/smallLogo.png" />
+
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
-    </div>
-    <div id="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 portfolio-item">
-
-                    <img src="~/images/news.png" />
-                    <p>New Oligonucleotide Synthesis Scale and Sequencing Pricing</p>
-                    <p>Site-Directed Mutagenesis Services and Offered at ACGT</p>
-                    <p>Custom Projects - Let ACGT assit you</p>
-
-                </div>
-                <div class="col-md-4 portfolio-item">
-
-                    <img src="~/images/quicklinks.png" />
-
-                    <p>Oligio Order Form </p>
-                    <p>DNA Submission Guidelines</p>
-                    <p>Site Directed Mutagenesis</p>
-                </div>
-                <div class="col-md-2 portfolio-item">
-
-                    <img src="~/images/location.png" />
-                    <p>700 bay street suite 1100 </p>
-                    <p>Toronto,Ontario</p>
-                    <p>Canada M5G 1Z6</p>
-                    <p>Tel : 416-977-2228</p>
-                    <p>1-800-735-0847</p>
-                    <p>Fax: 416-977-7111</p>
-                </div>
-                <div class="col-md-2 portfolio-item">
-                    <a href="#">
-                        <img src="~/images/smallLogo.png" />
-
-                    </a>
-                </div>
-            </div>
-
-        </div>
-    </div>
 
 
 

@@ -115,6 +115,7 @@ namespace MBBVL.Controllers.Sequencing {
                 SendEmail email = new SendEmail();
                 templateData.sequencingModel = getList;
                 templateData.customPrimers = getCustomPrimers;
+                //
                 email.SetUpSequence(templateData);
                 // ParseTemplate(ob);
                 db.SaveChanges();

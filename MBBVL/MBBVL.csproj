@@ -344,7 +344,6 @@
     <Content Include="Views\Oligo\GMP.cshtml" />
     <Content Include="Views\Oligo\SynthesisTechnology.cshtml" />
     <Content Include="Views\Oligo\PurificationModifications.cshtml" />
-    <Content Include="Views\Oligo\oligosynthesisorderform.cshtml" />
     <Content Include="Views\Oligo\PriceList.cshtml" />
     <Content Include="Views\Sequencing\Index.cshtml" />
     <Content Include="Views\Sequencing\PickUp.cshtml" />

@@ -65,7 +65,7 @@ namespace MBBVL.Core {
             m.dataDeliveryOptions = model.dataDeliveryOptions;
             
             //headers
-            var bill = "<h1>Dear</br> " + model.Billing.FullName + "Here is your Order <br>Billing</h1>";
+            var bill = "<h1>Dear</br> " + model.Billing.FullName + " is your Order <br>Billing</h1>";
 
             bill += "<table style='width:100%' class='panel-title'  border='1'>";
             bill += "<tr>";

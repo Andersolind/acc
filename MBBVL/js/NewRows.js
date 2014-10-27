@@ -26,6 +26,10 @@ $(function () {
     //    var url = "/Sequencing/Order?oligonucleotideNum=" + getVal + "";
     //    window.location = url;
     //});
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
 
 });
 

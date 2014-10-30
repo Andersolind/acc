@@ -11,7 +11,7 @@ $(function () {
         }
     });
 
-   // $('#shipping_Date').datepicker();
+    $('#shipping_ShippingDate').datepicker();
 
    // $('#shipping_Date').datepicker();
 

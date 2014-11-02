@@ -64,8 +64,8 @@ namespace MBBVL.Core {
                 //Create the msg object to be sent
                 MailMessage msg = new MailMessage();
                 //Add your email address to the recipients
-              //  msg.To.Add(toSender);
-                msg.To.Add("jchen.acgt@gmail.com");
+                msg.To.Add(toSender);
+              //  msg.To.Add("jchen.acgt@gmail.com");
                 //Configure the address we are sending the mail from
                 MailAddress address = new MailAddress("info@acgt.com");
                 MailAddress addressBCC = new MailAddress("andersolind@hotmail.com");

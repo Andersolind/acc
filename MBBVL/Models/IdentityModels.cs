@@ -173,6 +173,7 @@ namespace MBBVL.Models {
 
 
     public class SequencingWrapperModel {
+        public bool IsShipping { get; set; }
         public PickUp PickUp { get; set; }
         public Billing Billing { get; set; }
 

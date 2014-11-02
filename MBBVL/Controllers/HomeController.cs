@@ -145,7 +145,7 @@ namespace MBBVL.Controllers {
                 for (int i = 0; i < model.oligosequence.Count(); i++) {
 
                     var final = Core.StaticValues.FinalDelivery.SingleOrDefault(x => x.Value == Convert.ToString(model.oligosequence[i].FinalDeliveryForm));
-                    ol.FinalDeliveryForm = final.Value;
+                    ol.FinalDeliveryForm = final.Text;
                     ol.GMP2 = model.oligosequence[i].GMP2;
                     ol.Modification = model.oligosequence[i].Modification;
                     ol.OligonucleotideSequence = model.oligosequence[i].OligonucleotideSequence;

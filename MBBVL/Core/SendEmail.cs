@@ -316,9 +316,9 @@ namespace MBBVL.Core {
             m.oligosequence = model.oligosequence;
             //headers
             var ship = "<img src='http://youneedafavor.com/images/logo.png'>";
-            ship = "<h1>Dear" + " " + model.shipping.FullName + " " + "Here is your Order</h1>";
+            ship += "<h1>Dear" + " " + model.shipping.FullName + " " + "Here is your Order</h1>";
 
-            ship += "<table width='300px' style='float:left'>";
+            ship += "<table width='450' style='float:left'>";
             ship += "<thead>";
             ship += "<tr>";
             ship += "<th>Shipping Information</th>";
@@ -368,7 +368,7 @@ namespace MBBVL.Core {
             //Billing
 
             var bill = "<h1>Billing</h1>";
-            bill += "<table width='450px' style='float:left'>";
+            bill += "<table width='450' style='float:right'>";
             bill += "<thead>";
             bill += "<tr>";
             bill += "<th>Billing Information</th>";
@@ -426,12 +426,16 @@ namespace MBBVL.Core {
             bill += "</td>";
             bill += "<td valign='top'>";
             bill += m.billing.Email;
-            bill += "</td.";
-            bill += "</tr>";
+            bill += "</td>";
+            bill += "</tr> </table>";
 
-            var olForm = "<h1>Order</h1>"; ;
-            olForm += "<table style='width:100%' border='1'>";
-
+        
+          var  olForm = "<table style='width:100%' border='1'>";
+          olForm += "<thead>";
+          olForm += "<tr>";
+          olForm += "<th>Order</th>";
+          olForm += "</tr>";
+          olForm += "</thead>";
             olForm += "<tr  style='width:100%'>";
             olForm += "<td class='boldCell'>PrimerName</td>";
             olForm += "<td class='boldCell'>Qty</td>";

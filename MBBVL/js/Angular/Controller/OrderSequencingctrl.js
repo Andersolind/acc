@@ -92,7 +92,7 @@
             $scope.disableSubmit = true;
             ACGTFactory.serverService(url, "Post", model).success(function (model, status) {
                 if (status == 200) {
-
+                    window.location = "/home/thankyou"
                     //  ResetReportEdit($scope.OldReportId);
                     //   SetAlert("Updated", 'success');
                 }

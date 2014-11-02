@@ -37,7 +37,7 @@ namespace MBBVL.Models {
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int PickUpId { get; set; }
         public DateTime PickUpDate { get; set; }
-        [Required]
+      
         [Display(Name = "Full Name")]
         public string FullName { get; set; }
         [Display(Name = "Institution")]

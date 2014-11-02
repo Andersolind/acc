@@ -26,7 +26,7 @@ namespace MBBVL.Controllers.Sequencing {
 
         // POST api/<controller>
         [HttpPost]
-        public void Post(SequencingWrapperModel model) {
+        public IHttpActionResult Post(SequencingWrapperModel model) {
             //Insert into database
             SequencingWrapperModel templateData = new SequencingWrapperModel();
 
@@ -53,7 +53,7 @@ namespace MBBVL.Controllers.Sequencing {
 
                 //Pickup
                 PickUp ship = new PickUp();
-                ship.PickUpDate = model.PickUp.PickUpDate;
+                ship.PickUpDate = DateTime.Now;
                 ship.FullName = model.PickUp.FullName;
                 ship.Institution = model.PickUp.Institution;
                 ship.ShippingAddress = model.PickUp.ShippingAddress;
@@ -116,9 +116,10 @@ namespace MBBVL.Controllers.Sequencing {
                 templateData.sequencingModel = getList;
                 templateData.customPrimers = getCustomPrimers;
                 //
-                email.SetUpSequence(templateData);
+               email.SetUpSequence(templateData);
                 // ParseTemplate(ob);
                 db.SaveChanges();
+                return Ok();
                // return templateData;
             } catch (DbEntityValidationException ex) {
                 // Retrieve the error messages as a list of strings.

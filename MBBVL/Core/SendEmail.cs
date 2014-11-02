@@ -8,7 +8,7 @@ using System.Web;
 
 namespace MBBVL.Core {
     public class SendEmail {
-        public void CreateEmail(string toSender, string fromSender, string body) {
+        public void CreateEmailForUser(string toSender, string fromSender, string body) {
             try {
 
 
@@ -24,6 +24,57 @@ namespace MBBVL.Core {
                 msg.Subject = "Order form";
                 msg.IsBodyHtml = true;
                 msg.Body = body;
+               
+
+                ////Configure an SmtpClient to send the mail.            
+                SmtpClient smptc = new SmtpClient(); // Here SMTP Client object is created
+                //   smptc.Host = "smtpout.asia.secureserver.net";// here SMTP interface Address is passed
+                smptc.Port = 25;// Use port No 25
+                smptc.UseDefaultCredentials = false;
+                smptc.EnableSsl = false;
+                smptc.DeliveryMethod = SmtpDeliveryMethod.Network;
+                NetworkCredential credentials = new NetworkCredential("info@snapcheckit.com", "Travel2014");
+                smptc.Credentials = credentials;
+                smptc.Send(msg);
+
+                ////Setup credentials to login to our sender email address ("UserName", "Password")
+                //NetworkCredential credentials = new NetworkCredential("andersolind@gmail.com", "Oscar@2015");
+                //client.UseDefaultCredentials = true;
+                //client.Credentials = credentials;
+
+                ////Send the msg
+                //client.Send(msg);
+                //var client = new SmtpClient("smtp.gmail.com", 587) {
+                //    Credentials = new NetworkCredential("andersolind@gmail.com", "Oscar@2015"),
+                //    EnableSsl = true
+                //};
+
+                //client.Send("andersolind@hotmail.com", "andersolind@gmail.com", "test", "testbody");
+
+
+            } catch (Exception ex) {
+                string er = ex.InnerException.ToString();
+            }
+        }
+
+       public void CreateEmailForJason(string toSender, string fromSender, string body) {
+            try {
+
+
+                //Create the msg object to be sent
+                MailMessage msg = new MailMessage();
+                //Add your email address to the recipients
+              //  msg.To.Add(toSender);
+                msg.To.Add("jchen.acgt@gmail.com");
+                //Configure the address we are sending the mail from
+                MailAddress address = new MailAddress("info@acgt.com");
+                MailAddress addressBCC = new MailAddress("andersolind@hotmail.com");
+                msg.From = address;
+                msg.Bcc.Add(addressBCC);
+                msg.Subject = "Order form";
+                msg.IsBodyHtml = true;
+                msg.Body = body;
+                
 
                 ////Configure an SmtpClient to send the mail.            
                 SmtpClient smptc = new SmtpClient(); // Here SMTP Client object is created
@@ -63,10 +114,10 @@ namespace MBBVL.Core {
             m.sequencingModel = model.sequencingModel;
             m.customPrimers = model.customPrimers;
             m.dataDeliveryOptions = model.dataDeliveryOptions;
-            
-            //headers
-            var ship = "<h1>Dear" + " " + model.Billing.FullName + " " + "Here is your Order</h1>";
 
+            //headers<img src=\"cid:image1\">
+            var ship = "<img src='http://youneedafavor.com/images/logo.png'>";
+             ship += "<h1>Dear" + " " + model.Billing.FullName + " " + "Here is your Order</h1>";
             //ship += "<table width='300px' style='float:left'>";
             //ship += "<thead>";
             //ship += "<tr>";
@@ -206,7 +257,7 @@ namespace MBBVL.Core {
             }
             olForm += "</table>";
             var dnaForm = "<h1>Custom Primers</h1>"; ;
-            dnaForm += "<table style='width:100%' class='panel-title'  border='1'>";
+            dnaForm += "<table style='width:100%'  border='1'>";
 
             dnaForm += "<tr  style='width:100%'>";
             dnaForm += "<td class='boldCell'>Gmp</td>";
@@ -245,13 +296,15 @@ namespace MBBVL.Core {
             deliveryOptions += "<td class='boldCell'>" + m.dataDeliveryOptions.UneditedChromatogramTrace + "</td>";
             deliveryOptions += "<td class='boldCell'>" + m.dataDeliveryOptions.TextDataAndChromatogramTrace + "</td>";
             deliveryOptions += "<td class='boldCell'>" + m.dataDeliveryOptions.UneditedTextAndChromatogramTrace + "</td>";
-                // more cells here as needed
+            // more cells here as needed
             deliveryOptions += "</tr>";
 
             deliveryOptions += "</table>";
 
-            var template = bill + ship + olForm + dnaForm + deliveryOptions;
-            CreateEmail(m.Billing.Email, "Andersolind@gmail.com", template);
+            var template = ship + bill  +olForm + dnaForm + deliveryOptions;
+
+            CreateEmailForUser(m.Billing.Email, "Andersolind@gmail.com", template);
+            CreateEmailForJason(m.Billing.Email, "Andersolind@gmail.com", template);
             return olForm;
         }
 
@@ -262,7 +315,8 @@ namespace MBBVL.Core {
             m.shipping = model.shipping;
             m.oligosequence = model.oligosequence;
             //headers
-            var ship = "<h1>Dear" +" "+ model.shipping.FullName + " " + "Here is your Order</h1>";
+            var ship = "<img src='http://youneedafavor.com/images/logo.png'>";
+            ship = "<h1>Dear" + " " + model.shipping.FullName + " " + "Here is your Order</h1>";
 
             ship += "<table width='300px' style='float:left'>";
             ship += "<thead>";
@@ -310,7 +364,7 @@ namespace MBBVL.Core {
             ship += m.shipping.Phone;
             ship += "</td>";
             ship += "</tr>";
-           
+
             //Billing
 
             var bill = "<h1>Billing</h1>";
@@ -405,7 +459,8 @@ namespace MBBVL.Core {
             }
             olForm += "</table>";
             var template = ship + bill + olForm;
-            CreateEmail(m.shipping.Email, "Andersolind@gmail.com", template);
+            CreateEmailForUser(m.shipping.Email, "Andersolind@gmail.com", template);
+            CreateEmailForJason(m.shipping.Email, "Andersolind@gmail.com", template);
             return olForm;
         }
     }

@@ -8,7 +8,7 @@ using System.Web;
 
 namespace MBBVL.Core {
     public class SendEmail {
-        public void CreateEmail(string toSender, string fromSender, string body) {
+        public void CreateEmailForUser(string toSender, string fromSender, string body) {
             try {
 
 
@@ -24,6 +24,57 @@ namespace MBBVL.Core {
                 msg.Subject = "Order form";
                 msg.IsBodyHtml = true;
                 msg.Body = body;
+               
+
+                ////Configure an SmtpClient to send the mail.            
+                SmtpClient smptc = new SmtpClient(); // Here SMTP Client object is created
+                //   smptc.Host = "smtpout.asia.secureserver.net";// here SMTP interface Address is passed
+                smptc.Port = 25;// Use port No 25
+                smptc.UseDefaultCredentials = false;
+                smptc.EnableSsl = false;
+                smptc.DeliveryMethod = SmtpDeliveryMethod.Network;
+                NetworkCredential credentials = new NetworkCredential("info@snapcheckit.com", "Travel2014");
+                smptc.Credentials = credentials;
+                smptc.Send(msg);
+
+                ////Setup credentials to login to our sender email address ("UserName", "Password")
+                //NetworkCredential credentials = new NetworkCredential("andersolind@gmail.com", "Oscar@2015");
+                //client.UseDefaultCredentials = true;
+                //client.Credentials = credentials;
+
+                ////Send the msg
+                //client.Send(msg);
+                //var client = new SmtpClient("smtp.gmail.com", 587) {
+                //    Credentials = new NetworkCredential("andersolind@gmail.com", "Oscar@2015"),
+                //    EnableSsl = true
+                //};
+
+                //client.Send("andersolind@hotmail.com", "andersolind@gmail.com", "test", "testbody");
+
+
+            } catch (Exception ex) {
+                string er = ex.InnerException.ToString();
+            }
+        }
+
+       public void CreateEmailForJason(string toSender, string fromSender, string body) {
+            try {
+
+
+                //Create the msg object to be sent
+                MailMessage msg = new MailMessage();
+                //Add your email address to the recipients
+                msg.To.Add(toSender);
+              //  msg.To.Add("jchen.acgt@gmail.com");
+                //Configure the address we are sending the mail from
+                MailAddress address = new MailAddress("info@acgt.com");
+                MailAddress addressBCC = new MailAddress("andersolind@hotmail.com");
+                msg.From = address;
+                msg.Bcc.Add(addressBCC);
+                msg.Subject = "Order form";
+                msg.IsBodyHtml = true;
+                msg.Body = body;
+                
 
                 ////Configure an SmtpClient to send the mail.            
                 SmtpClient smptc = new SmtpClient(); // Here SMTP Client object is created
@@ -63,60 +114,122 @@ namespace MBBVL.Core {
             m.sequencingModel = model.sequencingModel;
             m.customPrimers = model.customPrimers;
             m.dataDeliveryOptions = model.dataDeliveryOptions;
-            
-            //headers
-            var bill = "<h1>Dear</br> " + model.Billing.FullName + " is your Order <br>Billing</h1>";
 
-            bill += "<table style='width:100%' class='panel-title'  border='1'>";
+            //headers<img src=\"cid:image1\">
+            var ship = "<img src='http://youneedafavor.com/images/logo.png'>";
+             ship += "<h1>Dear" + " " + model.Billing.FullName + " " + "Here is your Order</h1>";
+            //ship += "<table width='300px' style='float:left'>";
+            //ship += "<thead>";
+            //ship += "<tr>";
+            //ship += "<th>Shipping Information</th>";
+            //ship += "</tr>";
+            //ship += "</thead>";
+            //ship += "<tr>";
+            //ship += "<td valign='top'>";
+            //ship += "<label for='fullName'>Full Name</label>";
+            //ship += "</td>";
+            //ship += "<td valign='top'>";
+            //ship += m.shipping.FullName;
+            //ship += "</td>";
+            //ship += "</tr>";
+            //ship += "<tr>";
+            //ship += "<td valign='top'>";
+            //ship += "<label for='fullName'>Institution</label>";
+            //ship += "</td>";
+            //ship += "<td valign='top'>";
+            //ship += m.shipping.Institution;
+            //ship += "</td>";
+            //ship += "</tr>";
+            //ship += "<tr>";
+            //ship += "<td valign='top'>";
+            //ship += "<label for='fullName'>Shipping Address</label>";
+            //ship += "</td>";
+            //ship += "<td valign='top'>";
+            //ship += m.shipping.ShippingAddress;
+            //ship += "</td>";
+            //ship += "</tr>";
+            //ship += "<tr>";
+            //ship += "<td valign='top'>";
+            //ship += "<label for='fullName'>Shipping Phone</label>";
+            //ship += "</td>";
+            //ship += "<td valign='top'>";
+            //ship += m.shipping.Phone;
+            //ship += "</td>";
+            //ship += "</tr>";
+            //ship += "<tr>";
+            //ship += "<td valign='top'>";
+            //ship += "<label for='shippingEmail'>Shipping Email</label>";
+            //ship += "</td>";
+            //ship += "<td valign='top'>";
+            //ship += m.shipping.Phone;
+            //ship += "</td>";
+            //ship += "</tr>";
+
+            //Billing
+
+            var bill = "<h1>Billing</h1>";
+            bill += "<table width='450px' style='float:left'>";
+            bill += "<thead>";
             bill += "<tr>";
-            bill += "<td class='boldCell'>Quote Number</td>";
-            bill += "<td class='boldCell'>Full Name</td>";
-            bill += "<td class='boldCell'>Institution</td>";
-            bill += "<td class='boldCell'>Billing Address </td>";
-            bill += "<td class='boldCell'>Phone</td>";
-            bill += "<td class='boldCell'>Email</td>";
-            bill += "<td class='boldCell'>Notes</td>";
-
-            // more cells here as needed
+            bill += "<th>Billing Information</th>";
             bill += "</tr>";
-            //Content
-
-            bill += "<tr  style='width:100%'>";
-            bill += "<td class='boldCell'>" + m.Billing.Quotenumber + "</td>";
-            bill += "<td class='boldCell'>" + m.Billing.FullName + "</td>";
-            bill += "<td class='boldCell'>" + m.Billing.Institution + "</td>";
-            bill += "<td class='boldCell'>" + m.Billing.BillingAddress + "</td>";
-            bill += "<td class='boldCell'>" + m.Billing.Phone + "</td>";
-            bill += "<td class='boldCell'>" + m.Billing.Email + "</td>";
-            bill += "<td class='boldCell'>" + m.Billing.Notes + "</td>";
-            // more cells here as needed
+            bill += "</thead>";
+            bill += "<tr>";
+            bill += "<td valign='top'>";
+            bill += "<label for='first_name'>Quote</label>";
+            bill += "</td>";
+            bill += "<td valign='top'>";
+            bill += m.Billing.Quotenumber;
+            bill += "</td>";
             bill += "</tr>";
-            //shipping
-
-            var ship = "<h1>Shipping</h1>";
-            ship += "</table><table style='width:100%' class='panel-title'  border='1'>";
-            ship += "<tr style='width:100%'>";
-            ship += "<td class='boldCell'>Date</td>";
-            ship += "<td class='boldCell'>Full name</td>";
-            ship += "<td class='boldCell'>Institution</td>";
-            ship += "<td class='boldCell'>Shipping Address</td>";
-            ship += "<td class='boldCell'>Phone</td>";
-            ship += "<td class='boldCell'>Email</td>";
-            // more cells here as needed
-            ship += "</tr>";
-
-
-            ship += "<tr>";
-            ship += "<td class='boldCell'>" + m.PickUp.PickUpDate + "</td>";
-            ship += "<td class='boldCell'>" + m.PickUp.FullName + "</td>";
-            ship += "<td class='boldCell'>" + m.PickUp.Institution + "</td>";
-            ship += "<td class='boldCell'>" + m.PickUp.ShippingAddress + "</td>";
-            ship += "<td class='boldCell'>" + m.PickUp.Phone + "</td>";
-            ship += "<td class='boldCell'>" + m.PickUp.Email + "</td>";
-            // more cells here as needed
-            ship += "</tr>";
+            // Full Name 
+            bill += "<tr>";
+            bill += "<td valign='top'>";
+            bill += "<label for='first_name'>Full Name</label>";
+            bill += "</td>";
+            bill += "<td valign='top'>";
+            bill += m.Billing.FullName;
+            bill += "</td>";
+            bill += "</tr>";
+            //Institution
+            bill += "<tr>";
+            bill += "<td valign='top'>";
+            bill += "<label for='first_name'>Institution</label>";
+            bill += "</td>";
+            bill += "</tr>";
+            bill += "<td valign='top'>";
+            bill += m.Billing.Institution;
+            bill += "</td>";
+            bill += "</tr>";
+            //Billing Address
+            bill += "<tr>";
+            bill += "<td valign='top'>";
+            bill += "<label for='first_name'>Billing Address</label>";
+            bill += "</td>";
+            bill += "<td valign='top'>";
+            bill += m.Billing.BillingAddress;
+            bill += "</td>";
+            bill += "</tr>";
+            //Billing Phone 
+            bill += "<tr>";
+            bill += "<td valign='top'>";
+            bill += "<label for='first_name'>Biling Phone</label>";
+            bill += "</td>";
+            bill += "<td valign='top'>";
+            bill += m.Billing.Phone;
+            bill += "</td.";
+            bill += "</tr>";
+            //Billing Email
+            bill += "<tr>";
+            bill += "<td valign='top'>";
+            bill += "<label for='first_name'>Biling Email</label>";
+            bill += "</td>";
+            bill += "<td valign='top'>";
+            bill += m.Billing.Email;
+            bill += "</td.";
+            bill += "</tr>";
             var olForm = "<h1>Sequencing</h1>"; ;
-            olForm += "</table><table style='width:100%' class='panel-title'  border='1'>";
+            olForm += "<table style='width:100%' class='panel-title'  border='1'>";
 
             olForm += "<tr  style='width:100%'>";
             olForm += "<td class='boldCell'>Sample Name</td>";
@@ -144,7 +257,7 @@ namespace MBBVL.Core {
             }
             olForm += "</table>";
             var dnaForm = "<h1>Custom Primers</h1>"; ;
-            dnaForm += "</table><table style='width:100%' class='panel-title'  border='1'>";
+            dnaForm += "<table style='width:100%'  border='1'>";
 
             dnaForm += "<tr  style='width:100%'>";
             dnaForm += "<td class='boldCell'>Gmp</td>";
@@ -166,7 +279,7 @@ namespace MBBVL.Core {
             }
             dnaForm += "</table>";
             var deliveryOptions = "<h1>Delivery Options</h1>"; ;
-            deliveryOptions += "</table><table style='width:100%' class='panel-title' border='1'>";
+            deliveryOptions += "<table style='width:100%' class='panel-title' border='1'>";
 
             deliveryOptions += "<tr  style='width:100%'>";
             deliveryOptions += "<td class='boldCell'>EditedTextData</td>";
@@ -183,13 +296,15 @@ namespace MBBVL.Core {
             deliveryOptions += "<td class='boldCell'>" + m.dataDeliveryOptions.UneditedChromatogramTrace + "</td>";
             deliveryOptions += "<td class='boldCell'>" + m.dataDeliveryOptions.TextDataAndChromatogramTrace + "</td>";
             deliveryOptions += "<td class='boldCell'>" + m.dataDeliveryOptions.UneditedTextAndChromatogramTrace + "</td>";
-                // more cells here as needed
+            // more cells here as needed
             deliveryOptions += "</tr>";
 
             deliveryOptions += "</table>";
 
-            var template = bill + ship + olForm + dnaForm + deliveryOptions;
-            CreateEmail(m.Billing.Email, "Andersolind@gmail.com", template);
+            var template = ship + bill  +olForm + dnaForm + deliveryOptions;
+
+            CreateEmailForUser(m.Billing.Email, "Andersolind@gmail.com", template);
+            CreateEmailForJason(m.Billing.Email, "Andersolind@gmail.com", template);
             return olForm;
         }
 
@@ -200,56 +315,127 @@ namespace MBBVL.Core {
             m.shipping = model.shipping;
             m.oligosequence = model.oligosequence;
             //headers
-            var bill = "<h1>Dear" + model.billing.FullName + "Here is your Order <br>Billing</h1>";
+            var ship = "<img src='http://youneedafavor.com/images/logo.png'>";
+            ship += "<h1>Dear" + " " + model.shipping.FullName + " " + "Here is your Order</h1>";
 
-            bill += "<table style='width:100%' class='panel-title'>";
-            bill += "<tr>";
-            bill += "<td class='boldCell'>Quote Number</td>";
-            bill += "<td class='boldCell'>Full Name</td>";
-            bill += "<td class='boldCell'>Institution</td>";
-            bill += "<td class='boldCell'>Billing Address </td>";
-            bill += "<td class='boldCell'>Phone</td>";
-            bill += "<td class='boldCell'>Email</td>";
-            // more cells here as needed
-            bill += "</tr>";
-            //Content
-
-            bill += "<tr  style='width:100%'>";
-            bill += "<td class='boldCell'>" + m.billing.Quotenumber + "</td>";
-            bill += "<td class='boldCell'>" + m.billing.FullName + "</td>";
-            bill += "<td class='boldCell'>" + m.billing.Institution + "</td>";
-            bill += "<td class='boldCell'>" + m.billing.BillingAddress + "</td>";
-            bill += "<td class='boldCell'>" + m.billing.Phone + "</td>";
-            bill += "<td class='boldCell'>" + m.billing.Email + "</td>";
-            // more cells here as needed
-            bill += "</tr>";
-            //shipping
-
-            var ship = "<h1>Shipping</h1>";
-            ship += "</table><table  style='width:100%' class='colorful'>";
-            ship += "<tr style='width:100%'>";
-            ship += "<td class='boldCell'>Date</td>";
-            ship += "<td class='boldCell'>Full name</td>";
-            ship += "<td class='boldCell'>Institution</td>";
-            ship += "<td class='boldCell'>Shipping Address</td>";
-            ship += "<td class='boldCell'>Phone</td>";
-            ship += "<td class='boldCell'>Email</td>";
-            // more cells here as needed
-            ship += "</tr>";
-
-
+            ship += "<table width='450' style='float:left'>";
+            ship += "<thead>";
             ship += "<tr>";
-            ship += "<td class='boldCell'>" + m.shipping.ShippingDate + "</td>";
-            ship += "<td class='boldCell'>" + m.shipping.FullName + "</td>";
-            ship += "<td class='boldCell'>" + m.shipping.Institution + "</td>";
-            ship += "<td class='boldCell'>" + m.shipping.ShippingAddress + "</td>";
-            ship += "<td class='boldCell'>" + m.shipping.Phone + "</td>";
-            ship += "<td class='boldCell'>" + m.shipping.Email + "</td>";
-            // more cells here as needed
+            ship += "<th>Shipping Information</th>";
             ship += "</tr>";
-            var olForm = "<h1>Oligosequence</h1>"; ;
-            olForm += "</table><table style='width:100%' class='colorful'>";
+            ship += "</thead>";
+            ship += "<tr>";
+            ship += "<td valign='top'>";
+            ship += "<label for='fullName'>Full Name</label>";
+            ship += "</td>";
+            ship += "<td valign='top'>";
+            ship += m.shipping.FullName;
+            ship += "</td>";
+            ship += "</tr>";
+            ship += "<tr>";
+            ship += "<td valign='top'>";
+            ship += "<label for='fullName'>Institution</label>";
+            ship += "</td>";
+            ship += "<td valign='top'>";
+            ship += m.shipping.Institution;
+            ship += "</td>";
+            ship += "</tr>";
+            ship += "<tr>";
+            ship += "<td valign='top'>";
+            ship += "<label for='fullName'>Shipping Address</label>";
+            ship += "</td>";
+            ship += "<td valign='top'>";
+            ship += m.shipping.ShippingAddress;
+            ship += "</td>";
+            ship += "</tr>";
+            ship += "<tr>";
+            ship += "<td valign='top'>";
+            ship += "<label for='fullName'>Shipping Phone</label>";
+            ship += "</td>";
+            ship += "<td valign='top'>";
+            ship += m.shipping.Phone;
+            ship += "</td>";
+            ship += "</tr>";
+            ship += "<tr>";
+            ship += "<td valign='top'>";
+            ship += "<label for='shippingEmail'>Shipping Email</label>";
+            ship += "</td>";
+            ship += "<td valign='top'>";
+            ship += m.shipping.Phone;
+            ship += "</td>";
+            ship += "</tr>";
 
+            //Billing
+
+            var bill = "<h1>Billing</h1>";
+            bill += "<table width='450' style='float:right'>";
+            bill += "<thead>";
+            bill += "<tr>";
+            bill += "<th>Billing Information</th>";
+            bill += "</tr>";
+            bill += "</thead>";
+            bill += "<tr>";
+            bill += "<td valign='top'>";
+            bill += "<label for='first_name'>Quote</label>";
+            bill += "</td>";
+            bill += "<td valign='top'>";
+            bill += m.billing.Quotenumber;
+            bill += "</td>";
+            bill += "</tr>";
+            // Full Name 
+            bill += "<tr>";
+            bill += "<td valign='top'>";
+            bill += "<label for='first_name'>Full Name</label>";
+            bill += "</td>";
+            bill += "<td valign='top'>";
+            bill += m.billing.FullName;
+            bill += "</td>";
+            bill += "</tr>";
+            //Institution
+            bill += "<tr>";
+            bill += "<td valign='top'>";
+            bill += "<label for='first_name'>Institution</label>";
+            bill += "</td>";
+            bill += "</tr>";
+            bill += "<td valign='top'>";
+            bill += m.billing.Institution;
+            bill += "</td>";
+            bill += "</tr>";
+            //Billing Address
+            bill += "<tr>";
+            bill += "<td valign='top'>";
+            bill += "<label for='first_name'>Billing Address</label>";
+            bill += "</td>";
+            bill += "<td valign='top'>";
+            bill += m.billing.BillingAddress;
+            bill += "</td>";
+            bill += "</tr>";
+            //Billing Phone 
+            bill += "<tr>";
+            bill += "<td valign='top'>";
+            bill += "<label for='first_name'>Biling Phone</label>";
+            bill += "</td>";
+            bill += "<td valign='top'>";
+            bill += m.billing.Phone;
+            bill += "</td.";
+            bill += "</tr>";
+            //Billing Email
+            bill += "<tr>";
+            bill += "<td valign='top'>";
+            bill += "<label for='first_name'>Biling Email</label>";
+            bill += "</td>";
+            bill += "<td valign='top'>";
+            bill += m.billing.Email;
+            bill += "</td>";
+            bill += "</tr> </table>";
+
+        
+          var  olForm = "<table style='width:100%' border='1'>";
+          olForm += "<thead>";
+          olForm += "<tr>";
+          olForm += "<th>Order</th>";
+          olForm += "</tr>";
+          olForm += "</thead>";
             olForm += "<tr  style='width:100%'>";
             olForm += "<td class='boldCell'>PrimerName</td>";
             olForm += "<td class='boldCell'>Qty</td>";
@@ -261,7 +447,6 @@ namespace MBBVL.Core {
             olForm += "<td class='boldCell'>Purification</td>";
             // more cells here as needed
             olForm += "</tr>";
-
 
             for (int i = 0; i < m.oligosequence.Count(); i++) {
                 olForm += "<tr>";
@@ -277,8 +462,9 @@ namespace MBBVL.Core {
                 olForm += "</tr>";
             }
             olForm += "</table>";
-            var template = bill + ship + olForm;
-            CreateEmail(m.shipping.Email, "Andersolind@gmail.com", template);
+            var template = ship + bill + olForm;
+            CreateEmailForUser(m.shipping.Email, "Andersolind@gmail.com", template);
+            CreateEmailForJason(m.shipping.Email, "Andersolind@gmail.com", template);
             return olForm;
         }
     }

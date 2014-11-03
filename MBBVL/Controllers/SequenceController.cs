@@ -26,7 +26,7 @@ namespace MBBVL.Controllers.Sequencing {
 
         // POST api/<controller>
         [HttpPost]
-        public void Post(SequencingWrapperModel model) {
+        public IHttpActionResult Post(SequencingWrapperModel model) {
             //Insert into database
             SequencingWrapperModel templateData = new SequencingWrapperModel();
 
@@ -53,13 +53,13 @@ namespace MBBVL.Controllers.Sequencing {
 
                 //Pickup
                 PickUp ship = new PickUp();
-                ship.PickUpDate = model.PickUp.PickUpDate;
+                ship.PickUpDate = DateTime.Now;
                 ship.FullName = model.PickUp.FullName;
                 ship.Institution = model.PickUp.Institution;
                 ship.ShippingAddress = model.PickUp.ShippingAddress;
                 ship.Phone = model.PickUp.Phone;
                 ship.Email = model.PickUp.Email;
-                
+
                 ship.UserId = g;
                 db.PickUp.Add(ship);
                 db.Entry(ship).State = EntityState.Added;
@@ -68,7 +68,7 @@ namespace MBBVL.Controllers.Sequencing {
                 //DNA
                 SequencingModel ol = new SequencingModel();
                 for (int i = 0; i < model.sequencingModel.Count(); i++) {
-                   
+
                     ol.SampleName = model.sequencingModel[i].SampleName;
                     ol.SampleCon = model.sequencingModel[i].SampleCon;
                     ol.VectorName = model.sequencingModel[i].VectorName;
@@ -80,8 +80,8 @@ namespace MBBVL.Controllers.Sequencing {
                     //Ties into the other id's
                     db.SequencingModel.Add(ol);
                     getList.Add(ol);
-                   // templateData.sequencingModel.Add(ol);
-                  
+                    // templateData.sequencingModel.Add(ol);
+
                 }
                 db.Entry(ol).State = EntityState.Added;
 
@@ -95,7 +95,7 @@ namespace MBBVL.Controllers.Sequencing {
                     cp.UserId = g;
                     //Ties into the other id's
                     db.CustomPrimers.Add(cp);
-                   // templateData.customPrimers.Add(cp);
+                    // templateData.customPrimers.Add(cp);
                     //for master list
                     getCustomPrimers.Add(cp);
                 }
@@ -119,7 +119,8 @@ namespace MBBVL.Controllers.Sequencing {
                 email.SetUpSequence(templateData);
                 // ParseTemplate(ob);
                 db.SaveChanges();
-               // return templateData;
+                return Ok();
+                // return templateData;
             } catch (DbEntityValidationException ex) {
                 // Retrieve the error messages as a list of strings.
                 var errorMessages = ex.EntityValidationErrors

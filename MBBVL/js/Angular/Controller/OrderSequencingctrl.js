@@ -26,10 +26,10 @@
 
         $scope.gmp3 = [{ name: 'yes', value: 'yes' }, { name: 'no', value: 'no' }];
         //Dna Form
-        $scope.NavigationConfig = [{ SampleName: "", SameConc: "", VectorName: '', LengthBases: "", PrimerName: "", PrimerConc: "", GMP3: $scope.gmp3,GmpValue:"" }];
+        $scope.NavigationConfig = [{ SampleName: "", SameConc: "", VectorName: '', LengthBases: "", PrimerName: "", PrimerConc: "", GMP3: $scope.gmp3, GmpValue: "" }];
         //
         $scope.CustomPrimer = [{ PrimerName: "", Scale: $scope.scaleValues, ScaleValue: "", Sequence: '', Purification: $scope.purification, GMP: $scope.gmp3, GmpValue: "" }];
-   
+
     }
     //Send these values into the db
 
@@ -41,13 +41,12 @@
     };
 
     $scope.SequencingWrapperModel = {
-
         Billing: {},
         PickUp: {},
         DataDeliveryOptions: {},
         CustomPrimers: $scope.CustomPrimer,
         SequencingModel: $scope.NavigationConfig,
-
+        IsShipping: $scope.Pickup
     };
     $scope.today = function () {
         $scope.dt = new Date();
@@ -83,23 +82,22 @@
     $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
     $scope.format = $scope.formats[0];
 
+
     $scope.submitForm = function () {
         //Get all the form variables from the page and get ready to submit to our model
-        var getVal = $scope.ddlInstitute;
-            var url = "/api/Sequence/"
-         //   var test = $scope.CustomPrimer;
-            var model = $scope.SequencingWrapperModel;
-            $scope.disableSubmit = true;
-            ACGTFactory.serverService(url, "Post", model).success(function (model, status) {
-                if (status == 200) {
-
-                    //  ResetReportEdit($scope.OldReportId);
-                    //   SetAlert("Updated", 'success');
-                }
-            }).error(function (error) {
-                var err = error;
-                //   SetAlert(error, 'error');
-            });
+        var url = "/api/Sequence/";
+        var model = $scope.SequencingWrapperModel;
+        $scope.disableSubmit = true;
+        ACGTFactory.serverService(url, "Post", model).success(function (model, status) {
+            if (status == 200) {
+                window.location = "/home/thankyou"
+                //  ResetReportEdit($scope.OldReportId);
+                //   SetAlert("Updated", 'success');
+            }
+        }).error(function (error) {
+            var err = error;
+            //   SetAlert(error, 'error');
+        });
     }
 }]);
 

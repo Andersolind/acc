@@ -37,7 +37,7 @@ namespace MBBVL.Models {
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int PickUpId { get; set; }
         public DateTime PickUpDate { get; set; }
-        [Required]
+      
         [Display(Name = "Full Name")]
         public string FullName { get; set; }
         [Display(Name = "Institution")]
@@ -173,6 +173,7 @@ namespace MBBVL.Models {
 
 
     public class SequencingWrapperModel {
+        public bool IsShipping { get; set; }
         public PickUp PickUp { get; set; }
         public Billing Billing { get; set; }
 

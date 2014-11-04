@@ -140,10 +140,10 @@ namespace MBBVL.Controllers {
                 templateData.shipping = ship;
 
                 //Oligosequence
-                Oligosequence ol = new Oligosequence();
+                Oligosequence ol;
 
                 for (int i = 0; i < model.oligosequence.Count(); i++) {
-
+                   ol = new Oligosequence();
                     var final = Core.StaticValues.FinalDelivery.SingleOrDefault(x => x.Value == Convert.ToString(model.oligosequence[i].FinalDeliveryForm));
                     ol.FinalDeliveryForm = final.Text;
                     ol.GMP2 = model.oligosequence[i].GMP2;
@@ -155,12 +155,10 @@ namespace MBBVL.Controllers {
                     var getSynthesisScale1 = Core.StaticValues.SynthesisD.SingleOrDefault(x => x.Value == Convert.ToInt32(model.oligosequence[i].SynthesisScale1));
                     ol.SynthesisScale1 = getSynthesisScale1.Key;
                     ol.UserId = g;
-                    //Ties into the other id's
                     db.Oligosequence.Add(ol);
+                    db.Entry(ol).State = EntityState.Added;
                     getList.Add(ol);
                 }
-                db.Entry(ol).State = EntityState.Added;
-
                 //Create email template!
                 SendEmail email = new SendEmail();
                 templateData.oligosequence = getList;
@@ -185,6 +183,9 @@ namespace MBBVL.Controllers {
             }
 
 
+
+        }
+        private void SetupOl() {
 
         }
         public ActionResult Thankyou() { return View(); }

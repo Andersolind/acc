@@ -429,13 +429,8 @@ namespace MBBVL.Core {
             bill += "</td>";
             bill += "</tr> </table>";
 
-        
-          var  olForm = "<table style='width:100%' border='1'>";
-          olForm += "<thead>";
-          olForm += "<tr>";
-          olForm += "<th>Order</th>";
-          olForm += "</tr>";
-          olForm += "</thead>";
+            var olForm = "<div padding-top: 100px><h1> Oligosequence</h1></div>";
+            olForm += "<table style='width:100%' border='1'>";
             olForm += "<tr  style='width:100%'>";
             olForm += "<td class='boldCell'>PrimerName</td>";
             olForm += "<td class='boldCell'>Qty</td>";

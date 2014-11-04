@@ -66,9 +66,9 @@ namespace MBBVL.Controllers.Sequencing {
                 templateData.PickUp = ship;
 
                 //DNA
-                SequencingModel ol = new SequencingModel();
+                SequencingModel ol;
                 for (int i = 0; i < model.sequencingModel.Count(); i++) {
-
+                    ol = new SequencingModel();
                     ol.SampleName = model.sequencingModel[i].SampleName;
                     ol.SampleCon = model.sequencingModel[i].SampleCon;
                     ol.VectorName = model.sequencingModel[i].VectorName;
@@ -80,14 +80,14 @@ namespace MBBVL.Controllers.Sequencing {
                     //Ties into the other id's
                     db.SequencingModel.Add(ol);
                     getList.Add(ol);
-                    // templateData.sequencingModel.Add(ol);
-
+                    db.Entry(ol).State = EntityState.Added;
                 }
-                db.Entry(ol).State = EntityState.Added;
+               
 
                 //DNA
-                CustomPrimers cp = new CustomPrimers();
+                CustomPrimers cp;
                 for (int i = 0; i < model.customPrimers.Count(); i++) {
+                    cp = new CustomPrimers();
                     cp.GmpValue = model.customPrimers[i].GmpValue;
                     cp.PrimerName = model.customPrimers[i].PrimerName;
                     cp.ScaleValue = model.customPrimers[i].ScaleValue;
@@ -95,8 +95,7 @@ namespace MBBVL.Controllers.Sequencing {
                     cp.UserId = g;
                     //Ties into the other id's
                     db.CustomPrimers.Add(cp);
-                    // templateData.customPrimers.Add(cp);
-                    //for master list
+                    db.Entry(cp).State = EntityState.Added;
                     getCustomPrimers.Add(cp);
                 }
 

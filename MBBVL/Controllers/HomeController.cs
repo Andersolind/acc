@@ -143,14 +143,15 @@ namespace MBBVL.Controllers {
                 Oligosequence ol;
 
                 for (int i = 0; i < model.oligosequence.Count(); i++) {
-                   ol = new Oligosequence();
+                    ol = new Oligosequence();
                     var final = Core.StaticValues.FinalDelivery.SingleOrDefault(x => x.Value == Convert.ToString(model.oligosequence[i].FinalDeliveryForm));
                     ol.FinalDeliveryForm = final.Text;
                     ol.GMP2 = model.oligosequence[i].GMP2;
                     ol.Modification = model.oligosequence[i].Modification;
                     ol.OligonucleotideSequence = model.oligosequence[i].OligonucleotideSequence;
                     ol.PrimerName = model.oligosequence[i].PrimerName;
-                    ol.Purification = model.oligosequence[i].Purification;
+                    var purification = Core.StaticValues.Purification.SingleOrDefault(X => X.Value == model.oligosequence[i].Purification);
+                    ol.Purification = purification.Text;
                     ol.Qty = model.oligosequence[i].Qty;
                     var getSynthesisScale1 = Core.StaticValues.SynthesisD.SingleOrDefault(x => x.Value == Convert.ToInt32(model.oligosequence[i].SynthesisScale1));
                     ol.SynthesisScale1 = getSynthesisScale1.Key;

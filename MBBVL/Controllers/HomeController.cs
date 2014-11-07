@@ -119,6 +119,7 @@ namespace MBBVL.Controllers {
                 bill.BillingAddress = model.billing.BillingAddress;
                 bill.Phone = model.billing.Phone;
                 bill.Email = model.billing.Email;
+                bill.Notes = model.billing.Notes;
                 bill.UserId = g;
                 templateData.billing = bill;
 
@@ -144,17 +145,26 @@ namespace MBBVL.Controllers {
 
                 for (int i = 0; i < model.oligosequence.Count(); i++) {
                     ol = new Oligosequence();
+                    //Primer Name
+                    ol.PrimerName = model.oligosequence[i].PrimerName;
+                    //Qty
+                    ol.Qty = model.oligosequence[i].Qty;
+                    //OligonucleotideSequence
+                    ol.OligonucleotideSequence = model.oligosequence[i].OligonucleotideSequence;
+                    //SynthesisScale1
+                    var getSynthesisScale1 = Core.StaticValues.SynthesisD.SingleOrDefault(x => x.Value == Convert.ToInt32(model.oligosequence[i].SynthesisScale1));
+                    ol.SynthesisScale1 = getSynthesisScale1.Key;
+
                     var final = Core.StaticValues.FinalDelivery.SingleOrDefault(x => x.Value == Convert.ToString(model.oligosequence[i].FinalDeliveryForm));
                     ol.FinalDeliveryForm = final.Text;
                     ol.GMP2 = model.oligosequence[i].GMP2;
                     ol.Modification = model.oligosequence[i].Modification;
-                    ol.OligonucleotideSequence = model.oligosequence[i].OligonucleotideSequence;
-                    ol.PrimerName = model.oligosequence[i].PrimerName;
+                   
+                   
                     var purification = Core.StaticValues.Purification.SingleOrDefault(X => X.Value == model.oligosequence[i].Purification);
                     ol.Purification = purification.Text;
-                    ol.Qty = model.oligosequence[i].Qty;
-                    var getSynthesisScale1 = Core.StaticValues.SynthesisD.SingleOrDefault(x => x.Value == Convert.ToInt32(model.oligosequence[i].SynthesisScale1));
-                    ol.SynthesisScale1 = getSynthesisScale1.Key;
+                   
+                   
                     ol.UserId = g;
                     db.Oligosequence.Add(ol);
                     db.Entry(ol).State = EntityState.Added;
@@ -165,7 +175,7 @@ namespace MBBVL.Controllers {
                 templateData.oligosequence = getList;
                 email.SetUpbill(templateData);
                 // ParseTemplate(ob);
-                db.SaveChanges();
+         //       db.SaveChanges();
                 return templateData;
             } catch (DbEntityValidationException ex) {
                 // Retrieve the error messages as a list of strings.

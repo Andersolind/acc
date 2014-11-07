@@ -40,10 +40,25 @@
 
     };
 
+
+    $scope.DataDelivery = [{
+        name: '($5.00) Unedited Sequence Results [Chromatogram Trace]',
+        checked: false
+    }, {
+        name: '($10.00) Edited sequence results [Text Data]',
+        checked: false
+    }, {
+        name: '($10.00) Edited Sequence Results [Text Data + Chromatogram Trace]',
+        checked: true
+    }, {
+        name: '($5.00) Unedited Sequence Results [Text + Chromatogram Trace]',
+        checked: false
+    }];
+
     $scope.SequencingWrapperModel = {
         Billing: {},
         PickUp: {},
-        DataDeliveryOptions: {},
+        DataDeliveryOptions: $scope.DataDeliveryOptions,
         CustomPrimers: $scope.CustomPrimer,
         SequencingModel: $scope.NavigationConfig,
         IsShipping: $scope.Pickup
@@ -88,17 +103,37 @@
         var url = "/api/Sequence/";
         var model = $scope.SequencingWrapperModel;
         $scope.disableSubmit = true;
+       
+        //
+       
+        angular.forEach($scope.DataDelivery, function (value, key) {
+            if (value.checked) {
+                $scope.DataDeliveryOptions = [{ Name: value.name, Value: value.checked }];
+              
+            }
+        });
+        $scope.SequencingWrapperModel.DataDeliveryOptions = $scope.DataDeliveryOptions;
+        var model = $scope.SequencingWrapperModel;
         ACGTFactory.serverService(url, "Post", model).success(function (model, status) {
             if (status == 200) {
-                window.location = "/home/thankyou"
-                //  ResetReportEdit($scope.OldReportId);
-                //   SetAlert("Updated", 'success');
+                window.location = "/home/thankyou";
+                
             }
         }).error(function (error) {
             var err = error;
             //   SetAlert(error, 'error');
         });
+    };
+    //Delivery check
+    $scope.updateSelection = function (position, entities) {
+        angular.forEach(entities, function (subscription, index) {
+            if (position != index)
+                subscription.checked = false;
+        });
+    }
+
+    function GetTrueDelivery() {
+
     }
 }]);
 
-// directive that prevents submit if there are still form errors  

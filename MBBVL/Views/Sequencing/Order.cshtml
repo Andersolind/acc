@@ -11,7 +11,6 @@
         table-layout: fixed;
         word-wrap: break-word;
     }
-
 </style>
 <link rel=StyleSheet href="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc2/css/bootstrap-glyphicons.css" type="text/css" media=screen>
 
@@ -106,92 +105,69 @@
             <fieldset>
                 <legend>All sequencing results are sent by email. (Please select only one option) </legend>
             </fieldset>
+            <div ng-repeat="subscription in DataDelivery">
 
-
-            <div class="row">
                 <div class="col-md-2 control-label">
-                    <label for="InputFieldA">($5.00) Unedited Sequence Results [Chromatogram Trace]</label>
+                    <label for="InputFieldA">{{subscription.name}}</label>
                     <div class="col-md-10">
-                        <input type="checkbox" ng-model="SequencingWrapperModel.DataDeliveryOptions.UneditedChromatogramTrace" ng-true-value="yes" ng-false-value="no" />
-                    </div>
-                </div>
-                <div class="col-md-2 control-label">
-                    <label for="InputFieldA">($10.00) Edited sequence results [Text Data]</label>
-
-                    <div class="col-md-10">
-                        <input type="checkbox" ng-model="SequencingWrapperModel.DataDeliveryOptions.EditedTextData" ng-true-value="yes" ng-false-value="no" />
-                    </div>
-                </div>
-                <div class="col-lg-2 control-label">
-                    <label for="InputFieldA">($10.00) Edited Sequence Results [Text Data + Chromatogram Trace]</label>
-                    <div class="col-md-10">
-                        <input type="checkbox" ng-model="SequencingWrapperModel.DataDeliveryOptions.TextDataAndChromatogramTrace" ng-true-value="yes" ng-false-value="no" />
-                    </div>
-                </div>
-                <div class="col-md-2 control-label">
-                    <label for="InputFieldA">($5.00) Unedited Sequence Results [Text + Chromatogram Trace]</label>
-
-                    <div class="col-md-10">
-                        <input type="checkbox" ng-model="SequencingWrapperModel.DataDeliveryOptions.UneditedTextAndChromatogramTrace" ng-true-value="yes" ng-false-value="no" />
+                        <input type="checkbox" ng-model="subscription.checked" ng-click="updateSelection($index, DataDelivery)" />
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h3 class="panel-title">Custom Primers to be Synthesized & Used for Sequencing</h3>
-        </div>
-        <div class="panel-body">
-            <fieldset>
-                <legend>Custom Primers to be Synthesized & Used for Sequencing</legend>
-                <div class="col-lg-3">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Custom Primers to be Synthesized & Used for Sequencing</h3>
+            </div>
+            <div class="panel-body">
+                <fieldset>
+                    <legend>Custom Primers to be Synthesized & Used for Sequencing</legend>
+                    <div class="col-lg-3">
 
-                    <div class="form-group row">
-                        <div class="col-lg-10">
-                            <input class="img-rounded" type="button" ng-click="AddCustomPrimer()" id="btnAddCustomPrimers" value="Add more rows" />
+                        <div class="form-group row">
+                            <div class="col-lg-10">
+                                <input class="img-rounded" type="button" ng-click="AddCustomPrimer()" id="btnAddCustomPrimers" value="Add more rows" />
+                            </div>
                         </div>
                     </div>
-                </div>
+                </fieldset>
+                <table class="panel-body" id="addRow">
+                    <thead>
+                        <tr>
+                            <th>Primer Name</th>
+                            <th>Scale</th>
+                            <th>Sequence</th>
+                            <th>Purification</th>
+                            <th>GMP Y/N </th>
 
 
-            </fieldset>
-            <table class="panel-body" id="addRow">
-                <thead>
-                    <tr>
-                        <th>Primer Name</th>
-                        <th>Scale</th>
-                        <th>Sequence</th>
-                        <th>Purification</th>
-                        <th>GMP Y/N </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="rows in CustomPrimer">
 
+                            <td>
+                                <input type="text" class="form-control" id="txtPrimerName" name="txtPrimerName" ng-model="rows.PrimerName" placeholder="Enter Primer Name" title="Sample Name">
 
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="rows in CustomPrimer">
+                            </td>
+                            <td>
+                                <select id="scaleValues2" name="scaleValues2" ng-change="keyPressCustomPrimer($index,scaleValues2)" ng-model="scaleValues2" ng-options="user.name as user.value for user in rows.Scale"></select>
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" id="txtSequence" name="txtSequence" ng-model="rows.Sequence" placeholder="Sequence" title="Sequence">
 
-                        <td>
-                            <input type="text" class="form-control" id="txtPrimerName" name="txtPrimerName" ng-model="rows.PrimerName" placeholder="Enter Primer Name" title="Sample Name">
+                            </td>
+                            <td>
+                                <select id="ddlPurification" name="ddlPurification" ng-model="Purification2" ng-options="user.value as user.name for user in rows.Purification"></select>
+                            </td>
 
-                        </td>
-                        <td>
-                            <select id="scaleValues2" name="scaleValues2" ng-change="keyPressCustomPrimer($index,scaleValues2)" ng-model="scaleValues2" ng-options="user.name as user.value for user in rows.Scale"></select>
-                        </td>
-                        <td>
-                            <input type="text" class="form-control" id="txtSequence" name="txtSequence" ng-model="rows.Sequence" placeholder="Sequence" title="Sequence">
-
-                        </td>
-                        <td>
-                            <select id="ddlPurification" name="ddlPurification" ng-model="Purification2" ng-options="user.value as user.name for user in rows.Purification"></select>
-                        </td>
-
-                        <td>
-                            <select id="ddlGmp" name="ddlGmp" ng-model="ddlGmp" ng-change="keyPressGmp($index,ddlGmp)" ng-options="user.value as user.name for user in rows.GMP"></select>
-                        </td>
-                    </tr>
-                <tbody>
-            </table>
+                            <td>
+                                <select id="ddlGmp" name="ddlGmp" ng-model="ddlGmp" ng-change="keyPressGmp($index,ddlGmp)" ng-options="user.value as user.name for user in rows.GMP"></select>
+                            </td>
+                        </tr>
+                    <tbody>
+                </table>
+            </div>
         </div>
     </div>
     <div class="panel panel-primary">
@@ -259,7 +235,7 @@
         <div class="panel-heading">
             <h3 class="panel-title">Request for Pick Up</h3>
 
-            <a style="color: white; text-decoration: underline;" href="/Sequencing/Pickup">Pick up policy</a><div style="float:right;"><input type="checkbox" id="Pickup" name="Pickup"  ng-model="Pickup" /> Do you need a pick up</div>
+            <a style="color: white; text-decoration: underline;" href="/Sequencing/Pickup">Pick up policy</a><div style="float:right;"><input type="checkbox" id="Pickup" name="Pickup" ng-model="Pickup" /> Do you need a pick up</div>
 
         </div>
         <div class="panel-body" ng-show="Pickup">
@@ -343,7 +319,7 @@
                 <textarea name="txtNotes" ng-model="SequencingWrapperModel.Billing.Notes" cols="200" rows="5"></textarea>
             </div>
         </div>
-        <input type="submit" class="btn btn-primary" ng-click="submitForm()" ng-disabled="!dnaForm.$valid">
+        <input type="submit" class="btn btn-primary" ng-click="submitForm()" ng-model="disableSubmit" ng-disabled="!dnaForm.$valid">
     </div>
 
 </form>

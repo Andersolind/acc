@@ -50,20 +50,22 @@ namespace MBBVL.Controllers.Sequencing {
                 db.Entry(bill).State = EntityState.Added;
                 db.Billing.Add(bill);
 
+                if (model.IsShipping != true) {
+                    //Pickup
 
-                //Pickup
-                PickUp ship = new PickUp();
-                ship.PickUpDate = DateTime.Now;
-                ship.FullName = model.PickUp.FullName;
-                ship.Institution = model.PickUp.Institution;
-                ship.ShippingAddress = model.PickUp.ShippingAddress;
-                ship.Phone = model.PickUp.Phone;
-                ship.Email = model.PickUp.Email;
+                    PickUp ship = new PickUp();
+                    ship.PickUpDate = model.PickUp.PickUpDate;
+                    ship.FullName = model.PickUp.FullName;
+                    ship.Institution = model.PickUp.Institution;
+                    ship.ShippingAddress = model.PickUp.ShippingAddress;
+                    ship.Phone = model.PickUp.Phone;
+                    ship.Email = model.PickUp.Email;
 
-                ship.UserId = g;
-                db.PickUp.Add(ship);
-                db.Entry(ship).State = EntityState.Added;
-                templateData.PickUp = ship;
+                    ship.UserId = g;
+                    db.PickUp.Add(ship);
+                    db.Entry(ship).State = EntityState.Added;
+                    templateData.PickUp = ship;
+                }
 
                 //DNA
                 SequencingModel ol;
@@ -82,7 +84,7 @@ namespace MBBVL.Controllers.Sequencing {
                     getList.Add(ol);
                     db.Entry(ol).State = EntityState.Added;
                 }
-               
+
 
                 //DNA
                 CustomPrimers cp;
@@ -101,13 +103,10 @@ namespace MBBVL.Controllers.Sequencing {
 
 
                 DataDeliveryOptions ddd = new DataDeliveryOptions();
-                ddd.EditedTextData = CheckNulls.IsNotNull(model.dataDeliveryOptions.EditedTextData);
-                ddd.TextDataAndChromatogramTrace = CheckNulls.IsNotNull(model.dataDeliveryOptions.TextDataAndChromatogramTrace);
-                ddd.UneditedChromatogramTrace = CheckNulls.IsNotNull(model.dataDeliveryOptions.UneditedChromatogramTrace);
-                ddd.UneditedTextAndChromatogramTrace = CheckNulls.IsNotNull(model.dataDeliveryOptions.UneditedTextAndChromatogramTrace);
-                ddd.UserId = g;
+                ddd.Name = model.DataDeliveryOptions.Name;
+                ddd.Value = model.DataDeliveryOptions.Value;
                 db.dataDeliveryOptions.Add(ddd);
-                templateData.dataDeliveryOptions = ddd;
+                templateData.DataDeliveryOptions = ddd;
                 db.Entry(ddd).State = EntityState.Added;
 
                 //Create email template!
@@ -117,7 +116,7 @@ namespace MBBVL.Controllers.Sequencing {
                 //
                 email.SetUpSequence(templateData);
                 // ParseTemplate(ob);
-                db.SaveChanges();
+           //     db.SaveChanges();
                 return Ok();
                 // return templateData;
             } catch (DbEntityValidationException ex) {

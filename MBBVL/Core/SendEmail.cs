@@ -24,7 +24,7 @@ namespace MBBVL.Core {
                 msg.Subject = "Order form";
                 msg.IsBodyHtml = true;
                 msg.Body = body;
-               
+
 
                 ////Configure an SmtpClient to send the mail.            
                 SmtpClient smptc = new SmtpClient(); // Here SMTP Client object is created
@@ -57,7 +57,7 @@ namespace MBBVL.Core {
             }
         }
 
-       public void CreateEmailForJason(string toSender, string fromSender, string body) {
+        public void CreateEmailForJason(string toSender, string fromSender, string body) {
             try {
 
 
@@ -65,7 +65,7 @@ namespace MBBVL.Core {
                 MailMessage msg = new MailMessage();
                 //Add your email address to the recipients
                 msg.To.Add(toSender);
-              //  msg.To.Add("jchen.acgt@gmail.com");
+                //  msg.To.Add("jchen.acgt@gmail.com");
                 //Configure the address we are sending the mail from
                 MailAddress address = new MailAddress("info@acgt.com");
                 MailAddress addressBCC = new MailAddress("andersolind@hotmail.com");
@@ -74,7 +74,7 @@ namespace MBBVL.Core {
                 msg.Subject = "Order form";
                 msg.IsBodyHtml = true;
                 msg.Body = body;
-                
+
 
                 ////Configure an SmtpClient to send the mail.            
                 SmtpClient smptc = new SmtpClient(); // Here SMTP Client object is created
@@ -113,62 +113,65 @@ namespace MBBVL.Core {
             m.PickUp = model.PickUp;
             m.sequencingModel = model.sequencingModel;
             m.customPrimers = model.customPrimers;
-            m.dataDeliveryOptions = model.dataDeliveryOptions;
+            m.DataDeliveryOptions = model.DataDeliveryOptions;
 
             //headers<img src=\"cid:image1\">
             var ship = "<img src='http://youneedafavor.com/images/logo.png'>";
-             ship += "<h1>Dear" + " " + model.Billing.FullName + " " + "here is your Order</h1>";
-            //ship += "<table width='300px' style='float:left'>";
-            //ship += "<thead>";
-            //ship += "<tr>";
-            //ship += "<th>Shipping Information</th>";
-            //ship += "</tr>";
-            //ship += "</thead>";
-            //ship += "<tr>";
-            //ship += "<td valign='top'>";
-            //ship += "<label for='fullName'>Full Name</label>";
-            //ship += "</td>";
-            //ship += "<td valign='top'>";
-            //ship += m.shipping.FullName;
-            //ship += "</td>";
-            //ship += "</tr>";
-            //ship += "<tr>";
-            //ship += "<td valign='top'>";
-            //ship += "<label for='fullName'>Institution</label>";
-            //ship += "</td>";
-            //ship += "<td valign='top'>";
-            //ship += m.shipping.Institution;
-            //ship += "</td>";
-            //ship += "</tr>";
-            //ship += "<tr>";
-            //ship += "<td valign='top'>";
-            //ship += "<label for='fullName'>Shipping Address</label>";
-            //ship += "</td>";
-            //ship += "<td valign='top'>";
-            //ship += m.shipping.ShippingAddress;
-            //ship += "</td>";
-            //ship += "</tr>";
-            //ship += "<tr>";
-            //ship += "<td valign='top'>";
-            //ship += "<label for='fullName'>Shipping Phone</label>";
-            //ship += "</td>";
-            //ship += "<td valign='top'>";
-            //ship += m.shipping.Phone;
-            //ship += "</td>";
-            //ship += "</tr>";
-            //ship += "<tr>";
-            //ship += "<td valign='top'>";
-            //ship += "<label for='shippingEmail'>Shipping Email</label>";
-            //ship += "</td>";
-            //ship += "<td valign='top'>";
-            //ship += m.shipping.Phone;
-            //ship += "</td>";
-            //ship += "</tr>";
+            ship += "<h1>Dear" + " " + model.Billing.FullName + " " + "here is your Order</h1>";
 
+            if (model.IsShipping != true) {
+                ship += "<table width='300px' style='float:left'>";
+                ship += "<thead>";
+                ship += "<tr>";
+                ship += "<th>Shipping Information</th>";
+                ship += "</tr>";
+                ship += "</thead>";
+                ship += "<tr>";
+                ship += "<td valign='top'>";
+                ship += "<label for='fullName'>Full Name</label>";
+                ship += "</td>";
+                ship += "<td valign='top'>";
+                ship += m.PickUp.FullName;
+                ship += "</td>";
+                ship += "</tr>";
+                ship += "<tr>";
+                ship += "<td valign='top'>";
+                ship += "<label for='fullName'>Institution</label>";
+                ship += "</td>";
+                ship += "<td valign='top'>";
+                ship += m.PickUp.Institution;
+                ship += "</td>";
+                ship += "</tr>";
+                ship += "<tr>";
+                ship += "<td valign='top'>";
+                ship += "<label for='fullName'>Shipping Address</label>";
+                ship += "</td>";
+                ship += "<td valign='top'>";
+                ship += m.PickUp.ShippingAddress;
+                ship += "</td>";
+                ship += "</tr>";
+                ship += "<tr>";
+                ship += "<td valign='top'>";
+                ship += "<label for='fullName'>Shipping Phone</label>";
+                ship += "</td>";
+                ship += "<td valign='top'>";
+                ship += m.PickUp.Phone;
+                ship += "</td>";
+                ship += "</tr>";
+                ship += "<tr>";
+                ship += "<td valign='top'>";
+                ship += "<label for='shippingEmail'>Shipping Email</label>";
+                ship += "</td>";
+                ship += "<td valign='top'>";
+                ship += m.PickUp.Email;
+                ship += "</td>";
+                ship += "</tr>";
+                ship += "</table>";
+            }
             //Billing
 
-            var bill = "<h1>Billing</h1>";
-            bill += "<table width='450px' style='float:left'>";
+
+            var bill = "<table width='450px' style='float:left'>";
             bill += "<thead>";
             bill += "<tr>";
             bill += "<th>Billing Information</th>";
@@ -228,6 +231,15 @@ namespace MBBVL.Core {
             bill += m.Billing.Email;
             bill += "</td.";
             bill += "</tr>";
+            bill += "<tr>";
+            bill += "<td valign='top'>";
+            bill += "<label for='first_name'>Notes</label>";
+            bill += "</td>";
+            bill += "<td valign='top'>";
+            bill += m.Billing.Notes;
+            bill += "</td>";
+            bill += "</tr>";
+            bill += "</html>";
             var olForm = "<h1>Sequencing</h1>"; ;
             olForm += "<table style='width:100%' class='panel-title'  border='1'>";
 
@@ -281,7 +293,7 @@ namespace MBBVL.Core {
             deliveryOptions += "<table style='width:100%' class='panel-title' border='1'>";
 
             deliveryOptions += "<tr  style='width:100%'>";
-            deliveryOptions += "<td class='boldCell'>EditedTextData</td>";
+            deliveryOptions += "<td class='boldCell'>"+ m.DataDeliveryOptions.Name+ " </td>";
             deliveryOptions += "<td class='boldCell'>UneditedChromatogramTrace</td>";
             deliveryOptions += "<td class='boldCell'>TextDataAndChromatogramTrace</td>";
             deliveryOptions += "<td class='boldCell'>UneditedTextAndChromatogramTrace</td>";
@@ -291,19 +303,16 @@ namespace MBBVL.Core {
 
 
             deliveryOptions += "<tr>";
-            deliveryOptions += "<td class='boldCell'>" + m.dataDeliveryOptions.EditedTextData + "</td>";
-            deliveryOptions += "<td class='boldCell'>" + m.dataDeliveryOptions.UneditedChromatogramTrace + "</td>";
-            deliveryOptions += "<td class='boldCell'>" + m.dataDeliveryOptions.TextDataAndChromatogramTrace + "</td>";
-            deliveryOptions += "<td class='boldCell'>" + m.dataDeliveryOptions.UneditedTextAndChromatogramTrace + "</td>";
+            deliveryOptions += "<td class='boldCell'>" + m.DataDeliveryOptions.Value + "</td>";
             // more cells here as needed
             deliveryOptions += "</tr>";
 
             deliveryOptions += "</table>";
 
-            var template = ship + bill  +olForm + dnaForm + deliveryOptions;
+            var template = ship + bill + olForm + dnaForm + deliveryOptions;
 
             CreateEmailForUser(m.Billing.Email, "Andersolind@gmail.com", template);
-          //  CreateEmailForJason(m.Billing.Email, "Andersolind@gmail.com", template);
+            //  CreateEmailForJason(m.Billing.Email, "Andersolind@gmail.com", template);
             return olForm;
         }
 
@@ -366,8 +375,8 @@ namespace MBBVL.Core {
 
             //Billing
 
-            var bill = "<h1>Billing</h1>";
-            bill += "<table width='100% style='float:right'>";
+            var bill = "<h1 style='color:blue'>Billing</h1>";
+            bill += "<table width='450% style='float:right'>";
             bill += "<thead>";
             bill += "<tr>";
             bill += "<th>Billing Information</th>";
@@ -426,9 +435,19 @@ namespace MBBVL.Core {
             bill += "<td valign='top'>";
             bill += m.billing.Email;
             bill += "</td>";
+
+            bill += "<tr>";
+
+            bill += "<td valign='top'>";
+            bill += "<label for='first_name'>Biling Email</label>";
+            bill += "</td>";
+            bill += "<td valign='top'>";
+            bill += m.billing.Email;
+            bill += "</td>";
+
             bill += "</tr> </table>";
 
-            var olForm = "<div style='padding-top: 120px'><h1>Oligonucleotide Sequence</h1></div>";
+            var olForm = "<div style='padding-top: 20px'><h1>Oligonucleotide Sequence</h1></div>";
             olForm += "<table style='width:100%' border='1'>";
             olForm += "<tr  style='width:100%'>";
             olForm += "<td class='boldCell'>PrimerName</td>";

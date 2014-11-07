@@ -9,6 +9,10 @@
         var properties = { PrimerName: "", Scale: scope, ScaleValue: "", Sequence: '', Purification: purification, GMP: gmp3, GmpValue: "" };
         return properties;
     }
+    this.oligonucleotideRow = function (synthesisScale1Values, purification, gmp3) {
+        var properties = { PrimerName: "", Qty: "", OligonucleotideSequence: '', SynthesisScale1: synthesisScale1Values, Modification: "", Purification: purification, GMP3: gmp3, GmpValue: "" };
+        return properties;
+    }
  
     
 

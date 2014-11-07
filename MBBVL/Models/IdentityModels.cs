@@ -57,7 +57,7 @@ namespace MBBVL.Models {
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int BillingId { get; set; }
-        [Required]
+        
         [Display(Name = "Quote no")]
         public string Quotenumber { get; set; }
         [Required]
@@ -141,22 +141,33 @@ namespace MBBVL.Models {
         public Guid UserId { get; set; }
 
     }
+
     public class DataDeliveryOptions {
+
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int DataDeliveryId { get; set; }
-        [Display(Name = "($5.00) Unedited Sequence Results [Chromatogram Trace]")]
-        public string UneditedChromatogramTrace { get; set; }
+        public string Name { get; set; }
 
-        [Display(Name = "($10.00) Edited sequence results [Text Data]")]
-        public string EditedTextData { get; set; }
-        [Display(Name = "($10.00) Edited Sequence Results [Text Data + Chromatogram Trace]")]
-        public string TextDataAndChromatogramTrace { get; set; }
-        [Display(Name = "($5.00) Unedited Sequence Results [Text + Chromatogram Trace]")]
-        public string UneditedTextAndChromatogramTrace { get; set; }
-
-        public Guid UserId { get; set; }
+        public string Value { get; set; }
     }
+    //public class DataDeliveryOptions {
+    //    [Key]
+    //    [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+    //    public int DataDeliveryId { get; set; }
+    //    [Display(Name = "($5.00) Unedited Sequence Results [Chromatogram Trace]")]
+    //    public string UneditedChromatogramTrace { get; set; }
+
+    //    [Display(Name = "($10.00) Edited sequence results [Text Data]")]
+    //    public string EditedTextData { get; set; }
+    //    [Display(Name = "($10.00) Edited Sequence Results [Text Data + Chromatogram Trace]")]
+    //    public string TextDataAndChromatogramTrace { get; set; }
+    //    [Display(Name = "($5.00) Unedited Sequence Results [Text + Chromatogram Trace]")]
+    //    public string UneditedTextAndChromatogramTrace { get; set; }
+
+    //    public Guid UserId { get; set; }
+    //}
+
     public class OrderForm {
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
@@ -177,7 +188,7 @@ namespace MBBVL.Models {
         public PickUp PickUp { get; set; }
         public Billing Billing { get; set; }
 
-        public DataDeliveryOptions dataDeliveryOptions { get; set; }
+        public DataDeliveryOptions DataDeliveryOptions { get; set; }
         public List<SequencingModel> sequencingModel { get; set; }
         public List<CustomPrimers> customPrimers { get; set; }
     }

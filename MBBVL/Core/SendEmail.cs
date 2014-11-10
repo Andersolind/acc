@@ -114,10 +114,11 @@ namespace MBBVL.Core {
             m.sequencingModel = model.sequencingModel;
             m.customPrimers = model.customPrimers;
             m.DataDeliveryOptions = model.DataDeliveryOptions;
+            var dnaForm = "";
 
             //headers<img src=\"cid:image1\">
-            var ship = "<img src='http://youneedafavor.com/images/logo.png'>";
-            ship += "<h1>Dear" + " " + model.Billing.FullName + " " + "here is your Order</h1>";
+            var ship = "<table><td align='center' style='padding: 40px 0 30 px 0;'><img src='http://youneedafavor.com/images/logo.png'>";
+            ship += "<h1>Dear" + " " + model.Billing.FullName + " " + "here is your Order</h1></td></table>";
 
             if (model.IsShipping) {
                 ship += "<table width='450px' style='float:left'>";
@@ -171,7 +172,7 @@ namespace MBBVL.Core {
             //Billing
 
 
-            var bill = "<table width='450px' style='float:left'>";
+            var bill = "<table width='100%' style='float:left;padding-bottom:100px;'>";
             bill += "<thead>";
             bill += "<tr>";
             bill += "<th>Billing Information</th>";
@@ -239,10 +240,14 @@ namespace MBBVL.Core {
             bill += m.Billing.Notes;
             bill += "</td>";
             bill += "</tr>";
-            bill += "</html>";
+            bill += "</table>";
             var olForm = "<h1>Sequencing</h1>"; ;
             olForm += "<table style='width:100%' class='panel-title'  border='1'>";
-
+            //olForm += "<thead>";
+            //olForm += "<tr>";
+            //olForm += "<th>Sequencing</th>";
+            //olForm += "</tr>";
+            //olForm += "</thead>";
             olForm += "<tr  style='width:100%'>";
             olForm += "<td class='boldCell'>Sample Name</td>";
             olForm += "<td class='boldCell'>Sample Conc</td>";
@@ -261,24 +266,26 @@ namespace MBBVL.Core {
                 olForm += "<td class='boldCell'>" + m.sequencingModel[i].SampleCon + "</td>";
                 olForm += "<td class='boldCell'>" + m.sequencingModel[i].VectorName + "</td>";
                 olForm += "<td class='boldCell'>" + m.sequencingModel[i].Length + "</td>";
+                olForm += "<td class='boldCell'>" + m.sequencingModel[i].PrimerName + "</td>";
                 olForm += "<td class='boldCell'>" + m.sequencingModel[i].PrimerConc + "</td>";
                 olForm += "<td class='boldCell'>" + m.sequencingModel[i].GmpValue + "</td>";
                 // more cells here as needed
                 olForm += "</tr>";
             }
             olForm += "</table>";
-            var dnaForm = "<h1>Custom Primers</h1>"; ;
-            dnaForm += "<table style='width:100%'  border='1'>";
-
-            dnaForm += "<tr  style='width:100%'>";
-            dnaForm += "<td class='boldCell'>Gmp</td>";
-            dnaForm += "<td class='boldCell'>Primer Named</td>";
-            dnaForm += "<td class='boldCell'>Scale Value</td>";
-            dnaForm += "<td class='boldCell'>Sequence</td>";
-            // more cells here as needed
-            dnaForm += "</tr>";
-
             if (model.IsPrimer) {
+                dnaForm = "<h1>Custom Primers</h1>"; ;
+                dnaForm += "<table style='width:100%'  border='1'>";
+
+                dnaForm += "<tr  style='width:100%'>";
+                dnaForm += "<td class='boldCell'>Gmp</td>";
+                dnaForm += "<td class='boldCell'>Primer Named</td>";
+                dnaForm += "<td class='boldCell'>Scale Value</td>";
+                dnaForm += "<td class='boldCell'>Sequence</td>";
+                // more cells here as needed
+                dnaForm += "</tr>";
+
+
                 for (int i = 0; i < m.customPrimers.Count(); i++) {
                     dnaForm += "<tr>";
                     dnaForm += "<td class='boldCell'>" + m.customPrimers[i].GmpValue + "</td>";
@@ -288,16 +295,14 @@ namespace MBBVL.Core {
                     // more cells here as needed
                     dnaForm += "</tr>";
                 }
+                dnaForm += "</table>";
             }
-            dnaForm += "</table>";
+           
             var deliveryOptions = "<h1>Delivery Options</h1>"; ;
             deliveryOptions += "<table style='width:100%' class='panel-title' border='1'>";
 
             deliveryOptions += "<tr  style='width:100%'>";
             deliveryOptions += "<td class='boldCell'>" + m.DataDeliveryOptions.Name + " </td>";
-            deliveryOptions += "<td class='boldCell'>UneditedChromatogramTrace</td>";
-            deliveryOptions += "<td class='boldCell'>TextDataAndChromatogramTrace</td>";
-            deliveryOptions += "<td class='boldCell'>UneditedTextAndChromatogramTrace</td>";
             // more cells here as needed
             deliveryOptions += "</tr>";
 

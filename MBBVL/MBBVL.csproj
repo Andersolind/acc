@@ -201,6 +201,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\OligoController.cs" />
+    <Compile Include="Controllers\OligosequenceController.cs" />
     <Compile Include="Controllers\PersonalizedProjectsController.cs" />
     <Compile Include="Controllers\QualitySystemsController.cs" />
     <Compile Include="Controllers\ResearchAndDevelopmentController.cs" />

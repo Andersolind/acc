@@ -47,10 +47,10 @@ namespace MBBVL.Controllers.Sequencing {
                 bill.UserId = g;
                 templateData.Billing = bill;
 
-                db.Entry(bill).State = EntityState.Added;
-                db.Billing.Add(bill);
+             //   db.Entry(bill).State = EntityState.Added;
+               // db.Billing.Add(bill);
 
-                if (model.IsShipping != true) {
+                if (model.IsShipping) {
                     //Pickup
 
                     PickUp ship = new PickUp();
@@ -62,8 +62,8 @@ namespace MBBVL.Controllers.Sequencing {
                     ship.Email = model.PickUp.Email;
 
                     ship.UserId = g;
-                    db.PickUp.Add(ship);
-                    db.Entry(ship).State = EntityState.Added;
+                    //db.PickUp.Add(ship);
+                    //db.Entry(ship).State = EntityState.Added;
                     templateData.PickUp = ship;
                 }
 
@@ -80,39 +80,43 @@ namespace MBBVL.Controllers.Sequencing {
                     ol.GmpValue = model.sequencingModel[i].GmpValue;
                     ol.UserId = g;
                     //Ties into the other id's
-                    db.SequencingModel.Add(ol);
+                    //db.SequencingModel.Add(ol);
                     getList.Add(ol);
-                    db.Entry(ol).State = EntityState.Added;
+                    //db.Entry(ol).State = EntityState.Added;
                 }
 
 
                 //DNA
-                CustomPrimers cp;
-                for (int i = 0; i < model.customPrimers.Count(); i++) {
-                    cp = new CustomPrimers();
-                    cp.GmpValue = model.customPrimers[i].GmpValue;
-                    cp.PrimerName = model.customPrimers[i].PrimerName;
-                    cp.ScaleValue = model.customPrimers[i].ScaleValue;
-                    cp.Sequence = model.customPrimers[i].Sequence;
-                    cp.UserId = g;
-                    //Ties into the other id's
-                    db.CustomPrimers.Add(cp);
-                    db.Entry(cp).State = EntityState.Added;
-                    getCustomPrimers.Add(cp);
+                if (model.IsPrimer) {
+                    CustomPrimers cp;
+                    for (int i = 0; i < model.customPrimers.Count(); i++) {
+                        cp = new CustomPrimers();
+                        cp.GmpValue = model.customPrimers[i].GmpValue;
+                        cp.PrimerName = model.customPrimers[i].PrimerName;
+                        cp.ScaleValue = model.customPrimers[i].ScaleValue;
+                        cp.Sequence = model.customPrimers[i].Sequence;
+                        cp.UserId = g;
+                        //Ties into the other id's
+                        //   db.CustomPrimers.Add(cp);
+                        // db.Entry(cp).State = EntityState.Added;
+                        getCustomPrimers.Add(cp);
+                    }
                 }
 
 
                 DataDeliveryOptions ddd = new DataDeliveryOptions();
                 ddd.Name = model.DataDeliveryOptions.Name;
                 ddd.Value = model.DataDeliveryOptions.Value;
-                db.dataDeliveryOptions.Add(ddd);
+           //     db.dataDeliveryOptions.Add(ddd);
                 templateData.DataDeliveryOptions = ddd;
-                db.Entry(ddd).State = EntityState.Added;
+             //   db.Entry(ddd).State = EntityState.Added;
 
                 //Create email template!
                 SendEmail email = new SendEmail();
                 templateData.sequencingModel = getList;
                 templateData.customPrimers = getCustomPrimers;
+                templateData.IsPrimer = model.IsPrimer;
+                templateData.IsShipping = model.IsShipping;
                 //
                 email.SetUpSequence(templateData);
                 // ParseTemplate(ob);

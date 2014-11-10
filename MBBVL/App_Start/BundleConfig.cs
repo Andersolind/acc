@@ -18,13 +18,14 @@ namespace MBBVL {
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
-                     
+
                       "~/js/Angular.js",
                        "~/js/ui-bootstrap-tpls-0.11.2.min.js",
                       "~/js/angular/app.js",
                        "~/js/angular/Service/acgtService.js",
                        "~/js/angular/Fac/factory.js",
                        "~/js/angular/Controller/OrderSequencingctrl.js",
+                         "~/js/angular/Controller/OrderOgliCtrl.js",
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(

@@ -118,8 +118,10 @@
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h3 class="panel-title">Custom Primers to be Synthesized & Used for Sequencing</h3>
+                <a style="color: white; text-decoration: underline;" href="/Sequencing/Pickup">Pick up policy</a><div style="float:right;"><input type="checkbox" id="Pickup" name="Pickup" ng-model="Primers" /> Do you need Custom Primers?</div>
+
             </div>
-            <div class="panel-body">
+            <div class="panel-body" ng-show="Primers">
                 <fieldset>
                     <legend>Custom Primers to be Synthesized & Used for Sequencing</legend>
                     <div class="col-lg-3">

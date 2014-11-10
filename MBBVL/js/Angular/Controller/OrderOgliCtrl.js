@@ -3,12 +3,7 @@
     SetupInitialRows();
     SetUpDatePicker();
     //Check box values
-
-  
-    //Sample Row
-   $scope.keyPressDnaGmp = function (index, value) {
-        $scope.OligonucleotideRow[index].GmpValue = value;
-    };
+    CreateKeyPress();
 
     function SetupInitialRows() {
         $scope.gmp3 = [{ name: 'yes', value: 'yes' }, { name: 'no', value: 'no' }];
@@ -16,22 +11,43 @@
         //
         $scope.purification = [{ name: 'Desalted', value: 'Desalted' }, { name: 'Rp-Cartidge', value: 'Rp-Cartidge' }];
 
-        $scope.OligonucleotideRow = [{ PrimerName: "", Qty: "", OligonucleotideSequence: '', SynthesisScale1: $scope.synthesisScale1Values, Modification: "", Purification: $scope.purification, GMP3: $scope.gmp3, GmpValue: "" }];
-}
+        $scope.finalDeliveryForm = [{ name: 'Liquid', value: 'Liquid' }, { name: 'Dry', value: 'Dry' }];
+
+        $scope.OligonucleotideRow = [{ PrimerName: "", Qty: "", OligonucleotideSequence: '', SynthesisScale1: $scope.synthesisScale1Values, SynthesisScaleValue: "", Modification: "", FinalDeliveryForm: $scope.finalDeliveryForm, FinalDeliveryFormValue: "", Purification: $scope.purification, PurificationValue: "", GMP3: $scope.gmp3, GmpValue: "" }];
+    }
     //Send these values into the db
     $scope.AddOligonucleotideRow = function () {
         //Push a new row
-        $scope.OligonucleotideRow.push(GenericHelpers.oligonucleotideRow($scope.synthesisScale1Values, $scope.purification, $scope.gmp3)));
+        $scope.OligonucleotideRow.push(GenericHelpers.oligonucleotideRow($scope.synthesisScale1Values, $scope.purification, $scope.finalDeliveryForm, $scope.gmp3));
     };
+    $scope.WrapperModel = {
+        Billing: {},
+        Shipping: {},
+        Oligosequence: $scope.OligonucleotideRow
+    };
+    function CreateKeyPress() {
+        //Tracks the GMP key press value
+        $scope.keyPressDnaGmp = function (index, value) {
+            $scope.OligonucleotideRow[index].GmpValue = value;
+        };
+        //synthesisScale1Values Key press values
+        $scope.keyPressSynthesisScale1Values = function (index, value) {
+            $scope.OligonucleotideRow[index].SynthesisScaleValue = value;
+        };
+
+        $scope.keyPressFinalDeliveryForm = function (index, value) {
+            $scope.OligonucleotideRow[index].FinalDeliveryFormValue = value;
+        };
+
+        $scope.keyPressPurification = function (index, value) {
+            $scope.OligonucleotideRow[index].PurificationValue = value;
+        };
+    }
 
     $scope.submitForm = function () {
         //Get all the form variables from the page and get ready to submit to our model
-        var url = "/api/Sequence/";
-        $scope.WrapperModel = {
-            Billing: {},
-            PickUp: {},
-            Oligosequence: $scope.OligonucleotideRow
-        };
+        var url = "/api/Oligosequence/";
+
         var model = $scope.WrapperModel;
         ACGTFactory.serverService(url, "Post", model).success(function (model, status) {
             if (status == 200) {
@@ -77,6 +93,6 @@
         $scope.format = $scope.formats[0];
     }
     //Delivery check
-    
+
 }]);
 

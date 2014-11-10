@@ -119,8 +119,8 @@ namespace MBBVL.Core {
             var ship = "<img src='http://youneedafavor.com/images/logo.png'>";
             ship += "<h1>Dear" + " " + model.Billing.FullName + " " + "here is your Order</h1>";
 
-            if (model.IsShipping != true) {
-                ship += "<table width='300px' style='float:left'>";
+            if (model.IsShipping) {
+                ship += "<table width='450px' style='float:left'>";
                 ship += "<thead>";
                 ship += "<tr>";
                 ship += "<th>Shipping Information</th>";
@@ -278,22 +278,23 @@ namespace MBBVL.Core {
             // more cells here as needed
             dnaForm += "</tr>";
 
-
-            for (int i = 0; i < m.customPrimers.Count(); i++) {
-                dnaForm += "<tr>";
-                dnaForm += "<td class='boldCell'>" + m.customPrimers[i].GmpValue + "</td>";
-                dnaForm += "<td class='boldCell'>" + m.customPrimers[i].PrimerName + "</td>";
-                dnaForm += "<td class='boldCell'>" + m.customPrimers[i].ScaleValue + "</td>";
-                dnaForm += "<td class='boldCell'>" + m.customPrimers[i].Sequence + "</td>";
-                // more cells here as needed
-                dnaForm += "</tr>";
+            if (model.IsPrimer) {
+                for (int i = 0; i < m.customPrimers.Count(); i++) {
+                    dnaForm += "<tr>";
+                    dnaForm += "<td class='boldCell'>" + m.customPrimers[i].GmpValue + "</td>";
+                    dnaForm += "<td class='boldCell'>" + m.customPrimers[i].PrimerName + "</td>";
+                    dnaForm += "<td class='boldCell'>" + m.customPrimers[i].ScaleValue + "</td>";
+                    dnaForm += "<td class='boldCell'>" + m.customPrimers[i].Sequence + "</td>";
+                    // more cells here as needed
+                    dnaForm += "</tr>";
+                }
             }
             dnaForm += "</table>";
             var deliveryOptions = "<h1>Delivery Options</h1>"; ;
             deliveryOptions += "<table style='width:100%' class='panel-title' border='1'>";
 
             deliveryOptions += "<tr  style='width:100%'>";
-            deliveryOptions += "<td class='boldCell'>"+ m.DataDeliveryOptions.Name+ " </td>";
+            deliveryOptions += "<td class='boldCell'>" + m.DataDeliveryOptions.Name + " </td>";
             deliveryOptions += "<td class='boldCell'>UneditedChromatogramTrace</td>";
             deliveryOptions += "<td class='boldCell'>TextDataAndChromatogramTrace</td>";
             deliveryOptions += "<td class='boldCell'>UneditedTextAndChromatogramTrace</td>";
@@ -325,11 +326,11 @@ namespace MBBVL.Core {
             //headers
             var ship = "<img src='http://youneedafavor.com/images/logo.png'>";
             ship += "<h1>Dear" + " " + model.shipping.FullName + " " + "Here is your Order</h1>";
-            ship += "<h1 style='color:blue'>Shipping</h1>";
-            ship += "<table width='450' style='float:left'>";
+            ship += "<div style='width:450px;padding-bottom:300px;'>";
+            ship += "<table style='float:left'>";
             ship += "<thead>";
             ship += "<tr>";
-            ship += "<th>Shipping Information</th>";
+            ship += "<th style='color:blue'>Shipping Information</th>";
             ship += "</tr>";
             ship += "</thead>";
             ship += "<tr>";
@@ -369,14 +370,15 @@ namespace MBBVL.Core {
             ship += "<label for='shippingEmail'>Shipping Email</label>";
             ship += "</td>";
             ship += "<td valign='top'>";
-            ship += m.shipping.Phone;
+            ship += m.shipping.Email;
             ship += "</td>";
             ship += "</tr>";
+            ship += "</table>";
 
             //Billing
 
-            var bill = "<h1 style='color:blue'>Billing</h1>";
-            bill += "<table width='450% style='float:right'>";
+
+            var bill = "<table  style='float:left'>";
             bill += "<thead>";
             bill += "<tr>";
             bill += "<th>Billing Information</th>";
@@ -421,7 +423,7 @@ namespace MBBVL.Core {
             //Billing Phone 
             bill += "<tr>";
             bill += "<td valign='top'>";
-            bill += "<label for='first_name'>Biling Phone</label>";
+            bill += "<label for='first_name'>Billing Phone</label>";
             bill += "</td>";
             bill += "<td valign='top'>";
             bill += m.billing.Phone;
@@ -430,7 +432,7 @@ namespace MBBVL.Core {
             //Billing Email
             bill += "<tr>";
             bill += "<td valign='top'>";
-            bill += "<label for='first_name'>Biling Email</label>";
+            bill += "<label for='first_name'>Billing Email</label>";
             bill += "</td>";
             bill += "<td valign='top'>";
             bill += m.billing.Email;
@@ -439,15 +441,16 @@ namespace MBBVL.Core {
             bill += "<tr>";
 
             bill += "<td valign='top'>";
-            bill += "<label for='first_name'>Biling Email</label>";
+            bill += "<label for='first_name'> Notes</label>";
             bill += "</td>";
             bill += "<td valign='top'>";
-            bill += m.billing.Email;
+            bill += m.billing.Notes;
             bill += "</td>";
 
             bill += "</tr> </table>";
+            bill += "</div>";
 
-            var olForm = "<div style='padding-top: 20px'><h1>Oligonucleotide Sequence</h1></div>";
+            var olForm = "<div><h1>Oligonucleotide Sequence</h1></div>";
             olForm += "<table style='width:100%' border='1'>";
             olForm += "<tr  style='width:100%'>";
             olForm += "<td class='boldCell'>PrimerName</td>";
@@ -463,21 +466,21 @@ namespace MBBVL.Core {
 
             for (int i = 0; i < m.oligosequence.Count(); i++) {
                 olForm += "<tr>";
-                olForm += "<td class='boldCell'>" + m.oligosequence[i].PrimerName.SingleOrDefault() + "</td>";
-                olForm += "<td class='boldCell'>" + m.oligosequence[i].Qty.SingleOrDefault() + "</td>";
+                olForm += "<td class='boldCell'>" + m.oligosequence[i].PrimerName + "</td>";
+                olForm += "<td class='boldCell'>" + m.oligosequence[i].Qty + "</td>";
                 olForm += "<td class='boldCell'>" + m.oligosequence[i].OligonucleotideSequence + "</td>";
-                olForm += "<td class='boldCell'>" + m.oligosequence[i].SynthesisScale1 + "</td>";
+                olForm += "<td class='boldCell'>" + m.oligosequence[i].SynthesisScaleValue + "</td>";
                 olForm += "<td class='boldCell'>" + m.oligosequence[i].GMP2 + "</td>";
                 olForm += "<td class='boldCell'>" + m.oligosequence[i].Modification + "</td>";
-                olForm += "<td class='boldCell'>" + m.oligosequence[i].FinalDeliveryForm + "</td>";
-                olForm += "<td class='boldCell'>" + m.oligosequence[i].Purification + "</td>";
+                olForm += "<td class='boldCell'>" + m.oligosequence[i].FinalDeliveryFormValue + "</td>";
+                olForm += "<td class='boldCell'>" + m.oligosequence[i].PurificationValue + "</td>";
                 // more cells here as needed
                 olForm += "</tr>";
             }
             olForm += "</table>";
             var template = ship + bill + olForm;
             CreateEmailForUser(m.shipping.Email, "Andersolind@gmail.com", template);
-            CreateEmailForJason(m.shipping.Email, "Andersolind@gmail.com", template);
+            //  CreateEmailForJason(m.shipping.Email, "Andersolind@gmail.com", template);
             return olForm;
         }
     }

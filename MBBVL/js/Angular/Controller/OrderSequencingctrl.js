@@ -58,10 +58,11 @@
     $scope.SequencingWrapperModel = {
         Billing: {},
         PickUp: {},
-        DataDeliveryOptions: $scope.DataDeliveryOptions,
+        DataDeliveryOptions: {},
         CustomPrimers: $scope.CustomPrimer,
         SequencingModel: $scope.NavigationConfig,
-        IsShipping: $scope.Pickup
+        IsShipping: $scope.Pickup,
+        IsPrimer:$scope.Primers
     };
     $scope.today = function () {
         $scope.dt = new Date();
@@ -108,10 +109,11 @@
        
         angular.forEach($scope.DataDelivery, function (value, key) {
             if (value.checked) {
-                $scope.DataDeliveryOptions = [{ Name: value.name, Value: value.checked }];
+                $scope.DataDeliveryOptions = { Name: value.name, Value: value.checked };
               
             }
         });
+        $scope.SequencingWrapperModel.IsPrimer = $scope.Primers;
         $scope.SequencingWrapperModel.DataDeliveryOptions = $scope.DataDeliveryOptions;
         var model = $scope.SequencingWrapperModel;
         ACGTFactory.serverService(url, "Post", model).success(function (model, status) {

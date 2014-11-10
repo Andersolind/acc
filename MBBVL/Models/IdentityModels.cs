@@ -82,21 +82,21 @@ namespace MBBVL.Models {
         public int SequenceId { get; set; }
         [Required]
         [Display(Name = "Primer Name")]
-        public string[] PrimerName { get; set; }
+        public string PrimerName { get; set; }
         [Display(Name = "QTY")]
-        public int[] Qty { get; set; }
+        public int Qty { get; set; }
         [Display(Name = "Oligonucleotide Sequence")]
         public string OligonucleotideSequence { get; set; }
         [Display(Name = "Synthesis Scale1 (μmole)")]
-        public string SynthesisScale1 { get; set; }
+        public string SynthesisScaleValue { get; set; }
         [Display(Name = "GMP2(Y/N)")]
         public bool GMP2 { get; set; }
         [Display(Name = "Modification")]
         public string Modification { get; set; }
         [Display(Name = "Final Delivery")]
-        public string FinalDeliveryForm { get; set; }
+        public string FinalDeliveryFormValue { get; set; }
         [Display(Name = "Purification")]
-        public string Purification { get; set; }
+        public string PurificationValue { get; set; }
         public Guid UserId { get; set; }
 
     }
@@ -185,6 +185,7 @@ namespace MBBVL.Models {
 
     public class SequencingWrapperModel {
         public bool IsShipping { get; set; }
+        public bool IsPrimer { get; set; }
         public PickUp PickUp { get; set; }
         public Billing Billing { get; set; }
 

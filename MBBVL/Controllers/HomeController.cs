@@ -8,7 +8,6 @@ using System.Linq;
 using System.Web.Mvc;
 using System.Xml.Serialization;
 using iTextSharp.text;
-using RazorEngine;
 using MBBVL.Core;
 namespace MBBVL.Controllers {
     public class HomeController : Controller {
@@ -145,29 +144,28 @@ namespace MBBVL.Controllers {
 
                 for (int i = 0; i < model.oligosequence.Count(); i++) {
                     ol = new Oligosequence();
-                    //Primer Name
-                    ol.PrimerName = model.oligosequence[i].PrimerName;
-                    //Qty
-                    ol.Qty = model.oligosequence[i].Qty;
-                    //OligonucleotideSequence
-                    ol.OligonucleotideSequence = model.oligosequence[i].OligonucleotideSequence;
-                    //SynthesisScale1
-                    var getSynthesisScale1 = Core.StaticValues.SynthesisD.SingleOrDefault(x => x.Value == Convert.ToInt32(model.oligosequence[i].SynthesisScale1));
-                    ol.SynthesisScale1 = getSynthesisScale1.Key;
+                    ////Primer Name
+                    //ol.PrimerName = model.oligosequence[i].PrimerName;
+                    ////Qty
+                    //ol.Qty = model.oligosequence[i].Qty;
+                    ////OligonucleotideSequence
+                    //ol.OligonucleotideSequence = model.oligosequence[i].OligonucleotideSequence;
+                    ////SynthesisScale1
+                    //var getSynthesisScale1 = Core.StaticValues.SynthesisD.SingleOrDefault(x => x.Value == Convert.ToInt32(model.oligosequence[i].SynthesisScale1));
+                    //ol.SynthesisScale1 = getSynthesisScale1.Key;
 
-                    var final = Core.StaticValues.FinalDelivery.SingleOrDefault(x => x.Value == Convert.ToString(model.oligosequence[i].FinalDeliveryForm));
-                    ol.FinalDeliveryForm = final.Text;
-                    ol.GMP2 = model.oligosequence[i].GMP2;
-                    ol.Modification = model.oligosequence[i].Modification;
+                    //var final = Core.StaticValues.FinalDelivery.SingleOrDefault(x => x.Value == Convert.ToString(model.oligosequence[i].FinalDeliveryForm));
+                    //ol.FinalDeliveryForm = final.Text;
+                    //ol.GMP2 = model.oligosequence[i].GMP2;
+                    //ol.Modification = model.oligosequence[i].Modification;
+                   
+                    //var purification = Core.StaticValues.Purification.SingleOrDefault(X => X.Value == model.oligosequence[i].Purification);
+                    //ol.Purification = purification.Text;
                    
                    
-                    var purification = Core.StaticValues.Purification.SingleOrDefault(X => X.Value == model.oligosequence[i].Purification);
-                    ol.Purification = purification.Text;
-                   
-                   
-                    ol.UserId = g;
-                    db.Oligosequence.Add(ol);
-                    db.Entry(ol).State = EntityState.Added;
+                    //ol.UserId = g;
+                    //db.Oligosequence.Add(ol);
+                    //db.Entry(ol).State = EntityState.Added;
                     getList.Add(ol);
                 }
                 //Create email template!

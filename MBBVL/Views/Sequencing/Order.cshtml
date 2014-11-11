@@ -16,7 +16,7 @@
 
 <h2>Order</h2>
 
-<div style="padding-top:100px; padding-bottom:200px">
+<div style="padding-top:100px; padding-bottom:100px">
     <form name="dnaForm" ng-app="acgt" ng-controller="OrderSequencing" class="form-horizontal" novalidate>
         @*@if (!Request.IsAuthenticated) {
                 <div class="panel panel-primary">
@@ -68,7 +68,7 @@
                                 <span style="color:red" ng-show="dnaForm.SampleName.$error.required">Sample Name is required.</span>
                             </td>
                             <td>
-                                <input type="text" class="form-control" id="txtSameConc" name="txtSameConc" ng-model="dna.SameConc" placeholder="EnterSample  Conc" title="Sample  Conc. (ng/µl)">
+                                <input type="text" class="form-control" id="txtSameConc" name="txtSameConc" ng-model="dna.SampleCon" placeholder="EnterSample  Conc" title="Sample  Conc. (ng/µl)">
 
                             </td>
                             <td>
@@ -76,7 +76,7 @@
 
                             </td>
                             <td>
-                                <input type="text" class="form-control" id="txtColumnName" name="txtLengthBases" ng-model="dna.LengthBases" placeholder="Enter Length (bases)" title="Length (bases)">
+                                <input type="text" class="form-control" id="txtColumnName" name="txtLengthBases" ng-model="dna.Length" placeholder="Enter Length (bases)" title="Length (bases)">
 
                             </td>
                             <td>

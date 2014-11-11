@@ -26,9 +26,10 @@
 
         $scope.gmp3 = [{ name: 'yes', value: 'yes' }, { name: 'no', value: 'no' }];
         //Dna Form
-        $scope.NavigationConfig = [{ SampleName: "", SameConc: "", VectorName: '', LengthBases: "", PrimerName: "", PrimerConc: "", GMP3: $scope.gmp3, GmpValue: "" }];
+        $scope.NavigationConfig = [{ SampleName: "", SampleCon: "", VectorName: '', Length: "", PrimerName: "", PrimerConc: "", GMP3: $scope.gmp3, GmpValue: "" }];
         //
-        $scope.CustomPrimer = [{ PrimerName: "", Scale: $scope.scaleValues, ScaleValue: "", Sequence: '', Purification: $scope.purification, GMP: $scope.gmp3, GmpValue: "" }];
+       // $scope.CustomPrimer = [{ PrimerName: "", Scale: $scope.scaleValues, ScaleValue: "", Sequence: '', Purification: $scope.purification, GMP: $scope.gmp3[1], GmpValue: "" }];
+        $scope.CustomPrimer = [{ PrimerName: "", Sequence: '' }];
 
     }
     //Send these values into the db
@@ -114,6 +115,7 @@
             }
         });
         $scope.SequencingWrapperModel.IsPrimer = $scope.Primers;
+        $scope.SequencingWrapperModel.IsShipping = $scope.Pickup,
         $scope.SequencingWrapperModel.DataDeliveryOptions = $scope.DataDeliveryOptions;
         var model = $scope.SequencingWrapperModel;
         ACGTFactory.serverService(url, "Post", model).success(function (model, status) {

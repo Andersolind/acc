@@ -121,10 +121,10 @@ namespace MBBVL.Core {
             ship += "<h1>Dear" + " " + model.Billing.FullName + " " + "here is your Order</h1></td></table>";
 
             if (model.IsShipping) {
-                ship += "<table width='450px' style='float:left'>";
+                ship += "<table width='100%' style='float:left'>";
                 ship += "<thead>";
                 ship += "<tr>";
-                ship += "<th>Shipping Information</th>";
+                ship += "<th>Pick up Information</th>";
                 ship += "</tr>";
                 ship += "</thead>";
                 ship += "<tr>";
@@ -200,7 +200,7 @@ namespace MBBVL.Core {
             bill += "<td valign='top'>";
             bill += "<label for='first_name'>Institution</label>";
             bill += "</td>";
-            bill += "</tr>";
+            
             bill += "<td valign='top'>";
             bill += m.Billing.Institution;
             bill += "</td>";
@@ -241,7 +241,7 @@ namespace MBBVL.Core {
             bill += "</td>";
             bill += "</tr>";
             bill += "</table>";
-            var olForm = "<h1>Sequencing</h1>"; ;
+            var olForm = "<h1 style='padding-top:300px'>Sequencing</h1>"; ;
             olForm += "<table style='width:100%' class='panel-title'  border='1'>";
             //olForm += "<thead>";
             //olForm += "<tr>";
@@ -278,9 +278,9 @@ namespace MBBVL.Core {
                 dnaForm += "<table style='width:100%'  border='1'>";
 
                 dnaForm += "<tr  style='width:100%'>";
-                dnaForm += "<td class='boldCell'>Gmp</td>";
+             //   dnaForm += "<td class='boldCell'>Gmp</td>";
                 dnaForm += "<td class='boldCell'>Primer Named</td>";
-                dnaForm += "<td class='boldCell'>Scale Value</td>";
+              //  dnaForm += "<td class='boldCell'>Scale Value</td>";
                 dnaForm += "<td class='boldCell'>Sequence</td>";
                 // more cells here as needed
                 dnaForm += "</tr>";
@@ -288,9 +288,9 @@ namespace MBBVL.Core {
 
                 for (int i = 0; i < m.customPrimers.Count(); i++) {
                     dnaForm += "<tr>";
-                    dnaForm += "<td class='boldCell'>" + m.customPrimers[i].GmpValue + "</td>";
+                   // dnaForm += "<td class='boldCell'>" + m.customPrimers[i].GmpValue + "</td>";
                     dnaForm += "<td class='boldCell'>" + m.customPrimers[i].PrimerName + "</td>";
-                    dnaForm += "<td class='boldCell'>" + m.customPrimers[i].ScaleValue + "</td>";
+               //     dnaForm += "<td class='boldCell'>" + m.customPrimers[i].ScaleValue + "</td>";
                     dnaForm += "<td class='boldCell'>" + m.customPrimers[i].Sequence + "</td>";
                     // more cells here as needed
                     dnaForm += "</tr>";
@@ -308,10 +308,10 @@ namespace MBBVL.Core {
 
 
 
-            deliveryOptions += "<tr>";
-            deliveryOptions += "<td class='boldCell'>" + m.DataDeliveryOptions.Value + "</td>";
-            // more cells here as needed
-            deliveryOptions += "</tr>";
+            //deliveryOptions += "<tr>";
+            //deliveryOptions += "<td class='boldCell'>" + m.DataDeliveryOptions.Value + "</td>";
+            //// more cells here as needed
+            //deliveryOptions += "</tr>";
 
             deliveryOptions += "</table>";
 
@@ -331,7 +331,7 @@ namespace MBBVL.Core {
             //headers
             var ship = "<img src='http://youneedafavor.com/images/logo.png'>";
             ship += "<h1>Dear" + " " + model.shipping.FullName + " " + "Here is your Order</h1>";
-            ship += "<div style='width:450px;padding-bottom:300px;'>";
+            ship += "<div style='width:100%;padding-bottom:300px;'>";
             ship += "<table style='float:left'>";
             ship += "<thead>";
             ship += "<tr>";

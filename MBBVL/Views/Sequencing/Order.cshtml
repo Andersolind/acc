@@ -88,7 +88,7 @@
 
                             </td>
                             <td>
-                                <select id="orderSequencingSelect" name="ordersequencingSelect" ng-change="keyPressDnaGmp($index,dnaGmp)" ng-model="dnaGmp" ng-options="user.value as user.name for user in dna.GMP3"></select>
+                                <select id="orderSequencingSelect" name="ordersequencingSelect" ng-change="keyPressDnaGmp($index,selectedOption)" ng-init="keyPressDnaGmp($index,selectedOption)" data-ng-model="selectedOption" ng-options="user.value as user.name for user in dna.GMP3"></select>
                             </td>
                         </tr>
                     </tbody>

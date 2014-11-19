@@ -2,7 +2,7 @@
 
     //returns our list
     this.list = function (gmp3) {
-        var properties = { SampleName: "", SameConc: "", VectorName: '', LengthBases: "", PrimerName: "", PrimerConc: "", GMP3: gmp3 };
+        var properties = { SampleName: "", SameCon: "", VectorName: '', Length: "", PrimerName: "", PrimerConc: "", GMP3: gmp3 };
         return properties;
     }
     this.custom = function (scope,purification,gmp3) {

@@ -26,8 +26,11 @@
 
         $scope.gmp3 = [{ name: 'yes', value: 'yes' }, { name: 'no', value: 'no' }];
         //Dna Form
+      
+        $scope.selectedOption = 'no';
         $scope.NavigationConfig = [{ SampleName: "", SampleCon: "", VectorName: '', Length: "", PrimerName: "", PrimerConc: "", GMP3: $scope.gmp3, GmpValue: "" }];
-        //
+        
+        
        // $scope.CustomPrimer = [{ PrimerName: "", Scale: $scope.scaleValues, ScaleValue: "", Sequence: '', Purification: $scope.purification, GMP: $scope.gmp3[1], GmpValue: "" }];
         $scope.CustomPrimer = [{ PrimerName: "", Sequence: '' }];
 

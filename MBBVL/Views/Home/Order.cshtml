@@ -28,76 +28,6 @@
             </div>
         }
         <div>*@
-
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h3 class="panel-title"> Oligonucleotide Order Form</h3>
-        </div>
-
-        <div class="panel-body">
-            <fieldset>
-                <legend> DNA Sequencing Order Form</legend>
-                <div class="col-lg-3">
-
-                    <div class="form-group row">
-                        <div class="col-lg-10">
-                            <button class="btn btn-default" ng-click="AddOligonucleotideRow()"><span class="glyphicon glyphicon-plus-sign"></span> Add Row</button>
-                        </div>
-                    </div>
-                </div>
-            </fieldset>
-            <table class="panel-body">
-                <thead>
-                    <tr>
-                        <th>Primer Name</th>
-                        <th>QTY</th>
-                        <th>Oligonucleotide Sequence</th>
-                        <th>Synthesis Scale(μmole)</th>
-                        <th>GMP(Y/N)</th>
-                        <th>Modification </th>
-                        <th>Final Delivery Form</th>
-                        <th>Purification</th>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="rows in OligonucleotideRow">
-
-                        <td>
-                            <input type="text" class="form-control" id="txtPrimerName" name="PrimerName" ng-model="rows.PrimerName" placeholder="Enter Primer Name" title="Primer Name" required>
-                            <span ng-show="dnaForm.PrimerName.$dirty && dnaForm.PrimerName.$invalid">  </span>
-                            <span style="color:red" ng-show="dnaForm.PrimerName.$error.required">Primer Name is required.</span>
-                        </td>
-                        <td>
-                            <input type="text" class="form-control" id="txtQty" name="txtQty" ng-model="rows.Qty" placeholder="Enter Qty" title="Qty">
-
-                        </td>
-                        <td>
-                            <input type="text" class="form-control" id="txtOligonucleotideSequence" name="OligonucleotideSequence" ng-model="rows.OligonucleotideSequence" placeholder="Oligonucleotide Sequence" title="Oligonucleotide Sequence">
-
-                        </td>
-                        <td>
-                            <select id="scaleValues1" class="form-control" name="scaleValues1" ng-change="keyPressSynthesisScale1Values($index,scaleValues1)" ng-model="scaleValues1" ng-options="findScale.name as findScale.value for findScale in rows.SynthesisScale1"></select>
-                        </td>
-                        <td>
-                            <select id="olgGmp" name="olgGmp" ng-change="keyPressDnaGmp($index,olgGmp)" ng-model="olgGmp" ng-options="user.value as user.name for user in rows.GMP3"></select>
-                        </td>
-                        <td>
-                            <input type="text" class="form-control" id="txtModification" name="txtModification" ng-model="rows.Modification" placeholder="Enter Modification" title="Modification">
-                        </td>
-                        <td>
-                            <select id="finalDeliveryForm" class="form-control" ng-change="keyPressFinalDeliveryForm($index,finalDeliveryForm2)" name="finalDeliveryForm" ng-model="finalDeliveryForm2" ng-options="deliveryForm.name as deliveryForm.value for deliveryForm in rows.FinalDeliveryForm"></select>
-                        </td>
-                        <td>
-                            <select id="ddlPurification" class="form-control" name="ddlPurification" ng-change="keyPressPurification($index,Purification2)" ng-model="Purification2" ng-options="user.value as user.name for user in rows.Purification"></select>
-                        </td>
-
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-
     <div class="panel panel-primary">
         <div class="panel-heading">
             <h3 class="panel-title">Billing Information</h3>
@@ -217,17 +147,87 @@
             </div>
         </div>
 
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h3 class="panel-title">Notes</h3>
-            </div>
-            <div class="panel-body">
-                <textarea name="txtNotes" ng-model="WrapperModel.Billing.Notes" cols="200" rows="5"></textarea>
-            </div>
-        </div>
-        <input type="submit" class="btn btn-primary" ng-click="submitForm()" ng-model="disableSubmit" ng-disabled="!dnaForm.$valid">
-    </div>
+      
 
+    </div>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title"> Oligonucleotide Order Form</h3>
+        </div>
+
+        <div class="panel-body">
+            <fieldset>
+                <legend> DNA Sequencing Order Form</legend>
+                <div class="col-lg-3">
+
+                    <div class="form-group row">
+                        <div class="col-lg-10">
+                            <button class="btn btn-default" ng-click="AddOligonucleotideRow()"><span class="glyphicon glyphicon-plus-sign"></span> Add Row</button>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <table class="panel-body">
+                <thead>
+                    <tr>
+                        <th>Primer Name</th>
+                        <th>QTY</th>
+                        <th>Oligonucleotide Sequence</th>
+                        <th>Synthesis Scale(μmole)</th>
+                        <th>GMP(Y/N)</th>
+                        <th>Modification </th>
+                        <th>Final Delivery Form</th>
+                        <th>Purification</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="rows in OligonucleotideRow">
+
+                        <td>
+                            <input type="text" class="form-control" id="txtPrimerName" name="PrimerName" ng-model="rows.PrimerName" placeholder="Enter Primer Name" title="Primer Name" required>
+                            <span ng-show="dnaForm.PrimerName.$dirty && dnaForm.PrimerName.$invalid">  </span>
+                            <span style="color:red" ng-show="dnaForm.PrimerName.$error.required">Primer Name is required.</span>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" id="txtQty" name="txtQty" ng-model="rows.Qty" placeholder="Enter Qty" title="Qty">
+
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" id="txtOligonucleotideSequence" name="OligonucleotideSequence" ng-model="rows.OligonucleotideSequence" placeholder="Oligonucleotide Sequence" title="Oligonucleotide Sequence">
+
+                        </td>
+                        <td>
+                            <select id="scaleValues1" class="form-control" name="scaleValues1" ng-change="keyPressSynthesisScale1Values($index,scaleValues1)" ng-model="scaleValues1" ng-options="findScale.name as findScale.value for findScale in rows.SynthesisScale1"></select>
+                        </td>
+                        <td>
+                            <select id="olgGmp" name="olgGmp" ng-change="keyPressDnaGmp($index,olgGmp)" ng-model="olgGmp" ng-options="user.value as user.name for user in rows.GMP3"></select>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" id="txtModification" name="txtModification" ng-model="rows.Modification" placeholder="Enter Modification" title="Modification">
+                        </td>
+                        <td>
+                            <select id="finalDeliveryForm" class="form-control" ng-change="keyPressFinalDeliveryForm($index,finalDeliveryForm2)" name="finalDeliveryForm" ng-model="finalDeliveryForm2" ng-options="deliveryForm.name as deliveryForm.value for deliveryForm in rows.FinalDeliveryForm"></select>
+                        </td>
+                        <td>
+                            <select id="ddlPurification" class="form-control" name="ddlPurification" ng-change="keyPressPurification($index,Purification2)" ng-model="Purification2" ng-options="user.value as user.name for user in rows.Purification"></select>
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Notes</h3>
+        </div>
+        <div class="panel-body">
+            <textarea name="txtNotes" ng-model="WrapperModel.Billing.Notes" cols="200" rows="5"></textarea>
+        </div>
+    </div>
+   
+    <input type="submit" class="btn btn-primary" ng-click="submitForm()" ng-model="disableSubmit" ng-disabled="!dnaForm.$valid">
 </form>
 <!-- Modal -->
 <div class="modal fade" id="t_and_c_m" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

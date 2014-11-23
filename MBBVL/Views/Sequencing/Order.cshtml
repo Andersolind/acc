@@ -27,6 +27,66 @@
                 </div>
             }
             <div>*@
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Billing Information</h3>
+            </div>
+            <div class="panel-body">
+                <div class="tab-pane" id="profile">
+                    <fieldset>
+                        <div class="control-group">
+                            <label class="col-md-2 control-label" for="InputFieldA">Quote number</label>
+
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" id="txtQuotenumber" name="txtQuotenumber" ng-model="SequencingWrapperModel.Billing.Quotenumber" placeholder="Quote number" title="Quote number">
+
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="col-md-2 control-label" for="InputFieldA">Full Name</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" id="txtBillingFullName" name="txtBillingFullName" ng-model="SequencingWrapperModel.Billing.FullName" placeholder="Full Name" title="Full Name">
+
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="col-md-2 control-label" for="InputFieldA">Institution</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" id="txtBillingInstitution" name="txtBillingInstitution" ng-model="SequencingWrapperModel.Billing.Institution" placeholder="Billing Institution" title="Billing Institution">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="col-md-2 control-label" for="InputFieldA">Billing Address</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" id="Address" name="Address" ng-model="SequencingWrapperModel.Billing.BillingAddress" placeholder="Billing Address" title="Billing Institution">
+
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="col-md-2 control-label" for="InputFieldA">Billing Phone</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" id="Phone" name="Phone" ng-model="SequencingWrapperModel.Billing.Phone" placeholder="Billing Phone" title="Billing Phone">
+
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="col-md-2 control-label" for="InputFieldA">Billing Email</label>
+                            <div class="col-md-10">
+                                <input type="email" class="form-control" id="billingEmail" name="billingEmail" ng-model="SequencingWrapperModel.Billing.Email" required placeholder="Billing Email" title="Billing Email">
+                                <span ng-show="dnaForm.billingEmail.$dirty && dnaForm.billingEmail.$invalid"></span>
+                            </div>
+                            <div ng-if="dnaForm.billingEmail.$error.required" class="error">
+                                You forgot to enter your email address...
+                            </div>
+                            <div style="color:red" ng-if="!dnaForm.billingEmail.$error.required &amp;&amp;
+                dnaForm.billingEmail.$error.email" class="error">
+                                You did not enter your email address correctly...
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
 
         <div class="panel panel-primary">
             <div class="panel-heading">
@@ -60,7 +120,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="dna in NavigationConfig">
+                        <tr ng-repeat="dna in NavigationConfig" ng-form='dnaForm'>
 
                             <td>
                                 <input type="text" class="form-control" id="txtSampleName" name="SampleName" ng-model="dna.SampleName" placeholder="Enter Sample Name" title="Sample Name" required>
@@ -173,66 +233,7 @@
                 </div>
             </div>
         </div>
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h3 class="panel-title">Billing Information</h3>
-            </div>
-            <div class="panel-body">
-                <div class="tab-pane" id="profile">
-                    <fieldset>
-                        <div class="control-group">
-                            <label class="col-md-2 control-label" for="InputFieldA">Quote number</label>
-
-                            <div class="col-md-10">
-                                <input type="text" class="form-control" id="txtQuotenumber" name="txtQuotenumber" ng-model="SequencingWrapperModel.Billing.Quotenumber" placeholder="Quote number" title="Quote number">
-
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="col-md-2 control-label" for="InputFieldA">Full Name</label>
-                            <div class="col-md-10">
-                                <input type="text" class="form-control" id="txtBillingFullName" name="txtBillingFullName" ng-model="SequencingWrapperModel.Billing.FullName" placeholder="Full Name" title="Full Name">
-
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="col-md-2 control-label" for="InputFieldA">Institution</label>
-                            <div class="col-md-10">
-                                <input type="text" class="form-control" id="txtBillingInstitution" name="txtBillingInstitution" ng-model="SequencingWrapperModel.Billing.Institution" placeholder="Billing Institution" title="Billing Institution">
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="col-md-2 control-label" for="InputFieldA">Billing Address</label>
-                            <div class="col-md-10">
-                                <input type="text" class="form-control" id="Address" name="Address" ng-model="SequencingWrapperModel.Billing.BillingAddress" placeholder="Billing Address" title="Billing Institution">
-
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="col-md-2 control-label" for="InputFieldA">Billing Phone</label>
-                            <div class="col-md-10">
-                                <input type="text" class="form-control" id="Phone" name="Phone" ng-model="SequencingWrapperModel.Billing.Phone" placeholder="Billing Phone" title="Billing Phone">
-
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="col-md-2 control-label" for="InputFieldA">Billing Email</label>
-                            <div class="col-md-10">
-                                <input type="email" class="form-control" id="billingEmail" name="billingEmail" ng-model="SequencingWrapperModel.Billing.Email" required placeholder="Billing Email" title="Billing Email">
-                                <span ng-show="dnaForm.billingEmail.$dirty && dnaForm.billingEmail.$invalid"></span>
-                            </div>
-                            <div ng-if="dnaForm.billingEmail.$error.required" class="error">
-                                You forgot to enter your email address...
-                            </div>
-                            <div style="color:red" ng-if="!dnaForm.billingEmail.$error.required &amp;&amp;
-                dnaForm.billingEmail.$error.email" class="error">
-                                You did not enter your email address correctly...
-                            </div>
-                        </div>
-                    </fieldset>
-                </div>
-            </div>
-        </div>
+      
 
         <div class="panel panel-primary">
             <div class="panel-heading">

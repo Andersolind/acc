@@ -114,19 +114,19 @@ namespace MBBVL.Core {
             m.sequencingModel = model.sequencingModel;
             m.customPrimers = model.customPrimers;
             m.DataDeliveryOptions = model.DataDeliveryOptions;
-           
+
 
             var dnaForm = "";
 
             //headers<img src=\"cid:image1\">
             var ship = "<table><td align='center' style='padding: 40px 0 30 px 0;'><img src='http://youneedafavor.com/images/logo.png'>";
-            ship += "<h1>Dear" + " " + model.Billing.FullName + " " + "here is your Order</h1></td></table>";
+            ship += "<h1>Dear" + " " + model.Billing.FullName + " " + "here is your Sequencing order</h1></td></table>";
 
             if (model.IsShipping) {
-                ship += "<table width='100%' style='float:left'>";
+                ship += "<table width='100' style='float:left' cellpadding='0 cellspacing='0' border='0 align='center'>";
                 ship += "<thead>";
                 ship += "<tr>";
-                ship += "<th>Pick up Information</th>";
+                ship += "<th ><h1  style='color:blue;text-decoration: underline;'>Pick Up Information</h1</th>";
                 ship += "</tr>";
                 ship += "</thead>";
                 ship += "<tr>";
@@ -174,10 +174,11 @@ namespace MBBVL.Core {
             //Billing
 
 
-            var bill = "<table width='100%' style='float:left;padding-bottom:100px;'>";
+            var bill = "<table width='100' style='float:left' cellpadding='0 cellspacing='0' border='0 align='center'>";
+
             bill += "<thead>";
             bill += "<tr>";
-            bill += "<th>Billing Information</th>";
+            bill += "<th ><h1 style='color:blue;text-decoration: underline;'>Billing Information</h1></th>";
             bill += "</tr>";
             bill += "</thead>";
             bill += "<tr>";
@@ -202,7 +203,6 @@ namespace MBBVL.Core {
             bill += "<td valign='top'>";
             bill += "<label for='first_name'>Institution</label>";
             bill += "</td>";
-
             bill += "<td valign='top'>";
             bill += m.Billing.Institution;
             bill += "</td>";
@@ -223,7 +223,7 @@ namespace MBBVL.Core {
             bill += "</td>";
             bill += "<td valign='top'>";
             bill += m.Billing.Phone;
-            bill += "</td.";
+            bill += "</td>";
             bill += "</tr>";
             //Billing Email
             bill += "<tr>";
@@ -243,8 +243,9 @@ namespace MBBVL.Core {
             bill += "</td>";
             bill += "</tr>";
             bill += "</table>";
-            var olForm = "<h1 style='padding-top:300px'>Sequencing</h1>"; ;
-            olForm += "<table style='width:100%' class='panel-title'  border='1'>";
+            var olForm = "<h1 style='padding-top:200px; color:blue;text-decoration: underline;'>Sequencing</h1>"; ;
+            olForm += "<table width='100%' style='float:left' cellpadding='0' cellspacing='0' border='0 align='center' border='1'>";
+
             //olForm += "<thead>";
             //olForm += "<tr>";
             //olForm += "<th>Sequencing</th>";
@@ -331,13 +332,13 @@ namespace MBBVL.Core {
             m.shipping = model.shipping;
             m.oligosequence = model.oligosequence;
             //headers
-            var ship = "<img src='http://youneedafavor.com/images/logo.png'>";
-            ship += "<h1>Dear" + " " + model.shipping.FullName + " " + "Here is your Order</h1>";
-            ship += "<div style='width:100%;padding-bottom:300px;'>";
-            ship += "<table style='float:left' cellpadding='0' cellspacing='0' border='0' id='backgroundTable'>";
+            var ship = "<table><td align='center' style='padding: 40px 0 30 px 0;'><img src='http://youneedafavor.com/images/logo.png'>";
+            ship += "<h1>Dear" + " " + model.shipping.FullName + " " + "here is your DNA Sequencing Order</h1></td></table>";
+
+            ship += "<table width='100' style='float:left' cellpadding='0' cellspacing='0' border='0' >";
             ship += "<thead>";
             ship += "<tr>";
-            ship += "<th style='color:blue'>Shipping Information</th>";
+            ship += "<th style='color:blue;text-decoration: underline;'><h1>Shipping Information</h1></th>";
             ship += "</tr>";
             ship += "</thead>";
             ship += "<tr>";
@@ -347,6 +348,7 @@ namespace MBBVL.Core {
             ship += "<td valign='top'>";
             ship += m.shipping.FullName;
             ship += "</td>";
+
             ship += "</tr>";
             ship += "<tr>";
             ship += "<td valign='top'>";
@@ -385,10 +387,10 @@ namespace MBBVL.Core {
             //Billing
 
 
-            var bill = "<table  style='float:left'>";
+            var bill = "<table width='100' style='float:left' cellpadding='0' cellspacing='0' border='0'>";
             bill += "<thead>";
             bill += "<tr>";
-            bill += "<th>Billing Information</th>";
+            bill += "<th style='color:blue; text-decoration: underline;'><h1>Billing Information</h1></th>";
             bill += "</tr>";
             bill += "</thead>";
             bill += "<tr>";
@@ -413,7 +415,7 @@ namespace MBBVL.Core {
             bill += "<td valign='top'>";
             bill += "<label for='first_name'>Institution</label>";
             bill += "</td>";
-            bill += "</tr>";
+
             bill += "<td valign='top'>";
             bill += m.billing.Institution;
             bill += "</td>";
@@ -434,7 +436,7 @@ namespace MBBVL.Core {
             bill += "</td>";
             bill += "<td valign='top'>";
             bill += m.billing.Phone;
-            bill += "</td.";
+            bill += "</td>";
             bill += "</tr>";
             //Billing Email
             bill += "<tr>";
@@ -455,9 +457,9 @@ namespace MBBVL.Core {
             bill += "</td>";
 
             bill += "</tr> </table>";
-            bill += "</div>";
 
-            var olForm = "<div><h1>Oligonucleotide Sequence</h1></div>";
+
+            var olForm = "<div style='padding-top:200px'><h1  style='color:blue;text-decoration: underline;'>Oligonucleotide Sequence</h1>";
             olForm += "<table style='width:100%' border='1'>";
             olForm += "<tr  style='width:100%'>";
             olForm += "<td class='boldCell'>PrimerName</td>";
@@ -484,7 +486,7 @@ namespace MBBVL.Core {
                 // more cells here as needed
                 olForm += "</tr>";
             }
-            olForm += "</table></body> </html>";
+            olForm += "</table> </div> </body> </html>";
             var template = StaticValues.HtmlHeaderText() + ship + bill + olForm;
             CreateEmailForUser(m.shipping.Email, "Andersolind@gmail.com", template);
             //  CreateEmailForJason(m.shipping.Email, "Andersolind@gmail.com", template);

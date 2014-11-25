@@ -57,13 +57,13 @@
 
 a.site-logo  {     
 
- background: url(/Content/Navigationicon.jpg) no-repeat top left;
+ background: url(/Content/MainLogo.png) no-repeat top left;
 
  display: block;       
 
- width: 100px;       
+ width:300px;       
 
- height: 70px;       
+ height: 120px;       
 
  text-indent: -9999px; /* hides the link text */
 

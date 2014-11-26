@@ -246,7 +246,9 @@
     <Content Include="Content\Bootstrap\Site.css" />
     <Content Include="images\Biostar1_Cropped.JPG" />
     <Content Include="images\bluepeople.jpg" />
+    <Content Include="images\Bsi-Logo.png" />
     <Content Include="images\entrance.jpg" />
+    <Content Include="images\Facebook.png" />
     <Content Include="images\greenpeople.jpg" />
     <Content Include="images\HPLC.JPG" />
     <Content Include="images\Lab Hood.jpg" />
@@ -261,6 +263,7 @@
     <Content Include="images\reflection3.jpg" />
     <Content Include="images\smallLogo.png" />
     <Content Include="images\Synthesizer1.JPG" />
+    <Content Include="images\Twitter.png" />
     <Content Include="js\Angular.js" />
     <Content Include="js\Angular\app.js" />
     <Content Include="js\Angular\Controller\OrderOgliCtrl.js" />

@@ -209,6 +209,7 @@
     <Compile Include="Controllers\SequenceController.cs" />
     <Compile Include="Controllers\TechSupportController.cs" />
     <Compile Include="Core\Helper.cs" />
+    <Compile Include="Core\Layout.cs" />
     <Compile Include="Core\SendEmail.cs" />
     <Compile Include="Core\StaticValues.cs" />
     <Compile Include="HelperClass\BooleanRequiredAttribute.cs" />
@@ -230,6 +231,7 @@
     <Compile Include="ValuesController.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Bootstrap\SubPages.css" />
     <Content Include="Content\Footer.png" />
     <Content Include="Content\Navigationicon.jpg" />
     <Content Include="Content\Background.png" />
@@ -250,6 +252,7 @@
     <Content Include="images\entrance.jpg" />
     <Content Include="images\Facebook.png" />
     <Content Include="images\greenpeople.jpg" />
+    <Content Include="images\Header.png" />
     <Content Include="images\HPLC.JPG" />
     <Content Include="images\Lab Hood.jpg" />
     <Content Include="images\location.png" />
@@ -376,6 +379,7 @@
     <Content Include="Views\PersonalizedProjects\PersonalizedCustomProjects.cshtml" />
     <Content Include="Views\PersonalizedProjects\SiteDirectedMutagenesis.cshtml" />
     <Content Include="Views\Shared\_Layout - Copy.cshtml" />
+    <Content Include="Views\Shared\_Layout - SubPages.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

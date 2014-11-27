@@ -25,10 +25,12 @@ namespace MBBVL.Controllers {
             return View();
         }
 
+      
+
         public ActionResult About() {
             ViewBag.Message = "Your application description page.";
 
-            return View();
+            return View("About","_Layout - SubPages");
         }
 
         public ActionResult Contact() {

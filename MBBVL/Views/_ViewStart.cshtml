@@ -3,9 +3,9 @@
     var controller = HttpContext.Current.Request.RequestContext.RouteData.Values["Controller"].ToString();
 
     string layout = "";
-    if (controller == "Dashboard")
+    if (controller != "Home")
     {
-        layout = "~/Views/Shared/_Captain.cshtml";
+        layout = "~/Views/Shared/_Layout - SubPages.cshtml";
     }
     else
     {

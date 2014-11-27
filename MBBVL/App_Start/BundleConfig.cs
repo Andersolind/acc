@@ -32,6 +32,11 @@ namespace MBBVL {
                       "~/Content/Bootstrap/bootstrap.css",
                      "~/Content/Bootstrap/datepicker.css",
                       "~/Content/Bootstrap/site.css"));
+            bundles.Add(new StyleBundle("~/Content/subClasses").Include(
+                      "~/Content/Bootstrap/bootstrap.css",
+                     "~/Content/Bootstrap/datepicker.css",
+                      "~/Content/Bootstrap/SubPages.css"));
+
         }
     }
 }

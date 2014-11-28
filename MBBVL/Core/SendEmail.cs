@@ -260,6 +260,10 @@ namespace MBBVL.Core {
             olForm += "<td class='boldCell'>Primer Name</td>";
             olForm += "<td class='boldCell'>Primer Conc</td>";
             olForm += "<td class='boldCell'>GMP3</td>";
+            olForm += "<td class='boldCell'>SeqID</td>";
+            olForm += "<td class='boldCell'>Template OD</td>";
+            olForm += "<td class='boldCell'>Primer OD</td>";
+            olForm += "<td class='boldCell'>Repeat</td>";
 
             // more cells here as needed
             olForm += "</tr>";
@@ -273,6 +277,10 @@ namespace MBBVL.Core {
                 olForm += "<td class='boldCell'>" + m.sequencingModel[i].PrimerName + "</td>";
                 olForm += "<td class='boldCell'>" + m.sequencingModel[i].PrimerConc + "</td>";
                 olForm += "<td class='boldCell'>" + m.sequencingModel[i].GmpValue + "</td>";
+                olForm += "<td class='boldCell'> </td>";
+                olForm += "<td class='boldCell'> </td>";
+                olForm += "<td class='boldCell'> </td>";
+                olForm += "<td class='boldCell'> </td>";
                 // more cells here as needed
                 olForm += "</tr>";
             }
@@ -472,6 +480,8 @@ namespace MBBVL.Core {
             olForm += "<td class='boldCell'>Modification</td>";
             olForm += "<td class='boldCell'>FinalDeliveryForm</td>";
             olForm += "<td class='boldCell'>Purification</td>";
+            olForm += "<td class='boldCell'>OligoID</td>";
+            
             // more cells here as needed
             olForm += "</tr>";
 
@@ -485,6 +495,7 @@ namespace MBBVL.Core {
                 olForm += "<td class='boldCell'>" + m.oligosequence[i].Modification + "</td>";
                 olForm += "<td class='boldCell'>" + m.oligosequence[i].FinalDeliveryFormValue + "</td>";
                 olForm += "<td class='boldCell'>" + m.oligosequence[i].PurificationValue + "</td>";
+                olForm += "<td class='boldCell'> </td>";
                 // more cells here as needed
                 olForm += "</tr>";
             }

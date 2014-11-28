@@ -3,21 +3,114 @@
 }
 <img class="img-responsive" src="~/images/Header.png" />
 <style>
-    p {
-        color: white;
-    }
+   
     #black {
         color: black;
     }
     H1, H2 {
-        color: white;
+        color: #067aad;
     }
+    nav.vertical {
+        border-radius: 4px;
+        /*box-shadow: 0 0 10px rgba(0,0,0,.15);*/
+        overflow: hidden;
+        text-align: center;
+        /*width:220px;*/
+    }
+
+        nav.vertical > ul {
+            list-style-type: none;
+            /*list-style-position: inside;
+            border: 1px solid black;*/
+        }
+
+            nav.vertical > ul > li {
+                display: block;
+            }
+
+                nav.vertical > ul > li > a {
+                    background-color: rgb(157, 34, 60);
+                    background-image: -webkit-linear-gradient(135deg, rgb(114, 51, 98), rgb(157, 34, 60));
+                    background-image: -moz-linear-gradient(135deg, rgb(114, 51, 98), rgb(157, 34, 60));
+                    background-image: -o-linear-gradient(135deg, rgb(114, 51, 98), rgb(157, 34, 60));
+                    background-image: linear-gradient(135deg, rgb(114, 51, 98), rgb(157, 34, 60));
+                    border-bottom: 1px solid rgba(255,255,255,.1);
+                    /*box-shadow: inset 0 1px 1px rgba(0,0,0,.1), 0 1px 1px rgba(0,0,0,.1);*/
+                    color: rgb(255,255,255);
+                    display: block;
+                    border:1px;
+                    font-size: .85rem;
+                    font-weight: 500;
+                    height: 50px;
+                    letter-spacing: .5rem;
+                    line-height: 50px;
+                    text-shadow: 0 1px 1px rgba(0,0,0,.1);
+                    text-transform: uppercase;
+                    transition: all .1s ease;
+                    text-decoration: none;
+                }
+
+                    nav.vertical > ul > li > a:hover {
+                        background-color: rgb(114, 51, 98);
+                        background-image: -webkit-linear-gradient(150deg, rgb(114, 51, 98), rgb(114, 51, 98));
+                        background-image: -moz-linear-gradient(150deg, rgb(114, 51, 98), rgb(114, 51, 98));
+                        background-image: -o-linear-gradient(150deg, rgb(114, 51, 98), rgb(114, 51, 98));
+                        background-image: linear-gradient(150deg, rgb(114, 51, 98), rgb(114, 51, 98));
+                        cursor: pointer;
+                    }
+
+                nav.vertical > ul > li > div {
+                    background-color: rgb(255,255,255);
+                }
+
+                    nav.vertical > ul > li > div > ul {
+                        list-style-type: none;
+                    }
+
+                        nav.vertical > ul > li > div > ul > li > a {
+                            background-color: rgb(255,255,255);
+                            border-bottom: 1px solid rgba(0,0,0,.05);
+                            color: #333331;
+                            display: block;
+                            font-size: 1.5rem;
+                            padding: 10px 0;
+                            text-decoration: none;
+                            transition: all 0.15s linear;
+                            list-style-position: inside;
+                            border: 1px solid blue;
+                        }
+
+                        nav.vertical > ul > li > div > ul > li:hover > a {
+                            background-color: lightBlue;
+                            color: rgb(255,255,255);
+                            padding: 10px 0 10px 50px;
+                        }
 </style>
 
 <div class="jumbotron">
-   
-    <div style="padding-left:200px;">
-        <p>Our History:</p>
+   <div style="float:left;">
+    <nav class="vertical">
+    <ul>
+        <li>
+           
+            <div>
+                <ul>
+                    <li>@Html.ActionLink("Location", "Location", "Home")</li>
+                    <li>@Html.ActionLink("History", "About", "Home")</li>
+                    <li>@Html.ActionLink("Company People", "CompanyPeople", "Home")</li>
+                    <li>@Html.ActionLink("Careers", "Careers", "Home")</li>
+                    <li>@Html.ActionLink("Publications that used acgts services", "PublicationServices", "Home")</li>
+                    <li>@Html.ActionLink("Terms and Conditions", "TermsAndConditions", "Home")</li>
+                </ul>
+            </div>
+        </li>
+       
+    </ul>
+</nav></div>
+ 
+            
+    <div style="padding-left:400px;">
+        <H2>Our History:</H2>
 
         <p id="black">Dr. Hai Shiene Chen established ACGT Corporation in 1995. Located at 700 Bay Street, ACGT occupies 6,500 square feet of laboratory and office space. We are located at the intersection of the business and research districts, walking distance from The Hospital for Sick Children, Toronto General Hospital, Mount Sinai Hospital, Princess Margaret Hospital, Women’s College Hospital, St. Michael’s’ Hospital, Ryerson University and the University of Toronto. ACGT is considered to be one of the prominent Canadian providers of DNA services. ACGT has consistently been selected as the primary service supplier with superior quality control and fast delivery time for many well-known medical institutions.</p>
     </div>

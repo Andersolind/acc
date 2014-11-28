@@ -1,15 +1,14 @@
-﻿
-@{
+﻿@{
     var controller = HttpContext.Current.Request.RequestContext.RouteData.Values["Controller"].ToString();
 
+    var action = HttpContext.Current.Request.RequestContext.RouteData.Values["Action"].ToString();
+
     string layout = "";
-    if (controller != "Home")
-    {
-        layout = "~/Views/Shared/_Layout - SubPages.cshtml";
-    }
-    else
-    {
+    if (controller == "Home" && action == "Index") {
+
         layout = "~/Views/Shared/_Layout.cshtml";
+    } else {
+        layout = "~/Views/Shared/_Layout - SubPages.cshtml";
 
     }
     Layout = layout;

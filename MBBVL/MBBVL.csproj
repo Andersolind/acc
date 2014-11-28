@@ -200,6 +200,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\InvestorsController.cs" />
     <Compile Include="Controllers\OligoController.cs" />
     <Compile Include="Controllers\OligosequenceController.cs" />
     <Compile Include="Controllers\PersonalizedProjectsController.cs" />
@@ -383,6 +384,7 @@
     <Content Include="Views\Shared\_Layout - Copy.cshtml" />
     <Content Include="Views\Shared\_Layout - SubPages.cshtml" />
     <Content Include="Views\Services\Index.cshtml" />
+    <Content Include="Views\Investors\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

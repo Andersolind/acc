@@ -3,18 +3,48 @@
     ViewBag.Title = "Synthesis Technology";
 }
 
-<h2>Synthesis Technology</h2>
-<div class="jumbotron">
-    <ul>
-        <li>The process of generating DNA oligonucleotides involves four general steps that are repeated for each nucleotide that is coupled to the growing chain (coupling cycle). Following the addition of each base, the reaction column is washed to remove chemical reagents and reaction by-products that may interfere with subsequent coupling cycles. The oligo is generated from 3' to 5'.</li>
-        <p>Four steps in each base coupling reaction:</p>
-    </ul>
-    <ul type="circle">
-        <li>De-blocking: The first base in the oligo (at the 3' end) is attached to a solid support. For the ABI 3900, the solid support is a Controlled Pore Glass (CPG)-filled column. This first base is in an inactive state. To add another base, the acid-labile 4,4’-dimethoxytrityl (DMT) group protecting the 5’ hydroxyl group is removed by adding dichloroacetic acid/trichloroacetic acid in dichloromethane to the column. </li>
-        <li>Base condensation: The next base to be added to the column is first activated using tetrazole. Tetrazole cleaves the group protecting the phosphorus linkage. The 5’ hydroxyl group of the preceding amidite and the newly activated phosphorus group bind to join the two bases, forming an unstable phosphite linkage.</li>
-        <li>Capping: For some oligo chains, an activated base will not bind to the active 5’ hydroxyl group. Since the condensation reaction is not 100% efficient, the unbound 5’hydroxyl group must be capped to prevent the oligo from extending further with an undesired sequence. Capping is done by adding acetic anhydride and N-methylimidazole to the column. </li>
-        <li>Oxidation:  This step is conducted to stabilize the weak phosphite linkage. When this linkage is oxidized by adding a dilute iodine solution, pyridine, and tetrahydrofuran to the column, a stable phosphate linkage is formed.</li>
-    </ul>
-    <p>Scale of synthesis is based on the amount of first base attached to the CPG-filled column to initiate the DNA synthesis process. The scale of synthesis is not the expected yield but is proportional to the yield of oligonucleotide manufactured. Actual yield depends on the size of the oligonucleotide, coupling efficiency, and base composition.</p>
-    <p>Learn more about oligo purification and oligo modifications.</p>
+<img class="img-responsive" src="~/images/Header.png" />
+
+<div style="padding-bottom:40px;">
+    <div style="float:left;">
+        <nav class="vertical">
+            <ul>
+                <li>
+                    <div>
+                        <ul>
+                            <li>@Html.ActionLink("Oligo Order Form", "Order", "Home")</li>
+                            <li>@Html.ActionLink("General Overview", "GeneralOverview", "Oligo")</li>
+                            <li>@Html.ActionLink("GMP", "GMP", "Oligo")</li>
+                            <li>@Html.ActionLink("PriceList", "PriceList", "Oligo")</li>
+                            <li>@Html.ActionLink("PurificationModifications", "PurificationModifications", "Oligo")</li>
+                            <li>@Html.ActionLink("SynthesisTechnology", "SynthesisTechnology", "Oligo")</li>
+                            <li>@Html.ActionLink("FAQ", "FAQ", "Oligo")</li>
+                        </ul>
+                    </div>
+                </li>
+
+            </ul>
+        </nav>
+    </div>
+
+
+    <div style="padding-left:400px;">
+        <h2>Synthesis Technology</h2>
+
+        <ul>
+            <li>The process of generating DNA oligonucleotides involves four general steps that are repeated for each nucleotide that is coupled to the growing chain (coupling cycle). Following the addition of each base, the reaction column is washed to remove chemical reagents and reaction by-products that may interfere with subsequent coupling cycles. The oligo is generated from 3' to 5'.</li>
+            <p>Four steps in each base coupling reaction:</p>
+        </ul>
+        <ul type="circle">
+            <li>De-blocking: The first base in the oligo (at the 3' end) is attached to a solid support. For the ABI 3900, the solid support is a Controlled Pore Glass (CPG)-filled column. This first base is in an inactive state. To add another base, the acid-labile 4,4’-dimethoxytrityl (DMT) group protecting the 5’ hydroxyl group is removed by adding dichloroacetic acid/trichloroacetic acid in dichloromethane to the column. </li>
+            <li>Base condensation: The next base to be added to the column is first activated using tetrazole. Tetrazole cleaves the group protecting the phosphorus linkage. The 5’ hydroxyl group of the preceding amidite and the newly activated phosphorus group bind to join the two bases, forming an unstable phosphite linkage.</li>
+            <li>Capping: For some oligo chains, an activated base will not bind to the active 5’ hydroxyl group. Since the condensation reaction is not 100% efficient, the unbound 5’hydroxyl group must be capped to prevent the oligo from extending further with an undesired sequence. Capping is done by adding acetic anhydride and N-methylimidazole to the column. </li>
+            <li>Oxidation:  This step is conducted to stabilize the weak phosphite linkage. When this linkage is oxidized by adding a dilute iodine solution, pyridine, and tetrahydrofuran to the column, a stable phosphate linkage is formed.</li>
+        </ul>
+        <p>Scale of synthesis is based on the amount of first base attached to the CPG-filled column to initiate the DNA synthesis process. The scale of synthesis is not the expected yield but is proportional to the yield of oligonucleotide manufactured. Actual yield depends on the size of the oligonucleotide, coupling efficiency, and base composition.</p>
+        <p>Learn more about oligo purification and oligo modifications.</p>
+
+    </div>
 </div>
+
+

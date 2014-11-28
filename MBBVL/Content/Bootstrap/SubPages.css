@@ -55,9 +55,16 @@ body {
     }
 }
 
-
 p {
+    font-size:15px;
+}
+
+li{
+    font-size:12px;
+}
+p.footer {
     color: white;
+
 }
 h3{
     color:white;

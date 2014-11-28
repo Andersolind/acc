@@ -36,7 +36,7 @@ namespace MBBVL {
                       "~/Content/Bootstrap/bootstrap.css",
                      "~/Content/Bootstrap/datepicker.css",
                       "~/Content/Bootstrap/SubPages.css",
-                      "~/Content/Bootstrap/SideNabBar.css"));
+                      "~/Content/Bootstrap/SideNavBar.css"));
 
         }
     }

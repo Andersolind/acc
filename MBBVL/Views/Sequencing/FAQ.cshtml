@@ -3,11 +3,44 @@
     ViewBag.Title = "FAQ";
 }
 
-<h2>FAQ</h2>
 
-<p>Frequently Asked Questions about DNA Sequencing</p>
-<p>How can I view my sequence data?</p>
-<p>To view your sequence data, please download the free ABI Sequence Scanner software.
-Other free software is also available for viewing sequencing data;</p>
-<p>For Mac users: <a href="http://4peaks.en.softonic.com/mac"> 4peaks software</a></p>
-<p>For PC users: <a href="http://technelysium.com.au/"> chromas lite (technelysium)</a></p>
+<img class="img-responsive" src="~/images/Header.png" />
+
+<div style="padding-bottom:40px;">
+    <div style="float:left;">
+        <nav class="vertical">
+            <ul>
+                <li>
+                    <div>
+                        <ul>
+                            <li>@Html.ActionLink("Sequencing Order Form", "Order", "Sequencing")</li>
+                            <li>@Html.ActionLink("FAQ", "FAQ", "Sequencing")</li>
+                            <li>@Html.ActionLink("Inhouse Primers", "InhousePrimers", "Sequencing")</li>
+                            <li>@Html.ActionLink("Pick Up", "PickUp", "Sequencing")</li>
+                            <li>@Html.ActionLink("Price List", "PriceList", "Sequencing")</li>
+                            <li>@Html.ActionLink("Sample Preparation", "SamplePreparation", "Sequencing")</li>
+                            <li>@Html.ActionLink("Sequencing Technology", "SequencingTechnology", "Sequencing")</li>
+
+                        </ul>
+                    </div>
+                </li>
+
+            </ul>
+        </nav>
+    </div>
+
+
+    <div style="padding-left:400px;">
+        <h2>FAQ</h2>
+
+        <p>Frequently Asked Questions about DNA Sequencing</p>
+        <p>How can I view my sequence data?</p>
+        <p>
+            To view your sequence data, please download the free ABI Sequence Scanner software.
+            Other free software is also available for viewing sequencing data;
+        </p>
+        <p>For Mac users: <a href="http://4peaks.en.softonic.com/mac"> 4peaks software</a></p>
+        <p>For PC users: <a href="http://technelysium.com.au/"> chromas lite (technelysium)</a></p>
+    </div>
+</div>
+

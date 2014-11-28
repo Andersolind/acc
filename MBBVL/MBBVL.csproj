@@ -354,7 +354,7 @@
     <Content Include="Views\Home\Careers.cshtml" />
     <Content Include="Views\Home\PublicationServices.cshtml" />
     <Content Include="Views\Home\TermsAndConditions.cshtml" />
-    <Content Include="Views\Home\GeneralOverview.cshtml" />
+    <Content Include="Views\Oligo\GeneralOverview.cshtml" />
     <Content Include="Views\Oligo\FAQ.cshtml" />
     <Content Include="Views\Oligo\GMP.cshtml" />
     <Content Include="Views\Oligo\SynthesisTechnology.cshtml" />

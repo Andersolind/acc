@@ -3,8 +3,38 @@
     ViewBag.Title = "GMP";
 }
 
-<h2>GMP</h2>
-<div class="jumbotron">
-    <p>ACGT is officially certified to manufacture oligonucleotides following current Good Manufacturing Practice (cGMP). ACGT customers can be confident that the DNA products synthesized at our certified facility meet the regulatory guidelines established by several organizations to ensure the delivery of a high quality product.</p>
-    <p>GMP-manufactured oligonucleotides undergo quality control (QC) testing by High Performance Liquid Chromatography (HPLC) to ensure that the purity of the final product meets minimum specifications. The quality system also ensures complete traceability of the product and rigorous adherence to Standard Operating Procedures (SOPs).</p>
+<img class="img-responsive" src="~/images/Header.png" />
+
+<div style="padding-bottom:40px;">
+    <div style="float:left;">
+        <nav class="vertical">
+            <ul>
+                <li>
+                    <div>
+                        <ul>
+                            <li>@Html.ActionLink("Oligo Order Form", "Order", "Home")</li>
+                            <li>@Html.ActionLink("General Overview", "GeneralOverview", "Oligo")</li>
+                            <li>@Html.ActionLink("GMP", "GMP", "Oligo")</li>
+                            <li>@Html.ActionLink("PriceList", "PriceList", "Oligo")</li>
+                            <li>@Html.ActionLink("PurificationModifications", "PurificationModifications", "Oligo")</li>
+                            <li>@Html.ActionLink("SynthesisTechnology", "SynthesisTechnology", "Oligo")</li>
+                            <li>@Html.ActionLink("FAQ", "FAQ", "Oligo")</li>
+                        </ul>
+                    </div>
+                </li>
+
+            </ul>
+        </nav>
+    </div>
+
+
+    <div style="padding-left:400px;">
+        <h2>GMP</h2>
+
+        <p>ACGT is officially certified to manufacture oligonucleotides following current Good Manufacturing Practice (cGMP). ACGT customers can be confident that the DNA products synthesized at our certified facility meet the regulatory guidelines established by several organizations to ensure the delivery of a high quality product.</p>
+        <p>GMP-manufactured oligonucleotides undergo quality control (QC) testing by High Performance Liquid Chromatography (HPLC) to ensure that the purity of the final product meets minimum specifications. The quality system also ensures complete traceability of the product and rigorous adherence to Standard Operating Procedures (SOPs).</p>
+
+
+    </div>
 </div>
+

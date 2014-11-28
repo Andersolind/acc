@@ -1,7 +1,7 @@
 ﻿@{
-    ViewBag.Title = "Purification &Modifications";
+    ViewBag.Title = "Purification & Modifications";
 }
-<style>
+@*<style>
     .jm-item {
         padding: 10px;
         display: inline-block;
@@ -96,8 +96,8 @@
     .first .jm-item-wrapper:hover .jm-item-button {
         top: 20%;
     }
-</style>
-<h2>PurificationModifications</h2>
+</style>*@
+@*<h2>PurificationModifications</h2>
 
 
 <div class="jm-item first ">
@@ -110,37 +110,70 @@
         <div class="jm-item-title">Oligonucleotide Services</div>
     </div>
 
-</div>
-<div class="jumbotron">
-    <p>Oligonucleotide Purification </p>
-    <br />
-    <p>Following the completion of the oligo synthesis reactions, the completed oligo is cleaved from the solid support and deprotected; this is accomplished by adding concentrated ammonia to the column at 55ºC overnight. The final product of the synthesis process is a mixture of the desired oligo, truncated sequences, and cleaved protective groups. Purification of the oligo is required to remove by-products of the synthesis reaction and increase the concentration of full length oligo. There are two purification options and the best one depends on the downstream application of the oligonucleotide.</p>
-    <p>Desalting:</p>
-    <p>Desalting is conducted to remove the unwanted by-products of the synthesis, cleavage, and deprotection procedures.  Once an oligo has been desalted, it can be used for most molecular biology applications such as PCR. In general, desalting is acceptable for oligos less than 35 bases in length, as the full-length oligo will be the most abundant product. NOTE: Desalting does NOT remove truncated oligonucleotides. </p>
+</div>*@
 
 
-    <p>Reverse Phase (RP) Cartridge Purification:</p>
-    <p>For some applications, including multiplex PCR, cloning, and mutagenesis, further purification will improve the purity, and hence performance, of the oligonucleotide. RP cartridge purification involves separating full-length oligos (which contain a 5’-DMT group) from truncated oligos (without 5'-DMT group) based on the difference in hydrophobicity. Full length oligos with 5'-DMT group are retained on the column while non-5'-DMT containing sequences are washed away. After cleaving the 5'-DMT group from the column, the desired full length oligo is recovered. RP cartridge purification is also recommended for longer oligos (>35 bases in length) since the number of truncated oligos tends to increase with increasing coupling cycles.</p>
-    <p>Post-purification analysis of Molecular Weight using Mass spectrometry (MS):</p>
+<img class="img-responsive" src="~/images/Header.png" />
 
-    <p>Mass Spectrometry (MS) allows the molecular weight of the oligo to be measured. In a mass spectrometer, the oligo is ionized and the ions are propelled into a mass detector and analyzer. MS analysis allows the comparison of the calculated molecular weight (MW) of the oligo to the measured MW, and can detect deletions, additions, or substitutions within the oligo sequence. MS can also readily detect the incomplete removal of protecting groups during the final steps of synthesis. </p>
-    <p>ACGT offers MS analysis through a third-party provider and additional charges may apply.</p>
-    <p>Oligonucleotide Modifications </p>
-    <p>Oligonucleotides can also be modified or synthesized with non-nucleotide moieties for a variety of biological applications. </p>
-    <p>Degenerate primers:</p>
-    <p>Degenerate primers are mixtures of oligonucleotides that have different bases at one or more position. They are often used when only the protein sequence (rather than the actual base sequence) is known or for amplifying similar sequences like SNPs and homologous genes. Depending on the downstream application of the oligo, deoxyinosine residues could be used at sites where there is complete degeneracy.</p>
-    <p>Deoxyinosine:</p>
-    <p>Deoxyinosine is a deoxynucleoside with the base 6-hydroxypurine. Deoxyinosine residues in an oligonucleotide can pair with any nucleotide residue on the target DNA. Deoxyinosine can be used instead of mixed bases (degenerate bases), thus reducing the number of unique oligos synthesized. Do not use deoxyinosine for PCR primers as DNA polymerases may not recognize this base and may fall off.</p>
-    <p>Biotin</p>
-    <p>Due to biotin’s affinity for streptavidin, a biotin-labelled oligo can be used to link the oligo to streptavidin affinity columns or streptavidin-protein conjugates. Biotin can be added to the 5’ or 3’ end of the oligo by adding it to a linker molecule.</p>
-    <p>Phosphate groups</p>
-    <p>Unmodified oligonucleotides have a 5’-hydroxyl group, however a 5’ phosphate group can be synthesized. By adding a 5’-phosphate group, either enzymatically or chemically during oligo synthesis, the oligo can be ligated by a ligase.</p>
-    <p>Thiol (sulfhydryl):</p>
-    <p>Thiol-modified oligos are synthesized by incorporating the thiol group (with C3 or C6 linker) during oligo synthesis at either the 5’- or 3’- end. Thiol-modified oligos can be linked to peptides or enzymes; for example oligo probes labelled with alkaline phosphatase enzyme can be used for in situ hybridization. Thiol-modified oligos can also be used for immobilization on surfaces and for coupling maleimide (sulfhydryl-reactive) dyes.</p>
-    <p>Fluorescent Labeling:</p>
-    <p>
-        Oligos can also be labelled with fluorescent molecules, like fluorescein, for use in PCR quantification and in situ hybridization probes.
+<div style="padding-bottom:40px;">
+    <div style="float:left;">
+        <nav class="vertical">
+            <ul>
+                <li>
+                    <div>
+                        <ul>
+                            <li>@Html.ActionLink("Oligo Order Form", "Order", "Home")</li>
+                            <li>@Html.ActionLink("General Overview", "GeneralOverview", "Oligo")</li>
+                            <li>@Html.ActionLink("GMP", "GMP", "Oligo")</li>
+                            <li>@Html.ActionLink("PriceList", "PriceList", "Oligo")</li>
+                            <li>@Html.ActionLink("PurificationModifications", "PurificationModifications", "Oligo")</li>
+                            <li>@Html.ActionLink("SynthesisTechnology", "SynthesisTechnology", "Oligo")</li>
+                            <li>@Html.ActionLink("FAQ", "FAQ", "Oligo")</li>
+                        </ul>
+                    </div>
+                </li>
 
-        Other oligonucleotide modifications are available, please contact us for more information and pricing.
-    </p>
+            </ul>
+        </nav>
+    </div>
+
+
+    <div style="padding-left:400px;">
+        <h2>Purification and Modifications</h2>
+
+        <p id="black">Dr. Hai Shiene Chen established ACGT Corporation in 1995. Located at 700 Bay Street, ACGT occupies 6,500 square feet of laboratory and office space. We are located at the intersection of the business and research districts, walking distance from The Hospital for Sick Children, Toronto General Hospital, Mount Sinai Hospital, Princess Margaret Hospital, Women’s College Hospital, St. Michael’s’ Hospital, Ryerson University and the University of Toronto. ACGT is considered to be one of the prominent Canadian providers of DNA services. ACGT has consistently been selected as the primary service supplier with superior quality control and fast delivery time for many well-known medical institutions.</p>
+
+        <p>Oligonucleotide Purification </p>
+        <br />
+        <p>Following the completion of the oligo synthesis reactions, the completed oligo is cleaved from the solid support and deprotected; this is accomplished by adding concentrated ammonia to the column at 55ºC overnight. The final product of the synthesis process is a mixture of the desired oligo, truncated sequences, and cleaved protective groups. Purification of the oligo is required to remove by-products of the synthesis reaction and increase the concentration of full length oligo. There are two purification options and the best one depends on the downstream application of the oligonucleotide.</p>
+        <p>Desalting:</p>
+        <p>Desalting is conducted to remove the unwanted by-products of the synthesis, cleavage, and deprotection procedures.  Once an oligo has been desalted, it can be used for most molecular biology applications such as PCR. In general, desalting is acceptable for oligos less than 35 bases in length, as the full-length oligo will be the most abundant product. NOTE: Desalting does NOT remove truncated oligonucleotides. </p>
+
+
+        <p>Reverse Phase (RP) Cartridge Purification:</p>
+        <p>For some applications, including multiplex PCR, cloning, and mutagenesis, further purification will improve the purity, and hence performance, of the oligonucleotide. RP cartridge purification involves separating full-length oligos (which contain a 5’-DMT group) from truncated oligos (without 5'-DMT group) based on the difference in hydrophobicity. Full length oligos with 5'-DMT group are retained on the column while non-5'-DMT containing sequences are washed away. After cleaving the 5'-DMT group from the column, the desired full length oligo is recovered. RP cartridge purification is also recommended for longer oligos (>35 bases in length) since the number of truncated oligos tends to increase with increasing coupling cycles.</p>
+        <p>Post-purification analysis of Molecular Weight using Mass spectrometry (MS):</p>
+
+        <p>Mass Spectrometry (MS) allows the molecular weight of the oligo to be measured. In a mass spectrometer, the oligo is ionized and the ions are propelled into a mass detector and analyzer. MS analysis allows the comparison of the calculated molecular weight (MW) of the oligo to the measured MW, and can detect deletions, additions, or substitutions within the oligo sequence. MS can also readily detect the incomplete removal of protecting groups during the final steps of synthesis. </p>
+        <p>ACGT offers MS analysis through a third-party provider and additional charges may apply.</p>
+        <p>Oligonucleotide Modifications </p>
+        <p>Oligonucleotides can also be modified or synthesized with non-nucleotide moieties for a variety of biological applications. </p>
+        <p>Degenerate primers:</p>
+        <p>Degenerate primers are mixtures of oligonucleotides that have different bases at one or more position. They are often used when only the protein sequence (rather than the actual base sequence) is known or for amplifying similar sequences like SNPs and homologous genes. Depending on the downstream application of the oligo, deoxyinosine residues could be used at sites where there is complete degeneracy.</p>
+        <p>Deoxyinosine:</p>
+        <p>Deoxyinosine is a deoxynucleoside with the base 6-hydroxypurine. Deoxyinosine residues in an oligonucleotide can pair with any nucleotide residue on the target DNA. Deoxyinosine can be used instead of mixed bases (degenerate bases), thus reducing the number of unique oligos synthesized. Do not use deoxyinosine for PCR primers as DNA polymerases may not recognize this base and may fall off.</p>
+        <p>Biotin</p>
+        <p>Due to biotin’s affinity for streptavidin, a biotin-labelled oligo can be used to link the oligo to streptavidin affinity columns or streptavidin-protein conjugates. Biotin can be added to the 5’ or 3’ end of the oligo by adding it to a linker molecule.</p>
+        <p>Phosphate groups</p>
+        <p>Unmodified oligonucleotides have a 5’-hydroxyl group, however a 5’ phosphate group can be synthesized. By adding a 5’-phosphate group, either enzymatically or chemically during oligo synthesis, the oligo can be ligated by a ligase.</p>
+        <p>Thiol (sulfhydryl):</p>
+        <p>Thiol-modified oligos are synthesized by incorporating the thiol group (with C3 or C6 linker) during oligo synthesis at either the 5’- or 3’- end. Thiol-modified oligos can be linked to peptides or enzymes; for example oligo probes labelled with alkaline phosphatase enzyme can be used for in situ hybridization. Thiol-modified oligos can also be used for immobilization on surfaces and for coupling maleimide (sulfhydryl-reactive) dyes.</p>
+        <p>Fluorescent Labeling:</p>
+        <p>
+            Oligos can also be labelled with fluorescent molecules, like fluorescein, for use in PCR quantification and in situ hybridization probes.
+
+            Other oligonucleotide modifications are available, please contact us for more information and pricing.
+        </p>
+
+    </div>
 </div>

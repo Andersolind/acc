@@ -3,11 +3,40 @@
     ViewBag.Title = "Terms And Conditions";
 }
 
-<h2>Terms And Conditions</h2>
-<div class="jumbotron">
-<p>Prices on this website are subject to change without notice.</p>
-<p>Written quotations for any of our products or services will be provided at no cost or obligation. Quotes are valid for 30 days unless stated otherwise.</p>
-<p>Payment: We accept MasterCard, Visa, American Express and purchase orders (net 30 days).</p>
-<p>Shipping: We ship using an express courier (overnight) service for orders outside the downtown Toronto area. Additional shipping costs apply.</p>
-<p>Disclaimer: Synthesized oligonucleotides that are GMP-certified may be used in the development of diagnostic medical devices. All other products and services are for research purposes only.</p>
+<img class="img-responsive" src="~/images/Header.png" />
+
+<div style="padding-bottom:40px;">
+    <div style="float:left;">
+        <nav class="vertical">
+            <ul>
+                <li>
+                    <div>
+                        <ul>
+                            <li>@Html.ActionLink("Location", "Location", "Home")</li>
+                            <li>@Html.ActionLink("History", "About", "Home")</li>
+                            <li>@Html.ActionLink("Company People", "CompanyPeople", "Home")</li>
+                            <li>@Html.ActionLink("Careers", "Careers", "Home")</li>
+                            <li>@Html.ActionLink("Terms and Conditions", "TermsAndConditions", "Home")</li>
+                        </ul>
+                    </div>
+                </li>
+
+            </ul>
+        </nav>
+    </div>
+
+
+    <div style="padding-left:400px;">
+
+        <h2>Terms And Conditions</h2>
+
+        <p id="black">Prices on this website are subject to change without notice.</p>
+        <p id="black">Written quotations for any of our products or services will be provided at no cost or obligation. Quotes are valid for 30 days unless stated otherwise.</p>
+        <p id="black">Payment: We accept MasterCard, Visa, American Express and purchase orders (net 30 days).</p>
+        <p id="black">Shipping: We ship using an express courier (overnight) service for orders outside the downtown Toronto area. Additional shipping costs apply.</p>
+        <p id="black">Disclaimer: Synthesized oligonucleotides that are GMP-certified may be used in the development of diagnostic medical devices. All other products and services are for research purposes only.</p>
+
+    </div>
 </div>
+
+

@@ -213,9 +213,7 @@ namespace MBBVL.Controllers {
         public ActionResult TermsAndConditions() {
             return View();
         }
-        public ActionResult GeneralOverview() {
-            return View();
-        }
+      
 
         public void ParseTemplate(List<object> model) {
             var html = "";

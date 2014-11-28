@@ -3,10 +3,36 @@
     ViewBag.Title = "Careers";
 }
 
-<h2>Careers</h2>
 
-<div class="jumbotron">
-    <p>Job Postings</p>
-    <p>To apply for a position please send your resume with a cover letter to support@acgtcorp.com</p>
-    <p>There are currently no open positions at ACGT. Please check back frequently as we are always expanding our operations.</p>
+<img class="img-responsive" src="~/images/Header.png" />
+
+<div style="padding-bottom:40px;">
+    <div style="float:left;">
+        <nav class="vertical">
+            <ul>
+                <li>
+                    <div>
+                        <ul>
+                            <li>@Html.ActionLink("Location", "Location", "Home")</li>
+                            <li>@Html.ActionLink("History", "About", "Home")</li>
+                            <li>@Html.ActionLink("Company People", "CompanyPeople", "Home")</li>
+                            <li>@Html.ActionLink("Careers", "Careers", "Home")</li>
+                            <li>@Html.ActionLink("Terms and Conditions", "TermsAndConditions", "Home")</li>
+                        </ul>
+                    </div>
+                </li>
+
+            </ul>
+        </nav>
+    </div>
+
+
+    <div style="padding-left:400px;">
+        <h2>Careers</h2>
+
+        <p id="black">Job Postings</p>
+        <p id="black">To apply for a position please send your resume with a cover letter to support@acgtcorp.com</p>
+        <p id="black">There are currently no open positions at ACGT. Please check back frequently as we are always expanding our operations.</p>
+
+    </div>
 </div>

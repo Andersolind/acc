@@ -2,127 +2,158 @@
     ViewBag.Title = "FAQ";
 }
 
-<h2>FAQ</h2>
-<div class="jumbotron">
-    <p>Frequently Asked Questions about Oligonucleotide Synthesis</p>
-    <p>Which synthesis scale should I request?</p>
-    <p>The synthesis scale is proportional to the amount of the oligo produced. If you are testing oligos for PCR-based experiments, 0.04 µmole scale is likely sufficient. If you are ordering an oligo that is used routinely for high-throughput experiments, you may want to order a larger scale. Please keep in mind the estimated shelf life of resuspended oligos when ordering large scale oligos.</p>
-    <p>What kind of yield is generated based on synthesis scale and purification?</p>
-    <table class="table-responsive" border="1">
-        <tbody>
-            <tr><th>Scale (µmole)</th><th>Purification</th><th>Average Yield</th></tr>
+<img class="img-responsive" src="~/images/Header.png" />
 
-            <tr><td>0.04</td><td>Desalt</td><td>150 µg</td></tr>
-            <tr><td>0.04</td><td>Reverse Phase Cartridge</td><td>50-75 µg</td></tr>
+<div style="padding-bottom:40px;">
+    <div style="float:left;">
+        <nav class="vertical">
+            <ul>
+                <li>
+                    <div>
+                        <ul>
+                            <li>@Html.ActionLink("Oligo Order Form", "Order", "Home")</li>
+                            <li>@Html.ActionLink("General Overview", "GeneralOverview", "Oligo")</li>
+                            <li>@Html.ActionLink("GMP", "GMP", "Oligo")</li>
+                            <li>@Html.ActionLink("PriceList", "PriceList", "Oligo")</li>
+                            <li>@Html.ActionLink("PurificationModifications", "PurificationModifications", "Oligo")</li>
+                            <li>@Html.ActionLink("SynthesisTechnology", "SynthesisTechnology", "Oligo")</li>
+                            <li>@Html.ActionLink("FAQ", "FAQ", "Oligo")</li>
+                        </ul>
+                    </div>
+                </li>
 
-            <tr><td>0.2</td><td>Desalt</td><td>600 µg</td></tr>
-            <tr><td>0.2</td><td>Reverse Phase Cartridge</td><td>300 µg</td></tr>
-
-
-            <tr><td>1</td><td>Desalt</td><td>2 mg</td></tr>
-            <tr><td>1</td><td>Reverse Phase Cartridge</td><td>1 mg</td></tr>
-
-        </tbody>
-    </table>
-    <p>For GMP oligos, what is the guaranteed yield? </p>
-    <p>For GMP-grade, unmodified 20- to 54-mers, we guarantee yields as follows: </p>
-
-    <table class="table-responsive">
-        <tr><th>Scale (µmole)</th><th>Purification</th><th>Guaranteed Yield</th></tr>
-        <tr><td>0.2</td><td>Desalt</td><td>15 OD</td></tr>
-        <tr id=""><td id="">0.2</td><td>Reverse Phase Cartridge</td><td>12 OD</td></tr>
+            </ul>
+        </nav>
+    </div>
 
 
-        <tr><td>1</td><td>Desalt</td><td>45 OD</td></tr>
-        <tr><td>1</td><td>Reverse Phase Cartridge</td><td>20 OD</td></tr>
+    <div style="padding-left:400px;">
+        <h2>FAQ</h2>
 
-    </table>
-    <p>For thiol- and biotin-modified GMP oligos (20- to 54-mers), we guarantee 20 OD (1 µmol scale).</p>
-    <br />
-    <p>What kind of purification should I request?</p><br />
-    <p>The best method of purification is specific to each application. A few guidelines are provided below, but please ask us if you have any questions.</p>
-    <table class="table-responsive" border="1">
-        <tbody>
-            <tr><th>Application</th><th>Scale</th><th>Recommended Purification</th></tr>
+        <p>Frequently Asked Questions about Oligonucleotide Synthesis</p>
+        <p>Which synthesis scale should I request?</p>
+        <p>The synthesis scale is proportional to the amount of the oligo produced. If you are testing oligos for PCR-based experiments, 0.04 µmole scale is likely sufficient. If you are ordering an oligo that is used routinely for high-throughput experiments, you may want to order a larger scale. Please keep in mind the estimated shelf life of resuspended oligos when ordering large scale oligos.</p>
+        <p>What kind of yield is generated based on synthesis scale and purification?</p>
+        <table class="table-responsive" border="1">
+            <tbody>
+                <tr><th>Scale (µmole)</th><th>Purification</th><th>Average Yield</th></tr>
 
-            <tr><td>DNA Sequencing</td><td>0.04</td><td>Desalted</td></tr>
-            <tr><td>General PCR</td><td>0.04 or 0.2</td>				<td>Desalted</td></tr>
-            <tr><td>Multiplex PCR</td><td>0.2</td><td>Desalted or Reverse Phase Cartridge</td></tr>
-            <tr><td>Diagnostic PCR</td><td>0.2</td><td>Reverse Phase Cartridge</td></tr>
-            <tr><td>Subcloning, cDNA Synthesis</td><td>0.2</td><td>Reverse Phase Cartridge</td></tr>
-            <tr><td>Oigos with modified bases/chemical linkers</td><td>0.2</td><td>Contact us</td></tr>
-            <tr><td>Oigos with reporter groups</td><td>0.2</td><td>Contact us</td></tr>
+                <tr><td>0.04</td><td>Desalt</td><td>150 µg</td></tr>
+                <tr><td>0.04</td><td>Reverse Phase Cartridge</td><td>50-75 µg</td></tr>
 
-        </tbody>
-    </table>
-    <p>Why is yield measured by OD and not molar units?</p>
-    <br />
-    <p>Use of a spectrophotometer to measure optical density (and thus calculate nucleic acid concentration, in units of mass per unit volume) is an efficient method of calculating an estimation of actual yield.</p>
-    <p>How do I determine oligo concentration?</p>
-    <p>Concentration is calculated by measuring the optical density at 260 nm. The formula is:</p>
-    <br />
-    <p>c = A/(e*l)</p>
-    <br />
-    <p> c=concentration of nucleic acid (µg />mL)</p>
-    <p>A = absorbance at 260nm</p>
-    <p>e =extinction coeffiecient (approximately 33µg />mL for single stranded DNA with an equal mixture of each of the four bases)</p>
-    <p> l = width of cuvette (cm)</p>
-    <p>for details, please view our technical bulletin on calculating dna concentration and molecular weight. </p>
-    <p>How can I calculate the molecular weight of my oligo?</p>
-    <p>The molecular weight of an oligo is the sum of the molecular weights of all bases in the sequences.  Desalted oligos are ammonium salts and thus have a greater molecular weight than sodium salt oligos, which are products of Reverse Phase cartridge purification. For the following values, units are in grams per mole.</p>
-    <table class="table-responsive">
-        <tbody>
-            <tr><th>Base</th><th>Sodium salt - DNA</th><th>Ammonium Salt DNA</th></tr>
+                <tr><td>0.2</td><td>Desalt</td><td>600 µg</td></tr>
+                <tr><td>0.2</td><td>Reverse Phase Cartridge</td><td>300 µg</td></tr>
 
-            <tr><td>A</td><td>313.2</td><td>330.2</td></tr>
-            <tr><td>C</td><td> 289.2</td><td>306.2</td></tr>
-            <tr><td>G</td><td>329.2</td><td>346.2</td></tr>
-            <tr><td>T</td><td>304.2</td><td>321.2</td></tr>
 
-        </tbody>
-    </table>
-    <p>How should oligos be stored? What is their shelf life?</p>
-    <p>Oligos are delivered/shipped in a lyophilized form. Oligos should be resuspended in 1X TE buffer (10mM Tris-HCl, 1mM EDTA, pH 7.5) at a concentration of 1 µg/mL or greater.
-    <p>Once the oligo is resuspended it should be stored at -20ºC in a frost freezer.  Repeated freeze-thaw cycles should be avoided. It is recommended that resuspended oligos be stored in small aliquots. Lyophilized oligos stored at -20ºC have a shelf life of several years. Resuspended oligos stored at -20ºC have a shelf life of 6 months to 1 year. Resuspended oligos stored at 4ºC have a shelf life of 1-6 weeks. </p>
-    <p>The purity of the final product can vary due to oligo length, modifications, and sequence composition. Oligos synthesized under GMP conditions are guaranteed to be greater than 85% pure.</p>
-    <p>how does acgt check the quality of manufactured oligos?></p>
-    <p>
-        Oligos manufactured under GMP conditions are analyzed by HPLC to determine purity and optical density is used to calculate yield. ACGT guarantees a minimum of 85% purity on GMP-manufactured oligos.
-        The quality of research-grade oligos are not analyzed by HPLC, however OD is provided.
-    </p>
-    <p>What is the longest oligo that can be manufactured at ACGT?</p>
-    <p>The ABI 3900 DNA synthesizer can manufacture oligos that exceed 121 bases.</p>
-    <br />
-    <p>What are certain oligo modifications used for?</p>
-    <p>
-        Biotinylated oligos can be used for colourimetric detection of DNA and capture by streptavidin-coated surfaces (for use in restriction mapping, genomic walking and differential display). Fluorescently-labelled oligos can be used for DNA sequencing, quantitative PCR and in situ hybridization reactions.
-        5’-phosphorylated oligos can be used for site directed mutagenesis and linker insertion. The addition of amino-modified linkers at the 3’ end of an oligo allows the oligo to be attached to amine reactive molecules; this is commonly done in the creation of oligonucleotide microarrays (1).
-    </p>
-    <p>What is a phosphoramidite?</p>
-    <p>Nucleoside phosphoramidites are derivatives of natural or synthetic nucleosides that are used as the building blocks for oligonucleotide synthesis.</p>
-    <p>What is a “S-oligo”?</p>
-    <p>A “S-oligo” is an oligo that has a phosphorothioated backbone. The replacement of the phosphate group backbone with phosphorothioate groups makes the oligo resistant to degradation by most endo- and exonucleases. </p>
-    <p>How can you calculate the melting temperature of an oligo?</p>
-    <p>The website below has a tool for calculating oligo melting temperatures (Tm). </p>
-    <a href="http://www.basic.northwestern.edu/biotools/oligocalc.html">http://www.basic.northwestern.edu/biotools/oligocalc.html</a>
-    <p>General formula: </p>
-    <p>Tm = 64.9 +0.41*(%G+C)-600 / #bases</p>
-    <p>For standard research-grade oligos with no modifications and purified by desalting, we are able to process most orders in just one day. If your order is placed before 3pm, you can expect your oligos to be ready for delivery by noon the following day.  Unmodified, research-grade oligos purified by reverse phase cartridge will require lyophilization and take an additional day to prepare.  Most modified oligos or longer oligos (>50-mers) can be prepared within 48-72 hours of receiving the order. Please contact us for more information regarding the turnaround time of modified oligos.  GMP-grade oligos have a turnaround time of approximately 2 weeks.This table is provides a general idea of average yield for a standard 25-mer with no modifications. The actual yield is dependent on the sequence composition, oligo length, and purification method.</p>
-    <p>What are the codes for mixed bases?</p>
-    <p>  Mixed bases     Code</p>
-    <p>G+T                   K</p>
-    <p>A+C                  M</p>
-    <p>A+G                  R</p>
-    <p>C+G                  S</p>
-    <p>A+T                 W</p>
-    <p>C+T                  Y</p>
-    <p>C+G+T            B</p>
-    <p>A+G+T            D</p><p>
-    <p>       A+C+T            H</p>
-    <p>A+C+G           V</p>
-    <p>  A+C+G+T       N</p>
-    <p>Where can I learn more about the ABI 3900 High-throughput DNA synthesizer?</p>
-    <p>Please view this document (available on the Applied Biosystems/Life Technologies website) to learn more about the ABI 3900 High-throughput DNA synthesizer. </p>
-    <p> references:</p>
-    <p> <a href="http://www.synthesisgene.com/tools/oligosynthesis.pdf">http://www.synthesisgene.com/tools/oligosynthesis.pdf</a> </p>
+                <tr><td>1</td><td>Desalt</td><td>2 mg</td></tr>
+                <tr><td>1</td><td>Reverse Phase Cartridge</td><td>1 mg</td></tr>
+
+            </tbody>
+        </table>
+        <p>For GMP oligos, what is the guaranteed yield? </p>
+        <p>For GMP-grade, unmodified 20- to 54-mers, we guarantee yields as follows: </p>
+
+        <table class="table-responsive">
+            <tr><th>Scale (µmole)</th><th>Purification</th><th>Guaranteed Yield</th></tr>
+            <tr><td>0.2</td><td>Desalt</td><td>15 OD</td></tr>
+            <tr id=""><td id="">0.2</td><td>Reverse Phase Cartridge</td><td>12 OD</td></tr>
+
+
+            <tr><td>1</td><td>Desalt</td><td>45 OD</td></tr>
+            <tr><td>1</td><td>Reverse Phase Cartridge</td><td>20 OD</td></tr>
+
+        </table>
+        <p>For thiol- and biotin-modified GMP oligos (20- to 54-mers), we guarantee 20 OD (1 µmol scale).</p>
+        <br />
+        <p>What kind of purification should I request?</p><br />
+        <p>The best method of purification is specific to each application. A few guidelines are provided below, but please ask us if you have any questions.</p>
+        <table class="table-responsive" border="1">
+            <tbody>
+                <tr><th>Application</th><th>Scale</th><th>Recommended Purification</th></tr>
+
+                <tr><td>DNA Sequencing</td><td>0.04</td><td>Desalted</td></tr>
+                <tr><td>General PCR</td><td>0.04 or 0.2</td>				<td>Desalted</td></tr>
+                <tr><td>Multiplex PCR</td><td>0.2</td><td>Desalted or Reverse Phase Cartridge</td></tr>
+                <tr><td>Diagnostic PCR</td><td>0.2</td><td>Reverse Phase Cartridge</td></tr>
+                <tr><td>Subcloning, cDNA Synthesis</td><td>0.2</td><td>Reverse Phase Cartridge</td></tr>
+                <tr><td>Oigos with modified bases/chemical linkers</td><td>0.2</td><td>Contact us</td></tr>
+                <tr><td>Oigos with reporter groups</td><td>0.2</td><td>Contact us</td></tr>
+
+            </tbody>
+        </table>
+        <p>Why is yield measured by OD and not molar units?</p>
+        <br />
+        <p>Use of a spectrophotometer to measure optical density (and thus calculate nucleic acid concentration, in units of mass per unit volume) is an efficient method of calculating an estimation of actual yield.</p>
+        <p>How do I determine oligo concentration?</p>
+        <p>Concentration is calculated by measuring the optical density at 260 nm. The formula is:</p>
+        <br />
+        <p>c = A/(e*l)</p>
+        <br />
+        <p> c=concentration of nucleic acid (µg />mL)</p>
+        <p>A = absorbance at 260nm</p>
+        <p>e =extinction coeffiecient (approximately 33µg />mL for single stranded DNA with an equal mixture of each of the four bases)</p>
+        <p> l = width of cuvette (cm)</p>
+        <p>for details, please view our technical bulletin on calculating dna concentration and molecular weight. </p>
+        <p>How can I calculate the molecular weight of my oligo?</p>
+        <p>The molecular weight of an oligo is the sum of the molecular weights of all bases in the sequences.  Desalted oligos are ammonium salts and thus have a greater molecular weight than sodium salt oligos, which are products of Reverse Phase cartridge purification. For the following values, units are in grams per mole.</p>
+        <table class="table-responsive">
+            <tbody>
+                <tr><th>Base</th><th>Sodium salt - DNA</th><th>Ammonium Salt DNA</th></tr>
+
+                <tr><td>A</td><td>313.2</td><td>330.2</td></tr>
+                <tr><td>C</td><td> 289.2</td><td>306.2</td></tr>
+                <tr><td>G</td><td>329.2</td><td>346.2</td></tr>
+                <tr><td>T</td><td>304.2</td><td>321.2</td></tr>
+
+            </tbody>
+        </table>
+        <p>How should oligos be stored? What is their shelf life?</p>
+        <p>Oligos are delivered/shipped in a lyophilized form. Oligos should be resuspended in 1X TE buffer (10mM Tris-HCl, 1mM EDTA, pH 7.5) at a concentration of 1 µg/mL or greater.
+        <p>Once the oligo is resuspended it should be stored at -20ºC in a frost freezer.  Repeated freeze-thaw cycles should be avoided. It is recommended that resuspended oligos be stored in small aliquots. Lyophilized oligos stored at -20ºC have a shelf life of several years. Resuspended oligos stored at -20ºC have a shelf life of 6 months to 1 year. Resuspended oligos stored at 4ºC have a shelf life of 1-6 weeks. </p>
+        <p>The purity of the final product can vary due to oligo length, modifications, and sequence composition. Oligos synthesized under GMP conditions are guaranteed to be greater than 85% pure.</p>
+        <p>how does acgt check the quality of manufactured oligos?></p>
+        <p>
+            Oligos manufactured under GMP conditions are analyzed by HPLC to determine purity and optical density is used to calculate yield. ACGT guarantees a minimum of 85% purity on GMP-manufactured oligos.
+            The quality of research-grade oligos are not analyzed by HPLC, however OD is provided.
+        </p>
+        <p>What is the longest oligo that can be manufactured at ACGT?</p>
+        <p>The ABI 3900 DNA synthesizer can manufacture oligos that exceed 121 bases.</p>
+        <br />
+        <p>What are certain oligo modifications used for?</p>
+        <p>
+            Biotinylated oligos can be used for colourimetric detection of DNA and capture by streptavidin-coated surfaces (for use in restriction mapping, genomic walking and differential display). Fluorescently-labelled oligos can be used for DNA sequencing, quantitative PCR and in situ hybridization reactions.
+            5’-phosphorylated oligos can be used for site directed mutagenesis and linker insertion. The addition of amino-modified linkers at the 3’ end of an oligo allows the oligo to be attached to amine reactive molecules; this is commonly done in the creation of oligonucleotide microarrays (1).
+        </p>
+        <p>What is a phosphoramidite?</p>
+        <p>Nucleoside phosphoramidites are derivatives of natural or synthetic nucleosides that are used as the building blocks for oligonucleotide synthesis.</p>
+        <p>What is a “S-oligo”?</p>
+        <p>A “S-oligo” is an oligo that has a phosphorothioated backbone. The replacement of the phosphate group backbone with phosphorothioate groups makes the oligo resistant to degradation by most endo- and exonucleases. </p>
+        <p>How can you calculate the melting temperature of an oligo?</p>
+        <p>The website below has a tool for calculating oligo melting temperatures (Tm). </p>
+        <a href="http://www.basic.northwestern.edu/biotools/oligocalc.html">http://www.basic.northwestern.edu/biotools/oligocalc.html</a>
+        <p>General formula: </p>
+        <p>Tm = 64.9 +0.41*(%G+C)-600 / #bases</p>
+        <p>For standard research-grade oligos with no modifications and purified by desalting, we are able to process most orders in just one day. If your order is placed before 3pm, you can expect your oligos to be ready for delivery by noon the following day.  Unmodified, research-grade oligos purified by reverse phase cartridge will require lyophilization and take an additional day to prepare.  Most modified oligos or longer oligos (>50-mers) can be prepared within 48-72 hours of receiving the order. Please contact us for more information regarding the turnaround time of modified oligos.  GMP-grade oligos have a turnaround time of approximately 2 weeks.This table is provides a general idea of average yield for a standard 25-mer with no modifications. The actual yield is dependent on the sequence composition, oligo length, and purification method.</p>
+        <p>What are the codes for mixed bases?</p>
+        <p>  Mixed bases     Code</p>
+        <p>G+T                   K</p>
+        <p>A+C                  M</p>
+        <p>A+G                  R</p>
+        <p>C+G                  S</p>
+        <p>A+T                 W</p>
+        <p>C+T                  Y</p>
+        <p>C+G+T            B</p>
+        <p>A+G+T            D</p><p>
+        <p>       A+C+T            H</p>
+        <p>A+C+G           V</p>
+        <p>  A+C+G+T       N</p>
+        <p>Where can I learn more about the ABI 3900 High-throughput DNA synthesizer?</p>
+        <p>Please view this document (available on the Applied Biosystems/Life Technologies website) to learn more about the ABI 3900 High-throughput DNA synthesizer. </p>
+        <p> references:</p>
+        <p> <a href="http://www.synthesisgene.com/tools/oligosynthesis.pdf">http://www.synthesisgene.com/tools/oligosynthesis.pdf</a> </p>
+    
+    </div>
 </div>
+
+
+    

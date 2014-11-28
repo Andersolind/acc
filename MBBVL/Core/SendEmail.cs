@@ -119,7 +119,8 @@ namespace MBBVL.Core {
             var dnaForm = "";
 
             //headers<img src=\"cid:image1\">
-            var ship = "<table><td align='center' style='padding: 40px 0 30 px 0;'><img src='http://youneedafavor.com/images/logo.png'>";
+          //  var ship = "<table><td align='center' style='padding: 40px 0 30 px 0;'><img src='http://youneedafavor.com/images/logo.png'>";
+            var ship = "<table><td>";
             ship += "<h1>Dear" + " " + model.Billing.FullName + " " + "here is your Sequencing order</h1></td></table>";
 
             if (model.IsShipping) {
@@ -332,7 +333,8 @@ namespace MBBVL.Core {
             m.shipping = model.shipping;
             m.oligosequence = model.oligosequence;
             //headers
-            var ship = "<table><td align='center' style='padding: 40px 0 30 px 0;'><img src='http://youneedafavor.com/images/logo.png'>";
+         //éé éé  var ship = "<table><td align='center' style='padding: 40px 0 30 px 0;'><img src='http://youneedafavor.com/images/logo.png'>";
+            var ship = "<table><td>";
             ship += "<h1>Dear" + " " + model.shipping.FullName + " " + "here is your DNA Sequencing Order</h1></td></table>";
 
             ship += "<table width='100' style='float:left' cellpadding='0' cellspacing='0' border='0' >";

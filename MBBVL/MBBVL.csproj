@@ -207,6 +207,7 @@
     <Compile Include="Controllers\ResearchAndDevelopmentController.cs" />
     <Compile Include="Controllers\SequencingController.cs" />
     <Compile Include="Controllers\SequenceController.cs" />
+    <Compile Include="Controllers\ServicesController.cs" />
     <Compile Include="Controllers\TechSupportController.cs" />
     <Compile Include="Core\Helper.cs" />
     <Compile Include="Core\Layout.cs" />
@@ -231,6 +232,7 @@
     <Compile Include="ValuesController.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Bootstrap\SideNavBar.css" />
     <Content Include="Content\Bootstrap\SubPages.css" />
     <Content Include="Content\Footer.png" />
     <Content Include="Content\Navigationicon.jpg" />
@@ -380,6 +382,7 @@
     <Content Include="Views\PersonalizedProjects\SiteDirectedMutagenesis.cshtml" />
     <Content Include="Views\Shared\_Layout - Copy.cshtml" />
     <Content Include="Views\Shared\_Layout - SubPages.cshtml" />
+    <Content Include="Views\Services\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

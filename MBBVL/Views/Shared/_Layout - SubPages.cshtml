@@ -32,7 +32,7 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("ABOUT", "About", "Home")</li>
 
-                    <li>@Html.ActionLink("SERVICES", "Home", "Services")</li>
+                    <li>@Html.ActionLink("SERVICES", "Services", "Index")</li>
                     <li>@Html.ActionLink("INVESTORS", "Home", "Services")</li>
                     <li>@Html.ActionLink("CONTACT US", "Home", "Services")</li>
                 </ul>
@@ -44,7 +44,7 @@
     <!-- Page Content -->
     <div id="wrap">
         <div class="container-fluid">
-            <div class="row">
+            <div style="padding-bottom:100px;" class="row">
                 <div class="col-lg-12">
                     @RenderBody()
                 </div>
@@ -83,9 +83,9 @@
                     <p>Fax: 416-977-7111</p>
                 </div>
                 <div style="padding-top:20px;" class="col-md-2 portfolio-item">
-                    <img class="img-responsive" src="~/images/Bsi-Logo.png" />
+                    <img  src="~/images/Bsi-Logo.png" />
                     <div style="padding-top:7px;">
-                        <a style="padding-right:7px;" href="#"><img src="~/images/Facebook.png" /></a>
+                        <a style="padding-left:7px;" href="#"><img src="~/images/Facebook.png" /></a>
                         <a href="#"><img src="~/images/Twitter.png" /></a>
                     </div>
                 </div>

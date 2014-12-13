@@ -385,6 +385,7 @@
     <Content Include="Views\Shared\_Layout - SubPages.cshtml" />
     <Content Include="Views\Services\Index.cshtml" />
     <Content Include="Views\Investors\Index.cshtml" />
+    <Content Include="Views\Shared\SideBar\NavBar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -9,9 +9,10 @@
         border-radius: 4px;
         /*box-shadow: 0 0 10px rgba(0,0,0,.15);*/
         overflow: hidden;
-        text-align: center;
+        /*text-align: center;*/
         /*width:220px;*/
     }
+
 
         nav.vertical > ul {
             list-style-type: none;

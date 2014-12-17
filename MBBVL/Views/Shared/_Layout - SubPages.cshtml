@@ -20,7 +20,7 @@
 
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
-            <div class="navbar-header">
+            <div class="navbar-header" style="margin-left:100px;margin-top:30px;">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -30,7 +30,7 @@
                 @Html.ActionLink("Home", "Index", "Home", new object { }, new { @class = "site-logo" });
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav" style="margin-top:20px;">
                     <li class="dropdown">
                         <a href="@Url.Action("About", "Home")" class="dropdown-toggle" data-toggle="dropdown">ABOUT<b class="caret"></b></a>
                         <ul class="dropdown-menu">

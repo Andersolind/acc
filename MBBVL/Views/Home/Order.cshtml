@@ -210,7 +210,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="rows in OligonucleotideRow">
+                        <tr ng-repeat="rows in OligonucleotideRow" ng-form='dnaForm'>
 
                             <td>
                                 <input type="text" class="form-control" id="txtPrimerName" name="PrimerName" ng-model="rows.PrimerName" placeholder="Enter Primer Name" title="Primer Name" required>

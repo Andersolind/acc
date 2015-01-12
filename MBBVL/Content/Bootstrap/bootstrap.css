@@ -7546,3 +7546,8 @@ button.close {
     }
 }
 /*# sourceMappingURL=bootstrap.css.map */
+.setMargins{
+   margin-right:150px;
+   margin-left:120px;
+   margin-bottom:100px;
+}

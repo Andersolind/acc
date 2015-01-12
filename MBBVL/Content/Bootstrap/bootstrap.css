@@ -4403,7 +4403,6 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     list-style: none;
     font-family: 'Gothamy';
     font-size: 15px;
- font-weight: 900;
 }
 
     .nav > li {
@@ -5144,7 +5143,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 
 .navbar-inverse {
     background-color: white;
-    border-color: #080808;
+   
 }
 
     .navbar-inverse .navbar-brand {

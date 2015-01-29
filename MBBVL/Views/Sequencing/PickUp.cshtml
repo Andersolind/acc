@@ -2,128 +2,164 @@
 @{
     ViewBag.Title = "PickUp";
 }
-<h2>Pick Up Policy</h2>
-<p>ACGT Corp. offers free pick up of DNA sequencing samples in the GTA core. Simply request for a pick up when you are placing your sequencing order or in the form below.</p>
-<ul>
-    <li>We can not guarantee requests submitted after 11:30 AM. Please call us at 416-977-2228 to confirm sameday pick ups after 11:30 AM </li>
-    <li>Please have samples prepared in an appropriate container</li>
-</ul>
-<h2>Sample pick-up is offered free of charge from the following locations:</h2>
-<p>BEST Institute – 112 College Street</p>
-<p>CCBR – 160 College Street</p>
-<p>Faculty of Pharmacy – 144 College Street</p>
-<p>Fitzgerald Bldg – 150 College Street</p>
-<p>HSC – 555 University Avenue</p>
-<p>MSH – SLRI at 600 University Avenue & TCP at 25 Orde/60 Murray Street</p>
-<p>MSB – 1 King’s College Circle</p>
-<p>PMH / OCI – 620 University Avenue</p>
-<p>Tanz Neuroscience Bldg – 6 Queens Park Crescent</p>
-<p>TMDT & MaRS South Tower – 101 College Street</p>
-<p>Fill out to schedule a pickup</p>
 
-<div class="container">
 
-    <div class="row">
-        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-            <form role="form">
-                <h2>Fill out to schedule a pickup</h2>
-                <hr class="colorgraph">
-                <div class="row">
-                    <div class="col-xs-6 col-sm-6 col-md-6">
-                        <div class="form-group">
-                            <input type="text" name="first_name" id="first_name" class="form-control input-lg" placeholder="First Name" tabindex="1">
+<img class="img-responsive" src="~/images/Header.png" />
+
+<div style="padding-bottom:40px;">
+    <div style="float:left;">
+        <nav class="vertical">
+            <ul>
+                <li>
+                    <div>
+                        <ul>
+                            <li>@Html.ActionLink("Sequencing Order Form", "Order", "Sequencing")</li>
+                            <li>@Html.ActionLink("FAQ", "FAQ", "Sequencing")</li>
+                            <li>@Html.ActionLink("Inhouse Primers", "InhousePrimers", "Sequencing")</li>
+                            <li>@Html.ActionLink("Pick Up", "PickUp", "Sequencing")</li>
+                            <li>@Html.ActionLink("Price List", "PriceList", "Sequencing")</li>
+                            <li>@Html.ActionLink("Sample Preparation", "SamplePreparation", "Sequencing")</li>
+                            <li>@Html.ActionLink("Sequencing Technology", "SequencingTechnology", "Sequencing")</li>
+
+                        </ul>
+                    </div>
+                </li>
+
+            </ul>
+        </nav>
+    </div>
+
+
+    <div style="padding-left:400px;">
+        <h2>Pick Up Policy</h2>
+        <p>ACGT Corp. offers free pick up of DNA sequencing samples in the GTA core. Simply request for a pick up when you are placing your sequencing order or in the form below.</p>
+        <ul>
+            <li>We can not guarantee requests submitted after 11:30 AM. Please call us at 416-977-2228 to confirm sameday pick ups after 11:30 AM </li>
+            <li>Please have samples prepared in an appropriate container</li>
+        </ul>
+        <h2>Sample pick-up is offered free of charge from the following locations:</h2>
+        <p>BEST Institute – 112 College Street</p>
+        <p>CCBR – 160 College Street</p>
+        <p>Faculty of Pharmacy – 144 College Street</p>
+        <p>Fitzgerald Bldg – 150 College Street</p>
+        <p>HSC – 555 University Avenue</p>
+        <p>MSH – SLRI at 600 University Avenue & TCP at 25 Orde/60 Murray Street</p>
+        <p>MSB – 1 King’s College Circle</p>
+        <p>PMH / OCI – 620 University Avenue</p>
+        <p>Tanz Neuroscience Bldg – 6 Queens Park Crescent</p>
+        <p>TMDT & MaRS South Tower – 101 College Street</p>
+        <p>Fill out to schedule a pickup</p>
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+                    <form role="form">
+                        <h2>Fill out to schedule a pickup</h2>
+                        <hr class="colorgraph">
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <input type="text" name="first_name" id="first_name" class="form-control input-lg" placeholder="First Name" tabindex="1">
+                                </div>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <input type="text" name="last_name" id="last_name" class="form-control input-lg" placeholder="Last Name" tabindex="2">
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6">
+
                         <div class="form-group">
-                            <input type="text" name="last_name" id="last_name" class="form-control input-lg" placeholder="Last Name" tabindex="2">
+                            <input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" tabindex="4">
                         </div>
-                    </div>
-                </div>
-               
-                <div class="form-group">
-                    <input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" tabindex="4">
-                </div>
-                <div class="row">
-                   
-                    <div class="col-xs-6 col-sm-6 col-md-6">
-                        <div class="form-group">
-                            <select id="ddlInstitute" name="ddlInstitute">
+                        <div class="row">
 
-                                <option value="BEST Institute – 112 College Street">BEST Institute – 112 College Street</option>
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <select id="ddlInstitute" name="ddlInstitute">
 
-                                <option value="CCBR – 160 College Street">CCBR – 160 College Street</option>
+                                        <option value="BEST Institute – 112 College Street">BEST Institute – 112 College Street</option>
 
-                                <option value="Faculty of Pharmacy – 144 College Street">Faculty of Pharmacy – 144 College Street</option>
+                                        <option value="CCBR – 160 College Street">CCBR – 160 College Street</option>
 
-                                <option value="Fitzgerald Bldg – 150 College Street">Fitzgerald Bldg – 150 College Street</option>
+                                        <option value="Faculty of Pharmacy – 144 College Street">Faculty of Pharmacy – 144 College Street</option>
 
-                                <option value="HSC – 555 University Avenue">HSC – 555 University Avenue</option>
+                                        <option value="Fitzgerald Bldg – 150 College Street">Fitzgerald Bldg – 150 College Street</option>
 
-                                <option value="MSH   – SLRI at 600 University Avenue &amp; TCP at 25 Orde/60 Murray Street">MSH – SLRI at 600 University Avenue &amp; TCP at 25 Orde/60 Murray Street</option>
+                                        <option value="HSC – 555 University Avenue">HSC – 555 University Avenue</option>
 
-                                <option value="MSB – 1 King’s College Circle">MSB – 1 King’s College Circle</option>
+                                        <option value="MSH   – SLRI at 600 University Avenue &amp; TCP at 25 Orde/60 Murray Street">MSH – SLRI at 600 University Avenue &amp; TCP at 25 Orde/60 Murray Street</option>
 
-                                <option value="PMH / OCI – 620 University Avenue">PMH / OCI – 620 University Avenue</option>
+                                        <option value="MSB – 1 King’s College Circle">MSB – 1 King’s College Circle</option>
 
-                                <option value="Tanz Neuroscience Bldg – 6 Queens Park Crescent">Tanz Neuroscience Bldg – 6 Queens Park Crescent</option>
+                                        <option value="PMH / OCI – 620 University Avenue">PMH / OCI – 620 University Avenue</option>
 
-                                <option value="TMDT &amp; MaRS South Tower – 101 College Street">TMDT &amp; MaRS South Tower – 101 College Street</option>
+                                        <option value="Tanz Neuroscience Bldg – 6 Queens Park Crescent">Tanz Neuroscience Bldg – 6 Queens Park Crescent</option>
 
-                            </select> </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-6 col-sm-6 col-md-6">
-                        <div class="form-group">
+                                        <option value="TMDT &amp; MaRS South Tower – 101 College Street">TMDT &amp; MaRS South Tower – 101 College Street</option>
 
-                            <textarea rows="5" id="roomInfo" class="form-control input-lg" placeholder="Room # and building information"></textarea>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-6 col-sm-6 col-md-6">
-                        <div class="form-group">
-                         
-                            <textarea  rows="5" id="txtMessege" class="form-control input-lg" placeholder="Message"></textarea>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-3 col-sm-3 col-md-3">
-                        <span class="button-checkbox">
-                            <button type="button" class="btn" data-color="info" tabindex="7">I Agree</button>
-                            <input type="checkbox" name="t_and_c" id="t_and_c" class="hidden" value="1">
-                        </span>
-                    </div>
-                    <div class="col-xs-9 col-sm-9 col-md-9">
-                        By clicking <strong class="label label-primary">Register</strong>, you agree to the <a href="#" data-toggle="modal" data-target="#t_and_c_m">Terms and Conditions</a> set out by this site, including our Cookie Use.
-                    </div>
-                </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group">
 
-                <hr class="colorgraph">
-                <div class="row">
-                    <div class="col-xs-6 col-md-6"><input type="submit" value="Submit" class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
-                 
+                                    <textarea rows="5" id="roomInfo" class="form-control input-lg" placeholder="Room # and building information"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group">
+
+                                    <textarea rows="5" id="txtMessege" class="form-control input-lg" placeholder="Message"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-3 col-sm-3 col-md-3">
+                                <span class="button-checkbox">
+                                    <button type="button" class="btn" data-color="info" tabindex="7">I Agree</button>
+                                    <input type="checkbox" name="t_and_c" id="t_and_c" class="hidden" value="1">
+                                </span>
+                            </div>
+                            <div class="col-xs-9 col-sm-9 col-md-9">
+                                By clicking <strong class="label label-primary">Register</strong>, you agree to the <a href="#" data-toggle="modal" data-target="#t_and_c_m">Terms and Conditions</a> set out by this site, including our Cookie Use.
+                            </div>
+                        </div>
+
+                        <hr class="colorgraph">
+                        <div class="row">
+                            <div class="col-xs-6 col-md-6"><input type="submit" value="Submit" class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
+
+                        </div>
+                    </form>
                 </div>
-            </form>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="t_and_c_m" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title" id="myModalLabel">Terms & Conditions</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">I Agree</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
         </div>
     </div>
-    <!-- Modal -->
-    <div class="modal fade" id="t_and_c_m" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4 class="modal-title" id="myModalLabel">Terms & Conditions</h4>
-                </div>
-                <div class="modal-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
-                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">I Agree</button>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
 </div>
+
+
+
+

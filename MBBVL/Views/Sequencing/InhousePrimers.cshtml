@@ -3,58 +3,92 @@
     ViewBag.Title = "In-house Primers";
 }
 
-<h2>InhousePrimers</h2>
-<p>This list includes all primers that are available, free of charge, for DNA sequencing orders:
 
-Click <a href=""></a>
-    <a href="~/pdf/ACGTsequencingprimers.pdf">Here</a> to view a downloadable list without codon spaces.</p>
+<img class="img-responsive" src="~/images/Header.png" />
 
-<table class="table table-striped table-hover">
-    <tbody>
-        <tr><th>Primer)</th><th>Sequence</th></tr>
+<div style="padding-bottom:40px;">
+    <div style="float:left;">
+        <nav class="vertical">
+            <ul>
+                <li>
+                    <div>
+                        <ul>
+                            <li>@Html.ActionLink("Sequencing Order Form", "Order", "Sequencing")</li>
+                            <li>@Html.ActionLink("FAQ", "FAQ", "Sequencing")</li>
+                            <li>@Html.ActionLink("Inhouse Primers", "InhousePrimers", "Sequencing")</li>
+                            <li>@Html.ActionLink("Pick Up", "PickUp", "Sequencing")</li>
+                            <li>@Html.ActionLink("Price List", "PriceList", "Sequencing")</li>
+                            <li>@Html.ActionLink("Sample Preparation", "SamplePreparation", "Sequencing")</li>
+                            <li>@Html.ActionLink("Sequencing Technology", "SequencingTechnology", "Sequencing")</li>
 
-        <tr><td>ACYCDuetUP1</td><td>GGA TCT CGA CGC TCT CC</td></tr>
-        <tr><td>ACYCDuetDOWN1</td><td>GAT TAT GCG GCC GTG TAC</td></tr>
-        <tr><td>ACYCDuetUP2</td><td>TGT ACA CGG CCG CAT AAT C</td></tr>
-        <tr><td>BGH </td><td>TAG AAG GCA CAG TCG AGG</td></tr>
-        <tr><td>CMV 24 </td><td>TAG GAC AAG GCT GGT GGG</td></tr>
-        <tr><td>CMV 30 </td><td>ATA ACC CCG CCC CGT TG</td></tr>
-        <tr><td>CMV-F </td><td>CGC AAA TGG GCG GTA GGC</td></tr>
-        <tr><td>IRES-F </td><td>TGG CTC TCC TCA AGC GTA TT</td></tr>
-        <tr><td>IRES-R </td><td>CCT CAC ATT GCC AAA AGA CG</td></tr>
-        <tr><td>M13(-21) F </td><td>TGT AAA ACG ACG GCC AGT</td></tr>
-        <tr><td>M13R </td><td>CAG GAA ACA GCT ATG AC</td></tr>
-        <tr><td>M13/pUC F </td><td>AGT CAC GAC GTT GTA AAA CG</td></tr>
-        <tr><td>M13/pUC R </td><td>CGG ATA ACA ATT TCA CAC AGG</td></tr>
-        <tr><td>MSCV </td><td>TGA ACC TCC TCG TTC GAC C</td></tr>
-        <tr><td>MSCV-rev </td><td>CAG CGG GGC TGC TAA AGC</td></tr>
-        <tr><td>pBABE-5' </td><td>CTT TAT CCA GCC CTC AC</td></tr>
-        <tr><td>pBABE-3' </td><td>CCC TAA CTGA CAC ACA TTC C</td></tr>
-        <tr><td>PCMV6-XL VP1.5FWD </td><td>GGA CTT TCC AAA ATG TCG</td></tr>
-        <tr><td>PCMV6-XL XL39 REV</td><td>TAG GAC AAG GCT GGT GGG</td></tr>
-        <tr><td>pEGFP-N-REV</td><td>CGC CGT CCA GCT CGA CC</td></tr>
-        <tr><td>pEGFP-C-fwd</td><td>CAA CGA GAA GCG CGA TC</td></tr>
-        <tr><td>pEGFP-C-REV</td><td>CTC TAC AAA TGT GGT ATG GC</td></tr>
-        <tr><td>pETDuetUP1</td><td> ATG CGT CCG GCG TAG AGG</td></tr>
-        <tr><td>pET SUMO-FWD </td><td>AAG ATT CTT GTA CGA CGG</td></tr>
-        <tr><td>pETT7 </td><td>GAT CCC GCG AAA TTA ATA CG</td></tr>
-        <tr><td>pETT7Term </td><td>GCC CCA AGG GGT TAT GC</td></tr>
-        <tr><td>pFASTBac-Fwd </td><td>TAT TCC GGA TTA TTC ATA CC</td></tr>
-        <tr><td>pFASTBac-Rev </td><td>TTT GTG AAA TTT GTG ATG C</td></tr>
-        <tr><td>pFLAG-CMV Rev </td><td>TAG GTC AAG GCT GGT GG</td></tr>
-        <tr><td>pGEX 5' </td><td>GGC AAG CCA CGT TTG GTG</td></tr>
-        <tr><td>pGEX 3' </td><td>GAG CTG CAT GTG TCA GAG G</td></tr>
-        <tr><td>pmCherry-C1 (Fwd) </td><td>GAC GCT GAG GTC AAG AC</td></tr>
-        <tr><td>pmCherry-N1 (Rev)</td><td> GTG GCC GTT CAC GGA GC</td></tr>
-        <tr><td>pPROEx-R </td><td>TAT CAG ACC GCT TCT GCG</td></tr>
-        <tr><td>Sp6 </td><td>ATT TAG GTG ACA CTA TAG</td></tr>
-        <tr><td>S-Tag </td><td>ACG CCA GCA CAT GGA CAG</td></tr>
-        <tr><td>SV40pro-F </td><td>TAT TTA TGC AGA GGC CGA GG</td></tr>
-        <tr><td>SV40pA-R </td><td>GAA ATT TGT GAT GCT ATT GC</td></tr>
-        <tr><td>T3 </td><td>GCA ATT AAC CCT CAC TAA AGG</td></tr>
-        <tr><td>T7 </td><td>TAA TAC GAC TCA CTA TAG GG</td></tr>
-        <tr><td>T7 term </td><td>GCT AGT TAT TGC TCA GCG G</td></tr>
+                        </ul>
+                    </div>
+                </li>
+
+            </ul>
+        </nav>
+    </div>
 
 
-    </tbody>
-</table>
+    <div style="padding-left:400px;">
+        <h2>InhousePrimers</h2>
+        <p>
+            This list includes all primers that are available, free of charge, for DNA sequencing orders:
+
+            Click <a href=""></a>
+            <a href="~/pdf/ACGTsequencingprimers.pdf">Here</a> to view a downloadable list without codon spaces.
+        </p>
+
+        <table class="table table-striped table-hover">
+            <tbody>
+                <tr><th>Primer)</th><th>Sequence</th></tr>
+
+                <tr><td>ACYCDuetUP1</td><td>GGA TCT CGA CGC TCT CC</td></tr>
+                <tr><td>ACYCDuetDOWN1</td><td>GAT TAT GCG GCC GTG TAC</td></tr>
+                <tr><td>ACYCDuetUP2</td><td>TGT ACA CGG CCG CAT AAT C</td></tr>
+                <tr><td>BGH </td><td>TAG AAG GCA CAG TCG AGG</td></tr>
+                <tr><td>CMV 24 </td><td>TAG GAC AAG GCT GGT GGG</td></tr>
+                <tr><td>CMV 30 </td><td>ATA ACC CCG CCC CGT TG</td></tr>
+                <tr><td>CMV-F </td><td>CGC AAA TGG GCG GTA GGC</td></tr>
+                <tr><td>IRES-F </td><td>TGG CTC TCC TCA AGC GTA TT</td></tr>
+                <tr><td>IRES-R </td><td>CCT CAC ATT GCC AAA AGA CG</td></tr>
+                <tr><td>M13(-21) F </td><td>TGT AAA ACG ACG GCC AGT</td></tr>
+                <tr><td>M13R </td><td>CAG GAA ACA GCT ATG AC</td></tr>
+                <tr><td>M13/pUC F </td><td>AGT CAC GAC GTT GTA AAA CG</td></tr>
+                <tr><td>M13/pUC R </td><td>CGG ATA ACA ATT TCA CAC AGG</td></tr>
+                <tr><td>MSCV </td><td>TGA ACC TCC TCG TTC GAC C</td></tr>
+                <tr><td>MSCV-rev </td><td>CAG CGG GGC TGC TAA AGC</td></tr>
+                <tr><td>pBABE-5' </td><td>CTT TAT CCA GCC CTC AC</td></tr>
+                <tr><td>pBABE-3' </td><td>CCC TAA CTGA CAC ACA TTC C</td></tr>
+                <tr><td>PCMV6-XL VP1.5FWD </td><td>GGA CTT TCC AAA ATG TCG</td></tr>
+                <tr><td>PCMV6-XL XL39 REV</td><td>TAG GAC AAG GCT GGT GGG</td></tr>
+                <tr><td>pEGFP-N-REV</td><td>CGC CGT CCA GCT CGA CC</td></tr>
+                <tr><td>pEGFP-C-fwd</td><td>CAA CGA GAA GCG CGA TC</td></tr>
+                <tr><td>pEGFP-C-REV</td><td>CTC TAC AAA TGT GGT ATG GC</td></tr>
+                <tr><td>pETDuetUP1</td><td> ATG CGT CCG GCG TAG AGG</td></tr>
+                <tr><td>pET SUMO-FWD </td><td>AAG ATT CTT GTA CGA CGG</td></tr>
+                <tr><td>pETT7 </td><td>GAT CCC GCG AAA TTA ATA CG</td></tr>
+                <tr><td>pETT7Term </td><td>GCC CCA AGG GGT TAT GC</td></tr>
+                <tr><td>pFASTBac-Fwd </td><td>TAT TCC GGA TTA TTC ATA CC</td></tr>
+                <tr><td>pFASTBac-Rev </td><td>TTT GTG AAA TTT GTG ATG C</td></tr>
+                <tr><td>pFLAG-CMV Rev </td><td>TAG GTC AAG GCT GGT GG</td></tr>
+                <tr><td>pGEX 5' </td><td>GGC AAG CCA CGT TTG GTG</td></tr>
+                <tr><td>pGEX 3' </td><td>GAG CTG CAT GTG TCA GAG G</td></tr>
+                <tr><td>pmCherry-C1 (Fwd) </td><td>GAC GCT GAG GTC AAG AC</td></tr>
+                <tr><td>pmCherry-N1 (Rev)</td><td> GTG GCC GTT CAC GGA GC</td></tr>
+                <tr><td>pPROEx-R </td><td>TAT CAG ACC GCT TCT GCG</td></tr>
+                <tr><td>Sp6 </td><td>ATT TAG GTG ACA CTA TAG</td></tr>
+                <tr><td>S-Tag </td><td>ACG CCA GCA CAT GGA CAG</td></tr>
+                <tr><td>SV40pro-F </td><td>TAT TTA TGC AGA GGC CGA GG</td></tr>
+                <tr><td>SV40pA-R </td><td>GAA ATT TGT GAT GCT ATT GC</td></tr>
+                <tr><td>T3 </td><td>GCA ATT AAC CCT CAC TAA AGG</td></tr>
+                <tr><td>T7 </td><td>TAA TAC GAC TCA CTA TAG GG</td></tr>
+                <tr><td>T7 term </td><td>GCT AGT TAT TGC TCA GCG G</td></tr>
+
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+

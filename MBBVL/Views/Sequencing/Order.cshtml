@@ -13,10 +13,26 @@
     }
 </style>
 <link rel=StyleSheet href="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc2/css/bootstrap-glyphicons.css" type="text/css" media=screen>
+<nav class="vertical pull-left">
+    <ul>
+        <li>
+            <div>
+                <ul>
+                    <li>@Html.ActionLink("General Overview", "GeneralOverview", "Oligo")</li>
+                    <li>@Html.ActionLink("GMP", "GMP", "Oligo")</li>
+                    <li>@Html.ActionLink("Price List", "PriceList", "Oligo")</li>
+                    <li>@Html.ActionLink("Purification Modifications", "PurificationModifications", "Oligo")</li>
+                    <li>@Html.ActionLink("Synthesis Technology", "SynthesisTechnology", "Oligo")</li>
+                    <li>@Html.ActionLink("FAQ", "FAQ", "Oligo")</li>
+                </ul>
+            </div>
+        </li>
 
+    </ul>
+</nav>
 <h2>Order</h2>
 
-<div style="padding-top:100px; padding-bottom:100px">
+<div style=" padding-bottom:100px;padding-left:300px;">
     <form name="dnaForm" ng-app="acgt" ng-controller="OrderSequencing" class="form-horizontal" novalidate>
         @*@if (!Request.IsAuthenticated) {
                 <div class="panel panel-primary">

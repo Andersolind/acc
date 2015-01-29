@@ -1150,7 +1150,7 @@ html {
 }
 
 body {
-   font-family: 'Gotham';
+   /*font-family: 'Gotham';*/
 }
 
 
@@ -1278,7 +1278,7 @@ h6,
 .h5,
 .h6 {
     font-family: inherit;
-    font-weight: 500;
+    /*font-weight: 500;*/
     line-height: 1.1;
     color: inherit;
 }
@@ -4403,6 +4403,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     list-style: none;
     font-family: 'Gothamy';
     font-size: 15px;
+    font-weight:900
 }
 
     .nav > li {
@@ -4720,7 +4721,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     .container-fluid > .navbar-header,
     .container > .navbar-collapse,
     .container-fluid > .navbar-collapse {
-        margin-right: 0;
+        /*margin-right: 0;*/
         margin-left: 0;
     }
 }

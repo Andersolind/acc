@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
+using System.Text;
 using System.Web;
 
 namespace MBBVL.Core {
@@ -489,7 +490,7 @@ namespace MBBVL.Core {
                 olForm += "<tr>";
                 olForm += "<td class='boldCell'>" + m.oligosequence[i].PrimerName + "</td>";
                 olForm += "<td class='boldCell'>" + m.oligosequence[i].Qty + "</td>";
-                olForm += "<td class='boldCell'>" + m.oligosequence[i].OligonucleotideSequence + "</td>";
+                olForm += "<td class='boldCell'>" + CreateString(m.oligosequence[i].OligonucleotideSequence) + "</td>";
                 olForm += "<td class='boldCell'>" + m.oligosequence[i].SynthesisScaleValue + "</td>";
                 olForm += "<td class='boldCell'>" + m.oligosequence[i].GMP2 + "</td>";
                 olForm += "<td class='boldCell'>" + m.oligosequence[i].Modification + "</td>";
@@ -504,6 +505,15 @@ namespace MBBVL.Core {
             CreateEmailForUser(m.shipping.Email, "Andersolind@gmail.com", template);
             //  CreateEmailForJason(m.shipping.Email, "Andersolind@gmail.com", template);
             return olForm;
+        }
+        private string CreateString(string original) {
+            StringBuilder buffer = new StringBuilder(original.Length * 3 / 2);
+            for (int i = 0; i < original.Length; i++) {
+                if ((i > 0) & (i % 3 == 0))
+                    buffer.Append(" ");
+                buffer.Append(original[i]);
+            }
+            return buffer.ToString();
         }
     }
 }

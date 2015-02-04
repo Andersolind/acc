@@ -2,10 +2,25 @@
 @{
     ViewBag.Title = "Location";
 }
+<style>
+    #map-canvas {
+     
+    position:absolute;
+    margin-bottom:20px;
+    width:100%;
+    height:500px;
+    color: #29383F;
+    position:absolute;
+    left:0;
+    top:0;
+    right:0;
+}
+</style>
+
 
 <img class="img-responsive" src="~/images/Header.png" />
 
-<div style="padding-bottom:40px;">
+@*<div style="padding-bottom:40px;">
     <div style="float:left;">
         <nav class="vertical">
             <ul>
@@ -23,13 +38,16 @@
 
             </ul>
         </nav>
-    </div>
+    </div>*@
 
 
     <div style="padding-left:400px;">
         <h2>Location</h2>
 
-        <p id="black">PLACEHOLDER
-        </p>
+    <div id="map-canvas"></div>
+
+        
     </div>
 </div>
+<script src="https://maps.googleapis.com/maps/api/js"></script>
+<script src="~/js/Google/googleMap.js"></script>

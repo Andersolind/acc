@@ -207,6 +207,7 @@
                             <th>Modification </th>
                             <th>Final Delivery Form</th>
                             <th>Purification</th>
+                            <th>Price</th>
 
                         </tr>
                     </thead>
@@ -240,6 +241,9 @@
                             </td>
                             <td>
                                 <select id="ddlPurification" class="form-control" name="ddlPurification" ng-change="keyPressPurification($index,Purification2)" ng-model="Purification2" ng-options="user.value as user.name for user in rows.Purification"></select>
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" id="txtPrice" name="price" ng-model="rows.Price" placeholder="Price" title="Price">
                             </td>
 
                         </tr>

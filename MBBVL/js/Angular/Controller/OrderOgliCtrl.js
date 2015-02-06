@@ -13,7 +13,7 @@
 
         $scope.finalDeliveryForm = [{ name: 'Liquid', value: 'Liquid' }, { name: 'Dry', value: 'Dry' }];
 
-        $scope.OligonucleotideRow = [{ PrimerName: "", Qty: "", OligonucleotideSequence: '', SynthesisScale1: $scope.synthesisScale1Values, SynthesisScaleValue: "", Modification: "", FinalDeliveryForm: $scope.finalDeliveryForm, FinalDeliveryFormValue: "", Purification: $scope.purification, PurificationValue: "", GMP3: $scope.gmp3, GmpValue: "" }];
+        $scope.OligonucleotideRow = [{ PrimerName: "", Qty: "", OligonucleotideSequence: '', SynthesisScale1: $scope.synthesisScale1Values, SynthesisScaleValue: "", Modification: "", FinalDeliveryForm: $scope.finalDeliveryForm, FinalDeliveryFormValue: "", Purification: $scope.purification, PurificationValue: "", GMP3: $scope.gmp3, GmpValue: "",Price:"" }];
     }
     //Send these values into the db
     $scope.AddOligonucleotideRow = function () {
@@ -93,6 +93,16 @@
         $scope.format = $scope.formats[0];
     }
     //Delivery check
+
+    for (var i = 0; i < $scope.OligonucleotideRow.length; i++) {
+        $scope.$watch('OligonucleotideRow[' + i + ']', function (changed) {
+
+            ///  (QTY) * [ (Sequence) * (synthesis scale) + (Purification) ]
+            alert(changed.Qty);
+            alert(changed.OligonucleotideSequence);
+            alert(changed.SynthesisScale1[0].name);
+        }, true);
+    }
 
 }]);
 

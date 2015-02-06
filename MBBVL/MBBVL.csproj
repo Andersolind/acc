@@ -277,6 +277,7 @@
     <Content Include="js\Angular\Fac\factory.js" />
     <Content Include="js\Angular\Service\acgtService.js" />
     <Content Include="js\bootstrap-datepicker.js" />
+    <Content Include="js\Google\googleMap.js" />
     <Content Include="js\infinite-rotator.js" />
     <Content Include="js\NewRows.js" />
     <Content Include="js\ui-bootstrap-tpls-0.11.2.min.js" />

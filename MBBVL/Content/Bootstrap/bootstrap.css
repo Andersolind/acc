@@ -1781,7 +1781,7 @@ pre {
 }
 
 .row {
-    margin-right: -15px;
+    margin-right: -200px;
     margin-left: -15px;
 }
 
@@ -4398,7 +4398,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     }
 
 .nav {
-    padding-left: 0;
+    padding-left: 100px;
     margin-bottom: 0;
     list-style: none;
     font-family: 'Gothamy';
@@ -4723,6 +4723,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     .container-fluid > .navbar-collapse {
         /*margin-right: 0;*/
         margin-left: 0;
+        margin-bottom: 15px;
     }
 }
 

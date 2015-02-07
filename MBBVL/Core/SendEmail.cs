@@ -481,8 +481,9 @@ namespace MBBVL.Core {
             olForm += "<td class='boldCell'>Modification</td>";
             olForm += "<td class='boldCell'>FinalDeliveryForm</td>";
             olForm += "<td class='boldCell'>Purification</td>";
-            olForm += "<td class='boldCell'>OligoID</td>";
             olForm += "<td class='boldCell'>Price</td>";
+            olForm += "<td class='boldCell'>OligoID</td>";
+          
             
             // more cells here as needed
             olForm += "</tr>";

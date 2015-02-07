@@ -79,6 +79,7 @@ namespace MBBVL.Controllers {
                     ol.GMP2 = model.oligosequence[i].GMP2;
                     ol.Modification = model.oligosequence[i].Modification;
                     ol.PurificationValue = model.oligosequence[i].PurificationValue;
+                    ol.Price = model.oligosequence[i].Price;
                     ol.UserId = g;
                   //  db.Oligosequence.Add(ol);
                  //   db.Entry(ol).State = EntityState.Added;

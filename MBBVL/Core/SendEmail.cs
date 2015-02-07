@@ -482,6 +482,7 @@ namespace MBBVL.Core {
             olForm += "<td class='boldCell'>FinalDeliveryForm</td>";
             olForm += "<td class='boldCell'>Purification</td>";
             olForm += "<td class='boldCell'>OligoID</td>";
+            olForm += "<td class='boldCell'>Price</td>";
             
             // more cells here as needed
             olForm += "</tr>";
@@ -496,6 +497,7 @@ namespace MBBVL.Core {
                 olForm += "<td class='boldCell'>" + m.oligosequence[i].Modification + "</td>";
                 olForm += "<td class='boldCell'>" + m.oligosequence[i].FinalDeliveryFormValue + "</td>";
                 olForm += "<td class='boldCell'>" + m.oligosequence[i].PurificationValue + "</td>";
+                olForm += "<td class='boldCell'>" + m.oligosequence[i].Price + "</td>";
                 olForm += "<td class='boldCell'> </td>";
                 // more cells here as needed
                 olForm += "</tr>";

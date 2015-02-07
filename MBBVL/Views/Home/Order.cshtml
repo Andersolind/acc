@@ -220,18 +220,18 @@
                                 <span style="color:red" ng-show="dnaForm.PrimerName.$error.required">Primer Name is required.</span>
                             </td>
                             <td>
-                                <input type="text" class="form-control" id="txtQty" name="txtQty" ng-model="rows.Qty" placeholder="Enter Qty" title="Qty">
+                                <input type="text" class="form-control" ng-change="UserQuote($index,rows.Qty,rows.OligonucleotideSequence,scaleValues1,Purification2,olgGmp)" id="txtQty" name="txtQty" ng-model="rows.Qty" placeholder="Enter Qty" title="Qty">
 
                             </td>
                             <td>
-                                <input type="text" class="form-control" id="txtOligonucleotideSequence" name="OligonucleotideSequence" ng-model="rows.OligonucleotideSequence" placeholder="Oligonucleotide Sequence" title="Oligonucleotide Sequence">
+                                <input type="text" ng-change="UserQuote($index,rows.Qty,rows.OligonucleotideSequence,scaleValues1,Purification2,olgGmp)" class="form-control" id="txtOligonucleotideSequence" name="OligonucleotideSequence" ng-model="rows.OligonucleotideSequence" placeholder="Oligonucleotide Sequence" title="Oligonucleotide Sequence">
 
                             </td>
                             <td>
-                                <select id="scaleValues1" class="form-control" name="scaleValues1" ng-change="keyPressSynthesisScale1Values($index,scaleValues1)" ng-model="scaleValues1" ng-options="findScale.name as findScale.value for findScale in rows.SynthesisScale1"></select>
+                                <select id="scaleValues1" class="form-control" name="scaleValues1" ng-change="keyPressSynthesisScale1Values($index,scaleValues1) ; UserQuote($index,rows.Qty,rows.OligonucleotideSequence,scaleValues1,Purification2,olgGmp) " ng-model="scaleValues1" ng-options="findScale.name as findScale.value for findScale in rows.SynthesisScale1"></select>
                             </td>
                             <td>
-                                <select id="olgGmp" name="olgGmp" ng-change="keyPressDnaGmp($index,olgGmp)" ng-model="olgGmp" ng-options="user.value as user.name for user in rows.GMP3"></select>
+                                <select id="olgGmp" class="form-control" name="olgGmp" ng-change="keyPressDnaGmp($index,olgGmp);UserQuote($index,rows.Qty,rows.OligonucleotideSequence,scaleValues1,Purification2,olgGmp)" ng-model="olgGmp" ng-options="user.value as user.name for user in rows.GMP3"></select>
                             </td>
                             <td>
                                 <input type="text" class="form-control" id="txtModification" name="txtModification" ng-model="rows.Modification" placeholder="Enter Modification" title="Modification">
@@ -240,10 +240,10 @@
                                 <select id="finalDeliveryForm" class="form-control" ng-change="keyPressFinalDeliveryForm($index,finalDeliveryForm2)" name="finalDeliveryForm" ng-model="finalDeliveryForm2" ng-options="deliveryForm.name as deliveryForm.value for deliveryForm in rows.FinalDeliveryForm"></select>
                             </td>
                             <td>
-                                <select id="ddlPurification" class="form-control" name="ddlPurification" ng-change="keyPressPurification($index,Purification2)" ng-model="Purification2" ng-options="user.value as user.name for user in rows.Purification"></select>
+                                <select id="ddlPurification" class="form-control" name="ddlPurification" ng-change="keyPressPurification($index,Purification2);UserQuote($index,rows.Qty,rows.OligonucleotideSequence,scaleValues1,Purification2,olgGmp)" ng-model="Purification2" ng-options="user.value as user.name for user in rows.Purification"></select>
                             </td>
                             <td>
-                                <input type="text" class="form-control" id="txtPrice" name="price" ng-model="rows.Price" placeholder="Price" title="Price">
+                                <input type="text" class="form-control" id="txtPrice" name="price" ng-model="rows.Price"  disabled placeholder="Price" title="Price">
                             </td>
 
                         </tr>

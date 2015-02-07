@@ -13,7 +13,7 @@
 
         $scope.finalDeliveryForm = [{ name: 'Liquid', value: 'Liquid' }, { name: 'Dry', value: 'Dry' }];
 
-        $scope.OligonucleotideRow = [{ PrimerName: "", Qty: "", OligonucleotideSequence: '', SynthesisScale1: $scope.synthesisScale1Values, SynthesisScaleValue: "", Modification: "", FinalDeliveryForm: $scope.finalDeliveryForm, FinalDeliveryFormValue: "", Purification: $scope.purification, PurificationValue: "", GMP3: $scope.gmp3, GmpValue: "",Price:"" }];
+        $scope.OligonucleotideRow = [{ PrimerName: "", Qty: "", OligonucleotideSequence: '', SynthesisScale1: $scope.synthesisScale1Values, SynthesisScaleValue: "", Modification: "", FinalDeliveryForm: $scope.finalDeliveryForm, FinalDeliveryFormValue: "", Purification: $scope.purification, PurificationValue: "", GMP3: $scope.gmp3, GmpValue: "", Price: "" }];
     }
     //Send these values into the db
     $scope.AddOligonucleotideRow = function () {
@@ -25,6 +25,52 @@
         Shipping: {},
         Oligosequence: $scope.OligonucleotideRow
     };
+    //(QTY * [(Sequence) * (synthesis scale ) + (Purification)]
+    $scope.UserQuote = function (index, qty, sequence, synthesisscale, purification, gmp) {
+        //If this null
+        if (gmp != 'yes') {
+            if (qty != "" && sequence != "" && typeof synthesisscale != 'undefined' && typeof purification != 'undefined') {
+
+                var getNumber = qty * sequence.length * ConvertSynsithisScale(synthesisscale) + ConvertPurification(purification);
+                $scope.OligonucleotideRow[index].Price = getNumber;
+            }
+            else {
+                $scope.OligonucleotideRow[index].Price = 'Not Valid';
+            }
+        }
+        else {
+            $scope.OligonucleotideRow[index].Price = 'Not Valid';
+        }
+    }
+    function ConvertPurification(value) {
+
+        switch (value) {
+            case "Desalted":
+                return 0;
+
+            case "Rp-Cartidge":
+                return 20.00;
+            default:
+                return 'undefined';
+        }
+    }
+    function ConvertSynsithisScale(value) {
+        switch (value) {
+            case "0.02":
+                return 0.29;
+
+            case "0.04":
+                return 0.50;
+            case "0.04":
+                return 0.50;
+            case "0.2":
+                return 1.00;
+            case "1.0":
+                return 3.00;
+            default:
+                return 'undefined';
+        }
+    }
     function CreateKeyPress() {
         //Tracks the GMP key press value
         $scope.keyPressDnaGmp = function (index, value) {
@@ -94,15 +140,7 @@
     }
     //Delivery check
 
-    for (var i = 0; i < $scope.OligonucleotideRow.length; i++) {
-        $scope.$watch('OligonucleotideRow[' + i + ']', function (changed) {
 
-            ///  (QTY) * [ (Sequence) * (synthesis scale) + (Purification) ]
-            alert(changed.Qty);
-            alert(changed.OligonucleotideSequence);
-            alert(changed.SynthesisScale1[0].name);
-        }, true);
-    }
 
 }]);
 

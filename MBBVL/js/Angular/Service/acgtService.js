@@ -10,7 +10,7 @@
         return properties;
     }
     this.oligonucleotideRow = function (synthesisScale1Values, purification,finalDeliveryForm, gmp3) {
-        var properties = { PrimerName: "", Qty: "", OligonucleotideSequence: '', SynthesisScale1: synthesisScale1Values,SynthesisScaleValue: "", Modification: "", Purification: purification,PurificationValue: "",FinalDeliveryForm: finalDeliveryForm,FinalDeliveryFormValue: "", GMP3: gmp3, GmpValue: "" };
+        var properties = { PrimerName: "", Qty: "", OligonucleotideSequence: '', SynthesisScale1: synthesisScale1Values,SynthesisScaleValue: "", Modification: "", Purification: purification,PurificationValue: "",FinalDeliveryForm: finalDeliveryForm,FinalDeliveryFormValue: "", GMP3: gmp3, GmpValue: "",Price:"" };
         return properties;
     }
 });

@@ -16,26 +16,26 @@ namespace MBBVL.Core {
                 //Create the msg object to be sent
                 MailMessage msg = new MailMessage();
                 //Add your email address to the recipients
-                msg.To.Add("Jchen.acgt@gmail.com");
+                msg.To.Add("andersolind@gmail.com");
                 //Configure the address we are sending the mail from
-                MailAddress address = new MailAddress("info@acgt.com");
-                MailAddress addressBCC = new MailAddress("andersolind@hotmail.com");
+                MailAddress address = new MailAddress("info@acgtcorp.com");
+              //  MailAddress addressBCC = new MailAddress("andersolind@hotmail.com");
                 msg.From = address;
-                msg.Bcc.Add(addressBCC);
+             //   msg.Bcc.Add(addressBCC);
                 msg.Subject = "Order form";
                 msg.IsBodyHtml = true;
                 msg.Body = body;
 
 
                 ////Configure an SmtpClient to send the mail.            
-                SmtpClient smptc = new SmtpClient(); // Here SMTP Client object is created
+                SmtpClient smptc = new SmtpClient("localhost"); // Here SMTP Client object is created
                 //   smptc.Host = "smtpout.asia.secureserver.net";// here SMTP interface Address is passed
                 smptc.Port = 25;// Use port No 25
-                smptc.UseDefaultCredentials = false;
+                smptc.UseDefaultCredentials = true;
                 smptc.EnableSsl = false;
                 smptc.DeliveryMethod = SmtpDeliveryMethod.Network;
-                NetworkCredential credentials = new NetworkCredential("info@snapcheckit.com", "Travel2014");
-                smptc.Credentials = credentials;
+            //    NetworkCredential credentials = new NetworkCredential("info@snapcheckit.com", "Travel2014");
+            //    smptc.Credentials = credentials;
                 smptc.Send(msg);
 
                 ////Setup credentials to login to our sender email address ("UserName", "Password")

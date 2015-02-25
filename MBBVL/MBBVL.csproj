@@ -370,7 +370,7 @@
     <Content Include="Views\Sequencing\PriceList.cshtml" />
     <Content Include="Views\Sequencing\FAQ.cshtml" />
     <Content Include="Views\ResearchAndDevelopment\Index.cshtml" />
-    <Content Include="Views\ResearchAndDevelopment\Jason.cshtml" />
+    <Content Include="Views\ResearchAndDevelopment\Announcements.cshtml" />
     <Content Include="Views\TechSupport\Index.cshtml" />
     <Content Include="Views\Sequencing\Order.cshtml" />
     <Content Include="Views\Home\News.cshtml" />

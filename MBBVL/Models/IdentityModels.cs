@@ -37,7 +37,7 @@ namespace MBBVL.Models {
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int PickUpId { get; set; }
         public DateTime PickUpDate { get; set; }
-      
+
         [Display(Name = "Full Name")]
         public string FullName { get; set; }
         [Display(Name = "Institution")]
@@ -46,7 +46,7 @@ namespace MBBVL.Models {
         public string ShippingAddress { get; set; }
         [Display(Name = "Phone")]
         public string Phone { get; set; }
-        
+
         [Display(Name = "Email")]
         [EmailAddress]
         public string Email { get; set; }
@@ -57,7 +57,7 @@ namespace MBBVL.Models {
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int BillingId { get; set; }
-        
+
         [Display(Name = "Quote no")]
         public string Quotenumber { get; set; }
         [Required]
@@ -97,6 +97,8 @@ namespace MBBVL.Models {
         public string FinalDeliveryFormValue { get; set; }
         [Display(Name = "Purification")]
         public string PurificationValue { get; set; }
+        [Display(Name = "Price")]
+        public string Price { get; set; }
         public Guid UserId { get; set; }
 
     }

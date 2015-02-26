@@ -17,7 +17,7 @@ namespace MBBVL.Core {
                 MailMessage msg = new MailMessage();
                 //Add your email address to the recipients
                 msg.To.Add("jchen.acgt@gmail.com");
-                //Configure the address we are sending the mail from
+                //Configure the address we are sending the mail from 
                 MailAddress address = new MailAddress("info@acgtcorp.com");
               //  MailAddress addressBCC = new MailAddress("andersolind@hotmail.com");
                 msg.From = address;

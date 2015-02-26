@@ -273,6 +273,7 @@
     <Content Include="js\Angular\app.js" />
     <Content Include="js\Angular\Controller\OrderOgliCtrl.js" />
     <Content Include="js\Angular\Controller\OrderSequencingctrl.js" />
+    <Content Include="js\Angular\Controller\PickUpCtrl.js" />
     <Content Include="js\Angular\Controller\PriceListCtrl.js" />
     <Content Include="js\Angular\Fac\factory.js" />
     <Content Include="js\Angular\Service\acgtService.js" />

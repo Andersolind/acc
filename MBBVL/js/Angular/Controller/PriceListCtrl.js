@@ -43,9 +43,4 @@ app.controller("PriceList", ['$scope', '$http', function ($scope, $http) {
 
     }
 
-
-    //$scope.numberOfBasis = function()
-    //{
-    //    $scope.oligoSynthesisCost;
-    //}
 }]);

@@ -34,23 +34,10 @@ namespace MBBVL.Core {
                 smptc.UseDefaultCredentials = true;
                 smptc.EnableSsl = false;
                 smptc.DeliveryMethod = SmtpDeliveryMethod.Network;
-            //    NetworkCredential credentials = new NetworkCredential("info@snapcheckit.com", "Travel2014");
-            //    smptc.Credentials = credentials;
+      
                 smptc.Send(msg);
 
-                ////Setup credentials to login to our sender email address ("UserName", "Password")
-                //NetworkCredential credentials = new NetworkCredential("andersolind@gmail.com", "Oscar@2015");
-                //client.UseDefaultCredentials = true;
-                //client.Credentials = credentials;
-
-                ////Send the msg
-                //client.Send(msg);
-                //var client = new SmtpClient("smtp.gmail.com", 587) {
-                //    Credentials = new NetworkCredential("andersolind@gmail.com", "Oscar@2015"),
-                //    EnableSsl = true
-                //};
-
-                //client.Send("andersolind@hotmail.com", "andersolind@gmail.com", "test", "testbody");
+           
 
 
             } catch (Exception ex) {
@@ -384,6 +371,14 @@ namespace MBBVL.Core {
                 ship += "</td>";
                 ship += "<td valign='top'>";
                 ship += m.PickUp.Room;
+                ship += "</td>";
+                ship += "</tr>";
+                ship += "<tr>";
+                ship += "<td valign='top'>";
+                ship += "<label for='shippingEmail'>Notes</label>";
+                ship += "</td>";
+                ship += "<td valign='top'>";
+                ship += m.PickUp.Notes;
                 ship += "</td>";
                 ship += "</tr>";
                 ship += "<tr>";

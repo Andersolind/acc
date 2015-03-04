@@ -50,6 +50,8 @@ namespace MBBVL.Models {
         public string Phone { get; set; }
         public string Room {get;set;}
 
+        public string Notes { get; set; }
+
         public string Message { get; set; }
         [Display(Name = "Email")]
         [EmailAddress]

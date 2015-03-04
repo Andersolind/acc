@@ -126,6 +126,14 @@
                                 </div>
                             </div>
                             <div class="control-group">
+                                <label class="col-md-2 control-label" for="notes">Notes</label>
+                                <div class="col-md-10">
+                                    <textarea rows="5" id="pickUpNotes" name="pickUpNotes" ng-model="WrapperModel.PickUp.Notes" class="form-control input-lg" placeholder="Notes" required></textarea>
+                                    <span ng-show="pickUpForm.pickUpNotes.$dirty && pickUpForm.pickUpNotes.$invalid">  </span>
+                                    <span style="color:red" ng-show="pickUpForm.pickUpNotes.$error.required">Notes is required.</span>
+                                </div>
+                            </div>
+                            <div class="control-group">
                                 <label class="col-md-2 control-label" for="InputFieldA">Pick up Email</label>
                                 <div class="col-md-10">
                                     <input type="email" class="form-control input" id="pickUpEmail" name="pickUpEmail" ng-model="WrapperModel.PickUp.Email" required placeholder="Email" title="Email">

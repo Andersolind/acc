@@ -150,7 +150,7 @@ namespace MBBVL.Controllers.Sequencing {
             //
             email.SendPickUp(templateData);
 
-            return Ok("");
+            return Ok();
         }
 
         // PUT api/<controller>/5

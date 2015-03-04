@@ -148,7 +148,7 @@ namespace MBBVL.Controllers.Sequencing {
             SequencingWrapperModel templateData = new SequencingWrapperModel();
             templateData.PickUp = model.PickUp;
             //
-            email.SetUpSequence(templateData);
+            email.SendPickUp(templateData);
 
             return Ok("");
         }

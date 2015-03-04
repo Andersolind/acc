@@ -40,7 +40,7 @@ namespace MBBVL.Models {
 
         [Display(Name = "Full Name")]
         public string FullName { get; set; }
-
+        public string FirstName { get; set; }
         public string LastName { get; set; }
         [Display(Name = "Institution")]
         public string Institution { get; set; }

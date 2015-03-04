@@ -335,7 +335,7 @@ namespace MBBVL.Core {
             return olForm;
         }
 
-        private void SendPickUp(SequencingWrapperModel model) {
+        public void SendPickUp(SequencingWrapperModel model) {
             SequencingWrapperModel m = new SequencingWrapperModel();
             m.PickUp = model.PickUp;
             var ship = "<table><td>";
@@ -351,7 +351,7 @@ namespace MBBVL.Core {
                 ship += "<label for='fullName'>Full Name</label>";
                 ship += "</td>";
                 ship += "<td valign='top'>";
-                ship += m.PickUp.FullName;
+                ship += m.PickUp.FirstName;
                 ship += "</td>";
                 ship += "</tr>";
                 ship += "<tr>";

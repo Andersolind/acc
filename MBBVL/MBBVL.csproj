@@ -388,6 +388,7 @@
     <Content Include="Views\Investors\Index.cshtml" />
     <Content Include="Views\Shared\SideBar\NavBar.cshtml" />
     <Content Include="Views\Shared\navbar\_NavBar.cshtml" />
+    <Content Include="Views\Shared\footer\_footer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

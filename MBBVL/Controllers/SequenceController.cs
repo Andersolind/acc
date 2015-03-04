@@ -12,6 +12,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 
 namespace MBBVL.Controllers.Sequencing {
+      [RoutePrefix("api/Sequence")]
     public class SequenceController : ApiController {
         // GET api/<controller>
         public ApplicationDbContext db = new ApplicationDbContext();
@@ -140,8 +141,15 @@ namespace MBBVL.Controllers.Sequencing {
 
         [HttpPost]
         [ResponseType(typeof(SequenceController))]
-        [Route("CreateEmail")]
-        public IHttpActionResult CreateEmail(SequencingWrapperModel model) {
+        [Route("SendPickUpEmail")]
+        public IHttpActionResult SendPickUpEmail(SequencingWrapperModel model) {
+
+            SendEmail email = new SendEmail();
+            SequencingWrapperModel templateData = new SequencingWrapperModel();
+            templateData.PickUp = model.PickUp;
+            //
+            email.SetUpSequence(templateData);
+
             return Ok("");
         }
 

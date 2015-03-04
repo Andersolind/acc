@@ -335,6 +335,75 @@ namespace MBBVL.Core {
             return olForm;
         }
 
+        private void SendPickUp(SequencingWrapperModel model) {
+            SequencingWrapperModel m = new SequencingWrapperModel();
+            m.PickUp = model.PickUp;
+            var ship = "<table><td>";
+            
+                ship += "<table width='100' style='float:left' cellpadding='0 cellspacing='0' border='0 align='center'>";
+                ship += "<thead>";
+                ship += "<tr>";
+                ship += "<th ><h1  style='color:blue;text-decoration: underline;'>Pick Up Information</h1</th>";
+                ship += "</tr>";
+                ship += "</thead>";
+                ship += "<tr>";
+                ship += "<td valign='top'>";
+                ship += "<label for='fullName'>Full Name</label>";
+                ship += "</td>";
+                ship += "<td valign='top'>";
+                ship += m.PickUp.FullName;
+                ship += "</td>";
+                ship += "</tr>";
+                ship += "<tr>";
+                ship += "<td valign='top'>";
+                ship += "<label for='fullName'>Last Name</label>";
+                ship += "</td>";
+                ship += "<td valign='top'>";
+                ship += m.PickUp.LastName;
+                ship += "</td>";
+                ship += "</tr>";
+                ship += "<tr>";
+                ship += "<td valign='top'>";
+                ship += "<label for='fullName'>Institution</label>";
+                ship += "</td>";
+                ship += "<td valign='top'>";
+                ship += m.PickUp.Institution;
+                ship += "</td>";
+                ship += "</tr>";
+                ship += "<tr>";
+                ship += "<td valign='top'>";
+                ship += "<label for='fullName'>Message</label>";
+                ship += "</td>";
+                ship += "<td valign='top'>";
+                ship += m.PickUp.Message;
+                ship += "</td>";
+                ship += "</tr>";
+                ship += "<tr>";
+                ship += "<td valign='top'>";
+                ship += "<label for='shippingEmail'>Room</label>";
+                ship += "</td>";
+                ship += "<td valign='top'>";
+                ship += m.PickUp.Room;
+                ship += "</td>";
+                ship += "</tr>";
+                ship += "<tr>";
+                ship += "<td valign='top'>";
+                ship += "<label for='shippingEmail'>Email</label>";
+                ship += "</td>";
+                ship += "<td valign='top'>";
+                ship += m.PickUp.Email;
+                ship += "</td>";
+                ship += "</tr>";
+                ship += "</table>";
+
+                ship += "</table> </body> </html>";
+
+                var template = StaticValues.HtmlHeaderText() + ship;
+
+                CreateEmailForUser(m.PickUp.Email, "Andersolind@gmail.com", template);
+            
+        }
+
         public string SetUpbill(WrapperModel model) {
             WrapperModel m = new WrapperModel();
 

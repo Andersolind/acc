@@ -25,7 +25,8 @@ namespace MBBVL {
                        "~/js/angular/Service/acgtService.js",
                        "~/js/angular/Fac/factory.js",
                        "~/js/angular/Controller/OrderSequencingctrl.js",
-                         "~/js/angular/Controller/OrderOgliCtrl.js",
+                       "~/js/angular/Controller/OrderOgliCtrl.js",
+                       "~/js/angular/Controller/PickUpCtrl.js",
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(

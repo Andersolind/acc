@@ -40,13 +40,17 @@ namespace MBBVL.Models {
 
         [Display(Name = "Full Name")]
         public string FullName { get; set; }
+
+        public string LastName { get; set; }
         [Display(Name = "Institution")]
         public string Institution { get; set; }
         [Display(Name = "Pickup Address")]
         public string ShippingAddress { get; set; }
         [Display(Name = "Phone")]
         public string Phone { get; set; }
+        public string Room {get;set;}
 
+        public string Message { get; set; }
         [Display(Name = "Email")]
         [EmailAddress]
         public string Email { get; set; }

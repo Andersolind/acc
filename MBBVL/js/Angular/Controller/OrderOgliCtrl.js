@@ -1,11 +1,14 @@
 ﻿app.controller("OrderOgli", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', function ($scope, $http, GenericHelpers, ACGTFactory) {
 
     SetupInitialRows();
+    SetupAutoText();
     SetUpDatePicker();
     //Check box values
     CreateKeyPress();
 
     function SetupInitialRows() {
+
+        //  $scope.modification = GenericHelpers.modifications();
         $scope.gmp3 = [{ name: 'yes', value: 'yes' }, { name: 'no', value: 'no' }];
         $scope.synthesisScale1Values = [{ name: '0.02', value: '0.02' }, { name: '0.04', value: '0.04' }, { name: '0.2', value: '0.2' }, { name: '1', value: '1' }];
         //
@@ -13,7 +16,7 @@
 
         $scope.finalDeliveryForm = [{ name: 'Liquid', value: 'Liquid' }, { name: 'Dry', value: 'Dry' }];
 
-        $scope.OligonucleotideRow = [{ PrimerName: "", Qty: "", OligonucleotideSequence: '', SynthesisScale1: $scope.synthesisScale1Values, SynthesisScaleValue: "", Modification: "", FinalDeliveryForm: $scope.finalDeliveryForm, FinalDeliveryFormValue: "", Purification: $scope.purification, PurificationValue: "", GMP3: $scope.gmp3, GmpValue: "", Price: "" }];
+        $scope.OligonucleotideRow = [{ PrimerName: "", Qty: "", OligonucleotideSequence: '', SynthesisScale1: $scope.synthesisScale1Values, SynthesisScaleValue: "", Modification: "",ModificationValue: "", FinalDeliveryForm: $scope.finalDeliveryForm, FinalDeliveryFormValue: "", Purification: $scope.purification, PurificationValue: "", GMP3: $scope.gmp3, GmpValue: "", Price: "" }];
     }
     //Send these values into the db
     $scope.AddOligonucleotideRow = function () {
@@ -41,6 +44,28 @@
         else {
             $scope.OligonucleotideRow[index].Price = 'Not Valid';
         }
+    }
+    function SetupAutoText() {
+        var numbers = new Bloodhound({
+            datumTokenizer: function (d) { return Bloodhound.tokenizers.whitespace(d.name); },
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            local: GenericHelpers.modifications()
+        });
+        numbers.initialize();
+
+
+        // Typeahead options object
+        $scope.exampleOptions = {
+            highlight: true
+        };
+
+        // Single dataset example
+        $scope.exampleData = {
+            displayKey: 'name',
+            source: numbers.ttAdapter()
+        };
+
+        $scope.foo = null;
     }
     function ConvertPurification(value) {
 
@@ -75,6 +100,14 @@
         //Tracks the GMP key press value
         $scope.keyPressDnaGmp = function (index, value) {
             $scope.OligonucleotideRow[index].GmpValue = value;
+        };
+        $scope.keyPressModification = function (index, value) {
+            if (typeof value.name != 'undefined') {
+                $scope.OligonucleotideRow[index].ModificationValue = value.name;
+            }
+            else {
+                $scope.OligonucleotideRow[index].ModificationValue = value;
+            }
         };
         //synthesisScale1Values Key press values
         $scope.keyPressSynthesisScale1Values = function (index, value) {

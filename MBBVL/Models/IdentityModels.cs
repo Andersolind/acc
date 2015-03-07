@@ -99,6 +99,8 @@ namespace MBBVL.Models {
         public bool GMP2 { get; set; }
         [Display(Name = "Modification")]
         public string Modification { get; set; }
+        [Display(Name = "Modification Values")]
+        public string ModificationValues { get; set; }
         [Display(Name = "Final Delivery")]
         public string FinalDeliveryFormValue { get; set; }
         [Display(Name = "Purification")]

@@ -17,9 +17,11 @@ namespace MBBVL {
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
-
                       "~/js/Angular.js",
+                      "~/Scripts/bootstrap.js",
+                      "~/js/Angular/TypeaHead/Type.js",
+                      "~/js/Angular/TypeaHead/bloodhound.js",
+                      "~/js/Angular/Directives/Typeahead.js",
                        "~/js/ui-bootstrap-tpls-0.11.2.min.js",
                       "~/js/angular/app.js",
                        "~/js/angular/Service/acgtService.js",

@@ -16,7 +16,6 @@
 
 
 
-
 <span style="padding-top:100px;padding-bottom:100px;">
 
 </span>
@@ -220,7 +219,7 @@
                                 <span style="color:red" ng-show="dnaForm.PrimerName.$error.required">Primer Name is required.</span>
                             </td>
                             <td>
-                                <input type="text" class="form-control" ng-change="UserQuote($index,rows.Qty,rows.OligonucleotideSequence,scaleValues1,Purification2,olgGmp)" id="txtQty" name="txtQty" ng-model="rows.Qty" placeholder="Enter Qty" title="Qty">
+                                <input type="text" style="width:50px;" class="form-control" ng-change="UserQuote($index,rows.Qty,rows.OligonucleotideSequence,scaleValues1,Purification2,olgGmp)" id="txtQty" name="txtQty" ng-model="rows.Qty" placeholder="Qty" title="Qty">
 
                             </td>
                             <td>
@@ -231,11 +230,11 @@
                                 <select id="scaleValues1" class="form-control" name="scaleValues1" ng-change="keyPressSynthesisScale1Values($index,scaleValues1) ; UserQuote($index,rows.Qty,rows.OligonucleotideSequence,scaleValues1,Purification2,olgGmp) " ng-model="scaleValues1" ng-options="findScale.name as findScale.value for findScale in rows.SynthesisScale1"></select>
                             </td>
                             <td>
-                                <select id="olgGmp" class="form-control" name="olgGmp" ng-change="keyPressDnaGmp($index,olgGmp);UserQuote($index,rows.Qty,rows.OligonucleotideSequence,scaleValues1,Purification2,olgGmp)" ng-model="olgGmp" ng-options="user.value as user.name for user in rows.GMP3"></select>
+                                <select id="olgGmp" class="form-control" style="width:80px" name="olgGmp" ng-change="keyPressDnaGmp($index,olgGmp);UserQuote($index,rows.Qty,rows.OligonucleotideSequence,scaleValues1,Purification2,olgGmp)" ng-model="olgGmp" ng-options="user.value as user.name for user in rows.GMP3"></select>
                             </td>
                             <td>
-                                <input type="text" class="form-control" id="txtModification" name="txtModification" ng-model="rows.Modification" placeholder="Enter Modification" title="Modification">
-                            </td>
+                                <input type="text" class="sfTypeahead form-control" name="txtModification" id="txtModification" ng-change="keyPressModification($index,rows.Modification);" options="exampleOptions" datasets="exampleData" ng-model="rows.Modification">
+                           </td>
                             <td>
                                 <select id="finalDeliveryForm" class="form-control" ng-change="keyPressFinalDeliveryForm($index,finalDeliveryForm2)" name="finalDeliveryForm" ng-model="finalDeliveryForm2" ng-options="deliveryForm.name as deliveryForm.value for deliveryForm in rows.FinalDeliveryForm"></select>
                             </td>

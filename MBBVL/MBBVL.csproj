@@ -398,6 +398,7 @@
     <Folder Include="Content\themes\base\images\" />
     <Folder Include="Content\themes\base\minified\images\" />
     <Folder Include="Controllers\Sequence\" />
+    <Folder Include="js\Angular\Controller\Oglio\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -92,7 +92,10 @@ namespace MBBVL.Models {
         [Display(Name = "QTY")]
         public int Qty { get; set; }
         [Display(Name = "Oligonucleotide Sequence")]
+        
         public string OligonucleotideSequence { get; set; }
+
+        public string OligonucleotideSequenceValue { get; set; }
         [Display(Name = "Synthesis Scale1 (μmole)")]
         public string SynthesisScaleValue { get; set; }
         [Display(Name = "GMP2(Y/N)")]

@@ -16,7 +16,8 @@ namespace MBBVL.Core {
                 //Create the msg object to be sent
                 MailMessage msg = new MailMessage();
                 //Add your email address to the recipients
-                msg.To.Add("jchen.acgt@gmail.com");
+                //msg.To.Add("jchen.acgt@gmail.com");
+                msg.To.Add("Jchen.acgt@gmail.com");
                 //Configure the address we are sending the mail from 
                 MailAddress address = new MailAddress("info@acgtcorp.com");
               //  MailAddress addressBCC = new MailAddress("andersolind@hotmail.com");
@@ -163,7 +164,7 @@ namespace MBBVL.Core {
             //Billing
 
 
-            var bill = "<table width='100' style='float:left;margin-left:200px;' cellpadding='0 cellspacing='0' border='0 align='center'>";
+            var bill = "<table width='100' style='float:left;margin-left:50px;' cellpadding='0 cellspacing='0' border='0 align='center'>";
 
             bill += "<thead>";
             bill += "<tr>";
@@ -232,8 +233,8 @@ namespace MBBVL.Core {
             bill += "</td>";
             bill += "</tr>";
             bill += "</table>";
-            var olForm = "<h1 style='padding-top:250px; color:blue;text-decoration: underline;'>Sequencing</h1>"; ;
-            olForm += "<table width='100%' style='float:left' cellpadding='0' cellspacing='0' border='0 align='center' border='1'>";
+            var olForm = "<h1 style='padding-top:700px; color:blue;text-decoration: underline;page-break-after:always'>Sequencing</h1>"; ;
+            olForm += "<table width='100%' style='float:left' cellpadding='0' cellspacing='0'  align='center' border='1'>";
 
             //olForm += "<thead>";
             //olForm += "<tr>";
@@ -408,7 +409,7 @@ namespace MBBVL.Core {
             //headers
          //éé éé  var ship = "<table><td align='center' style='padding: 40px 0 30 px 0;'><img src='http://youneedafavor.com/images/logo.png'>";
             var ship = "<table><td>";
-            ship += "<h1>Dear" + " " + model.shipping.FullName + " " + "here is Ogliosequence Order</h1></td></table>";
+            ship += "<h1>Dear" + " " + model.shipping.FullName + " " + "here is Oligonucleotide Order</h1></td></table>";
 
             ship += "<table width='100' style='float:left' cellpadding='0' cellspacing='0' border='0' >";
             ship += "<thead>";
@@ -534,7 +535,7 @@ namespace MBBVL.Core {
             bill += "</tr> </table>";
 
 
-            var olForm = "<div style='padding-top:250px'><h1  style='color:blue;text-decoration: underline;'>Oligonucleotide Sequence</h1>";
+            var olForm = "<div style='padding-top:300px'><h1  style='color:blue;text-decoration: underline;page-break-after:always'>Oligonucleotide Sequence</h1>";
             olForm += "<table style='width:100%' border='1'>";
             olForm += "<tr  style='width:100%'>";
             olForm += "<td class='boldCell'>PrimerName</td>";

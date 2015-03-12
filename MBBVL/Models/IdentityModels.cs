@@ -40,13 +40,19 @@ namespace MBBVL.Models {
 
         [Display(Name = "Full Name")]
         public string FullName { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         [Display(Name = "Institution")]
         public string Institution { get; set; }
         [Display(Name = "Pickup Address")]
         public string ShippingAddress { get; set; }
         [Display(Name = "Phone")]
         public string Phone { get; set; }
+        public string Room {get;set;}
 
+        public string Notes { get; set; }
+
+        public string Message { get; set; }
         [Display(Name = "Email")]
         [EmailAddress]
         public string Email { get; set; }
@@ -86,13 +92,18 @@ namespace MBBVL.Models {
         [Display(Name = "QTY")]
         public int Qty { get; set; }
         [Display(Name = "Oligonucleotide Sequence")]
+        
         public string OligonucleotideSequence { get; set; }
+
+        public string OligonucleotideSequenceValue { get; set; }
         [Display(Name = "Synthesis Scale1 (μmole)")]
         public string SynthesisScaleValue { get; set; }
         [Display(Name = "GMP2(Y/N)")]
         public bool GMP2 { get; set; }
         [Display(Name = "Modification")]
         public string Modification { get; set; }
+        [Display(Name = "Modification Values")]
+        public string ModificationValues { get; set; }
         [Display(Name = "Final Delivery")]
         public string FinalDeliveryFormValue { get; set; }
         [Display(Name = "Purification")]

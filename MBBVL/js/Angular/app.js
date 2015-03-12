@@ -1,1 +1,1 @@
-﻿var app = angular.module('acgt', ['ui.bootstrap']);
+﻿var app = angular.module('acgt', ['ui.bootstrap', 'siyfion.sfTypeahead']);

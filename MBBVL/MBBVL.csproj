@@ -277,6 +277,9 @@
     <Content Include="js\Angular\Controller\PriceListCtrl.js" />
     <Content Include="js\Angular\Fac\factory.js" />
     <Content Include="js\Angular\Service\acgtService.js" />
+    <Content Include="js\Angular\TypeaHead\bloodhound.js" />
+    <Content Include="js\Angular\TypeaHead\type.js" />
+    <Content Include="js\Angular\Directives\Typeahead.js" />
     <Content Include="js\bootstrap-datepicker.js" />
     <Content Include="js\Google\googleMap.js" />
     <Content Include="js\infinite-rotator.js" />
@@ -298,9 +301,6 @@
     <Content Include="pdf\ACGTsequencingprimers.pdf" />
     <Content Include="fonts\gotham\gotham-bold.ttf" />
     <None Include="templates\OrderForm.cshtml" />
-    <Content Include="zip\Ionic.BZip2.dll" />
-    <Content Include="zip\Ionic.Zip.dll" />
-    <Content Include="zip\Ionic.Zlib.dll" />
     <None Include="Properties\PublishProfiles\mbsl.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Cycle.js" />
@@ -344,7 +344,6 @@
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Shared\Players.cshtml" />
     <Content Include="Views\Shared\ValidateCommand.cshtml" />
     <Content Include="Views\PayPal\Index.cshtml" />
     <Content Include="Views\PayPal\NotifyFromPaypal.cshtml" />
@@ -388,6 +387,7 @@
     <Content Include="Views\Investors\Index.cshtml" />
     <Content Include="Views\Shared\SideBar\NavBar.cshtml" />
     <Content Include="Views\Shared\navbar\_NavBar.cshtml" />
+    <Content Include="Views\Shared\footer\_footer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -395,6 +395,8 @@
     <Folder Include="Content\themes\base\images\" />
     <Folder Include="Content\themes\base\minified\images\" />
     <Folder Include="Controllers\Sequence\" />
+    <Folder Include="js\Angular\Controller\Oglio\" />
+    <Folder Include="NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

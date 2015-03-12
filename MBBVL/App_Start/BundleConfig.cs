@@ -17,15 +17,18 @@ namespace MBBVL {
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
-
                       "~/js/Angular.js",
+                      "~/Scripts/bootstrap.js",
+                      "~/js/Angular/TypeaHead/Type.js",
+                      "~/js/Angular/TypeaHead/bloodhound.js",
+                      "~/js/Angular/Directives/Typeahead.js",
                        "~/js/ui-bootstrap-tpls-0.11.2.min.js",
                       "~/js/angular/app.js",
                        "~/js/angular/Service/acgtService.js",
                        "~/js/angular/Fac/factory.js",
                        "~/js/angular/Controller/OrderSequencingctrl.js",
-                         "~/js/angular/Controller/OrderOgliCtrl.js",
+                       "~/js/angular/Controller/OrderOgliCtrl.js",
+                       "~/js/angular/Controller/PickUpCtrl.js",
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(

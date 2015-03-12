@@ -34,6 +34,8 @@
        // $scope.CustomPrimer = [{ PrimerName: "", Scale: $scope.scaleValues, ScaleValue: "", Sequence: '', Purification: $scope.purification, GMP: $scope.gmp3[1], GmpValue: "" }];
         $scope.CustomPrimer = [{ PrimerName: "", Sequence: '' }];
 
+       // $scope.Modification = ["Biotin", "[bio]", "Amino C6", "[amC6]", "Phosphorylation", "[PO4]", "Fluorescein Phosphoramidite", "[FITC]", "6-FAM", "[6FAM]", "5-Methyl C", "[5MeC]", "CY5","[CY5]","Internal Spacer C9","[iSpC9]","Phosphorothioation","[thio]","CY3","[CY3]","Spacer 18","[iSpC18]"]
+
     }
     //Send these values into the db
 

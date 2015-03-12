@@ -16,7 +16,8 @@ namespace MBBVL.Core {
                 //Create the msg object to be sent
                 MailMessage msg = new MailMessage();
                 //Add your email address to the recipients
-                msg.To.Add("jchen.acgt@gmail.com");
+                //msg.To.Add("jchen.acgt@gmail.com");
+                msg.To.Add("Jchen.acgt@gmail.com");
                 //Configure the address we are sending the mail from 
                 MailAddress address = new MailAddress("info@acgtcorp.com");
               //  MailAddress addressBCC = new MailAddress("andersolind@hotmail.com");
@@ -34,23 +35,10 @@ namespace MBBVL.Core {
                 smptc.UseDefaultCredentials = true;
                 smptc.EnableSsl = false;
                 smptc.DeliveryMethod = SmtpDeliveryMethod.Network;
-            //    NetworkCredential credentials = new NetworkCredential("info@snapcheckit.com", "Travel2014");
-            //    smptc.Credentials = credentials;
+      
                 smptc.Send(msg);
 
-                ////Setup credentials to login to our sender email address ("UserName", "Password")
-                //NetworkCredential credentials = new NetworkCredential("andersolind@gmail.com", "Oscar@2015");
-                //client.UseDefaultCredentials = true;
-                //client.Credentials = credentials;
-
-                ////Send the msg
-                //client.Send(msg);
-                //var client = new SmtpClient("smtp.gmail.com", 587) {
-                //    Credentials = new NetworkCredential("andersolind@gmail.com", "Oscar@2015"),
-                //    EnableSsl = true
-                //};
-
-                //client.Send("andersolind@hotmail.com", "andersolind@gmail.com", "test", "testbody");
+           
 
 
             } catch (Exception ex) {
@@ -176,7 +164,7 @@ namespace MBBVL.Core {
             //Billing
 
 
-            var bill = "<table width='100' style='float:left' cellpadding='0 cellspacing='0' border='0 align='center'>";
+            var bill = "<table width='100' style='float:left;margin-left:50px;' cellpadding='0 cellspacing='0' border='0 align='center'>";
 
             bill += "<thead>";
             bill += "<tr>";
@@ -245,8 +233,8 @@ namespace MBBVL.Core {
             bill += "</td>";
             bill += "</tr>";
             bill += "</table>";
-            var olForm = "<h1 style='padding-top:200px; color:blue;text-decoration: underline;'>Sequencing</h1>"; ;
-            olForm += "<table width='100%' style='float:left' cellpadding='0' cellspacing='0' border='0 align='center' border='1'>";
+            var olForm = "<h1 style='padding-top:700px; color:blue;text-decoration: underline;page-break-after:always'>Sequencing</h1>"; ;
+            olForm += "<table width='100%' style='float:left' cellpadding='0' cellspacing='0'  align='center' border='1'>";
 
             //olForm += "<thead>";
             //olForm += "<tr>";
@@ -335,6 +323,83 @@ namespace MBBVL.Core {
             return olForm;
         }
 
+        public void SendPickUp(SequencingWrapperModel model) {
+            SequencingWrapperModel m = new SequencingWrapperModel();
+            m.PickUp = model.PickUp;
+            var ship = "<table><td>";
+            
+                ship += "<table width='100' style='float:left' cellpadding='0 cellspacing='0' border='0 align='center'>";
+                ship += "<thead>";
+                ship += "<tr>";
+                ship += "<th ><h1  style='color:blue;text-decoration: underline;'>Pick Up Information</h1</th>";
+                ship += "</tr>";
+                ship += "</thead>";
+                ship += "<tr>";
+                ship += "<td valign='top'>";
+                ship += "<label for='fullName'>Full Name</label>";
+                ship += "</td>";
+                ship += "<td valign='top'>";
+                ship += m.PickUp.FirstName;
+                ship += "</td>";
+                ship += "</tr>";
+                ship += "<tr>";
+                ship += "<td valign='top'>";
+                ship += "<label for='fullName'>Last Name</label>";
+                ship += "</td>";
+                ship += "<td valign='top'>";
+                ship += m.PickUp.LastName;
+                ship += "</td>";
+                ship += "</tr>";
+                ship += "<tr>";
+                ship += "<td valign='top'>";
+                ship += "<label for='fullName'>Institution</label>";
+                ship += "</td>";
+                ship += "<td valign='top'>";
+                ship += m.PickUp.Institution;
+                ship += "</td>";
+                ship += "</tr>";
+                ship += "<tr>";
+                ship += "<td valign='top'>";
+                ship += "<label for='fullName'>Message</label>";
+                ship += "</td>";
+                ship += "<td valign='top'>";
+                ship += m.PickUp.Message;
+                ship += "</td>";
+                ship += "</tr>";
+                ship += "<tr>";
+                ship += "<td valign='top'>";
+                ship += "<label for='shippingEmail'>Room</label>";
+                ship += "</td>";
+                ship += "<td valign='top'>";
+                ship += m.PickUp.Room;
+                ship += "</td>";
+                ship += "</tr>";
+                ship += "<tr>";
+                ship += "<td valign='top'>";
+                ship += "<label for='shippingEmail'>Notes</label>";
+                ship += "</td>";
+                ship += "<td valign='top'>";
+                ship += m.PickUp.Notes;
+                ship += "</td>";
+                ship += "</tr>";
+                ship += "<tr>";
+                ship += "<td valign='top'>";
+                ship += "<label for='shippingEmail'>Email</label>";
+                ship += "</td>";
+                ship += "<td valign='top'>";
+                ship += m.PickUp.Email;
+                ship += "</td>";
+                ship += "</tr>";
+                ship += "</table>";
+
+                ship += "</table> </body> </html>";
+
+                var template = StaticValues.HtmlHeaderText() + ship;
+
+                CreateEmailForUser(m.PickUp.Email, "Andersolind@gmail.com", template);
+            
+        }
+
         public string SetUpbill(WrapperModel model) {
             WrapperModel m = new WrapperModel();
 
@@ -344,7 +409,7 @@ namespace MBBVL.Core {
             //headers
          //éé éé  var ship = "<table><td align='center' style='padding: 40px 0 30 px 0;'><img src='http://youneedafavor.com/images/logo.png'>";
             var ship = "<table><td>";
-            ship += "<h1>Dear" + " " + model.shipping.FullName + " " + "here is your DNA Sequencing Order</h1></td></table>";
+            ship += "<h1>Dear" + " " + model.shipping.FullName + " " + "here is Oligonucleotide Order</h1></td></table>";
 
             ship += "<table width='100' style='float:left' cellpadding='0' cellspacing='0' border='0' >";
             ship += "<thead>";
@@ -470,7 +535,7 @@ namespace MBBVL.Core {
             bill += "</tr> </table>";
 
 
-            var olForm = "<div style='padding-top:200px'><h1  style='color:blue;text-decoration: underline;'>Oligonucleotide Sequence</h1>";
+            var olForm = "<div style='padding-top:300px'><h1  style='color:blue;text-decoration: underline;page-break-after:always'>Oligonucleotide Sequence</h1>";
             olForm += "<table style='width:100%' border='1'>";
             olForm += "<tr  style='width:100%'>";
             olForm += "<td class='boldCell'>PrimerName</td>";
@@ -495,7 +560,7 @@ namespace MBBVL.Core {
                 olForm += "<td class='boldCell'>" + CreateString(m.oligosequence[i].OligonucleotideSequence) + "</td>";
                 olForm += "<td class='boldCell'>" + m.oligosequence[i].SynthesisScaleValue + "</td>";
                 olForm += "<td class='boldCell'>" + m.oligosequence[i].GMP2 + "</td>";
-                olForm += "<td class='boldCell'>" + m.oligosequence[i].Modification + "</td>";
+                olForm += "<td class='boldCell'>" + m.oligosequence[i].ModificationValues + "</td>";
                 olForm += "<td class='boldCell'>" + m.oligosequence[i].FinalDeliveryFormValue + "</td>";
                 olForm += "<td class='boldCell'>" + m.oligosequence[i].PurificationValue + "</td>";
                 olForm += "<td class='boldCell'>" + m.oligosequence[i].Price + "</td>";

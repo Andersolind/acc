@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "PickUp";
 }
 
@@ -31,104 +30,132 @@
 
 
     <div style="padding-left:400px;">
-        <h2>Pick Up Policy</h2>
-        <p>ACGT Corp. offers free pick up of DNA sequencing samples in the GTA core. Simply request for a pick up when you are placing your sequencing order or in the form below.</p>
-        <ul>
-            <li>We can not guarantee requests submitted after 11:30 AM. Please call us at 416-977-2228 to confirm sameday pick ups after 11:30 AM </li>
-            <li>Please have samples prepared in an appropriate container</li>
-        </ul>
-        <h2>Sample pick-up is offered free of charge from the following locations:</h2>
-        <p>BEST Institute – 112 College Street</p>
-        <p>CCBR – 160 College Street</p>
-        <p>Faculty of Pharmacy – 144 College Street</p>
-        <p>Fitzgerald Bldg – 150 College Street</p>
-        <p>HSC – 555 University Avenue</p>
-        <p>MSH – SLRI at 600 University Avenue & TCP at 25 Orde/60 Murray Street</p>
-        <p>MSB – 1 King’s College Circle</p>
-        <p>PMH / OCI – 620 University Avenue</p>
-        <p>Tanz Neuroscience Bldg – 6 Queens Park Crescent</p>
-        <p>TMDT & MaRS South Tower – 101 College Street</p>
-        <p>Fill out to schedule a pickup</p>
+        <div>
+            <h2>Pick Up Policy</h2>
+            <p>ACGT Corp. offers free pick up of DNA sequencing samples in the GTA core. Simply request for a pick up when you are placing your sequencing order or in the form below.</p>
+            <ul>
+                <li>We can not guarantee requests submitted after 11:30 AM. Please call us at 416-977-2228 to confirm sameday pick ups after 11:30 AM </li>
+                <li>Please have samples prepared in an appropriate container</li>
+            </ul>
+            <h2>Sample pick-up is offered free of charge from the following locations:</h2>
+            <p>BEST Institute – 112 College Street</p>
+            <p>CCBR – 160 College Street</p>
+            <p>Faculty of Pharmacy – 144 College Street</p>
+            <p>Fitzgerald Bldg – 150 College Street</p>
+            <p>HSC – 555 University Avenue</p>
+            <p>MSH – SLRI at 600 University Avenue & TCP at 25 Orde/60 Murray Street</p>
+            <p>MSB – 1 King’s College Circle</p>
+            <p>PMH / OCI – 620 University Avenue</p>
+            <p>Tanz Neuroscience Bldg – 6 Queens Park Crescent</p>
+            <p>TMDT & MaRS South Tower – 101 College Street</p>
 
-        @*<div class="container">
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Fill out to schedule a pickup</h3>
+            </div>
+            <div class="panel-body">
+                <div class="tab-pane" id="profile">
+                    <form ng-app="acgt" ng-controller="PickUpCtrl" name="pickUpForm" novalidate>
+                        <fieldset>
+                            <div class="control-group">
+                                <label class="col-md-2 control-label" for="InputFieldA">First Name</label>
 
-            <div class="row">
-                <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-                    <form role="form">
-                        <h2>Fill out to schedule a pickup</h2>
-                        <hr class="colorgraph">
-                        <div class="row">
-                            <div class="col-xs-6 col-sm-6 col-md-6">
-                                <div class="form-group">
-                                    <input type="text" name="first_name" id="first_name" class="form-control input-lg" placeholder="First Name" tabindex="1">
+                                <div class="col-md-10">
+                                    <input type="text" name="firstName" id="firstName" ng-model="WrapperModel.PickUp.FirstName" class="form-control input-lg" placeholder="First Name" tabindex="1" required>
+                                    <span ng-show="pickUpForm.firstName.$dirty && pickUpForm.firstName.$invalid">  </span>
+                                    <span style="color:red" ng-show="pickUpForm.firstName.$error.required">First Name is required.</span>
                                 </div>
                             </div>
-                            <div class="col-xs-6 col-sm-6 col-md-6">
-                                <div class="form-group">
-                                    <input type="text" name="last_name" id="last_name" class="form-control input-lg" placeholder="Last Name" tabindex="2">
+                            <div class="control-group">
+                                <label class="col-md-2 control-label" for="InputFieldA">Last Name</label>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control" id="pickupLastName" name="pickupLastName" ng-model="WrapperModel.PickUp.LastName" placeholder="Last Name" title="Last Name" required>
+                                    <span ng-show="pickUpForm.pickupLastName.$dirty && pickUpForm.pickupLastName.$invalid">  </span>
+                                    <span style="color:red" ng-show="pickUpForm.pickupLastName.$error.required">Last Name is required.</span>
                                 </div>
                             </div>
-                        </div>
+                            <div class="control-group">
+                                <label class="col-md-2 control-label" for="InputFieldA">Institution</label>
+                                <div class="col-md-10">
+                                    <div class="form-group">
+                                        <select id="ddlInstitute" ng-model="WrapperModel.PickUp.Institution" class="form-control" name="ddlInstitute" required>
+                                            <option value="">Please select an option...</option>
+                                            <option value="BEST Institute – 112 College Street">BEST Institute – 112 College Street</option>
 
-                        <div class="form-group">
-                            <input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" tabindex="4">
-                        </div>
-                        <div class="row">
+                                            <option value="CCBR – 160 College Street">CCBR – 160 College Street</option>
 
-                            <div class="col-xs-6 col-sm-6 col-md-6">
-                                <div class="form-group">
-                                    <select id="ddlInstitute" name="ddlInstitute">
+                                            <option value="Faculty of Pharmacy – 144 College Street">Faculty of Pharmacy – 144 College Street</option>
 
-                                        <option value="BEST Institute – 112 College Street">BEST Institute – 112 College Street</option>
+                                            <option value="Fitzgerald Bldg – 150 College Street">Fitzgerald Bldg – 150 College Street</option>
 
-                                        <option value="CCBR – 160 College Street">CCBR – 160 College Street</option>
+                                            <option value="HSC – 555 University Avenue">HSC – 555 University Avenue</option>
 
-                                        <option value="Faculty of Pharmacy – 144 College Street">Faculty of Pharmacy – 144 College Street</option>
+                                            <option value="MSH   – SLRI at 600 University Avenue &amp; TCP at 25 Orde/60 Murray Street">MSH – SLRI at 600 University Avenue &amp; TCP at 25 Orde/60 Murray Street</option>
 
-                                        <option value="Fitzgerald Bldg – 150 College Street">Fitzgerald Bldg – 150 College Street</option>
+                                            <option value="MSB – 1 King’s College Circle">MSB – 1 King’s College Circle</option>
 
-                                        <option value="HSC – 555 University Avenue">HSC – 555 University Avenue</option>
+                                            <option value="PMH / OCI – 620 University Avenue">PMH / OCI – 620 University Avenue</option>
 
-                                        <option value="MSH   – SLRI at 600 University Avenue &amp; TCP at 25 Orde/60 Murray Street">MSH – SLRI at 600 University Avenue &amp; TCP at 25 Orde/60 Murray Street</option>
+                                            <option value="Tanz Neuroscience Bldg – 6 Queens Park Crescent">Tanz Neuroscience Bldg – 6 Queens Park Crescent</option>
 
-                                        <option value="MSB – 1 King’s College Circle">MSB – 1 King’s College Circle</option>
+                                            <option value="TMDT &amp; MaRS South Tower – 101 College Street">TMDT &amp; MaRS South Tower – 101 College Street</option>
 
-                                        <option value="PMH / OCI – 620 University Avenue">PMH / OCI – 620 University Avenue</option>
+                                        </select>
+                                    </div>
+                                    <span ng-show="pickUpForm.ddlInstitute.$dirty && pickUpForm.ddlInstitute.$invalid">  </span>
+                                    <span style="color:red" ng-show="pickUpForm.ddlInstitute.$error.required">Dropdown is required.</span>
+                                </div>
 
-                                        <option value="Tanz Neuroscience Bldg – 6 Queens Park Crescent">Tanz Neuroscience Bldg – 6 Queens Park Crescent</option>
 
-                                        <option value="TMDT &amp; MaRS South Tower – 101 College Street">TMDT &amp; MaRS South Tower – 101 College Street</option>
-
-                                    </select>
+                            </div>
+                            <div class="control-group">
+                                <label class="col-md-2 control-label" for="InputFieldA">Message</label>
+                                <div class="col-md-10">
+                                    <textarea rows="5" id="txtMessege" name="pickUpMessage" ng-model="WrapperModel.PickUp.Message" class="form-control input-lg" placeholder="Message" required></textarea>
+                                    <span ng-show="pickUpForm.pickUpMessage.$dirty && pickUpForm.pickUpMessage.$invalid">  </span>
+                                    <span style="color:red" ng-show="pickUpForm.pickUpMessage.$error.required">Message is required.</span>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-6 col-sm-6 col-md-6">
-                                <div class="form-group">
-
-                                    <textarea rows="5" id="roomInfo" class="form-control input-lg" placeholder="Room # and building information"></textarea>
+                            <div class="control-group">
+                                <label class="col-md-2 control-label" for="pickUpRoom">Room # and building information</label>
+                                <div class="col-md-10">
+                                    <textarea rows="5" id="pickUpRoom" name="pickUpRoom" ng-model="WrapperModel.PickUp.Room" class="form-control input-lg" placeholder="Room # and building information" required></textarea>
+                                    <span ng-show="pickUpForm.pickUpRoom.$dirty && pickUpForm.pickUpRoom.$invalid">  </span>
+                                    <span style="color:red" ng-show="pickUpForm.pickUpRoom.$error.required">Room is required.</span>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-6 col-sm-6 col-md-6">
-                                <div class="form-group">
-
-                                    <textarea rows="5" id="txtMessege" class="form-control input-lg" placeholder="Message"></textarea>
+                            <div class="control-group">
+                                <label class="col-md-2 control-label" for="notes">Notes</label>
+                                <div class="col-md-10">
+                                    <textarea rows="5" id="pickUpNotes" name="pickUpNotes" ng-model="WrapperModel.PickUp.Notes" class="form-control input-lg" placeholder="Notes" required></textarea>
+                                    <span ng-show="pickUpForm.pickUpNotes.$dirty && pickUpForm.pickUpNotes.$invalid">  </span>
+                                    <span style="color:red" ng-show="pickUpForm.pickUpNotes.$error.required">Notes is required.</span>
                                 </div>
                             </div>
-                        </div>
-                        <hr class="colorgraph">
-                        <div class="row">
-                            <div class="col-xs-6 col-md-6"><input type="submit" value="Submit" class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
-
+                            <div class="control-group">
+                                <label class="col-md-2 control-label" for="InputFieldA">Pick up Email</label>
+                                <div class="col-md-10">
+                                    <input type="email" class="form-control input" id="pickUpEmail" name="pickUpEmail" ng-model="WrapperModel.PickUp.Email" required placeholder="Email" title="Email">
+                                    <span ng-show="pickUpForm.pickUpEmail.$dirty && pickUpForm.pickUpEmail.$invalid"></span>
+                                </div>
+                                <div ng-if="pickUpForm.pickUpEmail.$error.required" class="error">
+                                    You forgot to enter your email address...
+                                </div>
+                                <div style="color:red" ng-if="!pickUpForm.pickUpEmail.$error.required &amp;&amp;
+                pickUpForm.pickUpEmail.$error.email" class="error">
+                                    You did not enter your email address correctly...
+                                </div>
+                            </div>
+                        </fieldset>
+                        <div style="padding-top:20px">
+                            <input type="submit" class="btn btn-primary" ng-click="submitForm()" ng-model="disableSubmit" ng-disabled="!pickUpForm.$valid">
                         </div>
                     </form>
                 </div>
+
             </div>
-          
-        </div>*@
+        </div>
     </div>
 </div>
 

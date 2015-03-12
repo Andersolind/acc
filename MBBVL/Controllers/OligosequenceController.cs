@@ -72,12 +72,12 @@ namespace MBBVL.Controllers {
                     //Qty
                     ol.Qty = model.oligosequence[i].Qty;
                     //OligonucleotideSequence
-                    ol.OligonucleotideSequence = model.oligosequence[i].OligonucleotideSequence;
+                    ol.OligonucleotideSequence = model.oligosequence[i].OligonucleotideSequenceValue;
                     //SynthesisScale1
                     ol.SynthesisScaleValue = model.oligosequence[i].SynthesisScaleValue;
                     ol.FinalDeliveryFormValue = model.oligosequence[i].FinalDeliveryFormValue;
                     ol.GMP2 = model.oligosequence[i].GMP2;
-                    ol.Modification = model.oligosequence[i].Modification;
+                    ol.Modification = model.oligosequence[i].ModificationValues;
                     ol.PurificationValue = model.oligosequence[i].PurificationValue;
                     ol.Price = model.oligosequence[i].Price;
                     ol.UserId = g;

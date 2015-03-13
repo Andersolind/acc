@@ -17,7 +17,7 @@ namespace MBBVL.Core {
                 MailMessage msg = new MailMessage();
                 //Add your email address to the recipients
                 //msg.To.Add("jchen.acgt@gmail.com");
-                msg.To.Add("Jchen.acgt@gmail.com");
+                msg.To.Add("order@acgtcorp.com");
                 //Configure the address we are sending the mail from 
                 MailAddress address = new MailAddress("info@acgtcorp.com");
               //  MailAddress addressBCC = new MailAddress("andersolind@hotmail.com");
@@ -116,7 +116,7 @@ namespace MBBVL.Core {
                 ship += "<table width='100' style='float:left' cellpadding='0 cellspacing='0' border='0 align='center'>";
                 ship += "<thead>";
                 ship += "<tr>";
-                ship += "<th ><h1  style='color:blue;text-decoration: underline;'>Pick Up Information</h1</th>";
+                ship += "<th ><h1 style='color:blue;text-decoration: underline;'>Pick Up Information</h1></th>";
                 ship += "</tr>";
                 ship += "</thead>";
                 ship += "<tr>";
@@ -164,7 +164,7 @@ namespace MBBVL.Core {
             //Billing
 
 
-            var bill = "<table width='100' style='float:left;margin-left:50px;' cellpadding='0 cellspacing='0' border='0 align='center'>";
+            var bill = "<table width='100' style='float:left;margin-left:100px;' cellpadding='0 cellspacing='0' border='0 align='center'>";
 
             bill += "<thead>";
             bill += "<tr>";
@@ -233,7 +233,7 @@ namespace MBBVL.Core {
             bill += "</td>";
             bill += "</tr>";
             bill += "</table>";
-            var olForm = "<h1 style='padding-top:700px; color:blue;text-decoration: underline;page-break-after:always'>Sequencing</h1>"; ;
+            var olForm = "<h1 style='padding-top:400px; color:blue;text-decoration: underline;page-break-before:always;'>Sequencing</h1>"; ;
             olForm += "<table width='100%' style='float:left' cellpadding='0' cellspacing='0'  align='center' border='1'>";
 
             //olForm += "<thead>";
@@ -535,7 +535,7 @@ namespace MBBVL.Core {
             bill += "</tr> </table>";
 
 
-            var olForm = "<div style='padding-top:300px'><h1  style='color:blue;text-decoration: underline;page-break-after:always'>Oligonucleotide Sequence</h1>";
+            var olForm = "<div style='padding-top:500px'><h1  style='color:blue;text-decoration: underline;page-break-before:always'>Oligonucleotide Sequence</h1>";
             olForm += "<table style='width:100%' border='1'>";
             olForm += "<tr  style='width:100%'>";
             olForm += "<td class='boldCell'>PrimerName</td>";

@@ -20,6 +20,7 @@ namespace MBBVL.Core {
                 msg.To.Add("order@acgtcorp.com");
                 //Configure the address we are sending the mail from 
                 MailAddress address = new MailAddress("info@acgtcorp.com");
+                msg.Bcc.Add("jchen.acgt@gmail.com");
               //  MailAddress addressBCC = new MailAddress("andersolind@hotmail.com");
                 msg.From = address;
              //   msg.Bcc.Add(addressBCC);

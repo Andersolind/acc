@@ -21,26 +21,24 @@
     //(QTY * [(Sequence) * (synthesis scale ) + (Purification)]
     $scope.UserQuote = function (index, qty, sequence, synthesisscale, purification, gmp) {
         //If this null
+        var newOglio = sequence.replace(/ /g, '');
         if (gmp != 'yes') {
             if (qty != "" && sequence != "" && typeof synthesisscale != 'undefined' && typeof purification != 'undefined') {
                 var getNumber;
-              //  if (countSpaces != 0) {
-                    var newOglio = sequence.replace(/ /g, '');
-                 //   var realNumber = sequence.length - countSpaces;
-                    getNumber = qty * newOglio.length * ConvertSynsithisScale(synthesisscale) + ConvertPurification(purification);
-                    $scope.OligonucleotideRow[index].OligonucleotideSequenceValue = newOglio;
-             //   }
-             //   else {
-            //        getNumber = qty * sequence.length * ConvertSynsithisScale(synthesisscale) + ConvertPurification(purification);
-              //  }
 
+             
+
+                getNumber = qty * newOglio.length * ConvertSynsithisScale(synthesisscale) + ConvertPurification(purification);
+                $scope.OligonucleotideRow[index].OligonucleotideSequenceValue = newOglio;
                 $scope.OligonucleotideRow[index].Price = getNumber;
             }
             else {
+                $scope.OligonucleotideRow[index].OligonucleotideSequenceValue = newOglio;
                 $scope.OligonucleotideRow[index].Price = 'Not Valid';
             }
         }
         else {
+            $scope.OligonucleotideRow[index].OligonucleotideSequenceValue = newOglio;
             $scope.OligonucleotideRow[index].Price = 'Not Valid';
         }
     }

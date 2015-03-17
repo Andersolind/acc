@@ -46,7 +46,7 @@ namespace MBBVL.Controllers {
                 templateData.billing = bill;
 
                 //db.Entry(bill).State = EntityState.Added;
-                // db.Billing.Add(bill);
+               // db.Billing.Add(bill);
 
 
                 //Shipping
@@ -58,8 +58,8 @@ namespace MBBVL.Controllers {
                 ship.Phone = model.shipping.Phone;
                 ship.Email = model.shipping.Email;
                 ship.UserId = g;
-                // db.Shipping.Add(ship);
-                //   db.Entry(ship).State = EntityState.Added;
+               // db.Shipping.Add(ship);
+             //   db.Entry(ship).State = EntityState.Added;
                 templateData.shipping = ship;
 
                 //Oligosequence
@@ -81,8 +81,8 @@ namespace MBBVL.Controllers {
                     ol.PurificationValue = model.oligosequence[i].PurificationValue;
                     ol.Price = model.oligosequence[i].Price;
                     ol.UserId = g;
-                    //  db.Oligosequence.Add(ol);
-                    //   db.Entry(ol).State = EntityState.Added;
+                  //  db.Oligosequence.Add(ol);
+                 //   db.Entry(ol).State = EntityState.Added;
                     getList.Add(ol);
                 }
                 //Create email template!
@@ -93,7 +93,8 @@ namespace MBBVL.Controllers {
                 //       db.SaveChanges();
                 return Ok();
             } catch (Exception ex) {
-                //// Retrieve the error messages as a list of strings.
+                return Ok(ex.InnerException.ToString());
+                // Retrieve the error messages as a list of strings.
                 //var errorMessages = ex.EntityValidationErrors
                 //    .SelectMany(x => x.ValidationErrors)
                 //    .Select(x => x.ErrorMessage);
@@ -106,8 +107,6 @@ namespace MBBVL.Controllers {
 
                 //// Throw a new DbEntityValidationException with the improved exception message.
                 //throw new DbEntityValidationException(exceptionMessage, ex.EntityValidationErrors);
-                string error = ex.InnerException.ToString();
-                return Ok(error);
             }
 
 

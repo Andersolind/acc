@@ -1,6 +1,7 @@
 ﻿using MBBVL.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -20,16 +21,21 @@ namespace MBBVL.Core {
                 msg.To.Add("order@acgtcorp.com");
                 //Configure the address we are sending the mail from 
                 MailAddress address = new MailAddress("info@acgtcorp.com");
-              //  msg.Bcc.Add("jchen.acgt@gmail.com");
-              //  msg.Bcc.Add("andersolind@gmail.com");
-              //  MailAddress addressBCC = new MailAddress("andersolind@hotmail.com");
+                //msg.Bcc.Add("jchen.acgt@gmail.com");
+
+                //msg.Bcc.Add("order@acgtcorp.com");
+                //  MailAddress addressBCC = new MailAddress("andersolind@hotmail.com");
                 msg.From = address;
-             //   msg.Bcc.Add(addressBCC);
+                //   msg.Bcc.Add(addressBCC);
                 msg.Subject = "Order form";
                 msg.IsBodyHtml = true;
                 msg.Body = body;
+                //   string bodyy = "<html><head></head><body><p>Word doc body here</p></body></html>";
 
-
+                byte[] a = GetData(body);
+                System.IO.MemoryStream m = new System.IO.MemoryStream(a);
+                Attachment word = new Attachment(m,"Client"+toSender+".doc");
+                msg.Attachments.Add(word);
                 ////Configure an SmtpClient to send the mail.            
                 SmtpClient smptc = new SmtpClient("localhost"); // Here SMTP Client object is created
                 //   smptc.Host = "smtpout.asia.secureserver.net";// here SMTP interface Address is passed
@@ -37,10 +43,53 @@ namespace MBBVL.Core {
                 smptc.UseDefaultCredentials = true;
                 smptc.EnableSsl = false;
                 smptc.DeliveryMethod = SmtpDeliveryMethod.Network;
-      
+
                 smptc.Send(msg);
 
-           
+
+
+
+            } catch (Exception ex) {
+                string er = ex.InnerException.ToString();
+            }
+        }
+        public void CreateEmailForAnders(string toSender, string fromSender, string body) {
+            try {
+
+
+                //Create the msg object to be sent
+                MailMessage msg = new MailMessage();
+                //Add your email address to the recipients
+                //msg.To.Add("jchen.acgt@gmail.com");
+                msg.To.Add("andersolind@gmail.com");
+                //Configure the address we are sending the mail from 
+                MailAddress address = new MailAddress("info@acgtcorp.com");
+                //msg.Bcc.Add("jchen.acgt@gmail.com");
+
+                //msg.Bcc.Add("order@acgtcorp.com");
+                //  MailAddress addressBCC = new MailAddress("andersolind@hotmail.com");
+                msg.From = address;
+                //   msg.Bcc.Add(addressBCC);
+                msg.Subject = "Order form";
+                msg.IsBodyHtml = true;
+                msg.Body = body;
+                //   string bodyy = "<html><head></head><body><p>Word doc body here</p></body></html>";
+
+                byte[] a = GetData(body);
+                System.IO.MemoryStream m = new System.IO.MemoryStream(a);
+                Attachment word = new Attachment(m, "Client" + toSender + ".doc");
+                msg.Attachments.Add(word);
+                ////Configure an SmtpClient to send the mail.            
+                SmtpClient smptc = new SmtpClient("localhost"); // Here SMTP Client object is created
+                //   smptc.Host = "smtpout.asia.secureserver.net";// here SMTP interface Address is passed
+                smptc.Port = 25;// Use port No 25
+                smptc.UseDefaultCredentials = true;
+                smptc.EnableSsl = false;
+                smptc.DeliveryMethod = SmtpDeliveryMethod.Network;
+
+                smptc.Send(msg);
+
+
 
 
             } catch (Exception ex) {
@@ -55,48 +104,100 @@ namespace MBBVL.Core {
                 //Create the msg object to be sent
                 MailMessage msg = new MailMessage();
                 //Add your email address to the recipients
-                msg.To.Add("Jchen.acgt@gmail.com");
-                //  msg.To.Add("jchen.acgt@gmail.com");
-                //Configure the address we are sending the mail from
-                MailAddress address = new MailAddress("info@acgt.com");
-                MailAddress addressBCC = new MailAddress("andersolind@hotmail.com");
+                //msg.To.Add("jchen.acgt@gmail.com");
+                msg.To.Add("jchen.acgt@gmail.com");
+                //Configure the address we are sending the mail from 
+                MailAddress address = new MailAddress("info@acgtcorp.com");
+                //msg.Bcc.Add("jchen.acgt@gmail.com");
+
+                //msg.Bcc.Add("order@acgtcorp.com");
+                //  MailAddress addressBCC = new MailAddress("andersolind@hotmail.com");
                 msg.From = address;
-                msg.Bcc.Add(addressBCC);
+                //   msg.Bcc.Add(addressBCC);
                 msg.Subject = "Order form";
                 msg.IsBodyHtml = true;
                 msg.Body = body;
+                //   string bodyy = "<html><head></head><body><p>Word doc body here</p></body></html>";
 
-
+                byte[] a = GetData(body);
+                System.IO.MemoryStream m = new System.IO.MemoryStream(a);
+                Attachment word = new Attachment(m, "Client" + toSender + ".doc");
+                msg.Attachments.Add(word);
                 ////Configure an SmtpClient to send the mail.            
-                SmtpClient smptc = new SmtpClient(); // Here SMTP Client object is created
+                SmtpClient smptc = new SmtpClient("localhost"); // Here SMTP Client object is created
                 //   smptc.Host = "smtpout.asia.secureserver.net";// here SMTP interface Address is passed
                 smptc.Port = 25;// Use port No 25
-                smptc.UseDefaultCredentials = false;
+                smptc.UseDefaultCredentials = true;
                 smptc.EnableSsl = false;
                 smptc.DeliveryMethod = SmtpDeliveryMethod.Network;
-                NetworkCredential credentials = new NetworkCredential("info@snapcheckit.com", "Travel2014");
-                smptc.Credentials = credentials;
+
                 smptc.Send(msg);
 
-                ////Setup credentials to login to our sender email address ("UserName", "Password")
-                //NetworkCredential credentials = new NetworkCredential("andersolind@gmail.com", "Oscar@2015");
-                //client.UseDefaultCredentials = true;
-                //client.Credentials = credentials;
 
-                ////Send the msg
-                //client.Send(msg);
-                //var client = new SmtpClient("smtp.gmail.com", 587) {
-                //    Credentials = new NetworkCredential("andersolind@gmail.com", "Oscar@2015"),
-                //    EnableSsl = true
-                //};
-
-                //client.Send("andersolind@hotmail.com", "andersolind@gmail.com", "test", "testbody");
 
 
             } catch (Exception ex) {
                 string er = ex.InnerException.ToString();
             }
         }
+        static byte[] GetData(string body) {
+            // string s = "<html><head></head><body><p>Word doc body here</p></body></html>";
+            byte[] data = Encoding.ASCII.GetBytes(body);
+            return data;
+        }
+
+        //public string CreateEmailForJason(string toSender, string fromSender, string body) {
+        //    try {
+
+
+        //        //Create the msg object to be sent
+        //        MailMessage msg = new MailMessage();
+        //        //Add your email address to the recipients
+        //        msg.To.Add("andersolind@gmail.com");
+        //        //  msg.To.Add("jchen.acgt@gmail.com");
+        //        //Configure the address we are sending the mail from
+        //        MailAddress address = new MailAddress("info@acgt.com");
+        //      //  MailAddress addressBCC = new MailAddress("andersolind@hotmail.com");
+        //        msg.From = address;
+        //    //    msg.Bcc.Add(addressBCC);
+        //        msg.Subject = "Order form";
+        //        msg.IsBodyHtml = true;
+        //        msg.Body = body;
+        //        byte[] a = GetData(body);
+        //        System.IO.MemoryStream m = new System.IO.MemoryStream(a);
+        //        Attachment word = new Attachment(m, "Client-"+fromSender+".doc");
+        //        msg.Attachments.Add(word);
+
+        //        ////Configure an SmtpClient to send the mail.            
+        //        SmtpClient smptc = new SmtpClient(); // Here SMTP Client object is created
+        //        //   smptc.Host = "smtpout.asia.secureserver.net";// here SMTP interface Address is passed
+        //        smptc.Port = 25;// Use port No 25
+        //        smptc.UseDefaultCredentials = false;
+        //        smptc.EnableSsl = false;
+        //        smptc.DeliveryMethod = SmtpDeliveryMethod.Network;
+        //        NetworkCredential credentials = new NetworkCredential("info@snapcheckit.com", "Travel2014");
+        //        smptc.Credentials = credentials;
+        //        smptc.Send(msg);
+
+        //        ////Setup credentials to login to our sender email address ("UserName", "Password")
+        //        //NetworkCredential credentials = new NetworkCredential("andersolind@gmail.com", "Oscar@2015");
+        //        //client.UseDefaultCredentials = true;
+        //        //client.Credentials = credentials;
+
+        //        ////Send the msg
+        //        //client.Send(msg);
+        //        //var client = new SmtpClient("smtp.gmail.com", 587) {
+        //        //    Credentials = new NetworkCredential("andersolind@gmail.com", "Oscar@2015"),
+        //        //    EnableSsl = true
+        //        //};
+
+        //        //client.Send("andersolind@hotmail.com", "andersolind@gmail.com", "test", "testbody");
+
+        //        return "Ok";
+        //    } catch (Exception ex) {
+        //      return   ex.InnerException.ToString();
+        //    }
+        //}
         public string SetUpSequence(SequencingWrapperModel model) {
             SequencingWrapperModel m = new SequencingWrapperModel();
 
@@ -110,7 +211,7 @@ namespace MBBVL.Core {
             var dnaForm = "";
 
             //headers<img src=\"cid:image1\">
-          //  var ship = "<table><td align='center' style='padding: 40px 0 30 px 0;'><img src='http://youneedafavor.com/images/logo.png'>";
+            //  var ship = "<table><td align='center' style='padding: 40px 0 30 px 0;'><img src='http://youneedafavor.com/images/logo.png'>";
             var ship = "<table><td>";
             ship += "<h1>Dear" + " " + model.Billing.FullName + " " + "here is your Sequencing order</h1></td></table>";
 
@@ -166,7 +267,7 @@ namespace MBBVL.Core {
             //Billing
 
 
-            var bill = "<table width='100' style='float:left;' cellpadding='0 cellspacing='0' border='0 align='center'>";
+            var bill = "<table width='100' style='float:left;margin-left:100px;' cellpadding='0 cellspacing='0' border='0 align='center'>";
 
             bill += "<thead>";
             bill += "<tr>";
@@ -321,7 +422,8 @@ namespace MBBVL.Core {
             var template = StaticValues.HtmlHeaderText() + ship + bill + olForm + dnaForm + deliveryOptions;
 
             CreateEmailForUser(m.Billing.Email, "Andersolind@gmail.com", template);
-            //  CreateEmailForJason(m.Billing.Email, "Andersolind@gmail.com", template);
+            CreateEmailForJason(m.Billing.Email, "Andersolind@gmail.com", template);
+            CreateEmailForAnders(m.Billing.Email, "Andersolind@gmail.com", template);
             return olForm;
         }
 
@@ -329,77 +431,77 @@ namespace MBBVL.Core {
             SequencingWrapperModel m = new SequencingWrapperModel();
             m.PickUp = model.PickUp;
             var ship = "<table><td>";
-            
-                ship += "<table width='100' style='float:left' cellpadding='0 cellspacing='0' border='0 align='center'>";
-                ship += "<thead>";
-                ship += "<tr>";
-                ship += "<th ><h1  style='color:blue;text-decoration: underline;'>Pick Up Information</h1</th>";
-                ship += "</tr>";
-                ship += "</thead>";
-                ship += "<tr>";
-                ship += "<td valign='top'>";
-                ship += "<label for='fullName'>Full Name</label>";
-                ship += "</td>";
-                ship += "<td valign='top'>";
-                ship += m.PickUp.FirstName;
-                ship += "</td>";
-                ship += "</tr>";
-                ship += "<tr>";
-                ship += "<td valign='top'>";
-                ship += "<label for='fullName'>Last Name</label>";
-                ship += "</td>";
-                ship += "<td valign='top'>";
-                ship += m.PickUp.LastName;
-                ship += "</td>";
-                ship += "</tr>";
-                ship += "<tr>";
-                ship += "<td valign='top'>";
-                ship += "<label for='fullName'>Institution</label>";
-                ship += "</td>";
-                ship += "<td valign='top'>";
-                ship += m.PickUp.Institution;
-                ship += "</td>";
-                ship += "</tr>";
-                ship += "<tr>";
-                ship += "<td valign='top'>";
-                ship += "<label for='fullName'>Message</label>";
-                ship += "</td>";
-                ship += "<td valign='top'>";
-                ship += m.PickUp.Message;
-                ship += "</td>";
-                ship += "</tr>";
-                ship += "<tr>";
-                ship += "<td valign='top'>";
-                ship += "<label for='shippingEmail'>Room</label>";
-                ship += "</td>";
-                ship += "<td valign='top'>";
-                ship += m.PickUp.Room;
-                ship += "</td>";
-                ship += "</tr>";
-                ship += "<tr>";
-                ship += "<td valign='top'>";
-                ship += "<label for='shippingEmail'>Notes</label>";
-                ship += "</td>";
-                ship += "<td valign='top'>";
-                ship += m.PickUp.Notes;
-                ship += "</td>";
-                ship += "</tr>";
-                ship += "<tr>";
-                ship += "<td valign='top'>";
-                ship += "<label for='shippingEmail'>Email</label>";
-                ship += "</td>";
-                ship += "<td valign='top'>";
-                ship += m.PickUp.Email;
-                ship += "</td>";
-                ship += "</tr>";
-                ship += "</table>";
 
-                ship += "</table> </body> </html>";
+            ship += "<table width='100' style='float:left' cellpadding='0 cellspacing='0' border='0 align='center'>";
+            ship += "<thead>";
+            ship += "<tr>";
+            ship += "<th ><h1  style='color:blue;text-decoration: underline;'>Pick Up Information</h1</th>";
+            ship += "</tr>";
+            ship += "</thead>";
+            ship += "<tr>";
+            ship += "<td valign='top'>";
+            ship += "<label for='fullName'>Full Name</label>";
+            ship += "</td>";
+            ship += "<td valign='top'>";
+            ship += m.PickUp.FirstName;
+            ship += "</td>";
+            ship += "</tr>";
+            ship += "<tr>";
+            ship += "<td valign='top'>";
+            ship += "<label for='fullName'>Last Name</label>";
+            ship += "</td>";
+            ship += "<td valign='top'>";
+            ship += m.PickUp.LastName;
+            ship += "</td>";
+            ship += "</tr>";
+            ship += "<tr>";
+            ship += "<td valign='top'>";
+            ship += "<label for='fullName'>Institution</label>";
+            ship += "</td>";
+            ship += "<td valign='top'>";
+            ship += m.PickUp.Institution;
+            ship += "</td>";
+            ship += "</tr>";
+            ship += "<tr>";
+            ship += "<td valign='top'>";
+            ship += "<label for='fullName'>Message</label>";
+            ship += "</td>";
+            ship += "<td valign='top'>";
+            ship += m.PickUp.Message;
+            ship += "</td>";
+            ship += "</tr>";
+            ship += "<tr>";
+            ship += "<td valign='top'>";
+            ship += "<label for='shippingEmail'>Room</label>";
+            ship += "</td>";
+            ship += "<td valign='top'>";
+            ship += m.PickUp.Room;
+            ship += "</td>";
+            ship += "</tr>";
+            ship += "<tr>";
+            ship += "<td valign='top'>";
+            ship += "<label for='shippingEmail'>Notes</label>";
+            ship += "</td>";
+            ship += "<td valign='top'>";
+            ship += m.PickUp.Notes;
+            ship += "</td>";
+            ship += "</tr>";
+            ship += "<tr>";
+            ship += "<td valign='top'>";
+            ship += "<label for='shippingEmail'>Email</label>";
+            ship += "</td>";
+            ship += "<td valign='top'>";
+            ship += m.PickUp.Email;
+            ship += "</td>";
+            ship += "</tr>";
+            ship += "</table>";
 
-                var template = StaticValues.HtmlHeaderText() + ship;
+            ship += "</table> </body> </html>";
 
-                CreateEmailForUser(m.PickUp.Email, "Andersolind@gmail.com", template);
-            
+            var template = StaticValues.HtmlHeaderText() + ship;
+
+            CreateEmailForUser(m.PickUp.Email, "Andersolind@gmail.com", template);
+
         }
 
         public string SetUpbill(WrapperModel model) {
@@ -409,9 +511,9 @@ namespace MBBVL.Core {
             m.shipping = model.shipping;
             m.oligosequence = model.oligosequence;
             //headers
-         //éé éé  var ship = "<table><td align='center' style='padding: 40px 0 30 px 0;'><img src='http://youneedafavor.com/images/logo.png'>";
+            //éé éé  var ship = "<table><td align='center' style='padding: 40px 0 30 px 0;'><img src='http://youneedafavor.com/images/logo.png'>";
             var ship = "<table><td>";
-            ship += "<h1>Dear" + " " + model.shipping.FullName + " " + "here is Oligonucleotide Order</h1></td></table>";
+            ship += "<h1>Dear" + " " + model.shipping.FullName + " " + "here is your Oligonucleotide Order</h1></td></table>";
 
             ship += "<table width='100' style='float:left' cellpadding='0' cellspacing='0' border='0' >";
             ship += "<thead>";
@@ -550,8 +652,8 @@ namespace MBBVL.Core {
             olForm += "<td class='boldCell'>Purification</td>";
             olForm += "<td class='boldCell'>Price</td>";
             olForm += "<td class='boldCell'>OligoID</td>";
-          
-            
+
+
             // more cells here as needed
             olForm += "</tr>";
 
@@ -572,8 +674,9 @@ namespace MBBVL.Core {
             }
             olForm += "</table> </div> </body> </html>";
             var template = StaticValues.HtmlHeaderText() + ship + bill + olForm;
-            CreateEmailForUser(m.shipping.Email, "Andersolind@gmail.com", template);
-            //  CreateEmailForJason(m.shipping.Email, "Andersolind@gmail.com", template);
+            CreateEmailForUser(m.shipping.Email, "order@acgtcorp.com", template);
+            CreateEmailForJason(m.shipping.Email, "", template);
+            CreateEmailForAnders(m.shipping.Email, "Andersolind@gmail.com", template);
             return olForm;
         }
         private string CreateString(string original) {

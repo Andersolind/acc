@@ -13,6 +13,7 @@
         var properties = { PrimerName: "", Qty: "", OligonucleotideSequence: '', SynthesisScale1: synthesisScale1Values, SynthesisScaleValue: "", Modification: "", ModificationValue: "", Purification: purification, PurificationValue: "", FinalDeliveryForm: finalDeliveryForm, FinalDeliveryFormValue: "", GMP3: gmp3, GmpValue: "", Price: "" };
         return properties;
     }
+
     this.modifications = function () {
         var getModificatons = [{ name: 'Biotin', value: 'Biotin' }, { name: '[bio]', value: '[bio]' }, { name: 'Amino C6', value: 'Amino C6' },
             { name: '[amC6]', value: '[amC6]' },

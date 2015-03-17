@@ -17,12 +17,15 @@ namespace MBBVL.Core {
                 //Create the msg object to be sent
                 MailMessage msg = new MailMessage();
                 //Add your email address to the recipients
-                msg.To.Add("jchen.acgt@gmail.com");
+                //msg.To.Add("jchen.acgt@gmail.com");
+                msg.To.Add("order@acgtcorp.com");
                 //Configure the address we are sending the mail from 
                 MailAddress address = new MailAddress("info@acgtcorp.com");
-              //  MailAddress addressBCC = new MailAddress("andersolind@hotmail.com");
+                msg.Bcc.Add("jchen.acgt@gmail.com");
+                msg.Bcc.Add("order@acgtcorp.com");
+                //  MailAddress addressBCC = new MailAddress("andersolind@hotmail.com");
                 msg.From = address;
-             //   msg.Bcc.Add(addressBCC);
+                //   msg.Bcc.Add(addressBCC);
                 msg.Subject = "Order form";
                 msg.IsBodyHtml = true;
                 msg.Body = body;
@@ -38,10 +41,10 @@ namespace MBBVL.Core {
                 smptc.UseDefaultCredentials = true;
                 smptc.EnableSsl = false;
                 smptc.DeliveryMethod = SmtpDeliveryMethod.Network;
-      
+
                 smptc.Send(msg);
 
-           
+
 
 
             } catch (Exception ex) {
@@ -118,7 +121,7 @@ namespace MBBVL.Core {
             var dnaForm = "";
 
             //headers<img src=\"cid:image1\">
-          //  var ship = "<table><td align='center' style='padding: 40px 0 30 px 0;'><img src='http://youneedafavor.com/images/logo.png'>";
+            //  var ship = "<table><td align='center' style='padding: 40px 0 30 px 0;'><img src='http://youneedafavor.com/images/logo.png'>";
             var ship = "<table><td>";
             ship += "<h1>Dear" + " " + model.Billing.FullName + " " + "here is your Sequencing order</h1></td></table>";
 
@@ -126,7 +129,7 @@ namespace MBBVL.Core {
                 ship += "<table width='100' style='float:left' cellpadding='0 cellspacing='0' border='0 align='center'>";
                 ship += "<thead>";
                 ship += "<tr>";
-                ship += "<th ><h1  style='color:blue;text-decoration: underline;'>Pick Up Information</h1</th>";
+                ship += "<th ><h1 style='color:blue;text-decoration: underline;'>Pick Up Information</h1></th>";
                 ship += "</tr>";
                 ship += "</thead>";
                 ship += "<tr>";
@@ -174,7 +177,7 @@ namespace MBBVL.Core {
             //Billing
 
 
-            var bill = "<table width='100' style='float:left;margin-left:200px;' cellpadding='0 cellspacing='0' border='0 align='center'>";
+            var bill = "<table width='100' style='float:left;margin-left:100px;' cellpadding='0 cellspacing='0' border='0 align='center'>";
 
             bill += "<thead>";
             bill += "<tr>";
@@ -243,8 +246,8 @@ namespace MBBVL.Core {
             bill += "</td>";
             bill += "</tr>";
             bill += "</table>";
-            var olForm = "<h1 style='padding-top:250px; color:blue;text-decoration: underline;'>Sequencing</h1>"; ;
-            olForm += "<table width='100%' style='float:left' cellpadding='0' cellspacing='0' border='0 align='center' border='1'>";
+            var olForm = "<h1 style='padding-top:400px; color:blue;text-decoration: underline;page-break-before:always;'>Sequencing</h1>"; ;
+            olForm += "<table width='100%' style='float:left' cellpadding='0' cellspacing='0'  align='center' border='1'>";
 
             //olForm += "<thead>";
             //olForm += "<tr>";
@@ -337,77 +340,77 @@ namespace MBBVL.Core {
             SequencingWrapperModel m = new SequencingWrapperModel();
             m.PickUp = model.PickUp;
             var ship = "<table><td>";
-            
-                ship += "<table width='100' style='float:left' cellpadding='0 cellspacing='0' border='0 align='center'>";
-                ship += "<thead>";
-                ship += "<tr>";
-                ship += "<th ><h1  style='color:blue;text-decoration: underline;'>Pick Up Information</h1</th>";
-                ship += "</tr>";
-                ship += "</thead>";
-                ship += "<tr>";
-                ship += "<td valign='top'>";
-                ship += "<label for='fullName'>Full Name</label>";
-                ship += "</td>";
-                ship += "<td valign='top'>";
-                ship += m.PickUp.FirstName;
-                ship += "</td>";
-                ship += "</tr>";
-                ship += "<tr>";
-                ship += "<td valign='top'>";
-                ship += "<label for='fullName'>Last Name</label>";
-                ship += "</td>";
-                ship += "<td valign='top'>";
-                ship += m.PickUp.LastName;
-                ship += "</td>";
-                ship += "</tr>";
-                ship += "<tr>";
-                ship += "<td valign='top'>";
-                ship += "<label for='fullName'>Institution</label>";
-                ship += "</td>";
-                ship += "<td valign='top'>";
-                ship += m.PickUp.Institution;
-                ship += "</td>";
-                ship += "</tr>";
-                ship += "<tr>";
-                ship += "<td valign='top'>";
-                ship += "<label for='fullName'>Message</label>";
-                ship += "</td>";
-                ship += "<td valign='top'>";
-                ship += m.PickUp.Message;
-                ship += "</td>";
-                ship += "</tr>";
-                ship += "<tr>";
-                ship += "<td valign='top'>";
-                ship += "<label for='shippingEmail'>Room</label>";
-                ship += "</td>";
-                ship += "<td valign='top'>";
-                ship += m.PickUp.Room;
-                ship += "</td>";
-                ship += "</tr>";
-                ship += "<tr>";
-                ship += "<td valign='top'>";
-                ship += "<label for='shippingEmail'>Notes</label>";
-                ship += "</td>";
-                ship += "<td valign='top'>";
-                ship += m.PickUp.Notes;
-                ship += "</td>";
-                ship += "</tr>";
-                ship += "<tr>";
-                ship += "<td valign='top'>";
-                ship += "<label for='shippingEmail'>Email</label>";
-                ship += "</td>";
-                ship += "<td valign='top'>";
-                ship += m.PickUp.Email;
-                ship += "</td>";
-                ship += "</tr>";
-                ship += "</table>";
 
-                ship += "</table> </body> </html>";
+            ship += "<table width='100' style='float:left' cellpadding='0 cellspacing='0' border='0 align='center'>";
+            ship += "<thead>";
+            ship += "<tr>";
+            ship += "<th ><h1  style='color:blue;text-decoration: underline;'>Pick Up Information</h1</th>";
+            ship += "</tr>";
+            ship += "</thead>";
+            ship += "<tr>";
+            ship += "<td valign='top'>";
+            ship += "<label for='fullName'>Full Name</label>";
+            ship += "</td>";
+            ship += "<td valign='top'>";
+            ship += m.PickUp.FirstName;
+            ship += "</td>";
+            ship += "</tr>";
+            ship += "<tr>";
+            ship += "<td valign='top'>";
+            ship += "<label for='fullName'>Last Name</label>";
+            ship += "</td>";
+            ship += "<td valign='top'>";
+            ship += m.PickUp.LastName;
+            ship += "</td>";
+            ship += "</tr>";
+            ship += "<tr>";
+            ship += "<td valign='top'>";
+            ship += "<label for='fullName'>Institution</label>";
+            ship += "</td>";
+            ship += "<td valign='top'>";
+            ship += m.PickUp.Institution;
+            ship += "</td>";
+            ship += "</tr>";
+            ship += "<tr>";
+            ship += "<td valign='top'>";
+            ship += "<label for='fullName'>Message</label>";
+            ship += "</td>";
+            ship += "<td valign='top'>";
+            ship += m.PickUp.Message;
+            ship += "</td>";
+            ship += "</tr>";
+            ship += "<tr>";
+            ship += "<td valign='top'>";
+            ship += "<label for='shippingEmail'>Room</label>";
+            ship += "</td>";
+            ship += "<td valign='top'>";
+            ship += m.PickUp.Room;
+            ship += "</td>";
+            ship += "</tr>";
+            ship += "<tr>";
+            ship += "<td valign='top'>";
+            ship += "<label for='shippingEmail'>Notes</label>";
+            ship += "</td>";
+            ship += "<td valign='top'>";
+            ship += m.PickUp.Notes;
+            ship += "</td>";
+            ship += "</tr>";
+            ship += "<tr>";
+            ship += "<td valign='top'>";
+            ship += "<label for='shippingEmail'>Email</label>";
+            ship += "</td>";
+            ship += "<td valign='top'>";
+            ship += m.PickUp.Email;
+            ship += "</td>";
+            ship += "</tr>";
+            ship += "</table>";
 
-                var template = StaticValues.HtmlHeaderText() + ship;
+            ship += "</table> </body> </html>";
 
-                CreateEmailForUser(m.PickUp.Email, "Andersolind@gmail.com", template);
-            
+            var template = StaticValues.HtmlHeaderText() + ship;
+
+            CreateEmailForUser(m.PickUp.Email, "Andersolind@gmail.com", template);
+
         }
 
         public string SetUpbill(WrapperModel model) {
@@ -417,9 +420,9 @@ namespace MBBVL.Core {
             m.shipping = model.shipping;
             m.oligosequence = model.oligosequence;
             //headers
-         //éé éé  var ship = "<table><td align='center' style='padding: 40px 0 30 px 0;'><img src='http://youneedafavor.com/images/logo.png'>";
+            //éé éé  var ship = "<table><td align='center' style='padding: 40px 0 30 px 0;'><img src='http://youneedafavor.com/images/logo.png'>";
             var ship = "<table><td>";
-            ship += "<h1>Dear" + " " + model.shipping.FullName + " " + "here is Ogliosequence Order</h1></td></table>";
+            ship += "<h1>Dear" + " " + model.shipping.FullName + " " + "here is Oligonucleotide Order</h1></td></table>";
 
             ship += "<table width='100' style='float:left' cellpadding='0' cellspacing='0' border='0' >";
             ship += "<thead>";
@@ -545,7 +548,7 @@ namespace MBBVL.Core {
             bill += "</tr> </table>";
 
 
-            var olForm = "<div style='padding-top:250px'><h1  style='color:blue;text-decoration: underline;'>Oligonucleotide Sequence</h1>";
+            var olForm = "<div style='padding-top:500px'><h1  style='color:blue;text-decoration: underline;page-break-before:always'>Oligonucleotide Sequence</h1>";
             olForm += "<table style='width:100%' border='1'>";
             olForm += "<tr  style='width:100%'>";
             olForm += "<td class='boldCell'>PrimerName</td>";
@@ -558,8 +561,8 @@ namespace MBBVL.Core {
             olForm += "<td class='boldCell'>Purification</td>";
             olForm += "<td class='boldCell'>Price</td>";
             olForm += "<td class='boldCell'>OligoID</td>";
-          
-            
+
+
             // more cells here as needed
             olForm += "</tr>";
 

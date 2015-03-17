@@ -301,9 +301,6 @@
     <Content Include="pdf\ACGTsequencingprimers.pdf" />
     <Content Include="fonts\gotham\gotham-bold.ttf" />
     <None Include="templates\OrderForm.cshtml" />
-    <Content Include="zip\Ionic.BZip2.dll" />
-    <Content Include="zip\Ionic.Zip.dll" />
-    <Content Include="zip\Ionic.Zlib.dll" />
     <None Include="Properties\PublishProfiles\mbsl.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Cycle.js" />
@@ -399,6 +396,7 @@
     <Folder Include="Content\themes\base\minified\images\" />
     <Folder Include="Controllers\Sequence\" />
     <Folder Include="js\Angular\Controller\Oglio\" />
+    <Folder Include="NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

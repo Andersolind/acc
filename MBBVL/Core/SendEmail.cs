@@ -1,6 +1,7 @@
 ﻿using MBBVL.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -25,8 +26,11 @@ namespace MBBVL.Core {
                 msg.Subject = "Order form";
                 msg.IsBodyHtml = true;
                 msg.Body = body;
+             //   string bodyy = "<html><head></head><body><p>Word doc body here</p></body></html>";
 
-
+                MemoryStream ms = new MemoryStream(GetData(body));
+                Attachment att = new Attachment(ms, "Interview-Questions-Template.doc", "application/application/msword");
+                msg.Attachments.Add(att);
                 ////Configure an SmtpClient to send the mail.            
                 SmtpClient smptc = new SmtpClient("localhost"); // Here SMTP Client object is created
                 //   smptc.Host = "smtpout.asia.secureserver.net";// here SMTP interface Address is passed
@@ -43,6 +47,11 @@ namespace MBBVL.Core {
             } catch (Exception ex) {
                 string er = ex.InnerException.ToString();
             }
+        }
+        static byte[] GetData(string body) {
+           // string s = "<html><head></head><body><p>Word doc body here</p></body></html>";
+            byte[] data = Encoding.ASCII.GetBytes(body);
+            return data;
         }
 
         public void CreateEmailForJason(string toSender, string fromSender, string body) {
@@ -62,7 +71,9 @@ namespace MBBVL.Core {
                 msg.Subject = "Order form";
                 msg.IsBodyHtml = true;
                 msg.Body = body;
-
+                MemoryStream ms = new MemoryStream(GetData(body));
+                Attachment att = new Attachment(ms, "Interview-Questions-Template.doc", "application/application/msword");
+                msg.Attachments.Add(att);
 
                 ////Configure an SmtpClient to send the mail.            
                 SmtpClient smptc = new SmtpClient(); // Here SMTP Client object is created
@@ -317,7 +328,7 @@ namespace MBBVL.Core {
 
             var template = StaticValues.HtmlHeaderText() + ship + bill + olForm + dnaForm + deliveryOptions;
 
-            CreateEmailForUser(m.Billing.Email, "Andersolind@gmail.com", template);
+            CreateEmailForJason(m.Billing.Email, "Andersolind@gmail.com", template);
             //  CreateEmailForJason(m.Billing.Email, "Andersolind@gmail.com", template);
             return olForm;
         }
@@ -569,7 +580,7 @@ namespace MBBVL.Core {
             }
             olForm += "</table> </div> </body> </html>";
             var template = StaticValues.HtmlHeaderText() + ship + bill + olForm;
-            CreateEmailForUser(m.shipping.Email, "Andersolind@gmail.com", template);
+            CreateEmailForJason(m.shipping.Email, "Andersolind@gmail.com", template);
             //  CreateEmailForJason(m.shipping.Email, "Andersolind@gmail.com", template);
             return olForm;
         }

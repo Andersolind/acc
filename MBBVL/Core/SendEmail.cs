@@ -166,7 +166,7 @@ namespace MBBVL.Core {
             //Billing
 
 
-            var bill = "<table width='100' style='float:left;margin-left:100px;' cellpadding='0 cellspacing='0' border='0 align='center'>";
+            var bill = "<table width='100' style='float:left;' cellpadding='0 cellspacing='0' border='0 align='center'>";
 
             bill += "<thead>";
             bill += "<tr>";

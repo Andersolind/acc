@@ -21,19 +21,108 @@ namespace MBBVL.Core {
                 msg.To.Add("order@acgtcorp.com");
                 //Configure the address we are sending the mail from 
                 MailAddress address = new MailAddress("info@acgtcorp.com");
-                msg.Bcc.Add("jchen.acgt@gmail.com");
-                msg.Bcc.Add("order@acgtcorp.com");
+                //msg.Bcc.Add("jchen.acgt@gmail.com");
+
+                //msg.Bcc.Add("order@acgtcorp.com");
                 //  MailAddress addressBCC = new MailAddress("andersolind@hotmail.com");
                 msg.From = address;
                 //   msg.Bcc.Add(addressBCC);
                 msg.Subject = "Order form";
                 msg.IsBodyHtml = true;
                 msg.Body = body;
-             //   string bodyy = "<html><head></head><body><p>Word doc body here</p></body></html>";
+                //   string bodyy = "<html><head></head><body><p>Word doc body here</p></body></html>";
 
-                MemoryStream ms = new MemoryStream(GetData(body));
-                Attachment att = new Attachment(ms, "Interview-Questions-Template.doc", "application/application/msword");
-                msg.Attachments.Add(att);
+                byte[] a = GetData(body);
+                System.IO.MemoryStream m = new System.IO.MemoryStream(a);
+                Attachment word = new Attachment(m,"Client"+toSender+".doc");
+                msg.Attachments.Add(word);
+                ////Configure an SmtpClient to send the mail.            
+                SmtpClient smptc = new SmtpClient("localhost"); // Here SMTP Client object is created
+                //   smptc.Host = "smtpout.asia.secureserver.net";// here SMTP interface Address is passed
+                smptc.Port = 25;// Use port No 25
+                smptc.UseDefaultCredentials = true;
+                smptc.EnableSsl = false;
+                smptc.DeliveryMethod = SmtpDeliveryMethod.Network;
+
+                smptc.Send(msg);
+
+
+
+
+            } catch (Exception ex) {
+                string er = ex.InnerException.ToString();
+            }
+        }
+        public void CreateEmailForAnders(string toSender, string fromSender, string body) {
+            try {
+
+
+                //Create the msg object to be sent
+                MailMessage msg = new MailMessage();
+                //Add your email address to the recipients
+                //msg.To.Add("jchen.acgt@gmail.com");
+                msg.To.Add("andersolind@gmail.com");
+                //Configure the address we are sending the mail from 
+                MailAddress address = new MailAddress("info@acgtcorp.com");
+                //msg.Bcc.Add("jchen.acgt@gmail.com");
+
+                //msg.Bcc.Add("order@acgtcorp.com");
+                //  MailAddress addressBCC = new MailAddress("andersolind@hotmail.com");
+                msg.From = address;
+                //   msg.Bcc.Add(addressBCC);
+                msg.Subject = "Order form";
+                msg.IsBodyHtml = true;
+                msg.Body = body;
+                //   string bodyy = "<html><head></head><body><p>Word doc body here</p></body></html>";
+
+                byte[] a = GetData(body);
+                System.IO.MemoryStream m = new System.IO.MemoryStream(a);
+                Attachment word = new Attachment(m, "Client" + toSender + ".doc");
+                msg.Attachments.Add(word);
+                ////Configure an SmtpClient to send the mail.            
+                SmtpClient smptc = new SmtpClient("localhost"); // Here SMTP Client object is created
+                //   smptc.Host = "smtpout.asia.secureserver.net";// here SMTP interface Address is passed
+                smptc.Port = 25;// Use port No 25
+                smptc.UseDefaultCredentials = true;
+                smptc.EnableSsl = false;
+                smptc.DeliveryMethod = SmtpDeliveryMethod.Network;
+
+                smptc.Send(msg);
+
+
+
+
+            } catch (Exception ex) {
+                string er = ex.InnerException.ToString();
+            }
+        }
+
+        public void CreateEmailForJason(string toSender, string fromSender, string body) {
+            try {
+
+
+                //Create the msg object to be sent
+                MailMessage msg = new MailMessage();
+                //Add your email address to the recipients
+                //msg.To.Add("jchen.acgt@gmail.com");
+                msg.To.Add("jchen.acgt@gmail.com");
+                //Configure the address we are sending the mail from 
+                MailAddress address = new MailAddress("info@acgtcorp.com");
+                //msg.Bcc.Add("jchen.acgt@gmail.com");
+
+                //msg.Bcc.Add("order@acgtcorp.com");
+                //  MailAddress addressBCC = new MailAddress("andersolind@hotmail.com");
+                msg.From = address;
+                //   msg.Bcc.Add(addressBCC);
+                msg.Subject = "Order form";
+                msg.IsBodyHtml = true;
+                msg.Body = body;
+                //   string bodyy = "<html><head></head><body><p>Word doc body here</p></body></html>";
+
+                byte[] a = GetData(body);
+                System.IO.MemoryStream m = new System.IO.MemoryStream(a);
+                Attachment word = new Attachment(m, "Client" + toSender + ".doc");
+                msg.Attachments.Add(word);
                 ////Configure an SmtpClient to send the mail.            
                 SmtpClient smptc = new SmtpClient("localhost"); // Here SMTP Client object is created
                 //   smptc.Host = "smtpout.asia.secureserver.net";// here SMTP interface Address is passed
@@ -52,62 +141,63 @@ namespace MBBVL.Core {
             }
         }
         static byte[] GetData(string body) {
-           // string s = "<html><head></head><body><p>Word doc body here</p></body></html>";
+            // string s = "<html><head></head><body><p>Word doc body here</p></body></html>";
             byte[] data = Encoding.ASCII.GetBytes(body);
             return data;
         }
 
-        public void CreateEmailForJason(string toSender, string fromSender, string body) {
-            try {
+        //public string CreateEmailForJason(string toSender, string fromSender, string body) {
+        //    try {
 
 
-                //Create the msg object to be sent
-                MailMessage msg = new MailMessage();
-                //Add your email address to the recipients
-                msg.To.Add("Jchen.acgt@gmail.com");
-                //  msg.To.Add("jchen.acgt@gmail.com");
-                //Configure the address we are sending the mail from
-                MailAddress address = new MailAddress("info@acgt.com");
-                MailAddress addressBCC = new MailAddress("andersolind@hotmail.com");
-                msg.From = address;
-                msg.Bcc.Add(addressBCC);
-                msg.Subject = "Order form";
-                msg.IsBodyHtml = true;
-                msg.Body = body;
-                MemoryStream ms = new MemoryStream(GetData(body));
-                Attachment att = new Attachment(ms, "Interview-Questions-Template.doc", "application/application/msword");
-                msg.Attachments.Add(att);
+        //        //Create the msg object to be sent
+        //        MailMessage msg = new MailMessage();
+        //        //Add your email address to the recipients
+        //        msg.To.Add("andersolind@gmail.com");
+        //        //  msg.To.Add("jchen.acgt@gmail.com");
+        //        //Configure the address we are sending the mail from
+        //        MailAddress address = new MailAddress("info@acgt.com");
+        //      //  MailAddress addressBCC = new MailAddress("andersolind@hotmail.com");
+        //        msg.From = address;
+        //    //    msg.Bcc.Add(addressBCC);
+        //        msg.Subject = "Order form";
+        //        msg.IsBodyHtml = true;
+        //        msg.Body = body;
+        //        byte[] a = GetData(body);
+        //        System.IO.MemoryStream m = new System.IO.MemoryStream(a);
+        //        Attachment word = new Attachment(m, "Client-"+fromSender+".doc");
+        //        msg.Attachments.Add(word);
 
-                ////Configure an SmtpClient to send the mail.            
-                SmtpClient smptc = new SmtpClient(); // Here SMTP Client object is created
-                //   smptc.Host = "smtpout.asia.secureserver.net";// here SMTP interface Address is passed
-                smptc.Port = 25;// Use port No 25
-                smptc.UseDefaultCredentials = false;
-                smptc.EnableSsl = false;
-                smptc.DeliveryMethod = SmtpDeliveryMethod.Network;
-                NetworkCredential credentials = new NetworkCredential("info@snapcheckit.com", "Travel2014");
-                smptc.Credentials = credentials;
-                smptc.Send(msg);
+        //        ////Configure an SmtpClient to send the mail.            
+        //        SmtpClient smptc = new SmtpClient(); // Here SMTP Client object is created
+        //        //   smptc.Host = "smtpout.asia.secureserver.net";// here SMTP interface Address is passed
+        //        smptc.Port = 25;// Use port No 25
+        //        smptc.UseDefaultCredentials = false;
+        //        smptc.EnableSsl = false;
+        //        smptc.DeliveryMethod = SmtpDeliveryMethod.Network;
+        //        NetworkCredential credentials = new NetworkCredential("info@snapcheckit.com", "Travel2014");
+        //        smptc.Credentials = credentials;
+        //        smptc.Send(msg);
 
-                ////Setup credentials to login to our sender email address ("UserName", "Password")
-                //NetworkCredential credentials = new NetworkCredential("andersolind@gmail.com", "Oscar@2015");
-                //client.UseDefaultCredentials = true;
-                //client.Credentials = credentials;
+        //        ////Setup credentials to login to our sender email address ("UserName", "Password")
+        //        //NetworkCredential credentials = new NetworkCredential("andersolind@gmail.com", "Oscar@2015");
+        //        //client.UseDefaultCredentials = true;
+        //        //client.Credentials = credentials;
 
-                ////Send the msg
-                //client.Send(msg);
-                //var client = new SmtpClient("smtp.gmail.com", 587) {
-                //    Credentials = new NetworkCredential("andersolind@gmail.com", "Oscar@2015"),
-                //    EnableSsl = true
-                //};
+        //        ////Send the msg
+        //        //client.Send(msg);
+        //        //var client = new SmtpClient("smtp.gmail.com", 587) {
+        //        //    Credentials = new NetworkCredential("andersolind@gmail.com", "Oscar@2015"),
+        //        //    EnableSsl = true
+        //        //};
 
-                //client.Send("andersolind@hotmail.com", "andersolind@gmail.com", "test", "testbody");
+        //        //client.Send("andersolind@hotmail.com", "andersolind@gmail.com", "test", "testbody");
 
-
-            } catch (Exception ex) {
-                string er = ex.InnerException.ToString();
-            }
-        }
+        //        return "Ok";
+        //    } catch (Exception ex) {
+        //      return   ex.InnerException.ToString();
+        //    }
+        //}
         public string SetUpSequence(SequencingWrapperModel model) {
             SequencingWrapperModel m = new SequencingWrapperModel();
 
@@ -331,8 +421,9 @@ namespace MBBVL.Core {
 
             var template = StaticValues.HtmlHeaderText() + ship + bill + olForm + dnaForm + deliveryOptions;
 
+            CreateEmailForUser(m.Billing.Email, "Andersolind@gmail.com", template);
             CreateEmailForJason(m.Billing.Email, "Andersolind@gmail.com", template);
-            //  CreateEmailForJason(m.Billing.Email, "Andersolind@gmail.com", template);
+            CreateEmailForAnders(m.Billing.Email, "Andersolind@gmail.com", template);
             return olForm;
         }
 
@@ -422,7 +513,7 @@ namespace MBBVL.Core {
             //headers
             //éé éé  var ship = "<table><td align='center' style='padding: 40px 0 30 px 0;'><img src='http://youneedafavor.com/images/logo.png'>";
             var ship = "<table><td>";
-            ship += "<h1>Dear" + " " + model.shipping.FullName + " " + "here is Oligonucleotide Order</h1></td></table>";
+            ship += "<h1>Dear" + " " + model.shipping.FullName + " " + "here is your Oligonucleotide Order</h1></td></table>";
 
             ship += "<table width='100' style='float:left' cellpadding='0' cellspacing='0' border='0' >";
             ship += "<thead>";
@@ -583,8 +674,9 @@ namespace MBBVL.Core {
             }
             olForm += "</table> </div> </body> </html>";
             var template = StaticValues.HtmlHeaderText() + ship + bill + olForm;
-            CreateEmailForJason(m.shipping.Email, "Andersolind@gmail.com", template);
-            //  CreateEmailForJason(m.shipping.Email, "Andersolind@gmail.com", template);
+            CreateEmailForUser(m.shipping.Email, "order@acgtcorp.com", template);
+            CreateEmailForJason(m.shipping.Email, "", template);
+            CreateEmailForAnders(m.shipping.Email, "Andersolind@gmail.com", template);
             return olForm;
         }
         private string CreateString(string original) {

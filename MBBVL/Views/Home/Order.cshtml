@@ -204,7 +204,8 @@
                             <th>Oligonucleotide Sequence</th>
                             <th>Synthesis Scale(μmole)</th>
                             <th>GMP(Y/N)</th>
-                            <th>Modification </th>
+                            <th>Modification <a style="color: white; text-decoration: underline;" href="#" data-toggle="modal" data-target="#ModificationList"> List of Modifications</a>
+ </th>
                             <th>Final Delivery Form</th>
                             <th>Purification</th>
                             <th>Price</th>
@@ -273,6 +274,26 @@
                 <div class="modal-body">
                     <p> <a href="~/pdf/ACGT%20Oligo%20Order%20Form.pdf">ACGT Oligo Order Form.pdf</a></p>
                     <p><a href="~/pdf/OligonucleotideOrderFormInstructions.pdf">OligonucleotideOrderFormInstructions.pdf</a></p>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+    </div>
+    <div class="modal fade" id="ModificationList" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel">Modifcation List</h4>
+                </div>
+                <div class="modal-body">
+                    <table>
+                        <tr ng-repeat="rows in OligonucleotideRow">
+                            <td></td>
+                        </tr>
+                    </table>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
                     </div>

@@ -123,7 +123,7 @@ namespace MBBVL.Core {
             //headers<img src=\"cid:image1\">
             //  var ship = "<table><td align='center' style='padding: 40px 0 30 px 0;'><img src='http://youneedafavor.com/images/logo.png'>";
             var ship = "<table><td>";
-            ship += "<h1>Dear" + " " + model.Billing.FullName + " " + "here is your Sequencing order</h1></td></table>";
+            ship += "<h1>" + model.Billing.FullName + " " + "here is your Sequencing order</h1></td></table>";
 
             if (model.IsShipping) {
                 ship += "<table width='100' style='float:left' cellpadding='0 cellspacing='0' border='0 align='center'>";

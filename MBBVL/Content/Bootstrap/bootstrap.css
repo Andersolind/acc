@@ -5,11 +5,14 @@
  */
 
 /*! normalize.css v3.0.1 | MIT License | git.io/normalize */
-html {
-    font-family: sans-serif;
+html * {
+    font-family: 'Montserrat', sans-serif;
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
 }
+
+
+
 
 body {
     margin: 0;
@@ -1149,23 +1152,26 @@ html {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-body {
-   /*font-family: 'Gotham';*/
+* {
+   font-family: 'Montserrat', sans-serif;
+
 }
 
 
 @font-face {
-    font-family: 'Gotham';
-    src: url('../fonts/gotham/gotham-bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-    url('../fonts/gotham/gotham-bold.woff') format('woff'), /* Modern Browsers */
-    url('../fonts/gotham/gotham-bold.ttf') format('truetype'); /* Safari, Android, iOS */
- font-weight: bold;
- font-style: normal;
- font-variant: normal;
+    font-family: 'Montserrat', sans-serif;
+    /*src: url('../fonts/gotham/gotham-bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    /*/*/ /**url('../fonts/gotham/gotham-bold.woff') format('woff')*/
+    , /* Modern Browsers */
+    /*url('../fonts/gotham/gotham-bold.ttf') format('truetype'); /* Safari, Android, iOS */
+    /*font-weight: bold;
+    font-style: normal;*/ */
+    /*font-variant: normal;*/ * /*/*/ */;
 }
+
 .bold,
 strong {
-  font-weight: 900;
+    font-weight: 900;
 }
 
 
@@ -4403,9 +4409,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     list-style: none;
     font-family: 'Gothamy';
     font-size: 15px;
-    font-weight:900;
+    font-weight: 900;
     padding-top: 15px;
-    
 }
 
     .nav > li {
@@ -4724,7 +4729,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     .container > .navbar-collapse,
     .container-fluid > .navbar-collapse {
         /*margin-right: 0;*/
-        margin-left: 0;
+        /*margin-left: 0;*/
         margin-bottom: 15px;
     }
 }
@@ -5147,7 +5152,6 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 
 .navbar-inverse {
     background-color: white;
-   
 }
 
     .navbar-inverse .navbar-brand {
@@ -7550,56 +7554,55 @@ button.close {
     }
 }
 /*# sourceMappingURL=bootstrap.css.map */
-.setMargins{
-   margin-right:150px;
-   
-   margin-bottom:100px;
+.setMargins {
+    margin-right: 150px;
+    margin-bottom: 100px;
 }
 
 .dropdown-submenu {
     position: relative;
 }
 
-.dropdown-submenu>.dropdown-menu {
-    top: 0;
-    left: 100%;
-    margin-top: -6px;
-    margin-left: -1px;
-    -webkit-border-radius: 0 6px 6px 6px;
-    -moz-border-radius: 0 6px 6px;
-    border-radius: 0 6px 6px 6px;
-}
+    .dropdown-submenu > .dropdown-menu {
+        top: 0;
+        left: 100%;
+        margin-top: -6px;
+        margin-left: -1px;
+        -webkit-border-radius: 0 6px 6px 6px;
+        -moz-border-radius: 0 6px 6px;
+        border-radius: 0 6px 6px 6px;
+    }
 
-.dropdown-submenu:hover>.dropdown-menu {
-    display: block;
-}
+    .dropdown-submenu:hover > .dropdown-menu {
+        display: block;
+    }
 
-.dropdown-submenu>a:after {
-    display: block;
-    content: " ";
-    float: right;
-    width: 0;
-    height: 0;
-    border-color: transparent;
-    border-style: solid;
-    border-width: 5px 0 5px 5px;
-    border-left-color: #ccc;
-    margin-top: 5px;
-    margin-right: -10px;
-}
+    .dropdown-submenu > a:after {
+        display: block;
+        content: " ";
+        float: right;
+        width: 0;
+        height: 0;
+        border-color: transparent;
+        border-style: solid;
+        border-width: 5px 0 5px 5px;
+        border-left-color: #ccc;
+        margin-top: 5px;
+        margin-right: -10px;
+    }
 
-.dropdown-submenu:hover>a:after {
-    border-left-color: #fff;
-}
+    .dropdown-submenu:hover > a:after {
+        border-left-color: #fff;
+    }
 
-.dropdown-submenu.pull-left {
-    float: none;
-}
+    .dropdown-submenu.pull-left {
+        float: none;
+    }
 
-.dropdown-submenu.pull-left>.dropdown-menu {
-    left: -100%;
-    margin-left: 10px;
-    -webkit-border-radius: 6px 0 6px 6px;
-    -moz-border-radius: 6px 0 6px 6px;
-    border-radius: 6px 0 6px 6px;
-}
+        .dropdown-submenu.pull-left > .dropdown-menu {
+            left: -100%;
+            margin-left: 10px;
+            -webkit-border-radius: 6px 0 6px 6px;
+            -moz-border-radius: 6px 0 6px 6px;
+            border-radius: 6px 0 6px 6px;
+        }

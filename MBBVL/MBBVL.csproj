@@ -235,6 +235,8 @@
     <Content Include="Content\Bootstrap\SideNavBar.css" />
     <Content Include="Content\Bootstrap\SubPages.css" />
     <Content Include="Content\Footer.png" />
+    <Content Include="Content\Images\ACGT-O.png" />
+    <Content Include="Content\Images\ACGT-S.png" />
     <Content Include="Content\Navigationicon.jpg" />
     <Content Include="Content\Background.png" />
     <Content Include="Content\Bootstrap\bootstrap.css" />
@@ -300,6 +302,7 @@
     <Content Include="pdf\SequenceOrderFormInstructions.pdf" />
     <Content Include="pdf\ACGTsequencingprimers.pdf" />
     <Content Include="fonts\gotham\gotham-bold.ttf" />
+    <None Include="Properties\PublishProfiles\ftp.pubxml" />
     <None Include="templates\OrderForm.cshtml" />
     <None Include="Properties\PublishProfiles\mbsl.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -391,7 +394,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\Images\" />
     <Folder Include="Content\themes\base\images\" />
     <Folder Include="Content\themes\base\minified\images\" />
     <Folder Include="Controllers\Sequence\" />

@@ -4,10 +4,29 @@
 
 
 
-<div style="padding-top:200px; padding-bottom:200px;margin-left:100px;">
-    <a href="@Url.Action("Order", "Home")">
+<div style="padding-top:100px; padding-bottom:100px;margin-left:100px;">
 
-        <img  src="~/Content/OrderNow.png" />
+    <div>
+        <h1 class="white" style="font-size:60px">Order today</h1>
+        <p style="color:white;font-size:13px;">
+            Order your DNA sequencing or oligonucleotide<br />
+            through our new, efficient online ordering system.<br />
+            Fast turn around and high quality service.<br />
+        </p>
+        <br />
+    </div>
+    <a href="@Url.Action("Order", "Sequencing")">
+        <img src="~/Content/Images/ACGT-S.png" />
     </a>
+
+    <br>
+    <br>
+
+    <a href="@Url.Action("Order", "Home")">
+        <img src="~/Content/Images/ACGT-O.png" />
+    </a>
+
 </div>
+
+
 

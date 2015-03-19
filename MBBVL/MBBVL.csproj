@@ -237,6 +237,7 @@
     <Content Include="Content\Footer.png" />
     <Content Include="Content\Images\ACGT-O.png" />
     <Content Include="Content\Images\ACGT-S.png" />
+    <Content Include="Content\Images\Sequencer.png" />
     <Content Include="Content\Navigationicon.jpg" />
     <Content Include="Content\Background.png" />
     <Content Include="Content\Bootstrap\bootstrap.css" />

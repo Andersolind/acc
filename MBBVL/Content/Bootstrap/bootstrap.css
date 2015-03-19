@@ -4878,8 +4878,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
             .navbar-nav > li > a {
                 padding-top: 50px;
                 padding-bottom: 15px;
-                margin-left: 10px;
-                margin-right: 111px;
+                /*margin-left: 2px;*/
+                margin-right: 50px;
             }
 
         .navbar-nav.navbar-right:last-child {

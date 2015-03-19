@@ -39,9 +39,9 @@
 </nav>
 
 
-<div style="padding-left:300px;">
+<div ng-controller="OrderOgli" style="padding-left:300px;">
     <h2>Order</h2>
-    <form name="dnaForm" ng-app="acgt" ng-controller="OrderOgli" class="form-horizontal" novalidate>
+    <form name="dnaForm" ng-app="acgt" class="form-horizontal pushFooter" novalidate>
         @*@if (!Request.IsAuthenticated) {
                 <div class="panel panel-primary">
                     <div class="panel-heading">
@@ -52,9 +52,9 @@
             }
             <div>*@
 
-   
-            
-            
+
+
+
 
         <div class="panel panel-primary">
             <div class="panel-heading">
@@ -204,7 +204,9 @@
                             <th>Oligonucleotide Sequence</th>
                             <th>Synthesis Scale(μmole)</th>
                             <th>GMP(Y/N)</th>
-                            <th>Modification </th>
+                            <th>
+                                Modification <a style="color: blue; text-decoration: underline;" href="#" data-toggle="modal" data-target="#ModificationList"> List of Modifications</a>
+                            </th>
                             <th>Final Delivery Form</th>
                             <th>Purification</th>
                             <th>Price</th>
@@ -225,7 +227,7 @@
                             </td>
                             <td>
                                 @*<input type="text" ng-change="rows.OligonucleotideSequence = rows.OligonucleotideSequence.split(' ').join('');UserQuote($index,rows.Qty,rows.OligonucleotideSequence,scaleValues1,Purification2,olgGmp)" ng-pattern="emailPattern" ng-keypress="goToOnSpace($event)" class="form-control" id="txtOligonucleotideSequence" name="OligonucleotideSequence" ng-model="rows.OligonucleotideSequence" placeholder="Oligonucleotide Sequence" title="Oligonucleotide Sequence">*@
-                                <input type="text" ng-change="UserQuote($index,rows.Qty,rows.OligonucleotideSequence,scaleValues1,Purification2,olgGmp)"  class="form-control" id="txtOligonucleotideSequence" name="OligonucleotideSequence" ng-model="rows.OligonucleotideSequence" placeholder="Oligonucleotide Sequence" title="Oligonucleotide Sequence">
+                                <input type="text" ng-change="UserQuote($index,rows.Qty,rows.OligonucleotideSequence,scaleValues1,Purification2,olgGmp)" class="form-control" id="txtOligonucleotideSequence" name="OligonucleotideSequence" ng-model="rows.OligonucleotideSequence" placeholder="Oligonucleotide Sequence" title="Oligonucleotide Sequence">
 
                             </td>
                             <td>
@@ -236,7 +238,7 @@
                             </td>
                             <td>
                                 <input type="text" class="sfTypeahead form-control" name="txtModification" id="txtModification" ng-change="keyPressModification($index,rows.Modification);" options="exampleOptions" datasets="exampleData" ng-model="rows.Modification">
-                           </td>
+                            </td>
                             <td>
                                 <select id="finalDeliveryForm" class="form-control" ng-change="keyPressFinalDeliveryForm($index,finalDeliveryForm2)" name="finalDeliveryForm" ng-model="finalDeliveryForm2" ng-options="deliveryForm.name as deliveryForm.value for deliveryForm in rows.FinalDeliveryForm"></select>
                             </td>
@@ -244,7 +246,7 @@
                                 <select id="ddlPurification" class="form-control" name="ddlPurification" ng-change="keyPressPurification($index,Purification2);UserQuote($index,rows.Qty,rows.OligonucleotideSequence,scaleValues1,Purification2,olgGmp)" ng-model="Purification2" ng-options="user.value as user.name for user in rows.Purification"></select>
                             </td>
                             <td>
-                                <input type="text" class="form-control" id="txtPrice" name="price" ng-model="rows.Price"  disabled placeholder="Price" title="Price">
+                                <input type="text" class="form-control" id="txtPrice" name="price" ng-model="rows.Price" disabled placeholder="Price" title="Price">
                             </td>
 
                         </tr>
@@ -273,6 +275,26 @@
                 <div class="modal-body">
                     <p> <a href="~/pdf/ACGT%20Oligo%20Order%20Form.pdf">ACGT Oligo Order Form.pdf</a></p>
                     <p><a href="~/pdf/OligonucleotideOrderFormInstructions.pdf">OligonucleotideOrderFormInstructions.pdf</a></p>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+    </div>
+    <div class="modal fade" id="ModificationList" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel">Modifcation List</h4>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                        <li ng-repeat="list in modificationList">
+                            {{list.name}}
+                        </li>
+                    </ul>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
                     </div>

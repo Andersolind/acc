@@ -186,7 +186,7 @@
     }
     function SetupInitialRows() {
 
-        //  $scope.modification = GenericHelpers.modifications();
+        $scope.modificationList = GenericHelpers.modifications();
         $scope.gmp3 = [{ name: 'yes', value: 'yes' }, { name: 'no', value: 'no' }];
         $scope.synthesisScale1Values = [{ name: '0.02', value: '0.02' }, { name: '0.04', value: '0.04' }, { name: '0.2', value: '0.2' }, { name: '1', value: '1' }];
         //

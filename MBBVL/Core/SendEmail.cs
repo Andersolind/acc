@@ -216,7 +216,7 @@ namespace MBBVL.Core {
             ship += "<h1>Dear" + " " + model.Billing.FullName + " " + "here is your Sequencing order</h1></td></table>";
 
             if (model.IsShipping) {
-                ship += "<table width='100' style='float:left' cellpadding='0 cellspacing='0' border='0 align='center'>";
+                ship += "<table width='100' style='float:left' cellpadding='0' cellspacing='0' border='0' align='center'>";
                 ship += "<thead>";
                 ship += "<tr>";
                 ship += "<th ><h1 style='color:blue;text-decoration: underline;'>Pick Up Information</h1></th>";
@@ -267,7 +267,7 @@ namespace MBBVL.Core {
             //Billing
 
 
-            var bill = "<table width='100' style='float:left;margin-left:100px;' cellpadding='0 cellspacing='0' border='0 align='center'>";
+            var bill = "<table width='100' style=cellpadding='0' cellspacing='0' border='0 align='center'>";
 
             bill += "<thead>";
             bill += "<tr>";

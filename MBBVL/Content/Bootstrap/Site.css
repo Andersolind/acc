@@ -2,7 +2,7 @@
     padding-top: 50px;
     padding-bottom: 20px;
     background-position: center;
-    background: url('/Content/Background.png') no-repeat center center fixed;
+    background: url('/Content/Background.png') no-repeat center;
     -webkit-background-size: cover; /* For WebKit*/
     -moz-background-size: cover; /* Mozilla*/
     -o-background-size: cover; /* Opera*/
@@ -11,6 +11,8 @@
     margin: 0;
     padding: 0;
 }
+
+
 
 .container
 /* Set padding to keep content from hitting the edges */
@@ -37,18 +39,19 @@ body {
 
 /* Set the fixed height of the footer here */
 #push,
-#footer {
+#footer a:hover, a:visited, a:link {
     clear: both;
-    margin-top: 200px;
-    
+    /*margin-top: 200px;*/
+    color: #DDDDDD;
 }
+
 
 #footer {
     background-color: #067aad;
 }
 
 #setMargins {
-    margin-right: 150px;
+    a: link margin-right: 150px;
     margin-left: 120px;
     margin-bottom: 100px;
 }

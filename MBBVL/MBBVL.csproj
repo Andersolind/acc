@@ -235,6 +235,8 @@
     <Content Include="Content\Bootstrap\SideNavBar.css" />
     <Content Include="Content\Bootstrap\SubPages.css" />
     <Content Include="Content\Footer.png" />
+    <Content Include="Content\Images\ACGT-O.png" />
+    <Content Include="Content\Images\ACGT-S.png" />
     <Content Include="Content\Navigationicon.jpg" />
     <Content Include="Content\Background.png" />
     <Content Include="Content\Bootstrap\bootstrap.css" />
@@ -392,7 +394,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\Images\" />
     <Folder Include="Content\themes\base\images\" />
     <Folder Include="Content\themes\base\minified\images\" />
     <Folder Include="Controllers\Sequence\" />

@@ -54,7 +54,7 @@
 
 
 
-
+       
 
         <div class="panel panel-primary">
             <div class="panel-heading">
@@ -62,7 +62,7 @@
                 <a style="color: white; text-decoration: underline;" href="#" data-toggle="modal" data-target="#OligonucleotideForms"> For Oligonucleotide printable forms Click Here</a>
             </div>
             <div class="panel-body">
-                <div class="tab-pane" id="profile">
+                <div class="tab-pane orderFont" id="profile">
                     <fieldset>
                         <div class="control-group">
                             <label class="col-md-2 control-label" for="InputFieldA">Quote number</label>
@@ -136,45 +136,44 @@
                     </div>
                 </div>
 
+                    <div class="control-group">
+                        <label class="col-md-2 control-label orderFont" for="InputFieldA">Full Name</label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" id="FullName" name="FullName" ng-model="WrapperModel.Shipping.FullName" placeholder="FullName" title="FullName">
 
-                <div class="control-group">
-                    <label class="col-md-2 control-label" for="InputFieldA">Full Name</label>
-                    <div class="col-md-10">
-                        <input type="text" class="form-control" id="FullName" name="FullName" ng-model="WrapperModel.Shipping.FullName" placeholder="FullName" title="FullName">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="col-md-2 control-label orderFont" for="InputFieldA">Institution</label>
 
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" id="txtShippingInstitution" name="txtShippingAddress" ng-model="WrapperModel.Shipping.Institution" placeholder="Institution" title="Building and Room">
+
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="col-md-2 control-label orderFont" for="InputFieldA">Shipping Address</label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" id="txtShippingAddress" name="txtShippingAddress" ng-model="WrapperModel.Shipping.ShippingAddress" placeholder="Address" title="Address">
+
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="col-md-2 control-label orderFont" for="InputFieldA">Phone</label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" id="Phone" name="Phone" ng-model="WrapperModel.Shipping.Phone" placeholder="Shipping Phone" title="Shipping Phone">
+
+
+                        </div>
+                    </div>
+                    <div class="control-group">
+
+                        <label class="col-md-2 control-label orderFont" for="ShippingEmail">Email</label>
+                        <div class="col-md-10">
+                            <input type="email" class="form-control" name="ShippingEmail" ng-model="WrapperModel.Shipping.Email" placeholder="Shipping Email" title="Shipping Email">
+                        </div>
                     </div>
                 </div>
-                <div class="control-group">
-                    <label class="col-md-2 control-label" for="InputFieldA">Institution</label>
-
-                    <div class="col-md-10">
-                        <input type="text" class="form-control" id="txtShippingInstitution" name="txtShippingAddress" ng-model="WrapperModel.Shipping.Institution" placeholder="Institution" title="Building and Room">
-
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="col-md-2 control-label" for="InputFieldA">Shipping Address</label>
-                    <div class="col-md-10">
-                        <input type="text" class="form-control" id="txtShippingAddress" name="txtShippingAddress" ng-model="WrapperModel.Shipping.ShippingAddress" placeholder="Address" title="Address">
-
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="col-md-2 control-label" for="InputFieldA">Phone</label>
-                    <div class="col-md-10">
-                        <input type="text" class="form-control" id="Phone" name="Phone" ng-model="WrapperModel.Shipping.Phone" placeholder="Shipping Phone" title="Shipping Phone">
-
-
-                    </div>
-                </div>
-                <div class="control-group">
-
-                    <label class="col-md-2 control-label" for="ShippingEmail">Email</label>
-                    <div class="col-md-10">
-                        <input type="email" class="form-control" name="ShippingEmail" ng-model="WrapperModel.Shipping.Email" placeholder="Shipping Email" title="Shipping Email">
-                    </div>
-                </div>
-            </div>
 
 
 
@@ -198,10 +197,10 @@
                 </fieldset>
                 <table class="panel-body">
                     <thead>
-                        <tr>
-                            <th>Primer Name</th>
+                        <tr class="orderFont">
+                            <th>Primer name</th>
                             <th>QTY</th>
-                            <th>Oligonucleotide Sequence</th>
+                            <th>Oligonucleotide Sequence </br> (5' -> 3')</th>
                             <th>Synthesis Scale(μmole)</th>
                             <th>GMP(Y/N)</th>
                             <th>

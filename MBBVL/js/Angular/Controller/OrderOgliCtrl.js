@@ -80,7 +80,7 @@
                 return 0.50;
             case "0.2":
                 return 1.00;
-            case "1":
+            case "1.0":
                 return 3.00;
             default:
                 return 'undefined';

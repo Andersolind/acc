@@ -121,7 +121,7 @@ namespace MBBVL.Core {
 
                 byte[] a = GetData(body);
                 System.IO.MemoryStream m = new System.IO.MemoryStream(a);
-                Attachment word = new Attachment(m, "Client--" + toSender + ".doc");
+                Attachment word = new Attachment(m, "Client" + toSender + ".doc");
                 msg.Attachments.Add(word);
                 ////Configure an SmtpClient to send the mail.            
                 SmtpClient smptc = new SmtpClient("localhost"); // Here SMTP Client object is created

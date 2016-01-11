@@ -31,6 +31,9 @@
                 getNumber = qty * newOglio.length * ConvertSynsithisScale(synthesisscale) + ConvertPurification(purification);
                 $scope.OligonucleotideRow[index].OligonucleotideSequenceValue = newOglio;
                 $scope.OligonucleotideRow[index].Price = getNumber;
+                if ($scope.OligonucleotideRow[index].ModificationValue.length > 1) {
+                    $scope.OligonucleotideRow[index].Price = 'Call Us';
+                }
             }
             else {
                 $scope.OligonucleotideRow[index].OligonucleotideSequenceValue = newOglio;
@@ -166,9 +169,11 @@
         $scope.keyPressModification = function (index, value) {
             if (typeof value.name != 'undefined') {
                 $scope.OligonucleotideRow[index].ModificationValue = value.name;
+                $scope.OligonucleotideRow[index].Price = 'Call Us';
             }
             else {
                 $scope.OligonucleotideRow[index].ModificationValue = value;
+                $scope.OligonucleotideRow[index].Price = 'Call Us';
             }
         };
         //synthesisScale1Values Key press values

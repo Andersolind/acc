@@ -664,7 +664,7 @@ namespace MBBVL.Core {
                 olForm += "<td class='boldCell'>" + CreateString(m.oligosequence[i].OligonucleotideSequence) + "</td>";
                 olForm += "<td class='boldCell'>" + m.oligosequence[i].SynthesisScaleValue + "</td>";
                 olForm += "<td class='boldCell'>" + m.oligosequence[i].GMP2 + "</td>";
-                olForm += "<td class='boldCell'>" + m.oligosequence[i].ModificationValue + "</td>";
+                olForm += "<td class='boldCell'>" + m.oligosequence[i].Modification + "</td>";
                 olForm += "<td class='boldCell'>" + m.oligosequence[i].FinalDeliveryFormValue + "</td>";
                 olForm += "<td class='boldCell'>" + m.oligosequence[i].PurificationValue + "</td>";
                 olForm += "<td class='boldCell'>" + m.oligosequence[i].Price + "</td>";

@@ -103,7 +103,7 @@ namespace MBBVL.Models {
         [Display(Name = "Modification")]
         public string Modification { get; set; }
         [Display(Name = "Modification Values")]
-        public string ModificationValues { get; set; }
+        public string ModificationValue { get; set; }
         [Display(Name = "Final Delivery")]
         public string FinalDeliveryFormValue { get; set; }
         [Display(Name = "Purification")]

@@ -1161,11 +1161,11 @@ html {
     font-family: 'Montserrat', sans-serif;
     /*src: url('../fonts/gotham/gotham-bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
     /*/*/ /**url('../fonts/gotham/gotham-bold.woff') format('woff')*/
-    , /* Modern Browsers */
+     /* Modern Browsers */
     /*url('../fonts/gotham/gotham-bold.ttf') format('truetype'); /* Safari, Android, iOS */
     /*font-weight: bold;
-    font-style: normal;*/ */
-    /*font-variant: normal;*/ * /*/*/ */;
+    font-style: normal;*/ 
+    /*font-variant: normal;*/ 
 }
 
 .bold,

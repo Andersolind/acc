@@ -12,6 +12,7 @@
         word-wrap: break-word;
     }
 </style>
+
 <link rel=StyleSheet href="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc2/css/bootstrap-glyphicons.css" type="text/css" media=screen>
 
 
@@ -19,7 +20,7 @@
 <span style="padding-top:100px;padding-bottom:100px;">
 
 </span>
-
+<a href="~/Views/Home/Order.cshtml">~/Views/Home/Order.cshtml</a>
     <nav class="vertical pull-left">
     <ul>
         <li>
@@ -57,7 +58,7 @@
        
 
         <div class="panel panel-primary">
-            <div class="panel-heading">
+            <div class="panel-heading">F
                 <h3 class="panel-title">Billing Information</h3>
                 <a style="color: white; text-decoration: underline;" href="#" data-toggle="modal" data-target="#OligonucleotideForms"> For Oligonucleotide printable forms Click Here</a>
             </div>
@@ -106,11 +107,11 @@
                                 <span ng-show="dnaForm.billingEmail.$dirty && dnaForm.billingEmail.$invalid"></span>
                             </div>
                             <div ng-if="dnaForm.billingEmail.$error.required" class="error">
-                                You forgot to enter your email address...
+                                 Mandatory
                             </div>
                             <div style="color:red" ng-if="!dnaForm.billingEmail.$error.required &amp;&amp;
                 dnaForm.billingEmail.$error.email" class="error">
-                                You did not enter your email address correctly...
+                              Mandatory Email
                             </div>
                         </div>
                     </fieldset>

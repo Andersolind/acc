@@ -195,9 +195,9 @@
                         </div>
                     </div>
                 </fieldset>
-                <table class="panel-body">
-                    <thead>
-                        <tr class="orderFont">
+                <table class="panel-body ogliTableSpace" ng-repeat="rows in OligonucleotideRow" ng-form='dnaForm'>
+                    <thead class="ogliHeader">
+                        <tr>
                             <th>Primer name</th>
                             <th>QTY</th>
                             <th>Oligonucleotide Sequence </br> (5' -> 3')</th>
@@ -213,7 +213,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="rows in OligonucleotideRow" ng-form='dnaForm'>
+                        <tr >
 
                             <td>
                                 <input type="text" class="form-control" id="txtPrimerName" name="PrimerName" ng-model="rows.PrimerName" placeholder="Enter Primer Name" title="Primer Name" required>
@@ -225,8 +225,7 @@
 
                             </td>
                             <td>
-                                @*<input type="text" ng-change="rows.OligonucleotideSequence = rows.OligonucleotideSequence.split(' ').join('');UserQuote($index,rows.Qty,rows.OligonucleotideSequence,scaleValues1,Purification2,olgGmp)" ng-pattern="emailPattern" ng-keypress="goToOnSpace($event)" class="form-control" id="txtOligonucleotideSequence" name="OligonucleotideSequence" ng-model="rows.OligonucleotideSequence" placeholder="Oligonucleotide Sequence" title="Oligonucleotide Sequence">*@
-                                <input type="text" ng-change="UserQuote($index,rows.Qty,rows.OligonucleotideSequence,scaleValues1,Purification2,olgGmp)" class="form-control" id="txtOligonucleotideSequence" name="OligonucleotideSequence" ng-model="rows.OligonucleotideSequence" placeholder="Oligonucleotide Sequence" title="Oligonucleotide Sequence">
+                               <input type="text" ng-change="UserQuote($index,rows.Qty,rows.OligonucleotideSequence,scaleValues1,Purification2,olgGmp)" class="form-control" id="txtOligonucleotideSequence" name="OligonucleotideSequence" ng-model="rows.OligonucleotideSequence" placeholder="Oligonucleotide Sequence" title="Oligonucleotide Sequence">
 
                             </td>
                             <td>

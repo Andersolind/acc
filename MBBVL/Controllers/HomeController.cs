@@ -213,6 +213,11 @@ namespace MBBVL.Controllers {
         public ActionResult TermsAndConditions() {
             return View();
         }
+
+        public ActionResult Mock()
+        {
+            return View();
+        }
       
 
         public void ParseTemplate(List<object> model) {

@@ -13,7 +13,6 @@
 }
 
 
-
 .container
 /* Set padding to keep content from hitting the edges */
 .body-content {
@@ -306,3 +305,12 @@ table, th, td {
     .tt-suggestion p {
         margin: 0;
     }
+
+    /* Set the header for the ogli order form*/
+.ogliHeader{
+    background-color:#4f81bd
+}
+
+.ogliTableSpace{
+    width:10%;
+}

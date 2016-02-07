@@ -2642,7 +2642,7 @@ table {
 }
 
 th {
-    text-align: left;
+    /*text-align: left;*/
 }
 
 .table {
@@ -3924,7 +3924,7 @@ ul.nav li.dropdown:hover > ul.dropdown-menu {
         .dropdown-menu > li > a:focus {
             color: #262626;
             text-decoration: none;
-            background-color: blue;
+            background-color: #428bca;
         }
 
     .dropdown-menu > .active > a,
@@ -5178,7 +5178,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 
         .navbar-inverse .navbar-nav > li > a:hover,
         .navbar-inverse .navbar-nav > li > a:focus {
-            color: blue;
+            color: #428bca;
             background-color: transparent;
         }
 

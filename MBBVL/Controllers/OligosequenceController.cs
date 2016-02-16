@@ -30,11 +30,13 @@ namespace MBBVL.Controllers
 
                 Billing bill = new Billing();
                 //  bill.Date = DateTime.Now;
-                bill.FullName = model.billing.FullName;
+                bill.FirstName = model.billing.FirstName;
+                bill.LastName = model.billing.LastName;
                 bill.Quotenumber = model.billing.Quotenumber;
                 bill.Institution = model.billing.Institution;
                 bill.BillingAddress = model.billing.BillingAddress;
-                bill.Phone = model.billing.Phone;
+                bill.BillingPhone = model.billing.BillingPhone;
+                bill.Extention = model.billing.Extention;
                 bill.Email = model.billing.Email;
                 bill.Notes = model.billing.Notes;
                 bill.UserId = g;

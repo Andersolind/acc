@@ -118,7 +118,8 @@ namespace MBBVL.Controllers {
                 bill.Quotenumber = model.billing.Quotenumber;
                 bill.Institution = model.billing.Institution;
                 bill.BillingAddress = model.billing.BillingAddress;
-                bill.Phone = model.billing.Phone;
+                bill.BillingPhone = model.billing.BillingPhone;
+                bill.Extention = model.billing.Extention;
                 bill.Email = model.billing.Email;
                 bill.Notes = model.billing.Notes;
                 bill.UserId = g;

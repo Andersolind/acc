@@ -37,12 +37,13 @@ namespace MBBVL.Controllers.Sequencing {
             try {
 
                 Billing bill = new Billing();
-                //  bill.Date = DateTime.Now;
+               
                 bill.FullName = model.Billing.FullName;
                 bill.Quotenumber = model.Billing.Quotenumber;
                 bill.Institution = model.Billing.Institution;
                 bill.BillingAddress = model.Billing.BillingAddress;
-                bill.Phone = model.Billing.Phone;
+                bill.BillingPhone = model.Billing.BillingPhone;
+                bill.Extention = model.Billing.Extention;
                 bill.Email = model.Billing.Email;
                 bill.Notes = model.Billing.Notes;
                 bill.UserId = g;

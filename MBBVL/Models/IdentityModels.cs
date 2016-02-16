@@ -20,12 +20,19 @@ namespace MBBVL.Models {
         [Required]
         [Display(Name = "Full Name")]
         public string FullName { get; set; }
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+        [Required]
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
         [Display(Name = "Institution")]
         public string Institution { get; set; }
         [Display(Name = "Shipping Address")]
         public string ShippingAddress { get; set; }
         [Display(Name = "Phone")]
         public string Phone { get; set; }
+        [Display(Name = "Extention")]
+        public string Extention { get; set; }
         [Required]
         [Display(Name = "Email")]
         [EmailAddress]
@@ -69,12 +76,21 @@ namespace MBBVL.Models {
         [Required]
         [Display(Name = "Full Name")]
         public string FullName { get; set; }
+        [Required]
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+        [Required]
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
         [Display(Name = "Institution")]
         public string Institution { get; set; }
         [Display(Name = "Billing Address")]
         public string BillingAddress { get; set; }
-        [Display(Name = "Phone")]
-        public string Phone { get; set; }
+        [Display(Name = "Billing Address")]
+        public string BillingPhone { get; set; }
+        [Display(Name = "Extention")]
+        public string Extention { get; set; }
+      
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }

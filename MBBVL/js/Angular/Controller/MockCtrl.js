@@ -1,4 +1,4 @@
-﻿app.controller("OrderSequencing", [
+﻿app.controller("MockCtrl", [
     '$scope','$rootScope', '$http', function($scope,$rootScope, $http, GenericHelpers, ACGTFactory) {
 
         //

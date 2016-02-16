@@ -311,7 +311,16 @@ namespace MBBVL.Core {
             bill += "<label for='first_name'>Biling Phone</label>";
             bill += "</td>";
             bill += "<td valign='top'>";
-            bill += m.Billing.Phone;
+            bill += m.Billing.BillingPhone;
+            bill += "</td>";
+            bill += "</tr>";
+            //Billing Extention 
+            bill += "<tr>";
+            bill += "<td valign='top'>";
+            bill += "<label for='first_name'>Biling Phone</label>";
+            bill += "</td>";
+            bill += "<td valign='top'>";
+            bill += m.Billing.Extention;
             bill += "</td>";
             bill += "</tr>";
             //Billing Email
@@ -507,9 +516,9 @@ namespace MBBVL.Core {
             m.shipping = model.shipping;
             m.oligosequence = model.oligosequence;
             //headers
-            //éé éé  var ship = "<table><td align='center' style='padding: 40px 0 30 px 0;'><img src='http://youneedafavor.com/images/logo.png'>";
+            //var ship = "<table><td align='center' style='padding: 40px 0 30 px 0;'><img src='http://youneedafavor.com/images/logo.png'>";
             var ship = "<table><td>";
-            ship += "<h1>Dear" + " " + model.shipping.FullName + " " + "here is your Oligonucleotide Order</h1></td></table>";
+            ship += "<h1>Dear" + " " + model.shipping.FirstName + " " + "here is your Oligonucleotide Order</h1></td></table>";
 
             ship += "<table width='100' style='float:left' cellpadding='0' cellspacing='0' border='0' >";
             ship += "<thead>";
@@ -517,15 +526,25 @@ namespace MBBVL.Core {
             ship += "<th style='color:blue;text-decoration: underline;'><h1>Shipping Information</h1></th>";
             ship += "</tr>";
             ship += "</thead>";
+            //First Name
             ship += "<tr>";
             ship += "<td valign='top'>";
-            ship += "<label for='fullName'>Full Name</label>";
+            ship += "<label for='fullName'>First Name</label>";
+            ship += m.shipping.FirstName;
             ship += "</td>";
             ship += "<td valign='top'>";
-            ship += m.shipping.FullName;
             ship += "</td>";
-
             ship += "</tr>";
+            //Last Name
+            ship += "<tr>";
+            ship += "<td valign='top'>";
+            ship += "<label for='fullName'>Last Name</label>";
+            ship += m.shipping.LastName;
+            ship += "</td>";
+            ship += "<td valign='top'>";
+            ship += "</td>";
+            ship += "</tr>";
+            //Institution
             ship += "<tr>";
             ship += "<td valign='top'>";
             ship += "<label for='fullName'>Institution</label>";
@@ -569,21 +588,30 @@ namespace MBBVL.Core {
             bill += "<th style='color:blue; text-decoration: underline;'><h1>Billing Information</h1></th>";
             bill += "</tr>";
             bill += "</thead>";
-            bill += "<tr>";
-            bill += "<td valign='top'>";
-            bill += "<label for='first_name'>Quote</label>";
-            bill += "</td>";
-            bill += "<td valign='top'>";
-            bill += m.billing.Quotenumber;
-            bill += "</td>";
-            bill += "</tr>";
-            // Full Name 
+            //bill += "<tr>";
+            //bill += "<td valign='top'>";
+            //bill += "<label for='first_name'>Quote</label>";
+            //bill += "</td>";
+            //bill += "<td valign='top'>";
+            //bill += m.billing.Quotenumber;
+            //bill += "</td>";
+            //bill += "</tr>";
+            // First Name 
             bill += "<tr>";
             bill += "<td valign='top'>";
             bill += "<label for='first_name'>Full Name</label>";
             bill += "</td>";
             bill += "<td valign='top'>";
-            bill += m.billing.FullName;
+            bill += m.billing.FirstName;
+            bill += "</td>";
+            bill += "</tr>";
+            // Last Name 
+            bill += "<tr>";
+            bill += "<td valign='top'>";
+            bill += "<label for='first_name'>Full Name</label>";
+            bill += "</td>";
+            bill += "<td valign='top'>";
+            bill += m.billing.LastName;
             bill += "</td>";
             bill += "</tr>";
             //Institution
@@ -611,7 +639,7 @@ namespace MBBVL.Core {
             bill += "<label for='first_name'>Billing Phone</label>";
             bill += "</td>";
             bill += "<td valign='top'>";
-            bill += m.billing.Phone;
+            bill += m.billing.BillingPhone;
             bill += "</td>";
             bill += "</tr>";
             //Billing Email

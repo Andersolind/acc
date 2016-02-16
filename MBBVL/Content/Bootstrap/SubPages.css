@@ -335,3 +335,11 @@ th,td{
      padding:3px 7px 2px 7px;
    
 }
+
+.marginForSideNav {
+   padding-bottom:100px;padding-left:300px;
+}
+
+.marginForCustomerInfo {
+   padding-bottom:100px;padding-left:100px;
+}

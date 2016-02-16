@@ -28,6 +28,7 @@ namespace MBBVL {
                        "~/js/angular/Fac/factory.js",
                        "~/js/angular/Controller/OrderSequencingctrl.js",
                        "~/js/angular/Controller/OrderOgliCtrl.js",
+                        "~/js/angular/Controller/MockCtrl.js",
                        "~/js/angular/Controller/PickUpCtrl.js",
                       "~/Scripts/respond.js"));
 

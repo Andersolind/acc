@@ -275,6 +275,7 @@
     <Content Include="images\Twitter.png" />
     <Content Include="js\Angular.js" />
     <Content Include="js\Angular\app.js" />
+    <Content Include="js\Angular\Controller\MockCtrl.js" />
     <Content Include="js\Angular\Controller\OrderOgliCtrl.js" />
     <Content Include="js\Angular\Controller\OrderSequencingctrl.js" />
     <Content Include="js\Angular\Controller\PickUpCtrl.js" />

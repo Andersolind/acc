@@ -33,352 +33,116 @@
 
 
 
-<div style="padding-bottom:100px;padding-left:300px;">
-    <h2>Order</h2>
-    <form name="dnaForm" ng-app="acgt" ng-controller="OrderSequencing" class="form-horizontal" novalidate>
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h3 class="panel-title">Billing Information</h3>
-                <a style="color: white; text-decoration: underline;" href="#" data-toggle="modal" data-target="#sequencingForms"> For Printable forms Click Here</a>
+<div class="marginForSideNav">
+    <h2>Oligonucleotide Ordering</h2>
+    <form name="dnaForm" ng-app="acgt" ng-controller="MockCtrl as vm" class="form-horizontal" novalidate>
 
+        <div class="row marginForCustomerInfo">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="lblShippingInfomation">Shipping Information</label>
+
+                </div>
+                @*<div class="form-group">
+                    <label for="InputFieldA">
+
+                        <button type="button" id="btn" style="color:red" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+
+                    </label>
+                    <input type="text" name="RequestDate" class="form-control" datepicker-popup="{{format}}" ng-model="WrapperModel.Shipping.ShippingDate" is-open="opened" min-date="minDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" close-text="Close" />
+
+                </div>*@
+                <div class="form-group">
+                    <label for="txtFullName">First Name</label>
+
+                    <input type="text" class="form-control" id="txtFirstName" name="txtFullName" ng-model="WrapperModel.Shipping.FirstName" placeholder="First Name" title="First Name">
+
+                </div>
+                <div class="form-group">
+                    <label for="InputFieldA">Last Name</label>
+
+                    <input type="text" class="form-control" id="LastName" name="LastName" ng-model="WrapperModel.Shipping.LastName" placeholder="Last Name" title="Last Name">
+
+                </div>
+                <div class="form-group">
+                    <label for="txtShippingInstitution">Institution / Company Name</label>
+                    <input type="text" class="form-control" id="txtShippingInstitution" name="txtShippingAddress" ng-model="WrapperModel.Shipping.Institution" placeholder="Institution" title="Building and Room">
+                </div>
+                <div class="form-group">
+                    <label for="txtShippingAddress">Shipping Address</label>
+                    <input type="text" class="form-control" id="txtShippingAddress" name="txtShippingAddress" ng-model="WrapperModel.Shipping.ShippingAddress" placeholder="Address" title="Address">
+
+                </div>
+                <div class="form-group">
+                    <label for="Phone">Phone</label>
+                    <input type="text" class="form-control" id="txtPhone" name="txtPhone" ng-model="WrapperModel.Shipping.Phone" placeholder="Shipping Phone" title="Shipping Phone">
+                </div>
+                <div class="form-group">
+                    <label for="txtExtention">Extention</label>
+                    <input type="text" class="form-control" id="txtExtention" name="txtExtention" ng-model="WrapperModel.Shipping.Extention" placeholder="Extention" title="Extention">
+                </div>
+
+                <div class="form-group">
+                    <label for="ShippingEmail">Email</label>
+                    <input type="email" class="form-control" name="ShippingEmail" ng-model="WrapperModel.Shipping.Email" placeholder="Shipping Email" title="Shipping Email">
+                </div>
             </div>
-            <div class="panel-body">
-                <div class="tab-pane" id="profile">
-                    <fieldset>
-                        <div class="control-group">
-                            <label class="col-md-2 control-label" for="InputFieldA">Quote number</label>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label><input type="checkbox" value="" ng-click="isSameAsBilling($index, DataDelivery)" ng-model="WrapperModel.Billing.SameAsShipping">
+                    Same As Mailing Address</label>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="lblBillingInfo">Billing Information</label>
 
-                            <div class="col-md-10">
-                                <input type="text" class="form-control" id="txtQuotenumber" name="txtQuotenumber" ng-model="SequencingWrapperModel.Billing.Quotenumber" placeholder="Quote number" title="Quote number">
+                </div>
+                <div class="form-group">
+                    <label for="txtFirstName">First Name</label>
+                    <input type="text" class="form-control" id="txtFirstName" name="txtFirstName" ng-model="WrapperModel.Billing.FirstName" placeholder="First Name" title="First Name">
 
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="col-md-2 control-label" for="InputFieldA">Full Name</label>
-                            <div class="col-md-10">
-                                <input type="text" class="form-control" id="txtBillingFullName" name="txtBillingFullName" ng-model="SequencingWrapperModel.Billing.FullName" placeholder="Full Name" title="Full Name">
+                </div>
+                <div class="form-group">
+                    <label for="txtFirstName">Last Name</label>
+                    <input type="text" class="form-control" id="txtLastName" name="txtLastName" ng-model="WrapperModel.Billing.LastName" placeholder="Last Name" title="Last Name">
+                </div>
+                <div class="form-group">
+                    <label for="txtShippingInstitution">Institution / Company Name</label>
+                    <input type="text" class="form-control" id="txtShippingInstitution" name="txtShippingAddress" ng-model="WrapperModel.Shipping.Institution" placeholder="Institution" title="Building and Room">
+                </div>
+                <div class="form-group">
+                    <label for="txtBillAddress">Billing Address</label>
+                    <input type="text" class="form-control" id="txtBillAddress" name="Address" ng-model="WrapperModel.Billing.BillingAddress" placeholder="Billing Address" title="Billing Institution">
+                </div>
+                <div class="form-group">
+                    <label for="lblPhone">Billing Phone</label>
+                    <input type="text" class="form-control" id="lblPhone" name="lblPhone" ng-model="WrapperModel.Billing.Phone" placeholder="Billing Phone" title="Billing Phone">
+                </div>
+                <div class="form-group">
+                    <label for="lblPhone">Extention</label>
+                    <input type="text" class="form-control" id="txtExtention" name="txtExtention" ng-model="WrapperModel.Billing.Extention" placeholder="Extention" title="Extention">
+                </div>
+                <div class="form-group">
+                    <label for="billingEmail">Billing Email</label>
 
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="col-md-2 control-label" for="InputFieldA">Institution</label>
-                            <div class="col-md-10">
-                                <input type="text" class="form-control" id="txtBillingInstitution" name="txtBillingInstitution" ng-model="SequencingWrapperModel.Billing.Institution" placeholder="Billing Institution" title="Billing Institution">
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="col-md-2 control-label" for="InputFieldA">Billing Address</label>
-                            <div class="col-md-10">
-                                <input type="text" class="form-control" id="Address" name="Address" ng-model="SequencingWrapperModel.Billing.BillingAddress" placeholder="Billing Address" title="Billing Institution">
+                    <input type="email" class="form-control" id="billingEmail" name="billingEmail" ng-model="WrapperModel.Billing.Email" required placeholder="Billing Email" title="Billing Email">
+                    <span ng-show="dnaForm.billingEmail.$dirty && dnaForm.billingEmail.$invalid"></span>
 
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="col-md-2 control-label" for="InputFieldA">Billing Phone</label>
-                            <div class="col-md-10">
-                                <input type="text" class="form-control" id="Phone" name="Phone" ng-model="SequencingWrapperModel.Billing.Phone" placeholder="Billing Phone" title="Billing Phone">
-
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="col-md-2 control-label" for="InputFieldA">Billing Email</label>
-                            <div class="col-md-10">
-                                <input type="email" class="form-control" id="billingEmail" name="billingEmail" ng-model="SequencingWrapperModel.Billing.Email" required placeholder="Billing Email" title="Billing Email">
-                                <span ng-show="dnaForm.billingEmail.$dirty && dnaForm.billingEmail.$invalid"></span>
-                            </div>
-                            <div ng-if="dnaForm.billingEmail.$error.required" class="error">
-                                You forgot to enter your email address...
-                            </div>
-                            <div style="color:red" ng-if="!dnaForm.billingEmail.$error.required &amp;&amp;
+                    <div ng-if="dnaForm.billingEmail.$error.required" class="error">
+                        Mandatory
+                    </div>
+                    <div style="color:red" ng-if="!dnaForm.billingEmail.$error.required &amp;&amp;
                 dnaForm.billingEmail.$error.email" class="error">
-                                You did not enter your email address correctly...
-                            </div>
-                        </div>
-                    </fieldset>
+                        Please fill out a correct email address
+                    </div>
+
                 </div>
             </div>
         </div>
-        @*<--order form -->*@
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h3 class="panel-title"> DNA Sequencing Order Form</h3>
-                <a style="color: white; text-decoration: underline;" href="#" data-toggle="modal" data-target="#t_and_c_m">List of Primers</a>
-            </div>
-
-            <div class="panel-body">
-                <fieldset>
-                    <legend> DNA Sequencing Order Form</legend>
-                    <div class="col-lg-3">
-
-                        <div class="form-group row">
-                            <div class="col-lg-10">
-                                <button class="btn btn-default" ng-click="AddSampleRow()"><span class="glyphicon glyphicon-plus-sign"></span> Add Row</button>
-                            </div>
-                        </div>
-                    </div>
-                </fieldset>
-                <table class="panel-body" ng-repeat="dna in NavigationConfig" ng-form='dnaForm'>
-                    <thead class="ogliHeader">
-                        <tr>
-                            <th>Sample Name</th>
-                            <th>Sample  Conc. (ng/µl)</th>
-                            <th>Vector Name or PCR Product</th>
-                            <th>Length (base pairs)</th>
-                            <th>Primer Name </th>
-                            <th>Primer Conc (ng/µl) </th>
-                            <th>GMP (Y/N) </th>
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr >
-
-                            <td>
-                                <input type="text" class="form-control" id="txtSampleName" name="SampleName" ng-model="dna.SampleName" placeholder="Enter Sample Name" title="Sample Name" required>
-                                <span ng-show="dnaForm.SampleName.$dirty && dnaForm.SampleName.$invalid">  </span>
-                                <span style="color:red" ng-show="dnaForm.SampleName.$error.required">Sample Name is required.</span>
-                            </td>
-                            <td>
-                                <input type="text" class="form-control" id="txtSameConc" name="txtSameConc" ng-model="dna.SampleCon" placeholder="EnterSample  Conc" title="Sample  Conc. (ng/µl)">
-
-                            </td>
-                            <td>
-                                <input type="text" class="form-control" id="txtColumnName" name="txtVectorName" ng-model="dna.VectorName" placeholder="Vector Name or PCR Product" title="Vector Name or PCR Product">
-
-                            </td>
-                            <td>
-                                <input type="text" class="form-control" id="txtColumnName" name="txtLengthBases" ng-model="dna.Length" placeholder="Enter Length (bases)" title="Length (bases)">
-
-                            </td>
-                            <td>
-                                <input type="text" class="form-control" id="txtPrimerName" name="txtPrimerName" ng-model="dna.PrimerName" placeholder="Enter Primer Name" title="Enter Primer Name">
-
-                            </td>
-                            <td>
-                                <input type="text" class="form-control" id="txtPrimerConc" name="txtPrimerConc" ng-model="dna.PrimerConc" placeholder="Enter Primer Conc" title="Primer Conc (ng/µl)">
-
-                            </td>
-                            <td>
-                                <select id="orderSequencingSelect" name="ordersequencingSelect" ng-change="keyPressDnaGmp($index,selectedOption)" ng-init="keyPressDnaGmp($index,selectedOption)" data-ng-model="selectedOption" ng-options="user.value as user.name for user in dna.GMP3"></select>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-       
         <input type="submit" class="btn btn-primary" ng-click="submitForm()" ng-model="disableSubmit" ng-disabled="!dnaForm.$valid">
-
-
     </form>
-    <!-- Modal -->
-    <div class="modal fade" id="t_and_c_m" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4 class="modal-title" id="myModalLabel">(Primer)Sequence</h4>
-                </div>
-                <div class="modal-body">
-                    <p>(Primer)Sequence</p>
-                    <p>
-                        ACYCDuetUP1-----GGA TCT CGA CGC TCT CC
-                    </p>
-
-                    <p>
-                        ACYCDuetDOWN1 --GAT TAT GCG GCC GTG TAC
-                    </p>
-
-                    <p>ACYCDuetUP2----TGT ACA CGG CCG CAT AAT C</p>
-
-                    <p>CMV 24---TAG GAC AAG GCT GGT GGG</p>
-
-                    <p>CMV 30---ATA ACC CCG CCC CGT TG</p>
-
-                    <p>CMV-F--CGC AAA TGG GCG GTA GGC</p>
-
-                    <p>IRES-F--TGG CTC TCC TCA AGC GTA TT</p>
-
-                    <p>IRES-R--CCT CAC ATT GCC AAA AGA CG</p>
-
-                    <p>M13(-21) F--TGT AAA ACG ACG GCC AGT</p>
-
-                    <p>M13R--CAG GAA ACA GCT ATG AC</p>
-
-                    <p>M13/pUC F--AGT CAC GAC GTT GTA AAA CG</p>
-
-                    <p>M13/pUC R--CGG ATA ACA ATT TCA CAC AGG</p>
-
-                    <p>MSCV--TGA ACC TCC TCG TTC GAC C</p>
-
-                    <p>MSCV-rev--CAG CGG GGC TGC TAA AGC</p>
-
-                    <p>pBABE-5'--CTT TAT CCA GCC CTC AC</p>
-
-                    <p>pBABE-3'--CCC TAA CTGA CAC ACA TTC C</p>
-
-                    <p>PCMV6-XL VP1.5FWD--GGA CTT TCC AAA ATG TCG</p>
-
-                    <p>PCMV6-XL XL39 REV--TAG GAC AAG GCT GGT GGG</p>
-
-                    <p>pEGFP-N-REV--CGC CGT CCA GCT CGA CC</p>
-
-                    <p>pEGFP-C-fwd--CAA CGA GAA GCG CGA TC</p>
-
-                    <p>pEGFP-C-REV--CTC TAC AAA TGT GGT ATG GC</p>
-
-                    <p>pETDuetUP1-- ATG CGT CCG GCG TAG AGG</p>
-
-                    <p>pET SUMO-FWD--AAG ATT CTT GTA CGA CGG</p>
-
-                    <p>pETT7--GAT CCC GCG AAA TTA ATA CG</p>
-
-                    <p>pETT7Term--GCC CCA AGG GGT TAT GC</p>
-
-                    <p>pFASTBac-Fwd--TAT TCC GGA TTA TTC ATA CC</p>
-
-                    <p>pFASTBac-Rev--TTT GTG AAA TTT GTG ATG C</p>
-
-                    <p>pFLAG-CMV Rev--TAG GTC AAG GCT GGT GG</p>
-
-                    <p>pGEX 5'--GGC AAG CCA CGT TTG GTG</p>
-
-                    <p>pGEX 3'--GAG CTG CAT GTG TCA GAG G</p>
-
-                    <p>pmCherry-C1 (Fwd)--GAC GCT GAG GTC AAG AC</p>
-
-                    <p>pmCherry-N1 (Rev)-- GTG GCC GTT CAC GGA GC</p>
-
-                    <p>pPROEx-R--TAT CAG ACC GCT TCT GCG</p>
-
-                    <p>Sp6--ATT TAG GTG ACA CTA TAG</p>
-
-                    <p>S-Tag--ACG CCA GCA CAT GGA CAG</p>
-
-                    <p>SV40pro-F--TAT TTA TGC AGA GGC CGA GG</p>
-
-                    <p>SV40pA-R--GAA ATT TGT GAT GCT ATT GC</p>
-
-                    <p>T3--GCA ATT AAC CCT CAC TAA AGG</p>
-
-                    <p>T7--TAA TAC GAC TCA CTA TAG GG</p>
-
-                    <p>T7 term--GCT AGT TAT TGC TCA GCG G</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-    <div class="modal fade" id="primerModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4 class="modal-title" id="myModalLabel">Data Delivery Options</h4>
-                </div>
-                <div class="modal-body">
-                    <p>($5.00) Unedited Sequence Results [Chromatogram Trace]</p>
-                    <p>-Raw sequencing data provided directly by the ABI 3730xl instrument</p>
-                    <p>-Raw sequencing data provided directly by the ABI 3730xl instrument</p>
-                    <p>-Attached text file with dna sequence</p>
-                    <p>($5.00) Unedited Sequence Results [Text + Chromatogram Trace]</p>
-                    <p>-          Raw sequencing data provided directly by the ABI 3730xl instrument</p>
-                    <p>-          Attached text file with DNA sequence and .Ab1 chromatogram trace file</p>
-                    <p>($10.00) Edited sequence results [Text Data]</p>
-                    <p>-          Sequence reads that have been reviewed and ambiguities manually edited by a qualified sequencing technician.</p>
-                    <p>-          Attached text file with  DNA sequence</p>
-                    <p>($10.00) Edited Sequence Results [Text Data + Chromatogram Trace]</p>
-                    <p>-          Sequence reads that have been reviewed and ambiguities manually edited by a qualified sequencing technician.</p>
-                    <p>-          Attached text file with DNA sequence and .Ab1 chromatogram trace file</p>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
-                    </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
-    </div>
-    <div class="modal fade" id="moreAboutCustomPrimers" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4 class="modal-title" id="myModalLabel">Data Delivery Options</h4>
-                </div>
-                <div class="modal-body">
-                    <p>If required it ACGT will synthesize custom primers for your sequence. Custom primers are $0.29 per base.</p>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
-                    </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
-    </div>
-    <div class="modal fade" id="pickUpPolicy" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4 class="modal-title" id="myModalLabel">Pick Up Policy </h4>
-                </div>
-                <div class="modal-body">
-                    <p>
-                        ACGT Corp. offers free pick up of DNA sequencing samples in the GTA core.
-                    </p>
-                    <p>Simply request for a pick up when you are placing your sequencing order or in the form below.</p>
-
-                    <p>  We can not guarantee requests submitted after 11:30 AM. Please call us at 416-977-2228 to confirm sameday pick ups after 11:30 AM</p>
-
-                    <p>Please have samples prepared in an appropriate container</p>
-
-
-
-                    <p>Sample pick-up is offered free of charge from the following locations:</p>
-
-                    <p> BEST Institute – 112 College Street</p>
-
-                    <p>CCBR – 160 College Street</p>
-
-                    <p> Faculty of Pharmacy – 144 College Street</p>
-
-                    <p> Fitzgerald Bldg – 150 College Street</p>
-
-                    <p> HSC – 555 University Avenue</p>
-
-                    <p> MSH – SLRI at 600 University Avenue & TCP at 25 Orde/60 Murray Street</p>
-
-                    <p>MSB – 1 King’s College Circle</p>
-
-                    <p>PMH / OCI – 620 University Avenue</p>
-
-                    <p> Tanz Neuroscience Bldg – 6 Queens Park Crescent</p>
-
-                    <p> TMDT & MaRS South Tower – 101 College Street</p>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
-                    </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
-    </div>
-    <div class="modal fade" id="sequencingForms" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4 class="modal-title" id="myModalLabel">Sequencing Order Form</h4>
-                </div>
-                <div class="modal-body">
-                    <p><a href="~/pdf/ACGTSequencingOrderForm.pdf">ACGTSequencingOrderForm</a></p>
-                    <p><a href="~/pdf/ACGTsequencingprimers.pdf">ACGTsequencingprimers.pdf</a></p>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
-                    </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
-    </div>
+    
 </div>
+
+

@@ -541,7 +541,7 @@ namespace MBBVL.Core
             //headers
             //var ship = "<table><td align='center' style='padding: 40px 0 30 px 0;'><img src='http://youneedafavor.com/images/logo.png'>";
             var ship = "<table><td>";
-            ship += "<h1>Dear" + " " + model.shipping.FirstName + " " + "here is your Oligonucleotide Order</h1></td></table>";
+            ship += "<h1>Dear" + " " + model.billing.FirstName + " " + "here is your Oligonucleotide Order</h1></td></table>";
             if (!model.isBillingAddress)
             {
                 ship += "<table width='100' style='float:left' cellpadding='0' cellspacing='0' border='0' >";
@@ -613,14 +613,7 @@ namespace MBBVL.Core
             bill += "<th style='color:blue; text-decoration: underline;'><h1>Billing Information</h1></th>";
             bill += "</tr>";
             bill += "</thead>";
-            //bill += "<tr>";
-            //bill += "<td valign='top'>";
-            //bill += "<label for='first_name'>Quote</label>";
-            //bill += "</td>";
-            //bill += "<td valign='top'>";
-            //bill += m.billing.Quotenumber;
-            //bill += "</td>";
-            //bill += "</tr>";
+           
             // First Name 
             bill += "<tr>";
             bill += "<td valign='top'>";
@@ -724,9 +717,9 @@ namespace MBBVL.Core
             }
             olForm += "</table> </div> </body> </html>";
             var template = StaticValues.HtmlHeaderText() + ship + bill + olForm;
-            CreateEmailForUser(m.shipping.Email, "order@acgtcorp.com", template);
-            CreateEmailForJason(m.shipping.Email, "", template);
-            CreateEmailForAnders(m.shipping.Email, "Andersolind@gmail.com", template);
+            CreateEmailForUser(m.billing.Email, "order@acgtcorp.com", template);
+            CreateEmailForJason(m.billing.Email, "", template);
+            CreateEmailForAnders(m.billing.Email, "Andersolind@gmail.com", template);
             return olForm;
         }
         private string CreateString(string original)

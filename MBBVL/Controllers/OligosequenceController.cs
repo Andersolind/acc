@@ -87,6 +87,7 @@ namespace MBBVL.Controllers
                 //Create email template!
                 SendEmail email = new SendEmail();
                 templateData.oligosequence = getList;
+                templateData.isBillingAddress = model.isBillingAddress;
                 email.SetUpbill(templateData);
                 // ParseTemplate(ob);
                 //       db.SaveChanges();

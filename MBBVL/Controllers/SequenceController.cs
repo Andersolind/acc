@@ -57,7 +57,8 @@ namespace MBBVL.Controllers.Sequencing {
 
                     PickUp ship = new PickUp();
                     ship.PickUpDate = model.PickUp.PickUpDate;
-                    ship.FullName = model.PickUp.FullName;
+                    ship.FirstName = model.PickUp.FirstName;
+                    ship.LastName = model.PickUp.LastName;
                     ship.Institution = model.PickUp.Institution;
                     ship.ShippingAddress = model.PickUp.ShippingAddress;
                     ship.Phone = model.PickUp.Phone;

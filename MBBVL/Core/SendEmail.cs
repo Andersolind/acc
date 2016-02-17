@@ -237,10 +237,19 @@ namespace MBBVL.Core
                 ship += "</thead>";
                 ship += "<tr>";
                 ship += "<td valign='top'>";
-                ship += "<label for='fullName'>Full Name</label>";
+                ship += "<label for='fullName'>First Name</label>";
                 ship += "</td>";
                 ship += "<td valign='top'>";
-                ship += m.PickUp.FullName;
+                ship += m.PickUp.FirstName;
+                ship += "</td>";
+                ship += "</tr>";
+                ship += "<tr>";
+                ship += "<tr>";
+                ship += "<td valign='top'>";
+                ship += "<label for='fullName'>Last Name</label>";
+                ship += "</td>";
+                ship += "<td valign='top'>";
+                ship += m.PickUp.LastName;
                 ship += "</td>";
                 ship += "</tr>";
                 ship += "<tr>";
@@ -253,7 +262,7 @@ namespace MBBVL.Core
                 ship += "</tr>";
                 ship += "<tr>";
                 ship += "<td valign='top'>";
-                ship += "<label for='fullName'>Shipping Address</label>";
+                ship += "<label for='fullName'> Address</label>";
                 ship += "</td>";
                 ship += "<td valign='top'>";
                 ship += m.PickUp.ShippingAddress;
@@ -261,7 +270,7 @@ namespace MBBVL.Core
                 ship += "</tr>";
                 ship += "<tr>";
                 ship += "<td valign='top'>";
-                ship += "<label for='fullName'>Shipping Phone</label>";
+                ship += "<label for='fullName'> Phone</label>";
                 ship += "</td>";
                 ship += "<td valign='top'>";
                 ship += m.PickUp.Phone;
@@ -269,7 +278,7 @@ namespace MBBVL.Core
                 ship += "</tr>";
                 ship += "<tr>";
                 ship += "<td valign='top'>";
-                ship += "<label for='shippingEmail'>Shipping Email</label>";
+                ship += "<label for='shippingEmail'>Email</label>";
                 ship += "</td>";
                 ship += "<td valign='top'>";
                 ship += m.PickUp.Email;

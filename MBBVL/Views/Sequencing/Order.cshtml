@@ -36,57 +36,57 @@
 <div style=" padding-bottom:100px;padding-left:300px;">
     <h2>Order</h2>
     <form name="dnaForm" ng-app="acgt" ng-controller="OrderSequencing" class="form-horizontal" novalidate>
-     
-       
-            <div class="panel panel-primary " style="width:50%">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Billing Information</h3>
-                    <a style="color: white; text-decoration: underline;" href="#" data-toggle="modal" data-target="#sequencingForms"> For Printable forms Click Here</a>
-                  </div>
-                <div class="panel-body">
-                    <div class=" form-group-lg">
-                        <label class="control-label" for="txtFirstName">First Name</label>
-                        <input type="text" class="form-control" id="txtFirstName" name="txtFirstName" ng-model="SequencingWrapperModel.Billing.FirstName" placeholder="First Name" title="First Name">
 
-                    </div>
-                    <div class=" form-group-lg">
-                        <label class="control-label" for="txtLastName">Last Name</label>
-                        <input type="text" class="form-control" id="txtLastName" name="txtLastName" ng-model="SequencingWrapperModel.Billing.LastName" placeholder="Last Name" title="Last Name">
-                    </div>
-                    <div class=" form-group-lg">
-                        <label class="control-label" for="txtShippingInstitution">Institution / Company Name</label>
-                        <input type="text" class="form-control" id="txtShippingInstitution" name="txtBillingAddress" ng-model="SequencingWrapperModel.Billing.Institution" placeholder="Institution" title="Institution">
-                    </div>
-                    <div class=" form-group-lg">
-                        <label class="control-label" for="txtBillAddress">Billing Address</label>
-                        <input type="text" class="form-control" id="txtBillAddress" name="txtBillAddress" ng-model="SequencingWrapperModel.Billing.BillingAddress" placeholder="Billing Address" title="Billing Institution">
-                    </div>
-                    <div class=" form-group-lg">
-                        <label class="control-label" for="lblPhone">Billing Phone</label>
-                        <input type="text" class="form-control" id="lblPhone" name="lblPhone" ng-model="SequencingWrapperModel.Billing.BillingPhone" placeholder="Billing Phone" title="Billing Phone">
-                    </div>
-                    <div class=" form-group-lg">
-                        <label class="control-label" for="lblPhone">Extention</label>
-                        <input type="text" class="form-control" id="txtExtention" name="txtExtention" ng-model="SequencingWrapperModel.Billing.Extention" placeholder="Extention" title="Extention">
-                    </div>
-                    <div class=" form-group-lg">
-                        <label class="control-label" for="billingEmail">Billing Email</label>
 
-                        <input type="email" class="form-control" id="billingEmail" name="billingEmail" ng-model="SequencingWrapperModel.Billing.Email" required placeholder="Billing Email" title="Billing Email">
-                        <span ng-show="dnaForm.billingEmail.$dirty && dnaForm.billingEmail.$invalid"></span>
+        <div class="panel panel-primary " style="width:50%">
+            <div class="panel-heading">
+                <h3 class="panel-title">Billing Information</h3>
+                <a style="color: white; text-decoration: underline;" href="#" data-toggle="modal" data-target="#sequencingForms"> For Printable forms Click Here</a>
+            </div>
+            <div class="panel-body">
+                <div class=" form-group-lg">
+                    <label class="control-label" for="txtFirstName">First Name</label>
+                    <input type="text" class="form-control" id="txtFirstName" name="txtFirstName" ng-model="SequencingWrapperModel.Billing.FirstName" placeholder="First Name" title="First Name">
 
-                        <div ng-if="dnaForm.billingEmail.$error.required" class="error">
-                            Mandatory
-                        </div>
-                        <div style="color:red" ng-if="!dnaForm.billingEmail.$error.required &amp;&amp;
+                </div>
+                <div class=" form-group-lg">
+                    <label class="control-label" for="txtLastName">Last Name</label>
+                    <input type="text" class="form-control" id="txtLastName" name="txtLastName" ng-model="SequencingWrapperModel.Billing.LastName" placeholder="Last Name" title="Last Name">
+                </div>
+                <div class=" form-group-lg">
+                    <label class="control-label" for="txtShippingInstitution">Institution / Company Name</label>
+                    <input type="text" class="form-control" id="txtShippingInstitution" name="txtBillingAddress" ng-model="SequencingWrapperModel.Billing.Institution" placeholder="Institution" title="Institution">
+                </div>
+                <div class=" form-group-lg">
+                    <label class="control-label" for="txtBillAddress">Billing Address</label>
+                    <input type="text" class="form-control" id="txtBillAddress" name="txtBillAddress" ng-model="SequencingWrapperModel.Billing.BillingAddress" placeholder="Billing Address" title="Billing Institution">
+                </div>
+                <div class=" form-group-lg">
+                    <label class="control-label" for="lblPhone">Billing Phone</label>
+                    <input type="text" class="form-control" id="lblPhone" name="lblPhone" ng-model="SequencingWrapperModel.Billing.BillingPhone" placeholder="Billing Phone" title="Billing Phone">
+                </div>
+                <div class=" form-group-lg">
+                    <label class="control-label" for="lblPhone">Extention</label>
+                    <input type="text" class="form-control" id="txtExtention" name="txtExtention" ng-model="SequencingWrapperModel.Billing.Extention" placeholder="Extention" title="Extention">
+                </div>
+                <div class=" form-group-lg">
+                    <label class="control-label" for="billingEmail">Billing Email</label>
+
+                    <input type="email" class="form-control" id="billingEmail" name="billingEmail" ng-model="SequencingWrapperModel.Billing.Email" required placeholder="Billing Email" title="Billing Email">
+                    <span ng-show="dnaForm.billingEmail.$dirty && dnaForm.billingEmail.$invalid"></span>
+
+                    <div ng-if="dnaForm.billingEmail.$error.required" class="error">
+                        Mandatory
+                    </div>
+                    <div style="color:red" ng-if="!dnaForm.billingEmail.$error.required &amp;&amp;
                 dnaForm.billingEmail.$error.email" class="error">
-                            Please fill out a correct email address
-                        </div>
-
+                        Please fill out a correct email address
                     </div>
+
                 </div>
             </div>
-            @*<div class="panel panel-primary" style="width:50%">
+        </div>
+        @*<div class="panel panel-primary" style="width:50%">
                 <div class="panel-heading">
                     <h3 class="panel-title">Shipping Information</h3>
                 </div>
@@ -132,7 +132,7 @@
 
 
             </div>*@
-         
+
 
         <div class="panel panel-primary">
             <div class="panel-heading">
@@ -258,96 +258,101 @@
                                     <input type="text" class="form-control" id="txtPrimerName" name="txtPrimerName" ng-model="rows.PrimerName" placeholder="Enter Primer Name" title="Sample Name">
 
                                 </td>
-                             
+
                                 <td>
                                     <input type="text" class="form-control" id="txtSequence" name="txtSequence" ng-model="rows.Sequence" placeholder="Sequence" title="Sequence">
 
                                 </td>
-                             
+
                             </tr>
                         <tbody>
                     </table>
                 </div>
             </div>
         </div>
-      
 
-        <div class="panel panel-primary">
+
+        <div class="panel panel-primary" >
             <div class="panel-heading">
                 <h3 class="panel-title">Request for Pick Up</h3>
                 <a style="color: white; text-decoration: underline;" href="#" data-toggle="modal" data-target="#pickUpPolicy">Pick Up Policy</a><div style="float:right;"><input type="checkbox" id="Pickup" name="Pickup" ng-model="Pickup" /> Do you need a pick up</div>
 
             </div>
             <div class="panel-body" ng-show="Pickup">
-                <div class="row">
-                    <label class="col-md-2 control-label" for="InputFieldA">
+                <div class=" form-group-lg">
+                    <label class="control-label" for="InputFieldA">
 
                         <button type="button" style="color:red" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
 
                     </label>
-                    <div class="col-md-10">
-                        <input type="text" name="RequestDate" class="form-control" datepicker-popup="{{format}}" ng-model="SequencingSequencingWrapperModel.PickUp.PickUpDate" is-open="opened" min-date="minDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" close-text="Close" />
-                    </div>
+             
+                    <input type="text" name="RequestDate" class="form-control" datepicker-popup="{{format}}" ng-model="SequencingWrapperModel.PickUp.PickUpDate" is-open="opened" min-date="minDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" close-text="Close" />
+                  
                 </div>
 
 
-                <div class="control-group">
-                    <label class="col-md-2 control-label" for="InputFieldA">Full Name</label>
-                    <div class="col-md-10">
-                        <input type="text" class="form-control" id="FullName" name="FullName" ng-model="SequencingSequencingWrapperModel.PickUp.FullName" placeholder="FullName" title="FullName">
+                <div class="form-group-lg">
+                    <label class="control-label" for="InputFieldA">First Name</label>
 
-                    </div>
+                    <input type="text" class="form-control" id="FullName" name="FirstName" ng-model="SequencingWrapperModel.PickUp.FirstName" placeholder="First Name" title="FirstName">
+
+
                 </div>
-                <div class="control-group">
-                    <label class="col-md-2 control-label" for="InputFieldA">Institution</label>
+                <div class="form-group-lg">
+                    <label class="control-label" for="InputFieldA">Last Name</label>
 
-                    <div class="col-md-10">
-                        <select id="ddlInstitute" class="form-control" ng-model="SequencingSequencingWrapperModel.PickUp.Institution" name="ddlInstitute">
+                    <input type="text" class="form-control" id="Last Name" name="LastName" ng-model="SequencingWrapperModel.PickUp.LastName" placeholder="Last Name" title="LastName">
 
-                            <option value="BEST Institute – 112 College Street">BEST Institute – 112 College Street</option>
 
-                            <option value="CCBR – 160 College Street">CCBR – 160 College Street</option>
-
-                            <option value="Faculty of Pharmacy – 144 College Street">Faculty of Pharmacy – 144 College Street</option>
-
-                            <option value="Fitzgerald Bldg – 150 College Street">Fitzgerald Bldg – 150 College Street</option>
-
-                            <option value="HSC – 555 University Avenue">HSC – 555 University Avenue</option>
-
-                            <option value="MSH   – SLRI at 600 University Avenue &amp; TCP at 25 Orde/60 Murray Street">MSH – SLRI at 600 University Avenue &amp; TCP at 25 Orde/60 Murray Street</option>
-
-                            <option value="MSB – 1 King’s College Circle">MSB – 1 King’s College Circle</option>
-
-                            <option value="PMH / OCI – 620 University Avenue">PMH / OCI – 620 University Avenue</option>
-
-                            <option value="Tanz Neuroscience Bldg – 6 Queens Park Crescent">Tanz Neuroscience Bldg – 6 Queens Park Crescent</option>
-
-                            <option value="TMDT &amp; MaRS South Tower – 101 College Street">TMDT &amp; MaRS South Tower – 101 College Street</option>
-
-                        </select>
-                    </div>
                 </div>
-                <div class="control-group">
-                    <label class="col-md-2 control-label" for="InputFieldA">Building and Room</label>
-                    <div class="col-md-10">
-                        <input type="text" class="form-control" id="txtShippingAddress" name="txtShippingAddress" ng-model="SequencingSequencingWrapperModel.PickUp.ShippingAddress" placeholder="Building and Room" title="Building and Room">
+                <div class="form-group-lg">
+                    <label class="control-label" for="InputFieldA">Institution</label>
 
-                    </div>
+
+                    <select id="ddlInstitute" class="form-control" ng-model="SequencingWrapperModel.PickUp.Institution" name="ddlInstitute">
+
+                        <option value="BEST Institute – 112 College Street">BEST Institute – 112 College Street</option>
+
+                        <option value="CCBR – 160 College Street">CCBR – 160 College Street</option>
+
+                        <option value="Faculty of Pharmacy – 144 College Street">Faculty of Pharmacy – 144 College Street</option>
+
+                        <option value="Fitzgerald Bldg – 150 College Street">Fitzgerald Bldg – 150 College Street</option>
+
+                        <option value="HSC – 555 University Avenue">HSC – 555 University Avenue</option>
+
+                        <option value="MSH   – SLRI at 600 University Avenue &amp; TCP at 25 Orde/60 Murray Street">MSH – SLRI at 600 University Avenue &amp; TCP at 25 Orde/60 Murray Street</option>
+
+                        <option value="MSB – 1 King’s College Circle">MSB – 1 King’s College Circle</option>
+
+                        <option value="PMH / OCI – 620 University Avenue">PMH / OCI – 620 University Avenue</option>
+
+                        <option value="Tanz Neuroscience Bldg – 6 Queens Park Crescent">Tanz Neuroscience Bldg – 6 Queens Park Crescent</option>
+
+                        <option value="TMDT &amp; MaRS South Tower – 101 College Street">TMDT &amp; MaRS South Tower – 101 College Street</option>
+
+                    </select>
+
                 </div>
-                <div class="control-group">
-                    <label class="col-md-2 control-label" for="InputFieldA">Phone</label>
-                    <div class="col-md-10">
-                        <input type="text" class="form-control" id="Phone" name="Phone" ng-model="SequencingSequencingWrapperModel.Shipping.Phone" placeholder="Shipping Phone" title="Shipping Phone">
+                <div class="form-group-lg">
+                    <label class="control-label" for="InputFieldA">Building and Room</label>
+
+                    <input type="text" class="form-control" id="txtShippingAddress" name="txtShippingAddress" ng-model="SequencingWrapperModel.PickUp.ShippingAddress" placeholder="Building and Room" title="Building and Room">
 
 
-                    </div>
                 </div>
-                <div class="control-group">
+                <div class="form-group-lg">
+                    <label class="control-label" for="InputFieldA">Phone</label>
 
-                    <label class="col-md-2 control-label" for="ShippingEmail">Email</label>
-                    <div class="col-md-10">
-                        <input type="email" class="form-control" name="ShippingEmail" ng-model="SequencingSequencingWrapperModel.PickUp.Email" placeholder="Shipping Email" title="Shipping Email">
-                    </div>
+                    <input type="text" class="form-control" id="Phone" name="Phone" ng-model="SequencingWrapperModel.PickUp.Phone" placeholder="Shipping Phone" title="Shipping Phone">
+
+                </div>
+                <div class="form-group-lg">
+
+                    <label class="control-label" for="ShippingEmail">Email</label>
+
+                    <input type="email" class="form-control" name="ShippingEmail" ng-model="SequencingWrapperModel.PickUp.Email" placeholder="Shipping Email" title="Shipping Email">
+
                 </div>
             </div>
         </div>
@@ -357,7 +362,7 @@
                 <h3 class="panel-title">Notes</h3>
             </div>
             <div class="panel-body">
-                <textarea name="txtNotes" ng-model="SequencingSequencingWrapperModel.Billing.Notes" cols="200" rows="5"></textarea>
+                <textarea name="txtNotes" ng-model="SequencingWrapperModel.Billing.Notes" cols="200" rows="5"></textarea>
             </div>
         </div>
         <input type="submit" class="btn btn-primary" ng-click="submitForm()" ng-model="disableSubmit" ng-disabled="!dnaForm.$valid">

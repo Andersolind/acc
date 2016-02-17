@@ -626,7 +626,7 @@ namespace MBBVL.Core
             // First Name 
             bill += "<tr>";
             bill += "<td valign='top'>";
-            bill += "<label for='first_name'>Full Name</label>";
+            bill += "<label for='first_name'>First Name</label>";
             bill += "</td>";
             bill += "<td valign='top'>";
             bill += m.billing.FirstName;
@@ -635,7 +635,7 @@ namespace MBBVL.Core
             // Last Name 
             bill += "<tr>";
             bill += "<td valign='top'>";
-            bill += "<label for='first_name'>Full Name</label>";
+            bill += "<label for='first_name'>Last Name</label>";
             bill += "</td>";
             bill += "<td valign='top'>";
             bill += m.billing.LastName;

@@ -38,7 +38,7 @@ namespace MBBVL.Controllers.Sequencing {
 
                 Billing bill = new Billing();
                
-                bill.FullName = model.Billing.FullName;
+                bill.FirstName = model.Billing.FirstName;
                 bill.Quotenumber = model.Billing.Quotenumber;
                 bill.Institution = model.Billing.Institution;
                 bill.BillingAddress = model.Billing.BillingAddress;

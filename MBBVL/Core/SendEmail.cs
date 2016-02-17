@@ -4,10 +4,14 @@ using System.Linq;
 using System.Net.Mail;
 using System.Text;
 
-namespace MBBVL.Core {
-    public class SendEmail {
-        public void CreateEmailForUser(string toSender, string fromSender, string body) {
-            try {
+namespace MBBVL.Core
+{
+    public class SendEmail
+    {
+        public void CreateEmailForUser(string toSender, string fromSender, string body)
+        {
+            try
+            {
 
 
                 //Create the msg object to be sent
@@ -30,7 +34,7 @@ namespace MBBVL.Core {
 
                 byte[] a = GetData(body);
                 System.IO.MemoryStream m = new System.IO.MemoryStream(a);
-                Attachment word = new Attachment(m,"Client"+toSender+".doc");
+                Attachment word = new Attachment(m, "Client" + toSender + ".doc");
                 msg.Attachments.Add(word);
                 ////Configure an SmtpClient to send the mail.            
                 SmtpClient smptc = new SmtpClient("localhost"); // Here SMTP Client object is created
@@ -45,12 +49,16 @@ namespace MBBVL.Core {
 
 
 
-            } catch (Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 string er = ex.InnerException.ToString();
             }
         }
-        public void CreateEmailForAnders(string toSender, string fromSender, string body) {
-            try {
+        public void CreateEmailForAnders(string toSender, string fromSender, string body)
+        {
+            try
+            {
 
 
                 //Create the msg object to be sent
@@ -88,13 +96,17 @@ namespace MBBVL.Core {
 
 
 
-            } catch (Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 string er = ex.InnerException.ToString();
             }
         }
 
-        public void CreateEmailForJason(string toSender, string fromSender, string body) {
-            try {
+        public void CreateEmailForJason(string toSender, string fromSender, string body)
+        {
+            try
+            {
 
 
                 //Create the msg object to be sent
@@ -132,11 +144,14 @@ namespace MBBVL.Core {
 
 
 
-            } catch (Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 string er = ex.InnerException.ToString();
             }
         }
-        static byte[] GetData(string body) {
+        static byte[] GetData(string body)
+        {
             // string s = "<html><head></head><body><p>Word doc body here</p></body></html>";
             byte[] data = Encoding.ASCII.GetBytes(body);
             return data;
@@ -194,7 +209,8 @@ namespace MBBVL.Core {
         //      return   ex.InnerException.ToString();
         //    }
         //}
-        public string SetUpSequence(SequencingWrapperModel model) {
+        public string SetUpSequence(SequencingWrapperModel model)
+        {
             SequencingWrapperModel m = new SequencingWrapperModel();
 
             m.Billing = model.Billing;
@@ -209,9 +225,10 @@ namespace MBBVL.Core {
             //headers<img src=\"cid:image1\">
             //  var ship = "<table><td align='center' style='padding: 40px 0 30 px 0;'><img src='http://youneedafavor.com/images/logo.png'>";
             var ship = "<table><td>";
-            ship += "<h1>" + model.Billing.FullName + " " + "here is your Sequencing order</h1></td></table>";
+            ship += "<h1>" + model.Billing.FirstName + " " + "here is your Sequencing order</h1></td></table>";
 
-            if (model.IsShipping) {
+            if (model.IsShipping)
+            {
                 ship += "<table width='100' style='float:left' cellpadding='0' cellspacing='0' border='0' align='center'>";
                 ship += "<thead>";
                 ship += "<tr>";
@@ -270,21 +287,22 @@ namespace MBBVL.Core {
             bill += "<th ><h1 style='color:blue;text-decoration: underline;'>Billing Information</h1></th>";
             bill += "</tr>";
             bill += "</thead>";
+            // First Name 
             bill += "<tr>";
             bill += "<td valign='top'>";
-            bill += "<label for='first_name'>Quote</label>";
+            bill += "<label for='first_name'>First Name</label>";
             bill += "</td>";
             bill += "<td valign='top'>";
-            bill += m.Billing.Quotenumber;
+            bill += m.Billing.FirstName;
             bill += "</td>";
             bill += "</tr>";
-            // Full Name 
+            // Last Name 
             bill += "<tr>";
             bill += "<td valign='top'>";
-            bill += "<label for='first_name'>Full Name</label>";
+            bill += "<label for='first_name'>First Name</label>";
             bill += "</td>";
             bill += "<td valign='top'>";
-            bill += m.Billing.FullName;
+            bill += m.Billing.LastName;
             bill += "</td>";
             bill += "</tr>";
             //Institution
@@ -365,7 +383,8 @@ namespace MBBVL.Core {
             // more cells here as needed
             olForm += "</tr>";
 
-            for (int i = 0; i < m.sequencingModel.Count(); i++) {
+            for (int i = 0; i < m.sequencingModel.Count(); i++)
+            {
                 olForm += "<tr>";
                 olForm += "<td class='boldCell'>" + m.sequencingModel[i].SampleName + "</td>";
                 olForm += "<td class='boldCell'>" + m.sequencingModel[i].SampleCon + "</td>";
@@ -382,7 +401,8 @@ namespace MBBVL.Core {
                 olForm += "</tr>";
             }
             olForm += "</table>";
-            if (model.IsPrimer) {
+            if (model.IsPrimer)
+            {
                 dnaForm = "<h1>Custom Primers</h1>"; ;
                 dnaForm += "<table style='width:100%'  border='1'>";
 
@@ -395,7 +415,8 @@ namespace MBBVL.Core {
                 dnaForm += "</tr>";
 
 
-                for (int i = 0; i < m.customPrimers.Count(); i++) {
+                for (int i = 0; i < m.customPrimers.Count(); i++)
+                {
                     dnaForm += "<tr>";
                     // dnaForm += "<td class='boldCell'>" + m.customPrimers[i].GmpValue + "</td>";
                     dnaForm += "<td class='boldCell'>" + m.customPrimers[i].PrimerName + "</td>";
@@ -432,7 +453,8 @@ namespace MBBVL.Core {
             return olForm;
         }
 
-        public void SendPickUp(SequencingWrapperModel model) {
+        public void SendPickUp(SequencingWrapperModel model)
+        {
             SequencingWrapperModel m = new SequencingWrapperModel();
             m.PickUp = model.PickUp;
             var ship = "<table><td>";
@@ -445,7 +467,7 @@ namespace MBBVL.Core {
             ship += "</thead>";
             ship += "<tr>";
             ship += "<td valign='top'>";
-            ship += "<label for='fullName'>Full Name</label>";
+            ship += "<label for='fullName'>First Name</label>";
             ship += "</td>";
             ship += "<td valign='top'>";
             ship += m.PickUp.FirstName;
@@ -509,7 +531,8 @@ namespace MBBVL.Core {
 
         }
 
-        public string SetUpbill(WrapperModel model) {
+        public string SetUpbill(WrapperModel model)
+        {
             WrapperModel m = new WrapperModel();
 
             m.billing = model.billing;
@@ -519,66 +542,68 @@ namespace MBBVL.Core {
             //var ship = "<table><td align='center' style='padding: 40px 0 30 px 0;'><img src='http://youneedafavor.com/images/logo.png'>";
             var ship = "<table><td>";
             ship += "<h1>Dear" + " " + model.shipping.FirstName + " " + "here is your Oligonucleotide Order</h1></td></table>";
+            if (!model.isBillingAddress)
+            {
+                ship += "<table width='100' style='float:left' cellpadding='0' cellspacing='0' border='0' >";
+                ship += "<thead>";
 
-            ship += "<table width='100' style='float:left' cellpadding='0' cellspacing='0' border='0' >";
-            ship += "<thead>";
-            ship += "<tr>";
-            ship += "<th style='color:blue;text-decoration: underline;'><h1>Shipping Information</h1></th>";
-            ship += "</tr>";
-            ship += "</thead>";
-            //First Name
-            ship += "<tr>";
-            ship += "<td valign='top'>";
-            ship += "<label for='fullName'>First Name</label>";
-            ship += m.shipping.FirstName;
-            ship += "</td>";
-            ship += "<td valign='top'>";
-            ship += "</td>";
-            ship += "</tr>";
-            //Last Name
-            ship += "<tr>";
-            ship += "<td valign='top'>";
-            ship += "<label for='fullName'>Last Name</label>";
-            ship += m.shipping.LastName;
-            ship += "</td>";
-            ship += "<td valign='top'>";
-            ship += "</td>";
-            ship += "</tr>";
-            //Institution
-            ship += "<tr>";
-            ship += "<td valign='top'>";
-            ship += "<label for='fullName'>Institution</label>";
-            ship += "</td>";
-            ship += "<td valign='top'>";
-            ship += m.shipping.Institution;
-            ship += "</td>";
-            ship += "</tr>";
-            ship += "<tr>";
-            ship += "<td valign='top'>";
-            ship += "<label for='fullName'>Shipping Address</label>";
-            ship += "</td>";
-            ship += "<td valign='top'>";
-            ship += m.shipping.ShippingAddress;
-            ship += "</td>";
-            ship += "</tr>";
-            ship += "<tr>";
-            ship += "<td valign='top'>";
-            ship += "<label for='fullName'>Shipping Phone</label>";
-            ship += "</td>";
-            ship += "<td valign='top'>";
-            ship += m.shipping.Phone;
-            ship += "</td>";
-            ship += "</tr>";
-            ship += "<tr>";
-            ship += "<td valign='top'>";
-            ship += "<label for='shippingEmail'>Shipping Email</label>";
-            ship += "</td>";
-            ship += "<td valign='top'>";
-            ship += m.shipping.Email;
-            ship += "</td>";
-            ship += "</tr>";
-            ship += "</table>";
-
+                ship += "<tr>";
+                ship += "<th style='color:blue;text-decoration: underline;'><h1>Shipping Information</h1></th>";
+                ship += "</tr>";
+                ship += "</thead>";
+                //First Name
+                ship += "<tr>";
+                ship += "<td valign='top'>";
+                ship += "<label for='fullName'>First Name</label>";
+                ship += m.shipping.FirstName;
+                ship += "</td>";
+                ship += "<td valign='top'>";
+                ship += "</td>";
+                ship += "</tr>";
+                //Last Name
+                ship += "<tr>";
+                ship += "<td valign='top'>";
+                ship += "<label for='fullName'>Last Name</label>";
+                ship += m.shipping.LastName;
+                ship += "</td>";
+                ship += "<td valign='top'>";
+                ship += "</td>";
+                ship += "</tr>";
+                //Institution
+                ship += "<tr>";
+                ship += "<td valign='top'>";
+                ship += "<label for='fullName'>Institution</label>";
+                ship += "</td>";
+                ship += "<td valign='top'>";
+                ship += m.shipping.Institution;
+                ship += "</td>";
+                ship += "</tr>";
+                ship += "<tr>";
+                ship += "<td valign='top'>";
+                ship += "<label for='fullName'>Shipping Address</label>";
+                ship += "</td>";
+                ship += "<td valign='top'>";
+                ship += m.shipping.ShippingAddress;
+                ship += "</td>";
+                ship += "</tr>";
+                ship += "<tr>";
+                ship += "<td valign='top'>";
+                ship += "<label for='fullName'>Shipping Phone</label>";
+                ship += "</td>";
+                ship += "<td valign='top'>";
+                ship += m.shipping.Phone;
+                ship += "</td>";
+                ship += "</tr>";
+                ship += "<tr>";
+                ship += "<td valign='top'>";
+                ship += "<label for='shippingEmail'>Shipping Email</label>";
+                ship += "</td>";
+                ship += "<td valign='top'>";
+                ship += m.shipping.Email;
+                ship += "</td>";
+                ship += "</tr>";
+                ship += "</table>";
+            }
             //Billing
 
 
@@ -681,7 +706,8 @@ namespace MBBVL.Core {
             // more cells here as needed
             olForm += "</tr>";
 
-            for (int i = 0; i < m.oligosequence.Count(); i++) {
+            for (int i = 0; i < m.oligosequence.Count(); i++)
+            {
                 olForm += "<tr>";
                 olForm += "<td class='boldCell'>" + m.oligosequence[i].PrimerName + "</td>";
                 olForm += "<td class='boldCell'>" + m.oligosequence[i].Qty + "</td>";
@@ -703,9 +729,11 @@ namespace MBBVL.Core {
             CreateEmailForAnders(m.shipping.Email, "Andersolind@gmail.com", template);
             return olForm;
         }
-        private string CreateString(string original) {
+        private string CreateString(string original)
+        {
             StringBuilder buffer = new StringBuilder(original.Length * 3 / 2);
-            for (int i = 0; i < original.Length; i++) {
+            for (int i = 0; i < original.Length; i++)
+            {
                 if ((i > 0) & (i % 3 == 0))
                     buffer.Append(" ");
                 buffer.Append(original[i]);

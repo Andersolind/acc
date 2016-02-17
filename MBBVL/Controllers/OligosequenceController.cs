@@ -42,22 +42,24 @@ namespace MBBVL.Controllers
                 bill.UserId = g;
                 templateData.billing = bill;
 
-                //db.Entry(bill).State = EntityState.Added;
-               // db.Billing.Add(bill);
 
 
-                //Shipping
-                Shipping ship = new Shipping();
-                ship.ShippingDate = model.shipping.ShippingDate;
-                ship.FullName = model.shipping.FullName;
-                ship.Institution = model.shipping.Institution;
-                ship.ShippingAddress = model.shipping.ShippingAddress;
-                ship.Phone = model.shipping.Phone;
-                ship.Email = model.shipping.Email;
-                ship.UserId = g;
-               // db.Shipping.Add(ship);
-             //   db.Entry(ship).State = EntityState.Added;
-                templateData.shipping = ship;
+                if (!model.isBillingAddress)
+                {
+
+                    //Shipping
+                    Shipping ship = new Shipping();
+                    ship.ShippingDate = model.shipping.ShippingDate;
+                    ship.FullName = model.shipping.FullName;
+                    ship.Institution = model.shipping.Institution;
+                    ship.ShippingAddress = model.shipping.ShippingAddress;
+                    ship.Phone = model.shipping.Phone;
+                    ship.Email = model.shipping.Email;
+                    ship.UserId = g;
+                    // db.Shipping.Add(ship);
+                    //   db.Entry(ship).State = EntityState.Added;
+                    templateData.shipping = ship;
+                }
 
                 //Oligosequence
                 Oligosequence ol;

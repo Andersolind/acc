@@ -223,7 +223,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="HelperClass\CheckNulls.cs" />
-    <Compile Include="HelperClass\Help.cs" />
     <Compile Include="HelperClass\Smtp.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />

@@ -207,6 +207,7 @@ namespace MBBVL.Models {
     }
     public class WrapperModel {
         public Shipping shipping { get; set; }
+        public bool isBillingAddress { get; set; }
         public Billing billing { get; set; }
         public List<Oligosequence> oligosequence { get; set; }
     }

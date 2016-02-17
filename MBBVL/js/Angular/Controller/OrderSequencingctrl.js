@@ -110,15 +110,13 @@
         var url = "/api/Sequence/";
         var model = $scope.SequencingWrapperModel;
         $scope.disableSubmit = true;
-       
         //
-       
         angular.forEach($scope.DataDelivery, function (value, key) {
             if (value.checked) {
                 $scope.DataDeliveryOptions = { Name: value.name, Value: value.checked };
-              
             }
         });
+        //Set up our model..
         $scope.SequencingWrapperModel.IsPrimer = $scope.Primers;
         $scope.SequencingWrapperModel.IsShipping = $scope.Pickup,
         $scope.SequencingWrapperModel.DataDeliveryOptions = $scope.DataDeliveryOptions;

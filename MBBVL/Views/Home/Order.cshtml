@@ -62,6 +62,10 @@
                     <label  class="control-label" for="txtShippingInstitution">Institution / Company Name</label>
                     <input type="text" class="form-control" id="txtShippingInstitution" name="txtBillingAddress" ng-model="WrapperModel.Billing.Institution" placeholder="Institution" title="Institution">
                 </div>
+                @*<div class="form-group-lg">
+                    <select id="countries1" class="form-control" name="countriesList1"  ng-model="countriesList"></select>
+
+                </div>*@
                 <div class=" form-group-lg">
                     <label class="control-label" for="txtBillAddress">Billing Address</label>
                     <input type="text" class="form-control" id="txtBillAddress" name="txtBillAddress" ng-model="WrapperModel.Billing.BillingAddress" placeholder="Billing Address" title="Billing Institution">
@@ -93,47 +97,50 @@
         </div>
         <div class="panel panel-primary" style="width:50%">
             <div class="panel-heading">
-                <h3 class="panel-title">Shipping</h3>
+                <h3 class="panel-title">Shipping Information</h3>
+                <div class="row">
+                    <div class="col-md-10">
+                        <label>
+                            <input type="checkbox" ng-model="isBillingAddress" ng-click="isBillingAddress" />
+                           Is the billing the same address?
+                        </label>
+                    </div>
+                </div> 
             </div>
-            <div class="panel-body">
-
-                <div class="form-group">
-                    <label for="lblShippingInfomation">Shipping Information</label>
-
-                </div>
+            <div class="panel-body" ng-show="!isBillingAddress">
 
                 <div class="form-group-lg">
-                    <label for="txtFullName">First Name</label>
+                    <label class="control-label"  for="txtFullName">First Name</label>
 
                     <input type="text" class="form-control" id="txtFirstName" name="txtFullName" ng-model="WrapperModel.Shipping.FirstName" placeholder="First Name" title="First Name">
 
                 </div>
                 <div class=" form-group-lg">
-                    <label for="txtLastName">Last Name</label>
+                    <label class="control-label"  for="txtLastName">Last Name</label>
 
                     <input type="text" class="form-control" id="txtLastName" name="txtLastName" ng-model="WrapperModel.Shipping.LastName" placeholder="Last Name" title="Last Name">
 
                 </div>
                 <div class="form-group-lg">
-                    <label for="txtShippingInstitution">Institution / Company Name</label>
+                    <label class="control-label"  for="txtShippingInstitution">Institution / Company Name</label>
                     <input type="text" class="form-control" id="txtShippingInstitution" name="txtShippingAddress" ng-model="WrapperModel.Shipping.Institution" placeholder="Institution" title="Building and Room">
                 </div>
                 <div class="form-group-lg">
-                    <label for="txtShippingAddress">Shipping Address</label>
+                    <label class="control-label"  for="txtShippingAddress">Shipping Address</label>
                     <input type="text" class="form-control" id="txtShippingAddress" name="txtShippingAddress" ng-model="WrapperModel.Shipping.ShippingAddress" placeholder="Address" title="Address">
 
                 </div>
                 <div class="form-group-lg">
-                    <label for="Phone">Phone</label>
+                    <label class="control-label"  for="Phone">Phone</label>
                     <input type="text" class="form-control" id="txtPhone" name="txtPhone" ng-model="WrapperModel.Shipping.Phone" placeholder="Shipping Phone" title="Shipping Phone">
                 </div>
                 <div class="form-group-lg">
-                    <label for="txtExtention">Extention</label>
+                    <label class="control-label"  for="txtExtention">Extention</label>
                     <input type="text" class="form-control" id="txtExtention" name="txtExtention" ng-model="WrapperModel.Shipping.Extention" placeholder="Extention" title="Extention">
                 </div>
 
                 <div class="form-group-lg">
-                    <label for="ShippingEmail">Email</label>
+                    <label class="control-label"  for="ShippingEmail">Email</label>
                     <input type="email" class="form-control" name="ShippingEmail" ng-model="WrapperModel.Shipping.Email" placeholder="Shipping Email" title="Shipping Email">
                 </div>
 

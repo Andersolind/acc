@@ -1,11 +1,12 @@
-﻿app.controller("OrderOgli", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', function ($scope, $http, GenericHelpers, ACGTFactory) {
+﻿app.controller("OrderOgli", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', '$rootScope', function ($scope, $http, GenericHelpers, ACGTFactory, $rootScope) {
+
+    StartOurPage();
+
     var downed = 0;
     var countSpaces = 0;
-    SetupInitialRows();
-    SetupAutoText();
-    SetUpDatePicker();
-    //Check box values
-    CreateKeyPress();
+    //Todo change all to vm
+    //var vm = this;
+
 
 
     //Send these values into the db
@@ -26,7 +27,7 @@
             if (qty != "" && sequence != "" && typeof synthesisscale != 'undefined' && typeof purification != 'undefined') {
                 var getNumber;
 
-             
+
 
                 getNumber = qty * newOglio.length * ConvertSynsithisScale(synthesisscale) + ConvertPurification(purification);
                 $scope.OligonucleotideRow[index].OligonucleotideSequenceValue = newOglio;
@@ -94,7 +95,10 @@
         //Get all the form variables from the page and get ready to submit to our model
         var url = "/api/Oligosequence/";
 
+        //See if the billing is the same 
+        $scope.WrapperModel.isBillingAddress = $scope.isBillingAddress;
         var model = $scope.WrapperModel;
+        
         ACGTFactory.serverService(url, "Post", model).success(function (model, status) {
             if (status == 200) {
                 window.location = "/home/thankyou";
@@ -200,6 +204,19 @@
         $scope.finalDeliveryForm = [{ name: 'Liquid', value: 'Liquid' }, { name: 'Dry', value: 'Dry' }];
 
         $scope.OligonucleotideRow = [{ PrimerName: "", Qty: "", OligonucleotideSequence: '', SynthesisScale1: $scope.synthesisScale1Values, SynthesisScaleValue: "", Modification: "", ModificationValue: "", FinalDeliveryForm: $scope.finalDeliveryForm, FinalDeliveryFormValue: "", Purification: $scope.purification, PurificationValue: "", GMP3: $scope.gmp3, GmpValue: "", Price: "" }];
+    }
+    function SetupCountries(){
+        $scope.countriesList = GenericHelpers.country_list();
+    }
+
+    //Init
+    function StartOurPage() {
+        SetupCountries();
+        SetupInitialRows();
+        SetupAutoText();
+        SetUpDatePicker();
+        //Check box values
+        CreateKeyPress();
     }
 
 }]);

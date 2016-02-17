@@ -50,7 +50,8 @@ namespace MBBVL.Controllers
                     //Shipping
                     Shipping ship = new Shipping();
                     ship.ShippingDate = model.shipping.ShippingDate;
-                    ship.FullName = model.shipping.FullName;
+                    ship.FirstName = model.shipping.FirstName;
+                    ship.LastName = model.shipping.LastName;
                     ship.Institution = model.shipping.Institution;
                     ship.ShippingAddress = model.shipping.ShippingAddress;
                     ship.Phone = model.shipping.Phone;

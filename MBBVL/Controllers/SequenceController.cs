@@ -41,7 +41,9 @@ namespace MBBVL.Controllers.Sequencing {
                 bill.FirstName = model.Billing.FirstName;
                 bill.Quotenumber = model.Billing.Quotenumber;
                 bill.Institution = model.Billing.Institution;
+                bill.Country = model.Billing.Country;
                 bill.BillingAddress = model.Billing.BillingAddress;
+                bill.PostalCode = model.Billing.PostalCode;
                 bill.BillingPhone = model.Billing.BillingPhone;
                 bill.Extention = model.Billing.Extention;
                 bill.Email = model.Billing.Email;
@@ -91,9 +93,9 @@ namespace MBBVL.Controllers.Sequencing {
 
                 //DNA
                 if (model.IsPrimer) {
-                    CustomPrimers cp;
+                    var cp = new CustomPrimers();
                     for (int i = 0; i < model.customPrimers.Count(); i++) {
-                        cp = new CustomPrimers();
+                       
                         cp.GmpValue = model.customPrimers[i].GmpValue;
                         cp.PrimerName = model.customPrimers[i].PrimerName;
                         cp.ScaleValue = model.customPrimers[i].ScaleValue;
@@ -105,7 +107,6 @@ namespace MBBVL.Controllers.Sequencing {
                         getCustomPrimers.Add(cp);
                     }
                 }
-
 
                 DataDeliveryOptions ddd = new DataDeliveryOptions();
                 ddd.Name = model.DataDeliveryOptions.Name;

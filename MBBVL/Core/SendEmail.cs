@@ -252,6 +252,7 @@ namespace MBBVL.Core
                 ship += m.PickUp.LastName;
                 ship += "</td>";
                 ship += "</tr>";
+                //Institution
                 ship += "<tr>";
                 ship += "<td valign='top'>";
                 ship += "<label for='fullName'>Institution</label>";
@@ -314,6 +315,15 @@ namespace MBBVL.Core
             bill += m.Billing.LastName;
             bill += "</td>";
             bill += "</tr>";
+            //Country
+            bill += "<tr>";
+            bill += "<td valign='top'>";
+            bill += "<label for='first_name'>Country</label>";
+            bill += "</td>";
+            bill += "<td valign='top'>";
+            bill += m.Billing.Country;
+            bill += "</td>";
+            bill += "</tr>";
             //Institution
             bill += "<tr>";
             bill += "<td valign='top'>";
@@ -330,6 +340,15 @@ namespace MBBVL.Core
             bill += "</td>";
             bill += "<td valign='top'>";
             bill += m.Billing.BillingAddress;
+            bill += "</td>";
+            bill += "</tr>";
+            //Billing Address
+            bill += "<tr>";
+            bill += "<td valign='top'>";
+            bill += "<label for='first_name'>Postal Code</label>";
+            bill += "</td>";
+            bill += "<td valign='top'>";
+            bill += m.Billing.PostalCode;
             bill += "</td>";
             bill += "</tr>";
             //Billing Phone 
@@ -555,27 +574,27 @@ namespace MBBVL.Core
             {
                 ship += "<table width='100' style='float:left' cellpadding='0' cellspacing='0' border='0' >";
                 ship += "<thead>";
-
                 ship += "<tr>";
-                ship += "<th style='color:blue;text-decoration: underline;'><h1>Shipping Information</h1></th>";
+                ship += "<th style='color:blue; text-decoration: underline;'><h1>Shipping Information</h1></th>";
                 ship += "</tr>";
                 ship += "</thead>";
-                //First Name
+
+                // First Name 
                 ship += "<tr>";
                 ship += "<td valign='top'>";
-                ship += "<label for='fullName'>First Name</label>";
+                ship += "<label for='first_name'>First Name</label>";
+                ship += "</td>";
+                ship += "<td valign='top'>";
                 ship += m.shipping.FirstName;
                 ship += "</td>";
-                ship += "<td valign='top'>";
-                ship += "</td>";
                 ship += "</tr>";
-                //Last Name
+                // Last Name 
                 ship += "<tr>";
                 ship += "<td valign='top'>";
-                ship += "<label for='fullName'>Last Name</label>";
-                ship += m.shipping.LastName;
+                ship += "<label for='first_name'>Last Name</label>";
                 ship += "</td>";
                 ship += "<td valign='top'>";
+                ship += m.shipping.LastName;
                 ship += "</td>";
                 ship += "</tr>";
                 //Institution
@@ -587,6 +606,16 @@ namespace MBBVL.Core
                 ship += m.shipping.Institution;
                 ship += "</td>";
                 ship += "</tr>";
+                //Country
+                ship += "<tr>";
+                ship += "<td valign='top'>";
+                ship += "<label for='fullName'>Country</label>";
+                ship += "</td>";
+                ship += "<td valign='top'>";
+                ship += m.shipping.Country;
+                ship += "</td>";
+                ship += "</tr>";
+                //Shipping address
                 ship += "<tr>";
                 ship += "<td valign='top'>";
                 ship += "<label for='fullName'>Shipping Address</label>";
@@ -595,6 +624,16 @@ namespace MBBVL.Core
                 ship += m.shipping.ShippingAddress;
                 ship += "</td>";
                 ship += "</tr>";
+                //Postal Code
+                ship += "<tr>";
+                ship += "<td valign='top'>";
+                ship += "<label for='fullName'>Postal Code</label>";
+                ship += "</td>";
+                ship += "<td valign='top'>";
+                ship += m.shipping.PostalCode;
+                ship += "</td>";
+                ship += "</tr>";
+                //
                 ship += "<tr>";
                 ship += "<td valign='top'>";
                 ship += "<label for='fullName'>Shipping Phone</label>";
@@ -622,7 +661,7 @@ namespace MBBVL.Core
             bill += "<th style='color:blue; text-decoration: underline;'><h1>Billing Information</h1></th>";
             bill += "</tr>";
             bill += "</thead>";
-           
+
             // First Name 
             bill += "<tr>";
             bill += "<td valign='top'>";
@@ -646,9 +685,17 @@ namespace MBBVL.Core
             bill += "<td valign='top'>";
             bill += "<label for='first_name'>Institution</label>";
             bill += "</td>";
-
             bill += "<td valign='top'>";
             bill += m.billing.Institution;
+            bill += "</td>";
+            bill += "</tr>";
+            //Country
+            bill += "<tr>";
+            bill += "<td valign='top'>";
+            bill += "<label for='first_name'>Country</label>";
+            bill += "</td>";
+            bill += "<td valign='top'>";
+            bill += m.billing.Country;
             bill += "</td>";
             bill += "</tr>";
             //Billing Address
@@ -658,6 +705,15 @@ namespace MBBVL.Core
             bill += "</td>";
             bill += "<td valign='top'>";
             bill += m.billing.BillingAddress;
+            bill += "</td>";
+            bill += "</tr>";
+            //Postal Code
+            bill += "<tr>";
+            bill += "<td valign='top'>";
+            bill += "<label for='first_name'>Postal Code</label>";
+            bill += "</td>";
+            bill += "<td valign='top'>";
+            bill += m.billing.PostalCode;
             bill += "</td>";
             bill += "</tr>";
             //Billing Phone 
@@ -677,9 +733,9 @@ namespace MBBVL.Core
             bill += "<td valign='top'>";
             bill += m.billing.Email;
             bill += "</td>";
-
+            bill += "</tr>";
+            //Notes
             bill += "<tr>";
-
             bill += "<td valign='top'>";
             bill += "<label for='first_name'> Notes</label>";
             bill += "</td>";

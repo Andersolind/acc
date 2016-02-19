@@ -62,16 +62,21 @@
                     <label  class="control-label" for="txtShippingInstitution">Institution / Company Name</label>
                     <input type="text" class="form-control" id="txtShippingInstitution" name="txtBillingAddress" ng-model="WrapperModel.Billing.Institution" placeholder="Institution" title="Institution">
                 </div>
-                @*<div class="form-group-lg">
-                    <select id="countries1" class="form-control" name="countriesList1"  ng-model="countriesList"></select>
-
-                </div>*@
                 <div>
-                    <label class="control-label" for="txtBillAddress">Billing Address</label>
+                    <label class="control-label" >Country</label>
+                    <select data-ng-model="BillingCountry" 
+                            class="form-control" data-ng-options="act.name for act in countriesList"></select>
+                </div>
+                <div>
+                    <label class="control-label" for="txtBillAddress">Address</label>
                     <input type="text" class="form-control" id="txtBillAddress" name="txtBillAddress" ng-model="WrapperModel.Billing.BillingAddress" placeholder="Billing Address" title="Billing Institution">
                 </div>
+                <div>
+                    <label class="control-label" for="txtBillAddress">Postal Code</label>
+                    <input type="text" class="form-control" id="txtPostalCode" name="txtPostalCode" ng-model="WrapperModel.Billing.PostalCode" placeholder="Postal Code" title="Postal Code">
+                </div>
                 <div >
-                    <label class="control-label" for="lblPhone">Billing Phone</label>
+                    <label class="control-label" for="lblPhone">Phone</label>
                     <input type="text" class="form-control" id="lblPhone" name="lblPhone" ng-model="WrapperModel.Billing.BillingPhone" placeholder="Billing Phone" title="Billing Phone">
                 </div>
                 <div>
@@ -102,7 +107,7 @@
                     <div class="col-lg-12">
                         <label>
                             <input type="checkbox" ng-model="isBillingAddress" ng-click="isBillingAddress" />
-                           Is the billing the same address?
+                            Is the billing the same address?
                         </label>
                     </div>
                 </div> 
@@ -126,9 +131,18 @@
                     <input type="text" class="form-control" id="txtShippingInstitution" name="txtShippingAddress" ng-model="WrapperModel.Shipping.Institution" placeholder="Institution" title="Building and Room">
                 </div>
                 <div>
-                    <label class="control-label"  for="txtShippingAddress">Shipping Address</label>
+                    <label class="control-label">Country</label>
+                    <select data-ng-model="ShippingCountry"
+                            class="form-control" data-ng-options="act.name for act in countriesList"></select>
+                </div>
+                <div>
+                    <label class="control-label"  for="txtShippingAddress">Address</label>
                     <input type="text" class="form-control" id="txtShippingAddress" name="txtShippingAddress" ng-model="WrapperModel.Shipping.ShippingAddress" placeholder="Address" title="Address">
 
+                </div>
+                <div>
+                    <label class="control-label" for="txtBillPostalCode">Postal Code</label>
+                    <input type="text" class="form-control" id="txtBillAddress" name="txtBillPostalCode" ng-model="WrapperModel.Shipping.PostalCode" placeholder="Postal Code" title="Postal Code">
                 </div>
                 <div>
                     <label class="control-label"  for="Phone">Phone</label>
@@ -146,13 +160,14 @@
             </div>
 
 
-
+          
         </div>
+        @*Order form*@
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h3 class="panel-title"> Oligonucleotide Order Form</h3>
             </div>
-
+         
             <div class="panel-body">
                 <fieldset>
                     <legend> DNA Oligonucleotide Order Form</legend>
@@ -170,7 +185,7 @@
                         <tr>
                             <th>Primer name</th>
                             <th>QTY</th>
-                            <th>Oligonucleotide Sequence </br> (5' -> 3')</th>
+                            <th>Oligonucleotide Sequence <br> (5' -> 3')</th>
                             <th>Synthesis Scale(μmole)</th>
                             <th>GMP(Y/N)</th>
                             <th>
@@ -255,7 +270,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4 class="modal-title" id="myModalLabel">Modifcation List</h4>
+                    <h4 class="modal-title" id="myModalLabel">Modification List</h4>
                 </div>
                 <div class="modal-body">
                     <ul>

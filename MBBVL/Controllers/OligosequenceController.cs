@@ -34,7 +34,9 @@ namespace MBBVL.Controllers
                 bill.LastName = model.billing.LastName;
                 bill.Quotenumber = model.billing.Quotenumber;
                 bill.Institution = model.billing.Institution;
+                bill.Country = model.billing.Country;
                 bill.BillingAddress = model.billing.BillingAddress;
+                bill.PostalCode = model.billing.PostalCode;
                 bill.BillingPhone = model.billing.BillingPhone;
                 bill.Extention = model.billing.Extention;
                 bill.Email = model.billing.Email;
@@ -53,7 +55,9 @@ namespace MBBVL.Controllers
                     ship.FirstName = model.shipping.FirstName;
                     ship.LastName = model.shipping.LastName;
                     ship.Institution = model.shipping.Institution;
+                    ship.Country = model.shipping.Country;
                     ship.ShippingAddress = model.shipping.ShippingAddress;
+                    ship.PostalCode = model.shipping.PostalCode;
                     ship.Phone = model.shipping.Phone;
                     ship.Email = model.shipping.Email;
                     ship.UserId = g;

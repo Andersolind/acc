@@ -143,6 +143,7 @@ input[type="checkbox"].input-validation-error {
 
 table, th, td {
     border: 1px solid black;
+    border-right: 1px solid #428BCA;
 }
 
 .contact {

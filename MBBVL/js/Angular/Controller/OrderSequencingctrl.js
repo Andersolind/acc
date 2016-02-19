@@ -1,7 +1,7 @@
 ﻿app.controller("OrderSequencing", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', function ($scope, $http, GenericHelpers, ACGTFactory) {
 
     SetupInitialRows();
-
+    SetupCountries();
     //Check box values
 
     var formData = {};
@@ -120,6 +120,10 @@
         $scope.SequencingWrapperModel.IsPrimer = $scope.Primers;
         $scope.SequencingWrapperModel.IsShipping = $scope.Pickup,
         $scope.SequencingWrapperModel.DataDeliveryOptions = $scope.DataDeliveryOptions;
+        $scope.SequencingWrapperModel.Billing.Country = $scope.BillingCountry.name;
+
+     //   $scope.SequencingWrapperModel.Shipping.Country = $scope.ShippingCountry.name;
+
         var model = $scope.SequencingWrapperModel;
         ACGTFactory.serverService(url, "Post", model).success(function (model, status) {
             if (status == 200) {
@@ -139,8 +143,9 @@
         });
     }
 
-    function GetTrueDelivery() {
-
+    function SetupCountries() {
+        $scope.countriesList = GenericHelpers.country_list();
     }
+
 }]);
 

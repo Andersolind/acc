@@ -92,11 +92,20 @@
     }
 
     $scope.submitForm = function () {
+        //Disable the button
+        $scope.dnaForm.$valid = false;
+
+    
         //Get all the form variables from the page and get ready to submit to our model
         var url = "/api/Oligosequence/";
 
         //See if the billing is the same 
         $scope.WrapperModel.isBillingAddress = $scope.isBillingAddress;
+        //Get the country
+        $scope.WrapperModel.Billing.Country = $scope.BillingCountry.name;
+        if (!$scope.isBillingAddress) {
+            $scope.WrapperModel.Shipping.Country = $scope.ShippingCountry.name;
+        }
         var model = $scope.WrapperModel;
         
         ACGTFactory.serverService(url, "Post", model).success(function (model, status) {

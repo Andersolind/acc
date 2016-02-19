@@ -31,6 +31,10 @@ namespace MBBVL.Models {
         public string ShippingAddress { get; set; }
         [Display(Name = "Phone")]
         public string Phone { get; set; }
+        [Display(Name = "Country")]
+        public string Country { get; set; }
+        [Display(Name = "PostalCode")]
+        public string PostalCode { get; set; }
         [Display(Name = "Extention")]
         public string Extention { get; set; }
         [Required]
@@ -86,8 +90,13 @@ namespace MBBVL.Models {
         public string Institution { get; set; }
         [Display(Name = "Billing Address")]
         public string BillingAddress { get; set; }
-        [Display(Name = "Billing Address")]
+        [Display(Name = "Country")]
+        public string Country { get; set; }
+        [Display(Name = "PostalCode")]
+        public string PostalCode { get; set; }
+        [Display(Name = "Billing Phone")]
         public string BillingPhone { get; set; }
+      
         [Display(Name = "Extention")]
         public string Extention { get; set; }
       

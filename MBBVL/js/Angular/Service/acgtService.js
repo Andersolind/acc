@@ -36,7 +36,99 @@
 
         return getModificatons;
     }
+    this.fiveModifications = function () {
+        var getModificatons = [
+            {
+                name: 'Functional groups',
+                items: [
+                    { name: 'AminoC6', value: 'AminoC6' },
+                    { name: 'Biotin', value: 'Biotin' },
+                    { name: 'Biotin-TEG', value: 'Biotin-TEG' },
+                    { name: 'Biotin-dT', value: 'Biotin-dT' },
+                    { name: 'Carboxy-dT', value: 'Carboxy-dT' },
+                    { name: 'DBCO-TEG', value: 'DBCO-TEG' },
+                    { name: 'Phosphorylation', value: 'Phosphorylation' },
+                    { name: 'Thiol', value: 'Thiol' }
+                ]
+            }, {
+                name: 'Fluorophores',
+                items: [
+                    { name: 'Cy3™', value: 'Cy3™' },
+                    { name: 'Cy3.5™', value: 'Cy3.5™' },
+                    { name: 'Cy5™', value: 'Cy5™' },
+                    { name: 'Cy5.5™', value: 'Cy5.5™' },
+                    { name: '6FAM™', value: '6FAM™' },
+                    { name: 'HEX™', value: 'HEX™' },
+                    { name: 'TET™', value: 'TET™' }
+                ]
+            }
+        ];
 
+
+        return getModificatons;
+    }
+
+    this.internalModification = function () {
+        var getModificatons = [
+            {
+                name: 'Functional groups',
+                items: [
+                    { name: 'AminoC6-dA', value: 'AminoC6-dA' },
+                    { name: 'AminoC6-dC', value: 'AminoC6-dC' },
+                    { name: 'Biotin-dT', value: 'Biotin-dT' }
+                ]
+            }, {
+                name: 'Fluorophores',
+                items: [
+                    { name: 'Cy3™', value: 'Cy3™' },
+                    { name: 'Cy5™', value: 'Cy5™' },
+                    { name: '6FAM™', value: '6FAM™' },
+                    { name: '6FAM-dT™', value: '6FAM-dT™' },
+                    { name: 'TET™', value: 'TET™' }
+                ]
+            },
+            {
+                name: 'Others',
+                items: [
+                    { name: 'dSpacer', value: 'dSpacer' },
+                    { name: 'Spacer 9', value: 'Spacer 9' },
+                    { name: 'Spacer 12', value: 'Spacer 12' },
+                    { name: 'Spacer 18', value: 'Spacer 18' },
+                    { name: '5-hydromethyl dC', value: '5-hydromethyl dC' },
+                { name: '5-methyl-dC', value: '5-methyl-dC' },
+                      { name: 'Phosphorothioation', value: 'Phosphorothioation' }
+                ]
+            }
+        ];
+
+
+        return getModificatons;
+    }
+
+    this.threeModifications = function () {
+        var getModificatons = [
+            {
+                name: 'Functional groups',
+                items: [
+                    { name: 'AminoC7', value: 'AminoC7' },
+                    { name: 'Biotin', value: 'Biotin' },
+                    { name: 'Biotin-TEG', value: 'Biotin-TEG' }
+                    
+                ]
+            }, {
+                name: 'Fluorophores',
+                items: [
+                    { name: 'Cy3™', value: 'Cy3™' },
+                    { name: 'Cy5™', value: 'Cy5™' },
+                    { name: '6FAM™', value: '6FAM™' },
+                    { name: 'TAMRA™', value: 'TAMRA™' }
+                ]
+            }
+        ];
+
+
+        return getModificatons;
+    }
     this.country_list = function () {
         var countries = [
             { name: 'Afghanistan', code: 'AF' },

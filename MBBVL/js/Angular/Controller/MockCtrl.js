@@ -2,11 +2,19 @@
 
     //
     var vm = this;
+    var i = 1;
+    vm.oligoNumber = i ++;
     setupInitialRows();
     //Create a new row
-    vm.AddOligonucleotideRow = function () {
+    vm.OligonucleotideRow = function () {
         //Push a new row
-        vm.OligonucleotideRow.push(GenericHelpers.oligonucleotideRow(vm.synthesisScale1Values, vm.purification, $scope.finalDeliveryForm, $scope.gmp3));
+        vm.oligoNumber = i++;
+        vm.NewOligonucleotideRow.push(GenericHelpers.newOligonucleotideRow(vm.oligoNumber,vm.fiveModifications, vm.threeModifications, vm.synthesisScale1Values, vm.finalDeliveryForm, vm.purification));
+    };
+
+    vm.removeRow = function (idx) {
+        vm.oligoNumber = i--;
+        vm.NewOligonucleotideRow.splice(idx, 1);
     };
 
     function setupInitialRows() {
@@ -20,10 +28,12 @@
         vm.internalModification = GenericHelpers.internalModification();
         //Three Modifications 
         vm.threeModifications = GenericHelpers.threeModifications();
+        //Increment a number 
+       
         vm.purification = [{ name: 'Desalted', value: 'Desalted' }, { name: 'Cartridge', value: 'Cartridge' }, { name: 'HPLC', value: 'HPLC' }, { name: 'PAGE', value: 'PAGE' }];
 
         vm.finalDeliveryForm = [{ name: 'Liquid', value: 'Liquid-H2O' }, { name: 'Dry', value: 'Dry-Lyophilised' }];
-        vm.OligonucleotideRow = [{ OglioNumber: "", Qty: "", OligonucleotideSequence: '', Five5Modifications: vm.fiveModifications, InternalModification: vm.threeModifications, ThreeModifications: vm.threeModifications, SynthesisScale1: vm.synthesisScale1Values, SynthesisScaleValue: "", Modification: "", ModificationValue: "", FinalDeliveryForm: vm.finalDeliveryForm, FinalDeliveryFormValue: "", Purification: vm.purification, PurificationValue: "", GMP3: vm.gmp3, GmpValue: "", Price: "" }];
+        vm.NewOligonucleotideRow = [{ OglioNumber: vm.oligoNumber, Qty: "", OligonucleotideSequence: '', Five5Modifications: vm.fiveModifications, InternalModification: vm.threeModifications, ThreeModifications: vm.threeModifications, SynthesisScale1: vm.synthesisScale1Values, SynthesisScaleValue: "", Modification: "", ModificationValue: "", FinalDeliveryForm: vm.finalDeliveryForm, FinalDeliveryFormValue: "", Purification: vm.purification, PurificationValue: "", GMP3: vm.gmp3, GmpValue: "", Price: "" }];
 
     //    vm.OligonucleotideRow = [{ PrimerName: "", Qty: "", OligonucleotideSequence: '', SynthesisScale1: $scope.synthesisScale1Values, SynthesisScaleValue: "", Modification: "", ModificationValue: "", FinalDeliveryForm: $scope.finalDeliveryForm, FinalDeliveryFormValue: "", Purification: $scope.purification, PurificationValue: "", GMP3: $scope.gmp3, GmpValue: "", Price: "" }];
     }

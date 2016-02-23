@@ -14,6 +14,11 @@
         return properties;
     }
 
+    this.newOligonucleotideRow = function (oglioNumber,fiveModifications, threeModifications, synthesisScale1Values, finalDeliveryForm, purification) {
+        var properties = { OglioNumber: oglioNumber, Qty: "", OligonucleotideSequence: '', Five5Modifications: fiveModifications, InternalModification: threeModifications, ThreeModifications: threeModifications, SynthesisScale1: synthesisScale1Values, SynthesisScaleValue: "", Modification: "", ModificationValue: "", FinalDeliveryForm: finalDeliveryForm, FinalDeliveryFormValue: "", Purification: purification, PurificationValue: "", Price: "" };
+        return properties;
+    }
+
     this.modifications = function () {
         var getModificatons = [{ name: 'Biotin', value: 'Biotin' }, { name: '[bio]', value: '[bio]' }, { name: 'Amino C6', value: 'Amino C6' },
             { name: '[amC6]', value: '[amC6]' },

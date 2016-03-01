@@ -6,7 +6,7 @@
 
     vm.options = [{ name: "a", id: 1 }, { name: "b", id: 2 }];
  
-    vm.itemSelectedShipping = 0;
+    vm.itemSelectedShipping = 4;
     setupInitialRows();
     //Create a new row
     vm.AddOligonucleotideRow = function () {
@@ -21,8 +21,8 @@
             vm.WrapperModel.Shipping.FirstName = vm.WrapperModel.Billing.FirstName;
             vm.WrapperModel.Shipping.LastName = vm.WrapperModel.Billing.LastName;
             vm.WrapperModel.Shipping.Institution = vm.WrapperModel.Billing.Institution;
-          //  vm.selectedOption = vm.options[0];
-            vm.itemSelected = vm.countriesList[vm.WrapperModel.Billing.Country];
+            vm.selectedOption = vm.options[1];
+            vm.selectedItemvalue = vm.WrapperModel.Billing.Country;
             vm.WrapperModel.Shipping.ShippingAddress = vm.WrapperModel.Billing.BillingAddress;
             vm.WrapperModel.Shipping.PostalCode = vm.WrapperModel.Billing.PostalCode;
             vm.WrapperModel.Shipping.Phone = vm.WrapperModel.Billing.BillingPhone;
@@ -64,8 +64,8 @@
         vm.finalDeliveryForm = [{ name: 'Liquid', value: 'Liquid-H2O' }, { name: 'Dry', value: 'Dry-Lyophilised' }];
         vm.OligonucleotideRow = [{ OglioNumber: "", Qty: "", OligonucleotideSequence: '', Five5Modifications: vm.fiveModifications, InternalModification: vm.threeModifications, ThreeModifications: vm.threeModifications, SynthesisScale1: vm.synthesisScale1Values, SynthesisScaleValue: "", Modification: "", ModificationValue: "", FinalDeliveryForm: vm.finalDeliveryForm, FinalDeliveryFormValue: "", Purification: vm.purification, PurificationValue: "", GMP3: vm.gmp3, GmpValue: "", Price: "" }];
         vm.countriesList = GenericHelpers.country_list();
-
-        vm.itemSelectedShipping = vm.countriesList[1];
+        vm.selectedItemvalue = vm.countriesList[2];
+        //vm.itemSelected = vm.countriesList[5];
      
     }
 

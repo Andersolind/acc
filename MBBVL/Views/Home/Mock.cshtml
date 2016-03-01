@@ -50,46 +50,58 @@
                         <a style="color: white; text-decoration: underline;" href="#" data-toggle="modal" data-target="#OligonucleotideForms"> For Oligonucleotide printable forms Click Here</a>
                     </div>
                     <div class="panel-body">
-                        <div class=" ">
+                        @*First Name*@
+                        <div ng-class="{'has-error' : dnaForm.txtBillingFirstName.$invalid && !dnaForm.txtBillingFirstName.$pristine}">
                             <label class="control-label" for="txtFirstName">First Name</label>
-                            <input type="text" class="form-control" id="txtFirstName" name="txtFirstName" ng-model="vm.WrapperModel.Billing.FirstName" placeholder="First Name" title="First Name">
-
+                            <input type="text" class="form-control" id="txtBillingFirstName" name="txtBillingFirstName" ng-model="vm.WrapperModel.Billing.FirstName" placeholder="First Name" title="First Name" required>
+                            <p ng-show="dnaForm.txtBillingFirstName.$invalid && !dnaForm.txtBillingFirstName.$pristine" class="help-block">Your First name is required.</p>
                         </div>
-                        <div>
-                            <label class="control-label" for="txtLastName">Last Name</label>
-                            <input type="text" class="form-control" id="txtLastName" name="txtLastName" ng-model="vm.WrapperModel.Billing.LastName" placeholder="Last Name" title="Last Name">
+                        @*Last Name*@
+                        <div ng-class="{'has-error' : dnaForm.txtBillingLastName.$invalid && !dnaForm.txtBillingLastName.$pristine}">
+                            <label class="control-label" for="txtBillingLastName">Last Name</label>
+                            <input type="text" class="form-control" id="txtBillingLastName" name="txtBillingLastName" ng-model="vm.WrapperModel.Billing.LastName" placeholder="Last Name" title="Last Name" required>
+                            <p ng-show="dnaForm.txtBillingLastName.$invalid && !dnaForm.txtBillingLastName.$pristine" class="help-block">Your  Last name is required.</p>
                         </div>
-                        <div>
+                        @*Institution*@
+                        <div ng-class="{'has-error' : dnaForm.txtShippingInstitution.$invalid && !dnaForm.txtShippingInstitution.$pristine}">
                             <label class="control-label" for="txtShippingInstitution">Institution / Company Name</label>
-                            <input type="text" class="form-control" id="txtShippingInstitution" name="txtBillingAddress" ng-model="vm.WrapperModel.Billing.Institution" placeholder="Institution" title="Institution">
+                            <input type="text" class="form-control" id="txtShippingInstitution" name="txtShippingInstitution" ng-model="vm.WrapperModel.Billing.Institution" placeholder="Institution" title="Institution" required>
+                            <p ng-show="dnaForm.txtShippingInstitution.$invalid && !dnaForm.txtShippingInstitution.$pristine" class="help-block">Institution / Company Name is required.</p>
                         </div>
-                        <div>
+                        
+                        @*Country*@
+                        <div ng-class="{'has-error' : dnaForm.billingCountryDrp.$invalid && !dnaForm.billingCountryDrp.$pristine}">
                             <label class="control-label">Country</label>
-                            @*<select ng-model="vm.itemSelectedBilling" ng-options="item.id as item.name for item in vm.countriesList">
-                                <option value="">--- Select an option ---</option>
-                            </select>*@
 
-                            <select id="accountselector" ng-model="vm.itemSelectedBilling" style="width: 100%;">
+                            <select id="accountselector" name="billingCountryDrp" ng-model="vm.itemSelectedBilling" class="form-control" style="width: 100%;" required>
                                 <option value="">--- Select an option ---</option>
                                 <option data-ng-repeat="(key, value) in vm.countriesList" value="{{key}}">{{value.name}}</option>
                             </select>
+                            <p ng-show="dnaForm.billingCountryDrp.$invalid && !dnaForm.billingCountryDrp.$pristine" class="help-block">Country is required.</p>
                         </div>
-                        <div>
+                        @*Address*@
+                        <div ng-class="{'has-error' : dnaForm.txtBillAddress.$invalid && !dnaForm.txtBillAddress.$pristine}">
                             <label class="control-label" for="txtBillAddress">Address</label>
                             <input type="text" class="form-control" id="txtBillAddress" name="txtBillAddress" ng-model="vm.WrapperModel.Billing.BillingAddress" placeholder="Billing Address" title="Billing Institution">
+                            <p ng-show="dnaForm.billingCountryDrp.$invalid && !dnaForm.billingCountryDrp.$pristine" class="help-block">Country is required.</p>
                         </div>
-                        <div>
+                        @*Postal Code*@
+                        <div ng-class="{'has-error' : dnaForm.txtBillingPostalCode.$invalid && !dnaForm.txtBillingPostalCode.$pristine}">
                             <label class="control-label" for="txtBillAddress">Postal Code</label>
-                            <input type="text" class="form-control" id="txtPostalCode" name="txtPostalCode" ng-model="vm.WrapperModel.Billing.PostalCode" placeholder="Postal Code" title="Postal Code">
+                            <input type="text" class="form-control" id="txtBillingPostalCode" name="txtBillingPostalCode" ng-model="vm.WrapperModel.Billing.PostalCode" placeholder="Postal Code" title="Postal Code">
+                            <p ng-show="dnaForm.billingCountryDrp.$invalid && !dnaForm.billingCountryDrp.$pristine" class="help-block">Postal Code is required.</p>
                         </div>
-                        <div>
+                        @*Phone*@
+                        <div ng-class="{'has-error' : dnaForm.lblBillingPhone.$invalid && !dnaForm.lblBillingPhone.$pristine}">
                             <label class="control-label" for="lblPhone">Phone</label>
-                            <input type="text" class="form-control" id="lblPhone" name="lblPhone" ng-model="vm.WrapperModel.Billing.BillingPhone" placeholder="Billing Phone" title="Billing Phone">
+                            <input type="text" class="form-control" id="lblPhone" name="lblBillingPhone" ng-model="vm.WrapperModel.Billing.BillingPhone" placeholder="Billing Phone" title="Billing Phone">
                         </div>
-                        <div>
+                        @*Extention*@
+                        <div ng-class="{'has-error' : dnaForm.txtShippingInstitution.$invalid && !dnaForm.txtShippingInstitution.$pristine}">
                             <label class="control-label" for="lblPhone">Extention</label>
                             <input type="text" class="form-control" id="txtExtention" name="txtExtention" ng-model="vm.WrapperModel.Billing.Extention" placeholder="Extention" title="Extention">
                         </div>
+                        @*Billing Email*@
                         <div>
                             <label class="control-label" for="billingEmail">Billing Email</label>
 

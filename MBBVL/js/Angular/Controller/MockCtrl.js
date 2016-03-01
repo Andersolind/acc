@@ -4,9 +4,7 @@
     var vm = this;
     vm.isBilling = false;
 
-    vm.options = [{ name: "a", id: 1 }, { name: "b", id: 2 }];
- 
-    vm.itemSelectedShipping = 4;
+  
     setupInitialRows();
     //Create a new row
     vm.AddOligonucleotideRow = function () {
@@ -17,11 +15,13 @@
     vm.isBillingTheSame = function (isClicked) {
 
         if (isClicked) {
-
+            //vm.WrapperModel.Billing = vm.WrapperModel.Shipping;
             vm.WrapperModel.Shipping.FirstName = vm.WrapperModel.Billing.FirstName;
             vm.WrapperModel.Shipping.LastName = vm.WrapperModel.Billing.LastName;
             vm.WrapperModel.Shipping.Institution = vm.WrapperModel.Billing.Institution;
-            vm.selectedOption = vm.options[1];
+
+            vm.selectedValue = vm.itemSelectedBilling;
+
             vm.selectedItemvalue = vm.WrapperModel.Billing.Country;
             vm.WrapperModel.Shipping.ShippingAddress = vm.WrapperModel.Billing.BillingAddress;
             vm.WrapperModel.Shipping.PostalCode = vm.WrapperModel.Billing.PostalCode;
@@ -31,15 +31,17 @@
         }
     }
 
-    vm.changedValuesBilling = function (value) {
-        vm.WrapperModel.Billing.Country = value;
-    }
-    vm.changedValuesShipping = function (value) {
-        vm.WrapperModel.Shipping.Country = value;
-    }
+    //vm.changedValuesBilling = function (value) {
+    //    vm.WrapperModel.Billing.Country = value;
+    //}
+    //vm.changedValuesShipping = function (value) {
+    //    vm.WrapperModel.Shipping.Country = value;
+    //}
 
 
     function setupInitialRows() {
+        vm.selectedValue = null;
+        vm.itemSelectedBilling = null;
         //Create a blank object for binding later
         vm.WrapperModel = {
             Billing: {},
@@ -64,7 +66,7 @@
         vm.finalDeliveryForm = [{ name: 'Liquid', value: 'Liquid-H2O' }, { name: 'Dry', value: 'Dry-Lyophilised' }];
         vm.OligonucleotideRow = [{ OglioNumber: "", Qty: "", OligonucleotideSequence: '', Five5Modifications: vm.fiveModifications, InternalModification: vm.threeModifications, ThreeModifications: vm.threeModifications, SynthesisScale1: vm.synthesisScale1Values, SynthesisScaleValue: "", Modification: "", ModificationValue: "", FinalDeliveryForm: vm.finalDeliveryForm, FinalDeliveryFormValue: "", Purification: vm.purification, PurificationValue: "", GMP3: vm.gmp3, GmpValue: "", Price: "" }];
         vm.countriesList = GenericHelpers.country_list();
-        vm.selectedItemvalue = vm.countriesList[2];
+       
         //vm.itemSelected = vm.countriesList[5];
      
     }

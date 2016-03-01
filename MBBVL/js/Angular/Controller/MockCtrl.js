@@ -3,6 +3,10 @@
     //
     var vm = this;
     vm.isBilling = false;
+
+    vm.options = [{ name: "a", id: 1 }, { name: "b", id: 2 }];
+ 
+    vm.itemSelectedShipping = 0;
     setupInitialRows();
     //Create a new row
     vm.AddOligonucleotideRow = function () {
@@ -10,14 +14,15 @@
         vm.OligonucleotideRow.push(GenericHelpers.oligonucleotideRow(vm.synthesisScale1Values, vm.purification, $scope.finalDeliveryForm, $scope.gmp3));
     };
 
-    vm.isBillingTheSame = function (value) {
+    vm.isBillingTheSame = function (isClicked) {
 
-        if (value) {
+        if (isClicked) {
 
             vm.WrapperModel.Shipping.FirstName = vm.WrapperModel.Billing.FirstName;
             vm.WrapperModel.Shipping.LastName = vm.WrapperModel.Billing.LastName;
             vm.WrapperModel.Shipping.Institution = vm.WrapperModel.Billing.Institution;
-            vm.WrapperModel.Shipping.Country = vm.WrapperModel.Billing.Country[2];
+          //  vm.selectedOption = vm.options[0];
+            vm.itemSelected = vm.countriesList[vm.WrapperModel.Billing.Country];
             vm.WrapperModel.Shipping.ShippingAddress = vm.WrapperModel.Billing.BillingAddress;
             vm.WrapperModel.Shipping.PostalCode = vm.WrapperModel.Billing.PostalCode;
             vm.WrapperModel.Shipping.Phone = vm.WrapperModel.Billing.BillingPhone;
@@ -59,7 +64,9 @@
         vm.finalDeliveryForm = [{ name: 'Liquid', value: 'Liquid-H2O' }, { name: 'Dry', value: 'Dry-Lyophilised' }];
         vm.OligonucleotideRow = [{ OglioNumber: "", Qty: "", OligonucleotideSequence: '', Five5Modifications: vm.fiveModifications, InternalModification: vm.threeModifications, ThreeModifications: vm.threeModifications, SynthesisScale1: vm.synthesisScale1Values, SynthesisScaleValue: "", Modification: "", ModificationValue: "", FinalDeliveryForm: vm.finalDeliveryForm, FinalDeliveryFormValue: "", Purification: vm.purification, PurificationValue: "", GMP3: vm.gmp3, GmpValue: "", Price: "" }];
         vm.countriesList = GenericHelpers.country_list();
-        //    vm.OligonucleotideRow = [{ PrimerName: "", Qty: "", OligonucleotideSequence: '', SynthesisScale1: $scope.synthesisScale1Values, SynthesisScaleValue: "", Modification: "", ModificationValue: "", FinalDeliveryForm: $scope.finalDeliveryForm, FinalDeliveryFormValue: "", Purification: $scope.purification, PurificationValue: "", GMP3: $scope.gmp3, GmpValue: "", Price: "" }];
+
+        vm.itemSelectedShipping = vm.countriesList[1];
+     
     }
 
 

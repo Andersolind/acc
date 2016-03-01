@@ -65,8 +65,10 @@
                         </div>
                         <div>
                             <label class="control-label">Country</label>
-                            <select ng-model="vm.Wrapper.Billing.BillingCountry" ng-change="vm.changedValuesBilling(vm.Wrapper.Billing.BillingCountry)"
-                                    class="form-control" data-ng-options="act.name for act in vm.countriesList"></select>
+                            <select id="accountselector" ng-model="vm.itemSelectedBilling" ng-change="vm.changedValuesBilling(vm.itemSelectedBilling)" style="width: 100%;">
+                                <option value="0">--- Select an option ---</option>
+                                <option data-ng-repeat="(key, value) in vm.countriesList" value="{{key}}">{{value.name}}</option>
+                            </select>
                         </div>
                         <div>
                             <label class="control-label" for="txtBillAddress">Address</label>
@@ -137,8 +139,15 @@
                         </div>
                         <div>
                             <label class="control-label">Country</label>
-                            <select data-ng-model="vm.WrapperModel.Shipping.Country" ng-change="vm.changedValuesBilling(vm.Wrapper.Shipping.ShippingCountry)"
-                                    class="form-control" data-ng-options="act.name for act in vm.countriesList"></select>
+                            <select id="accountselector" ng-model="vm.itemSelectedShipping" ng-change="vm.changedValuesShipping(vm.itemSelectedShipping)" style="width: 100%;">
+                                <option value="0">--- Select an option ---</option>
+                                <option data-ng-repeat="(key, value) in vm.countriesList" value="{{key}}">{{value.name}}</option>
+                            </select>
+                            <select data-ng-options="o.name for o in vm.options" data-ng-model="vm.selectedOption"></select>
+                            @*<select data-ng-model="vm.SelectedValue" ng-change="vm.changedValuesBilling($index)"
+                                    class="form-control" ng-options="k.value as v for (k,v) in vm.countriesList "></select>*@
+                            <select ng-model="vm.selectedValue" ng-change="vm.changedValuesShipping(country.name = $index)" ng-options='country.name.indexOf(country.name) as country.name for country in vm.countriesList'></select>
+
                         </div>
                         <div>
                             <label class="control-label" for="txtShippingAddress">Address</label>
@@ -190,8 +199,10 @@
         </div>
         <div>
             <label class="control-label">Country</label>
-            <select data-ng-model="BillingCountry"
-                    class="form-control" data-ng-options="act.name for act in countriesList"></select>
+            <select id="accountselector" ng-model="vm.itemSelected" ng-change="vm.changedValuesShipping(vm.itemSelected)" style="width: 100%;">
+                <option value="0">--- Select an option ---</option>
+                <option data-ng-repeat="(key, value) in vm.countriesList" value="{{key}}">{{value.name}}</option>
+            </select>
         </div>
         <div>
             <label class="control-label" for="txtBillAddress">Address</label>

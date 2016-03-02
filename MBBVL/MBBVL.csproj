@@ -280,6 +280,7 @@
     <Content Include="js\Angular\Controller\PickUpCtrl.js" />
     <Content Include="js\Angular\Controller\PriceListCtrl.js" />
     <Content Include="js\Angular\Fac\factory.js" />
+    <Content Include="js\Angular\Service\acgtPrices.js" />
     <Content Include="js\Angular\Service\acgtService.js" />
     <Content Include="js\Angular\TypeaHead\bloodhound.js" />
     <Content Include="js\Angular\TypeaHead\type.js" />

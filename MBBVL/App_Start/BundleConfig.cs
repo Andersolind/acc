@@ -25,6 +25,7 @@ namespace MBBVL {
                        "~/js/ui-bootstrap-tpls-0.11.2.min.js",
                       "~/js/angular/app.js",
                        "~/js/angular/Service/acgtService.js",
+                        "~/js/angular/Service/acgtPrices.js",
                        "~/js/angular/Fac/factory.js",
                        "~/js/angular/Controller/OrderSequencingctrl.js",
                        "~/js/angular/Controller/OrderOgliCtrl.js",

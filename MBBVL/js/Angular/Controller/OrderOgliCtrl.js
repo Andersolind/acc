@@ -27,8 +27,6 @@
             if (qty != "" && sequence != "" && typeof synthesisscale != 'undefined' && typeof purification != 'undefined') {
                 var getNumber;
 
-
-
                 getNumber = qty * newOglio.length * ConvertSynsithisScale(synthesisscale) + ConvertPurification(purification);
                 $scope.OligonucleotideRow[index].OligonucleotideSequenceValue = newOglio;
                 $scope.OligonucleotideRow[index].Price = getNumber;

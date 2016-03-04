@@ -308,6 +308,7 @@
                         <thead class="ogliHeader">
                             <tr>
                                 <th width="100px;">Oligo<br /> Number</th>
+                                <th>QTY</th>
                                 <th>Oligio Name <br /> Max 25 Characters)</th>
                                 <th>SCALE OF SYNTHESIS <a href="">?</a></th>
                                 <th>PURIFICATION METHOD </th>
@@ -321,27 +322,33 @@
                         </thead>
                         <tbody>
                             <tr>
+
                                 @*<th>Oligo Number</th>*@
                                 <td>
                                     <input type="text" style="width:25%;" id="txtOligoNumber" name="OligoNumber" ng-model="rows.OglioNumber" disabled="disabled" title="OligoNumber" required>
                                 </td>
+                                @*<th>QTY</th>*@
+                                <td>
+                                    <input type="text" style="width:50px;" class="form-control" ng-change="vm.UserQuote($index,rows.Qty,rows.OligonucleotideSequence,scaleValues1,Purification2)" id="txtQty" name="txtQty" ng-model="rows.Qty" placeholder="Qty" title="Qty">
+
+                                </td>
                                 @*<th>Oligio Name <br /> Max 25 Characters)</th>*@
                                 <td>
-                                    <input type="text" class="form-control" id="txtPrimerName" name="PrimerName" ng-model="rows.PrimerName" placeholder="Enter Primer Name" title="Primer Name" required>
+                                    <input type="text" class="form-control" maxlength="25" id="txtPrimerName" name="PrimerName" ng-model="rows.PrimerName" placeholder="Enter Primer Name" title="Primer Name" required>
                                     <span ng-show="dnaForm.PrimerName.$dirty && dnaForm.PrimerName.$invalid">  </span>
                                     <span style="color:red" ng-show="dnaForm.PrimerName.$error.required">Primer Name is required.</span>
                                 </td>
                                 @*<th>SCALE OF SYNTHESIS <a href="">?</a></th>*@
                                 <td>
-                                    <select id="scaleValues1" class="form-control" name="scaleValues1" ng-change="keyPressSynthesisScale1Values($index,scaleValues1) ; UserQuote($index,rows.Qty,rows.OligonucleotideSequence,scaleValues1,Purification2,olgGmp) " ng-model="scaleValues1" ng-options="findScale.name as findScale.value for findScale in rows.SynthesisScale1"></select>
+                                    <select id="scaleValues1" class="form-control" name="scaleValues1" ng-change="vm.keyPressSynthesisScale1Values($index,scaleValues1) ; vm.UserQuote($index,rows.Qty,rows.OligonucleotideSequence,scaleValues1,Purification2)" ng-model="scaleValues1" ng-options="findScale.name as findScale.value for findScale in rows.SynthesisScale1"><option value="">--- Select an option ---</option></select>
                                 </td>
                                 @*<th>PURIFICATION METHOD </th>*@
                                 <td>
-                                    <select id="ddlPurification" class="form-control" name="ddlPurification" ng-change="keyPressPurification($index,Purification2);UserQuote($index,rows.Qty,rows.OligonucleotideSequence,scaleValues1,Purification2,olgGmp)" ng-model="Purification2" ng-options="user.value as user.name for user in rows.Purification"></select>
+                                    <select id="ddlPurification" class="form-control" name="ddlPurification" ng-change="vm.keyPressPurification($index,Purification2);vm.UserQuote($index,rows.Qty,rows.OligonucleotideSequence,scaleValues1,Purification2)" ng-model="Purification2" ng-options="user.value as user.name for user in rows.Purification"><option value="">--- Select an option ---</option></select>
                                 </td>
                                 @*<th>5’MODIFICATION </th>*@
                                 <td>
-                                    <select>
+                                    <select class="form-control">
                                         <optgroup ng-repeat="header in rows.Five5Modifications" label="{{ header.name }}">
 
                                             <option ng-repeat="item in header.items" value="{{ item.value }}">{{ item.name }}</option>
@@ -350,28 +357,28 @@
                                 </td>
                                 @*<th>INTERNAL MODIFICATION </th>*@
                                 <td>
-                                    <select>
+                                    <select class="form-control">
                                         <optgroup ng-repeat="header in rows.InternalModification" label="{{ header.name }}">
-
+                                            <option value="">--- Select an option ---</option>
                                             <option ng-repeat="item in header.items" value="{{ item.value }}">{{ item.name }}</option>
                                         </optgroup>
                                     </select>
                                 </td>
                                 @*<th>OLIGO SEQUENCE <br />(5’ – 3’)<a href="">?</a></th>*@
                                 <td>
-                                    <textarea ng-change="UserQuote($index,rows.Qty,rows.OligonucleotideSequence,scaleValues1,Purification2,olgGmp)" class="form-control" id="txtOligonucleotideSequence" name="OligonucleotideSequence" ng-model="rows.OligonucleotideSequence" placeholder="Oligonucleotide Sequence" title="Oligonucleotide Sequence"></textarea>
+                                    <textarea ng-change="vm.UserQuote($index,rows.Qty,rows.OligonucleotideSequence,scaleValues1,Purification2)" class="form-control" id="txtOligonucleotideSequence" name="OligonucleotideSequence" ng-model="rows.OligonucleotideSequence" placeholder="Oligonucleotide Sequence" title="Oligonucleotide Sequence"></textarea>
 </td>
                                 @*<th>3’MODIFICATION</th>*@
                                 <td>
-                                    <select>
+                                    <select class="form-control">
                                         <optgroup ng-repeat="header in rows.ThreeModifications" label="{{ header.name }}">
-
+                                            <option value="">--- Select an option ---</option>
                                             <option ng-repeat="item in header.items" value="{{ item.value }}">{{ item.name }}</option>
                                         </optgroup>
                                     </select>
                                 </td>
                                 <td>
-                                    <select id="finalDeliveryForm" class="form-control" ng-change="keyPressFinalDeliveryForm($index,finalDeliveryForm2)" name="finalDeliveryForm" ng-model="finalDeliveryForm2" ng-options="deliveryForm.name as deliveryForm.value for deliveryForm in rows.FinalDeliveryForm"></select>
+                                    <select id="finalDeliveryForm" class="form-control" ng-change="keyPressFinalDeliveryForm($index,finalDeliveryForm2)" name="finalDeliveryForm" ng-model="finalDeliveryForm2" ng-options="deliveryForm.name as deliveryForm.value for deliveryForm in rows.FinalDeliveryForm"><option value="">--- Select an option ---</option></select>
                                 </td>
                                
                                 @*Extra info*@
@@ -383,7 +390,7 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td>EST.ITEM PRICE <label type="text" class="form-control" id="txtPrice" name="price" ng-model="rows.Price"  placeholder="Price" title="Price">111.00</label></td>
+                                <td>EST.ITEM PRICE <label type="text" class="form-control" id="txtPrice" name="price" ng-model="rows.Price"  placeholder="Price" title="Price" >{{rows.Price}}</label></td>
                                 <td colspan="2">
                                     <div class="col-lg-12">
                                         <button class="btn btn-warning">Add to Cart</button>

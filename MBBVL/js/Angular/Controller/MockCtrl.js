@@ -34,16 +34,23 @@
         }
     }
 
-    
+
     //(QTY * [(Sequence) * (synthesis scale ) + (Purification)]
-    vm.UserQuote = function(index, qty, sequence, synthesisscale, purification, gmp) {
+    vm.UserQuote = function (index, qty, sequence, synthesisscale, purification) {
         //If this null
-        //1.Get the Purification ,synthesisscale nad calculate the formula also need the length of the sequence
+        //1.Get the Purification ,synthesisscale and calculate the formula also need the length of the sequence
         var newOglio = sequence.replace(/ /g, '');
 
-        if (purification != "" && typeof synthesisscale != 'undefined' && sequence != "") {
-          //
-            var getNumber = qty * newOglio.length * acgtPrices.convertPurification(purification) + acgtPrices.convertSynsithisScale(synthesisscale);
+        if (qty != "" && sequence != "" && typeof synthesisscale != 'undefined' && typeof purification != 'undefined') {
+            // //(QTY * [(Sequence) * (synthesis scale ) + (Purification)]
+            var getPrice = acgtPrices.calculatePrices(purification, synthesisscale);
+            if (getPrice == "N/A") {
+                vm.NewOligonucleotideRow[index].Price = 'Not Valid';
+            }
+            else {
+                vm.NewOligonucleotideRow[index].Price = qty * (newOglio.length * getPrice);
+            }
+           // var getNumber = qty * newOglio.length * acgtPrices.convertPurification(purification) + acgtPrices.convertSynsithisScale(synthesisscale);
         } else {
             vm.NewOligonucleotideRow[index].Price = 'Not Valid';
         }
@@ -71,7 +78,7 @@
         vm.purification = [{ name: 'Desalted', value: 'Desalted' }, { name: 'Cartridge', value: 'Cartridge' }, { name: 'HPLC', value: 'HPLC' }, { name: 'PAGE', value: 'PAGE' }];
 
         vm.finalDeliveryForm = [{ name: 'Liquid', value: 'Liquid-H2O' }, { name: 'Dry', value: 'Dry-Lyophilised' }];
-        vm.NewOligonucleotideRow = [{ OglioNumber: vm.oligoNumber, Qty: "", OligonucleotideSequence: '', Five5Modifications: vm.fiveModifications, InternalModification: vm.threeModifications, ThreeModifications: vm.threeModifications, SynthesisScale1: vm.synthesisScale1Values, SynthesisScaleValue: "", Modification: "", ModificationValue: "", FinalDeliveryForm: vm.finalDeliveryForm, FinalDeliveryFormValue: "", Purification: vm.purification, PurificationValue: "", GMP3: vm.gmp3, GmpValue: "", Price: "" }];
+        vm.NewOligonucleotideRow = [{ OglioNumber: vm.oligoNumber, Qty: "", OligonucleotideSequence: '', Five5Modifications: vm.fiveModifications, InternalModification: vm.threeModifications, ThreeModifications: vm.threeModifications, SynthesisScale1: vm.synthesisScale1Values, SynthesisScaleValue: "", Modification: "", ModificationValue: "", FinalDeliveryForm: vm.finalDeliveryForm, FinalDeliveryFormValue: "", Purification: vm.purification, PurificationValue: "", GMP3: vm.gmp3, GmpValue: "", Price: 'N/A' }];
         vm.countriesList = GenericHelpers.country_list();
 
         //vm.itemSelected = vm.countriesList[5];

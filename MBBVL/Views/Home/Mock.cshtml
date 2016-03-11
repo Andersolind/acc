@@ -43,88 +43,9 @@
     <h2>Oligonucleotide Order Form</h2>
     <form name="dnaForm" ng-app="acgt" class="form-horizontal pushFooter" novalidate>
         <div class="row">
-            @*Billing*@
-            <div class="col-lg-6">
-                <div class="panel panel-primary " style="width:50%">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Billing Information</h3>
-                        <a style="color: white; text-decoration: underline;" href="#" data-toggle="modal" data-target="#OligonucleotideForms"> For Oligonucleotide printable forms Click Here</a>
-                    </div>
-                    <div class="panel-body">
-                        @*First Name*@
-                        <div ng-class="{'has-error' : dnaForm.txtBillingFirstName.$invalid && !dnaForm.txtBillingFirstName.$pristine}">
-                            <label class="control-label" for="txtFirstName">First Name</label>
-                            <input type="text" class="form-control" id="txtBillingFirstName" name="txtBillingFirstName" ng-model="vm.WrapperModel.Billing.FirstName" placeholder="First Name" title="First Name" required>
-                            <p ng-show="dnaForm.txtBillingFirstName.$invalid && !dnaForm.txtBillingFirstName.$pristine" class="help-block">Your First name is required.</p>
-                        </div>
-                        @*Last Name*@
-                        <div ng-class="{'has-error' : dnaForm.txtBillingLastName.$invalid && !dnaForm.txtBillingLastName.$pristine}">
-                            <label class="control-label" for="txtBillingLastName">Last Name</label>
-                            <input type="text" class="form-control" id="txtBillingLastName" name="txtBillingLastName" ng-model="vm.WrapperModel.Billing.LastName" placeholder="Last Name" title="Last Name" required>
-                            <p ng-show="dnaForm.txtBillingLastName.$invalid && !dnaForm.txtBillingLastName.$pristine" class="help-block">Your  Last name is required.</p>
-                        </div>
-                        @*Institution*@
-                        <div ng-class="{'has-error' : dnaForm.txtBillingInstitution.$invalid && !dnaForm.txtBillingInstitution.$pristine}">
-                            <label class="control-label" for="txtBillingInstitution">Institution / Company Name</label>
-                            <input type="text" class="form-control" id="txtBillingInstitution" name="txtBillingInstitution" ng-model="vm.WrapperModel.Billing.Institution" placeholder="Institution" title="Institution" required>
-                            <p ng-show="dnaForm.txtBillingInstitution.$invalid && !dnaForm.txtBillingInstitution.$pristine" class="help-block">Institution / Company Name is required.</p>
-                        </div>
-
-                        @*Country*@
-                        <div ng-class="{'has-error' : dnaForm.billingCountryDrp.$invalid && !dnaForm.billingCountryDrp.$pristine}">
-                            <label class="control-label">Country</label>
-
-                            <select id="accountselector" name="billingCountryDrp" ng-model="vm.WrapperModel.Billing.Country" class="form-control" style="width: 100%;" required>
-                                <option value="">--- Select an option ---</option>
-                                <option data-ng-repeat="(key, value) in vm.countriesList" value="{{key}}">{{value.name}}</option>
-                            </select>
-                            <p ng-show="dnaForm.billingCountryDrp.$invalid && !dnaForm.billingCountryDrp.$pristine" class="help-block">Country is required.</p>
-                        </div>
-                        @*Address*@
-                        <div ng-class="{'has-error' : dnaForm.txtBillAddress.$invalid && !dnaForm.txtBillAddress.$pristine}">
-                            <label class="control-label" for="txtBillAddress">Address</label>
-                            <input type="text" class="form-control" id="txtBillAddress" name="txtBillAddress" ng-model="vm.WrapperModel.Billing.BillingAddress" placeholder="Billing Address" title="Billing Institution" required>
-                            <p ng-show="dnaForm.txtBillAddress.$invalid && !dnaForm.txtBillAddress.$pristine" class="help-block">Country is required.</p>
-                        </div>
-                        @*Postal Code*@
-                        <div ng-class="{'has-error' : dnaForm.txtBillingPostalCode.$invalid && !dnaForm.txtBillingPostalCode.$pristine}">
-                            <label class="control-label" for="txtBillingPostalCode">Postal Code</label>
-                            <input type="text" class="form-control" id="txtBillingPostalCode" name="txtBillingPostalCode" ng-model="vm.WrapperModel.Billing.PostalCode" placeholder="Postal Code" title="Postal Code" required>
-                            <p ng-show="dnaForm.txtBillingPostalCode.$invalid && !dnaForm.txtBillingPostalCode.$pristine" class="help-block">Postal Code is required.</p>
-                        </div>
-                        @*Phone*@
-                        <div ng-class="{'has-error' : dnaForm.lblBillingPhone.$invalid && !dnaForm.lblBillingPhone.$pristine}">
-                            <label class="control-label" for="lblPhone">Phone</label>
-                            <input type="text" class="form-control" id="lblPhone" name="lblBillingPhone" ng-model="vm.WrapperModel.Billing.BillingPhone" placeholder="Billing Phone" title="Billing Phone" required>
-                            <p ng-show="dnaForm.billingCountryDrp.$invalid && !dnaForm.billingCountryDrp.$pristine" class="help-block">Billing Phone is required.</p>
-                        </div>
-                        @*Extention*@
-                        <div ng-class="{'has-error' : dnaForm.txtBillingExtention.$invalid && !dnaForm.txtBillingExtention.$pristine}">
-                            <label class="control-label" for="lblPhone">Extention</label>
-                            <input type="text" class="form-control" id="txtExtention" name="txtExtention" ng-model="vm.WrapperModel.Billing.Extention" placeholder="Extention" title="Extention" required>
-                            <p ng-show="dnaForm.txtBillingExtention.$invalid && !dnaForm.txtBillingExtention.$pristine" class="help-block">Extention is required.</p>
-                        </div>
-                        @*Billing Email*@
-                        <div>
-                            <label class="control-label" for="billingEmail">Billing Email</label>
-
-                            <input type="email" class="form-control" id="billingEmail" name="txtBillingEmail" ng-model="vm.WrapperModel.Billing.Email" required placeholder="Billing Email" title="Billing Email">
-                            <span ng-show="dnaForm.billingEmail.$dirty && dnaForm.txtBillingEmail.$invalid"></span>
-
-                            <div ng-if="dnaForm.txtBillingEmail.$error.required" class="help-block">
-                                Mandatory
-                            </div>
-                            <div style="color:red" ng-if="!dnaForm.txtBillingEmail.$error.required  && dnaForm.txtBillingEmail.$error.email" class="error">
-                                Please fill out a correct email address
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
             @*Shipping*@
             <div class="col-lg-6">
-                <div class="panel panel-primary " style="width:50%">
+                <div class="panel panel-primary">
                     <div class="panel-heading">
                         <h3 class="panel-title">Shipping Information</h3>
                         <div class="row">
@@ -139,26 +60,26 @@
                     @*//Billing form*@
                     <div class="panel-body">
                         @*First Name*@
-                        <div ng-class="{'has-error' : dnaForm.txtShippingFirstName.$invalid && !dnaForm.txtShippingFirstName.$pristine}">
+                        <div class="form-group col-md-6" ng-class="{'has-error' : dnaForm.txtShippingFirstName.$invalid && !dnaForm.txtShippingFirstName.$pristine}">
                             <label class="control-label" for="txtShippingFirstName">First Name</label>
                             <input type="text" class="form-control" id="txtShippingFirstName" name="txtShippingFirstName" ng-model="vm.WrapperModel.Shipping.FirstName" placeholder="First Name" title="First Name" required>
                             <p ng-show="dnaForm.txtShippingFirstName.$invalid && !dnaForm.txtShippingFirstName.$pristine" class="help-block">Your First name is required.</p>
                         </div>
                         @*Last Name*@
-                        <div ng-class="{'has-error' : dnaForm.txtShippingLastName.$invalid && !dnaForm.txtShippingLastName.$pristine}">
+                        <div class="form-group col-md-6" ng-class="{'has-error' : dnaForm.txtShippingLastName.$invalid && !dnaForm.txtShippingLastName.$pristine}">
                             <label class="control-label" for="txtBillingLastName">Last Name</label>
                             <input type="text" class="form-control" id="txtShippingLastName" name="txtShippingLastName" ng-model="vm.WrapperModel.Shipping.LastName" placeholder="Last Name" title="Last Name" required>
                             <p ng-show="dnaForm.txtShippingLastName.$invalid && !dnaForm.txtShippingLastName.$pristine" class="help-block">Your Last name is required.</p>
                         </div>
                         @*Institution*@
-                        <div ng-class="{'has-error' : dnaForm.txtShippingInstitution.$invalid && !dnaForm.txtShippingInstitution.$pristine}">
+                        <div class="form-group col-md-6" ng-class="{'has-error' : dnaForm.txtShippingInstitution.$invalid && !dnaForm.txtShippingInstitution.$pristine}">
                             <label class="control-label" for="txtShippingInstitution">Institution / Company Name</label>
                             <input type="text" class="form-control" id="txtShippingInstitution" name="txtShippingInstitution" ng-model="vm.WrapperModel.Shipping.Institution" placeholder="Institution" title="Institution" required>
                             <p ng-show="dnaForm.txtShippingInstitution.$invalid && !dnaForm.txtShippingInstitution.$pristine" class="help-block">Institution / Company Name is required.</p>
                         </div>
 
                         @*Country*@
-                        <div ng-class="{'has-error' : dnaForm.ShippingCountryDrp.$invalid && !dnaForm.ShippingCountryDrp.$pristine}">
+                        <div class="form-group col-md-6" ng-class="{'has-error' : dnaForm.ShippingCountryDrp.$invalid && !dnaForm.ShippingCountryDrp.$pristine}">
                             <label class="control-label">Country</label>
 
                             <select id="accountselector" name="shippingCountryDrp" ng-model="vm.WrapperModel.Shipping.Country" class="form-control" style="width: 100%;" required>
@@ -168,39 +89,122 @@
                             <p ng-show="dnaForm.ShippingCountryDrp.$invalid && !dnaForm.ShippingCountryDrp.$pristine" class="help-block">Country is required.</p>
                         </div>
                         @*Address*@
-                        <div ng-class="{'has-error' : dnaForm.txtShippingAddress.$invalid && !dnaForm.txtShippingAddress.$pristine}">
+                        <div class="form-group col-md-6" ng-class="{'has-error' : dnaForm.txtShippingAddress.$invalid && !dnaForm.txtShippingAddress.$pristine}">
                             <label class="control-label" for="txtShippingAddress">Address</label>
-                            <input type="text" class="form-control" id="txtShippingAddress" name="txtShippingAddress" ng-model="vm.WrapperModel.txtShippingAddress.BillingAddress" placeholder="Billing Address" title="Billing Institution" required>
+                            <input type="text" class="form-control" id="txtShippingAddress" name="txtShippingAddress" ng-model="vm.WrapperModel.Shipping.Address" placeholder="Billing Address" title="Billing Institution" required>
                             <p ng-show="dnaForm.txtShippingAddress.$invalid && !dnaForm.txtShippingAddress.$pristine" class="help-block">Country is required.</p>
                         </div>
                         @*Postal Code*@
-                        <div ng-class="{'has-error' : dnaForm.txtShippingAddressPostalCode.$invalid && !dnaForm.txtShippingAddressPostalCode.$pristine}">
+                        <div class="form-group col-md-6" ng-class="{'has-error' : dnaForm.txtShippingAddressPostalCode.$invalid && !dnaForm.txtShippingAddressPostalCode.$pristine}">
                             <label class="control-label" for="txtShippingAddressPostalCode">Postal Code</label>
-                            <input type="text" class="form-control" id="txtShippingAddressPostalCode" name="txtShippingAddressPostalCode" ng-model="vm.WrapperModel.Billing.PostalCode" placeholder="Postal Code" title="Postal Code" required>
+                            <input type="text" class="form-control" id="txtShippingAddressPostalCode" name="txtShippingAddressPostalCode" ng-model="vm.WrapperModel.Shipping.PostalCode" placeholder="Postal Code" title="Postal Code" required>
                             <p ng-show="dnaForm.txtShippingAddressPostalCode.$invalid && !dnaForm.txtShippingAddressPostalCode.$pristine" class="help-block">Postal Code is required.</p>
                         </div>
                         @*Phone*@
-                        <div ng-class="{'has-error' : dnaForm.txtShippingPhone.$invalid && !dnaForm.txtShippingPhone.$pristine}">
+                        <div class="form-group col-md-6" ng-class="{'has-error' : dnaForm.txtShippingPhone.$invalid && !dnaForm.txtShippingPhone.$pristine}">
                             <label class="control-label" for="lblPhone">Phone</label>
-                            <input type="text" class="form-control" id="lblPhone" name="txtShippingPhone" ng-model="vm.WrapperModel.Billing.BillingPhone" placeholder="Billing Phone" title="Billing Phone" required>
-                            <p ng-show="dnaForm.txtShippingPhone.$invalid && !dnaForm.txtShippingPhone.$pristine" class="help-block">Billing Phone is required.</p>
+                            <input type="text" class="form-control" id="lblPhone" name="txtShippingPhone" ng-model="vm.WrapperModel.Shipping.Phone" placeholder="Shipping Phone" title="Shipping Phone" required>
+                            <p ng-show="dnaForm.txtShippingPhone.$invalid && !dnaForm.txtShippingPhone.$pristine" class="help-block">Shipping Phone is required.</p>
                         </div>
                         @*Extention*@
-                        <div ng-class="{'has-error' : dnaForm.txtShippingExtention.$invalid && !dnaForm.txtShippingExtention.$pristine}">
+                        <div class="form-group col-md-6" ng-class="{'has-error' : dnaForm.txtShippingExtention.$invalid && !dnaForm.txtShippingExtention.$pristine}">
                             <label class="control-label" for="lblPhone">Extention</label>
-                            <input type="text" class="form-control" id="txtShippingExtention" name="txtShippingExtention" ng-model="vm.WrapperModel.Billing.Extention" placeholder="Extention" title="Extention" required>
+                            <input type="text" class="form-control" id="txtShippingExtention" name="txtShippingExtention" ng-model="vm.WrapperModel.Shipping.Extention" placeholder="Extention" title="Extention" required>
                             <p ng-show="dnaForm.txtShippingExtention.$invalid && !dnaForm.txtShippingExtention.$pristine" class="help-block">Extention is required.</p>
                         </div>
+                        @*Shiping Email*@
+                        <div class="form-group col-md-6">
+                            <label class="control-label" for="billingEmail">Shipping Email</label>
+
+                            <input type="email" class="form-control" id="txtShippingEmail" name="txtShippingEmail" ng-model="vm.WrapperModel.Billing.Email" required placeholder="Shipping Email" title="Shipping Email">
+                            <span ng-show="dnaForm.txtShippingEmail.$dirty && dnaForm.txtShippingEmail.$invalid"></span>
+
+                            <div style="color:red" ng-if="!dnaForm.txtShippingEmail.$error.required  && dnaForm.txtShippingEmail.$error.email" class="error">
+                                Please fill out a correct email address
+                            </div>
+
+                        </div>
+                        @*PO Number*@
+                        <div class="form-group col-md-6">
+                            <label class="control-label" for="shippingPO">PO Number</label>
+
+                            <input type="text" class="form-control" id="txtShippingPO" name="txtShippingPO" ng-model="vm.WrapperModel.Shipping.PO" required placeholder="PO Number" title="Po Number">
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @*Billing*@
+            <div class="col-lg-6">
+                <div class="panel panel-primary ">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Billing Information </h3>
+                        <p>Mandatory Information</p>
+                        <a style="color: white; text-decoration: underline;" href="#" data-toggle="modal" data-target="#OligonucleotideForms"> For Oligonucleotide printable forms Click Here</a>
+                    </div>
+                    <div class="panel-body">
+                        @*First Name*@
+                        <div class="form-group col-md-6" ng-class="{'has-error' : dnaForm.txtBillingFirstName.$invalid && !dnaForm.txtBillingFirstName.$pristine}">
+                            <label class="control-label" for="txtFirstName">First Name *</label>
+                            <input type="text" class="form-control" id="txtBillingFirstName" name="txtBillingFirstName" ng-model="vm.WrapperModel.Billing.FirstName" placeholder="First Name" title="First Name" required>
+                            <p ng-show="dnaForm.txtBillingFirstName.$invalid && !dnaForm.txtBillingFirstName.$pristine" class="help-block">Your First name is required.</p>
+                        </div>
+                        @*Last Name*@
+                        <div class="form-group col-md-6" ng-class="{'has-error' : dnaForm.txtBillingLastName.$invalid && !dnaForm.txtBillingLastName.$pristine}">
+                            <label class="control-label" for="txtBillingLastName">Last Name *</label>
+                            <input type="text" class="form-control" id="txtBillingLastName" name="txtBillingLastName" ng-model="vm.WrapperModel.Billing.LastName" placeholder="Last Name" title="Last Name" required>
+                            <p ng-show="dnaForm.txtBillingLastName.$invalid && !dnaForm.txtBillingLastName.$pristine" class="help-block">Your  Last name is required.</p>
+                        </div>
+                        @*Institution*@
+                        <div class="form-group col-md-6" ng-class="{'has-error' : dnaForm.txtBillingInstitution.$invalid && !dnaForm.txtBillingInstitution.$pristine}">
+                            <label class="control-label" for="txtBillingInstitution">Institution / Company Name</label>
+                            <input type="text" class="form-control" id="txtBillingInstitution" name="txtBillingInstitution" ng-model="vm.WrapperModel.Billing.Institution" placeholder="Institution" title="Institution" required>
+                            <p ng-show="dnaForm.txtBillingInstitution.$invalid && !dnaForm.txtBillingInstitution.$pristine" class="help-block">Institution / Company Name is required.</p>
+                        </div>
+
+                        @*Country*@
+                        <div class="form-group col-md-6" ng-class="{'has-error' : dnaForm.billingCountryDrp.$invalid && !dnaForm.billingCountryDrp.$pristine}">
+                            <label class="control-label">Country</label>
+
+                            <select id="accountselector" name="billingCountryDrp" ng-model="vm.WrapperModel.Billing.Country" class="form-control" style="width: 100%;" required>
+                                <option value="">--- Select an option ---</option>
+                                <option data-ng-repeat="(key, value) in vm.countriesList" value="{{key}}">{{value.name}}</option>
+                            </select>
+                            <p ng-show="dnaForm.billingCountryDrp.$invalid && !dnaForm.billingCountryDrp.$pristine" class="help-block">Country is required.</p>
+                        </div>
+                        @*Address*@
+                        <div class="form-group col-md-6" ng-class="{'has-error' : dnaForm.txtBillAddress.$invalid && !dnaForm.txtBillAddress.$pristine}">
+                            <label class="control-label" for="txtBillAddress">Address</label>
+                            <input type="text" class="form-control" id="txtBillAddress" name="txtBillAddress" ng-model="vm.WrapperModel.Billing.BillingAddress" placeholder="Billing Address" title="Billing Institution" required>
+                            <p ng-show="dnaForm.txtBillAddress.$invalid && !dnaForm.txtBillAddress.$pristine" class="help-block">Country is required.</p>
+                        </div>
+                        @*Postal Code*@
+                        <div class="form-group col-md-6" ng-class="{'has-error' : dnaForm.txtBillingPostalCode.$invalid && !dnaForm.txtBillingPostalCode.$pristine}">
+                            <label class="control-label" for="txtBillingPostalCode">Postal Code</label>
+                            <input type="text" class="form-control" id="txtBillingPostalCode" name="txtBillingPostalCode" ng-model="vm.WrapperModel.Billing.PostalCode" placeholder="Postal Code" title="Postal Code" required>
+                            <p ng-show="dnaForm.txtBillingPostalCode.$invalid && !dnaForm.txtBillingPostalCode.$pristine" class="help-block">Postal Code is required.</p>
+                        </div>
+                        @*Phone*@
+                        <div class="form-group col-md-6" ng-class="{'has-error' : dnaForm.lblBillingPhone.$invalid && !dnaForm.lblBillingPhone.$pristine}">
+                            <label class="control-label" for="lblPhone">Phone</label>
+                            <input type="text" class="form-control" id="lblPhone" name="lblBillingPhone" ng-model="vm.WrapperModel.Billing.BillingPhone" placeholder="Billing Phone" title="Billing Phone" required>
+                            <p ng-show="dnaForm.billingCountryDrp.$invalid && !dnaForm.billingCountryDrp.$pristine" class="help-block">Billing Phone is required.</p>
+                        </div>
+                        @*Extention*@
+                        <div class="form-group col-md-6" ng-class="{'has-error' : dnaForm.txtBillingExtention.$invalid && !dnaForm.txtBillingExtention.$pristine}">
+                            <label class="control-label" for="lblPhone">Extention</label>
+                            <input type="text" class="form-control" id="txtExtention" name="txtExtention" ng-model="vm.WrapperModel.Billing.Extention" placeholder="Extention" title="Extention" required>
+                            <p ng-show="dnaForm.txtBillingExtention.$invalid && !dnaForm.txtBillingExtention.$pristine" class="help-block">Extention is required.</p>
+                        </div>
                         @*Billing Email*@
-                        <div>
+                        <div class="form-group col-md-6">
                             <label class="control-label" for="billingEmail">Billing Email</label>
 
-                            <input type="email" class="form-control" id="txtShippingEmail" name="txtShippingEmail" ng-model="vm.WrapperModel.Billing.Email" required placeholder="Billing Email" title="Billing Email">
-                            <span ng-show="dnaForm.txtShippingEmail.$dirty && dnaForm.txtShippingEmail.$invalid"></span>
-                            <div ng-if="dnaForm.txtShippingEmail.$error.required" class="help-block">
-                                Mandatory
-                            </div>
-                            <div style="color:red" ng-if="!dnaForm.txtShippingEmail.$error.required  && dnaForm.txtShippingEmail.$error.email" class="error">
+                            <input type="email" class="form-control" id="billingEmail" name="txtBillingEmail" ng-model="vm.WrapperModel.Billing.Email" required placeholder="Billing Email" title="Billing Email">
+                            <span ng-show="dnaForm.billingEmail.$dirty && dnaForm.txtBillingEmail.$invalid"></span>
+
+                            <div style="color:red" ng-if="!dnaForm.txtBillingEmail.$error.required  && dnaForm.txtBillingEmail.$error.email" class="error">
                                 Please fill out a correct email address
                             </div>
 
@@ -209,82 +213,9 @@
                 </div>
             </div>
 
+
         </div>
-        @* Old Order form*@
-        @*<div class="panel panel-primary">
-            <div class="panel-heading">
-                <h3 class="panel-title"> Oligonucleotide Order Form</h3>
-            </div>
 
-            <div class="panel-body">
-                <fieldset>
-                    <legend> DNA Oligonucleotide Order Form</legend>
-                    <div class="col-lg-3">
-
-                        <div class="form-group row">
-                            <div class="col-lg-10">
-                                <button class="btn btn-default" ng-click="AddOligonucleotideRow()"><span class="glyphicon glyphicon-plus-sign"></span> Add Row</button>
-                            </div>
-                        </div>
-                    </div>
-                </fieldset>
-                <table class="panel-body ogliTableSpace" ng-repeat="rows in vm.OligonucleotideRow" ng-form='dnaForm'>
-                    <thead class="ogliHeader">
-                        <tr>
-                            <th>Primer name</th>
-                            <th>QTY</th>
-                            <th>Oligonucleotide Sequence <br> (5' -> 3')</th>
-                            <th>Synthesis Scale(μmole)</th>
-                            <th>GMP(Y/N)</th>
-                            <th>
-                                Modification <a style="color: blue; text-decoration: underline;" href="#" data-toggle="modal" data-target="#ModificationList"> List of Modifications</a>
-                            </th>
-                            <th>Final Delivery Form</th>
-                            <th>Purification</th>
-                            <th>Price</th>
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-
-                            <td>
-                                <input type="text" class="form-control" id="txtPrimerName" name="PrimerName" ng-model="rows.PrimerName" placeholder="Enter Primer Name" title="Primer Name" required>
-                                <span ng-show="dnaForm.PrimerName.$dirty && dnaForm.PrimerName.$invalid">  </span>
-                                <span style="color:red" ng-show="dnaForm.PrimerName.$error.required">Primer Name is required.</span>
-                            </td>
-                            <td>
-                                <input type="text" style="width:50px;" class="form-control" ng-change="UserQuote($index,rows.Qty,rows.OligonucleotideSequence,scaleValues1,Purification2,olgGmp)" id="txtQty" name="txtQty" ng-model="rows.Qty" placeholder="Qty" title="Qty">
-
-                            </td>
-                            <td>
-                                <input type="text" ng-change="UserQuote($index,rows.Qty,rows.OligonucleotideSequence,scaleValues1,Purification2,olgGmp)" class="form-control" id="txtOligonucleotideSequence" name="OligonucleotideSequence" ng-model="rows.OligonucleotideSequence" placeholder="Oligonucleotide Sequence" title="Oligonucleotide Sequence">
-
-                            </td>
-                            <td>
-                                <select id="scaleValues1" class="form-control" name="scaleValues1" ng-change="keyPressSynthesisScale1Values($index,scaleValues1) ; UserQuote($index,rows.Qty,rows.OligonucleotideSequence,scaleValues1,Purification2,olgGmp) " ng-model="scaleValues1" ng-options="findScale.name as findScale.value for findScale in rows.SynthesisScale1"></select>
-                            </td>
-                            <td>
-                                <select id="olgGmp" class="form-control" style="width:80px" name="olgGmp" ng-change="keyPressDnaGmp($index,olgGmp);UserQuote($index,rows.Qty,rows.OligonucleotideSequence,scaleValues1,Purification2,olgGmp)" ng-model="olgGmp" ng-options="user.value as user.name for user in rows.GMP3"></select>
-                            </td>
-                            <td>
-                                <input type="text" class="sfTypeahead form-control" name="txtModification" id="txtModification" ng-change="keyPressModification($index,rows.Modification);" options="exampleOptions" datasets="exampleData" ng-model="rows.Modification">
-                            </td>
-                            <td>
-                                <select id="finalDeliveryForm" class="form-control" ng-change="keyPressFinalDeliveryForm($index,finalDeliveryForm2)" name="finalDeliveryForm" ng-model="finalDeliveryForm2" ng-options="deliveryForm.name as deliveryForm.value for deliveryForm in rows.FinalDeliveryForm"></select>
-                            </td>
-                            <td>
-                                <select id="ddlPurification" class="form-control" name="ddlPurification" ng-change="keyPressPurification($index,Purification2);UserQuote($index,rows.Qty,rows.OligonucleotideSequence,scaleValues1,Purification2,olgGmp)" ng-model="Purification2" ng-options="user.value as user.name for user in rows.Purification"></select>
-                            </td>
-                            <td>
-                                <input type="text" class="form-control" id="txtPrice" name="price" ng-model="rows.Price" disabled placeholder="Price" title="Price">
-                            </td>
-
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>*@
         @*New Form*@
         <div class="panel panel-primary">
             <div class="panel-heading">
@@ -292,32 +223,22 @@
             </div>
 
             <div class="panel-body">
-                <fieldset>
-                    <legend> DNA Oligonucleotide Order Form</legend>
-                    <div class="col-lg-3">
-
-                        <div class="form-group row">
-                            <div class="col-lg-10">
-                                <button class="btn btn-default" ng-click="vm.OligonucleotideRow()"><span class="glyphicon glyphicon-plus-sign"></span> Add Row</button>
-                            </div>
-                        </div>
-                    </div>
-                </fieldset>
+                <fieldset></fieldset>
                 <div ng-repeat="rows in vm.NewOligonucleotideRow">
                     <table class="panel-body ogliTableSpace" ng-form='dnaForm'>
                         <thead class="ogliHeader">
                             <tr>
-                                <th width="100px;">Oligo<br /> Number</th>
+                                <th width="60px;">Oligo<br /> No</th>
                                 <th>QTY</th>
-                                <th>Oligio Name <br /> Max 25 Characters)</th>
-                                <th>SCALE OF SYNTHESIS <a href="">?</a></th>
-                                <th>PURIFICATION METHOD </th>
+                                <th>Oligo Name <br /> <span style="font-size:10px;">(max 25 characters)</span></th>
+                                <th>SCALE OF <br /> SYNTHESIS</th>
+                                <th>PURIFICATION <br /> METHOD </th>
                                 <th>5’ <br />MODIFICATION </th>
-                                <th>INTERNAL MODIFICATION </th>
-                                <th>OLIGO SEQUENCE <br />(5’ – 3’)<a href="">?</a></th>
+                                <th>INTERNAL <br />MODIFICATION </th>
+                                <th>OLIGO SEQUENCE <br />(5’ – 3’)</th>
                                 <th>3’<br />MODIFICATION</th>
-                                <th>DELIVERY MEHTOD <br /><a href="">?</a></th>
-                          
+                                <th>DELIVERY <br /> METHOD </th>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -325,32 +246,32 @@
 
                                 @*<th>Oligo Number</th>*@
                                 <td>
-                                    <input type="text" style="width:25%;" id="txtOligoNumber" name="OligoNumber" ng-model="rows.OglioNumber" disabled="disabled" title="OligoNumber" required>
+                                    <input type="text" style="width:40px;" id="txtOligoNumber" name="OligoNumber" ng-model="rows.OglioNumber" disabled="disabled" title="OligoNumber" required>
                                 </td>
                                 @*<th>QTY</th>*@
                                 <td>
-                                    <input type="text" style="width:50px;" class="form-control" ng-change="vm.UserQuote($index,rows.Qty,rows.OligonucleotideSequence,scaleValues1,Purification2)" id="txtQty" name="txtQty" ng-model="rows.Qty" placeholder="Qty" title="Qty">
+                                    <input ng-model-options="{ debounce: 1000 }" type="text" style="width:50px;" class="form-control" ng-change="vm.UserQuote($index,rows.Qty,rows.OligonucleotideSequence,scaleValues1,Purification2)" id="txtQty" name="txtQty" ng-model="rows.Qty" placeholder="qty" title="Qty">
 
                                 </td>
                                 @*<th>Oligio Name <br /> Max 25 Characters)</th>*@
                                 <td>
-                                    <input type="text" class="form-control" maxlength="25" id="txtPrimerName" name="PrimerName" ng-model="rows.PrimerName" placeholder="Enter Primer Name" title="Primer Name" required>
+                                    <input type="text" class="form-control" maxlength="25" id="txtPrimerName" name="PrimerName" ng-model="rows.PrimerName" tooltip="{{dnaForm.PrimerName.$invalid ? '' : 'How clients see your name.  Min 4 chars.'}}" placeholder="Enter Primer Name" title="Primer Name" required>
                                     <span ng-show="dnaForm.PrimerName.$dirty && dnaForm.PrimerName.$invalid">  </span>
-                                    <span style="color:red" ng-show="dnaForm.PrimerName.$error.required">Primer Name is required.</span>
+                                    <span style="color:red;font-family:'Montserrat', sans-serif" ng-show="dnaForm.PrimerName.$error.required">primer name is required.</span>
                                 </td>
                                 @*<th>SCALE OF SYNTHESIS <a href="">?</a></th>*@
                                 <td>
-                                    <select id="scaleValues1" class="form-control" name="scaleValues1" ng-change="vm.keyPressSynthesisScale1Values($index,scaleValues1) ; vm.UserQuote($index,rows.Qty,rows.OligonucleotideSequence,scaleValues1,Purification2)" ng-model="scaleValues1" ng-options="findScale.name as findScale.value for findScale in rows.SynthesisScale1"><option value="">--- Select an option ---</option></select>
+                                    <select id="scaleValues1" ng-model-options="{ debounce: 1000 }" class="form-control text-center" name="scaleValues1" ng-change="vm.keyPressSynthesisScale1Values($index,scaleValues1) ; vm.UserQuote($index,rows.Qty,rows.OligonucleotideSequence,scaleValues1,Purification2)" ng-model="scaleValues1" ng-options="findScale.name as findScale.value for findScale in rows.SynthesisScale1"><option value="">--- Select ---</option></select>
                                 </td>
                                 @*<th>PURIFICATION METHOD </th>*@
                                 <td>
-                                    <select id="ddlPurification" class="form-control" name="ddlPurification" ng-change="vm.keyPressPurification($index,Purification2);vm.UserQuote($index,rows.Qty,rows.OligonucleotideSequence,scaleValues1,Purification2)" ng-model="Purification2" ng-options="user.value as user.name for user in rows.Purification"><option value="">--- Select an option ---</option></select>
+                                    <select id="ddlPurification" ng-model-options="{ debounce: 1000 }" class="form-control text-center" name="ddlPurification" ng-change="vm.keyPressPurification($index,Purification2);vm.UserQuote($index,rows.Qty,rows.OligonucleotideSequence,scaleValues1,Purification2)" ng-model="Purification2" ng-options="user.value as user.name for user in rows.Purification"><option value="">--- Select  ---</option></select>
                                 </td>
                                 @*<th>5’MODIFICATION </th>*@
                                 <td>
-                                    <select class="form-control">
+                                    <select class="form-control text-center">
                                         <optgroup ng-repeat="header in rows.Five5Modifications" label="{{ header.name }}">
-
+                                            <option value="">--- Select ---</option>
                                             <option ng-repeat="item in header.items" value="{{ item.value }}">{{ item.name }}</option>
                                         </optgroup>
                                     </select>
@@ -359,20 +280,20 @@
                                 <td>
                                     <select class="form-control">
                                         <optgroup ng-repeat="header in rows.InternalModification" label="{{ header.name }}">
-                                            <option value="">--- Select an option ---</option>
+                                            <option value="">--- Select ---</option>
                                             <option ng-repeat="item in header.items" value="{{ item.value }}">{{ item.name }}</option>
                                         </optgroup>
                                     </select>
                                 </td>
                                 @*<th>OLIGO SEQUENCE <br />(5’ – 3’)<a href="">?</a></th>*@
                                 <td>
-                                    <textarea ng-change="vm.UserQuote($index,rows.Qty,rows.OligonucleotideSequence,scaleValues1,Purification2)" class="form-control" id="txtOligonucleotideSequence" name="OligonucleotideSequence" ng-model="rows.OligonucleotideSequence" placeholder="Oligonucleotide Sequence" title="Oligonucleotide Sequence"></textarea>
-</td>
+                                    <textarea maxlength="150" ng-model-options="{ debounce: 1000 }" ng-change="vm.UserQuote($index,rows.Qty,rows.OligonucleotideSequence,scaleValues1,Purification2)" class="form-control" id="txtOligonucleotideSequence" name="OligonucleotideSequence" ng-model="rows.OligonucleotideSequence" placeholder="Oligonucleotide Sequence" title="Oligonucleotide Sequence"></textarea>
+                                </td>
                                 @*<th>3’MODIFICATION</th>*@
                                 <td>
                                     <select class="form-control">
                                         <optgroup ng-repeat="header in rows.ThreeModifications" label="{{ header.name }}">
-                                            <option value="">--- Select an option ---</option>
+                                            <option value="">--- Select  ---</option>
                                             <option ng-repeat="item in header.items" value="{{ item.value }}">{{ item.name }}</option>
                                         </optgroup>
                                     </select>
@@ -380,9 +301,9 @@
                                 <td>
                                     <select id="finalDeliveryForm" class="form-control" ng-change="keyPressFinalDeliveryForm($index,finalDeliveryForm2)" name="finalDeliveryForm" ng-model="finalDeliveryForm2" ng-options="deliveryForm.name as deliveryForm.value for deliveryForm in rows.FinalDeliveryForm"><option value="">--- Select an option ---</option></select>
                                 </td>
-                               
+
                                 @*Extra info*@
-                            <tr style="background-color: lightgrey;">
+                            <tr style="background-color: lightgrey;height:40px;">
                                 <td colspan="4">
                                     Place holder for heating information
                                 </td>
@@ -390,12 +311,10 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td>EST.ITEM PRICE <label type="text" class="form-control" id="txtPrice" name="price" ng-model="rows.Price"  placeholder="Price" title="Price" >{{rows.Price}}</label></td>
+
                                 <td colspan="2">
-                                    <div class="col-lg-12">
-                                        <button class="btn btn-warning">Add to Cart</button>
-                                    </div>
-                                </td>
+                                <td>EST.ITEM PRICE $ {{rows.Price}} /></td>
+
                             </tr>
                             <tr></tr>
                         </tbody>
@@ -413,11 +332,12 @@
                 <h3 class="panel-title">Notes</h3>
             </div>
             <div class="panel-body">
-                <textarea name="txtNotes" ng-model="WrapperModel.Billing.Notes" cols="200" rows="5">
+                <textarea name="txtNotes" ng-model="WrapperModel.Billing.Notes" cols="200" rows="5"></textarea>
             </div>
+
         </div>
 
-        <input type="submit" class="btn btn-primary" ng-click="submitForm()" ng-model="disableSubmit" ng-disabled="!dnaForm.$valid">
+        <input type="submit" class="btn btn-primary" ng-click="vm.submitForm()" ng-disabled="!dnaForm.$valid">
     </form>
     <div class="modal fade" id="OligonucleotideForms" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">

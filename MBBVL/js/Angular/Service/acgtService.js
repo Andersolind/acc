@@ -136,6 +136,8 @@
     }
     this.country_list = function () {
         var countries = [
+          { name: 'Canada', value: 'CA' },
+           { name: 'United States', value: 'US' },
             { name: 'Afghanistan', value: 'AF' },
             { name: 'Åland Islands', value: 'AX' },
             { name: 'Albania', value: 'AL' },
@@ -174,7 +176,7 @@
             { name: 'Burundi', value: 'BI' },
             { name: 'Cambodia', value: 'KH' },
             { name: 'Cameroon', value: 'CM' },
-            { name: 'Canada', value: 'CA' },
+          
             { name: 'Cape Verde', value: 'CV' },
             { name: 'Cayman Islands', value: 'KY' },
             { name: 'Central African Republic', value: 'CF' },
@@ -365,7 +367,7 @@
             { name: 'Ukraine', value: 'UA' },
             { name: 'United Arab Emirates', value: 'AE' },
             { name: 'United Kingdom', value: 'GB' },
-            { name: 'United States', value: 'US' },
+           
             { name: 'United States Minor Outlying Islands', value: 'UM' },
             { name: 'Uruguay', value: 'UY' },
             { name: 'Uzbekistan', value: 'UZ' },

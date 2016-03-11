@@ -278,7 +278,7 @@
                                 </td>
                                 @*<th>INTERNAL MODIFICATION </th>*@
                                 <td>
-                                    <select class="form-control">
+                                    <select ng-model="vm.value" ng-change="vm.keyPressInternalModification($index,vm.value)" class="form-control">
                                         <optgroup ng-repeat="header in rows.InternalModification" label="{{ header.name }}">
                                             <option value="">--- Select ---</option>
                                             <option ng-repeat="item in header.items" value="{{ item.value }}">{{ item.name }}</option>
@@ -290,14 +290,15 @@
                                     <textarea maxlength="150" ng-model-options="{ debounce: 1000 }" ng-change="vm.UserQuote($index,rows.Qty,rows.OligonucleotideSequence,scaleValues1,Purification2)" class="form-control" id="txtOligonucleotideSequence" name="OligonucleotideSequence" ng-model="rows.OligonucleotideSequence" placeholder="Oligonucleotide Sequence" title="Oligonucleotide Sequence"></textarea>
                                 </td>
                                 @*<th>3’MODIFICATION</th>*@
-                                <td>
-                                    <select class="form-control">
-                                        <optgroup ng-repeat="header in rows.ThreeModifications" label="{{ header.name }}">
-                                            <option value="">--- Select  ---</option>
-                                            <option ng-repeat="item in header.items" value="{{ item.value }}">{{ item.name }}</option>
-                                        </optgroup>
-                                    </select>
-                                </td>
+                            <td>
+                             
+                                <select ng-model ="vm.test" ng-change="vm.keyPressInternalModification()" class="form-control">
+                                    <optgroup ng-repeat="header in rows.ThreeModifications" label="{{ header.name }}">
+                                        <option value="">--- Select  ---</option>
+                                        <option ng-repeat="item in header.items" value="{{ item.value }}">{{ item.name }}</option>
+                                    </optgroup>
+                                </select>
+                            </td>
                                 <td>
                                     <select id="finalDeliveryForm" class="form-control" ng-change="keyPressFinalDeliveryForm($index,finalDeliveryForm2)" name="finalDeliveryForm" ng-model="finalDeliveryForm2" ng-options="deliveryForm.name as deliveryForm.value for deliveryForm in rows.FinalDeliveryForm"><option value="">--- Select an option ---</option></select>
                                 </td>
@@ -313,7 +314,7 @@
                                 <td></td>
 
                                 <td colspan="2">
-                                <td>EST.ITEM PRICE $ {{rows.Price}} /></td>
+                                <td>EST.ITEM PRICE $ {{rows.Price}} </td>
 
                             </tr>
                             <tr></tr>

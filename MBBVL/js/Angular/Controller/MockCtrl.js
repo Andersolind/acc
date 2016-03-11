@@ -111,5 +111,9 @@
     }
 
 
+    vm.keyPressInternalModification = function(index,value) {
+        //append the text
+       vm.NewOligonucleotideRow[index].OligonucleotideSequence += value;
+    }
 
 }]);

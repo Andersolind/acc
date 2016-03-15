@@ -1,4 +1,5 @@
-﻿app.controller("MockCtrl", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', 'acgtPrices', function ($scope, $http, GenericHelpers, ACGTFactory, acgtPrices) {
+﻿/// <reference path="MockCtrl.js" />
+app.controller("MockCtrl", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', 'acgtPrices', function ($scope, $http, GenericHelpers, ACGTFactory, acgtPrices) {
 
     //
     var vm = this;
@@ -19,18 +20,20 @@
         vm.NewOligonucleotideRow.splice(idx, 1);
     };
 
-    vm.isBillingTheSame = function (isClicked) {
+
+    vm.isShippingTheSame = function (isClicked) {
 
         if (isClicked) {
-            vm.WrapperModel.Shipping.Country = vm.WrapperModel.Billing.Country;
-            vm.WrapperModel.Shipping.FirstName = vm.WrapperModel.Billing.FirstName;
-            vm.WrapperModel.Shipping.LastName = vm.WrapperModel.Billing.LastName;
-            vm.WrapperModel.Shipping.Institution = vm.WrapperModel.Billing.Institution;
-            vm.WrapperModel.Shipping.ShippingAddress = vm.WrapperModel.Billing.BillingAddress;
-            vm.WrapperModel.Shipping.PostalCode = vm.WrapperModel.Billing.PostalCode;
-            vm.WrapperModel.Shipping.Phone = vm.WrapperModel.Billing.BillingPhone;
-            vm.WrapperModel.Shipping.Extention = vm.WrapperModel.Billing.Extention;
-            vm.WrapperModel.Shipping.Email = vm.WrapperModel.Billing.Email;
+
+            vm.WrapperModel.Billing.Country = vm.WrapperModel.Shipping.Country;
+            vm.WrapperModel.Billing.FirstName = vm.WrapperModel.Shipping.FirstName;
+            vm.WrapperModel.Billing.LastName = vm.WrapperModel.Shipping.LastName;
+            vm.WrapperModel.Billing.Institution = vm.WrapperModel.Shipping.Institution;
+            vm.WrapperModel.Billing.BillingAddress = vm.WrapperModel.Shipping.ShippingAddress;
+            vm.WrapperModel.Billing.PostalCode = vm.WrapperModel.Shipping.PostalCode;
+            vm.WrapperModel.Billing.Phone = vm.WrapperModel.Shipping.Phone;
+            vm.WrapperModel.Billing.Extention = vm.WrapperModel.Shipping.Extention;
+            vm.WrapperModel.Billing.Email = vm.WrapperModel.Shipping.Email;
         }
     }
 

@@ -288,7 +288,7 @@
                                 </td>
                                 @*<th>OLIGO SEQUENCE <br />(5’ – 3’)<a href="">?</a></th>*@
                                 <td>
-                                    <textarea maxlength="150" ng-model-options="{ debounce: 1000 }" ng-change="vm.UserQuote($index,rows.Qty,rows.OligonucleotideSequence,scaleValues1,Purification2)" class="form-control" id="txtOligonucleotideSequence" name="OligonucleotideSequence" ng-model="rows.OligonucleotideSequence" placeholder="Oligonucleotide Sequence" title="Oligonucleotide Sequence"></textarea>
+                                    <textarea maxlength="150" ng-model-options="{ debounce: 1000 }" ng-click="vm.getCursorPos($event,$index)" ng-keyup="vm.getCursorPos($event,rows.OligonucleotideSequence+$index)" ng-change="vm.UserQuote($index,rows.Qty,rows.OligonucleotideSequence,scaleValues1,Purification2)" class="form-control" id="OligonucleotideSequence{{$index}}" name="OligonucleotideSequence{{$index}}" ng-model="rows.OligonucleotideSequence" placeholder="Oligonucleotide Sequence" title="Oligonucleotide Sequence"></textarea>
                                 </td>
                                 @*<th>3’MODIFICATION</th>*@
                             <td>

@@ -37,12 +37,12 @@ app.controller("MockCtrl", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', 
         }
     }
 
-    vm.getCursorPos = function ($event,index) {
+    vm.getCursorPos = function ($event, index) {
         var myEl = $event.target;
-        vm.doGetCaretPosition(myEl,index);
+        vm.doGetCaretPosition(myEl, index);
     };
 
-    vm.doGetCaretPosition = function (oField,index) {
+    vm.doGetCaretPosition = function (oField, index) {
 
         // Initialize
         var iCaretPos = 0;
@@ -72,7 +72,7 @@ app.controller("MockCtrl", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', 
         vm.cursorPosVal = iCaretPos;
     };
 
-    vm.setSelectionRange = function(input, selectionStart, selectionEnd) {
+    vm.setSelectionRange = function (input, selectionStart, selectionEnd) {
         if (input.setSelectionRange) {
             input.focus();
             input.setSelectionRange(selectionStart, selectionEnd);
@@ -102,7 +102,7 @@ app.controller("MockCtrl", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', 
             else {
                 vm.NewOligonucleotideRow[index].Price = qty * (newOglio.length * getPrice);
             }
-           // var getNumber = qty * newOglio.length * acgtPrices.convertPurification(purification) + acgtPrices.convertSynsithisScale(synthesisscale);
+            // var getNumber = qty * newOglio.length * acgtPrices.convertPurification(purification) + acgtPrices.convertSynsithisScale(synthesisscale);
         } else {
             vm.NewOligonucleotideRow[index].Price = 'Not Valid';
         }
@@ -130,7 +130,7 @@ app.controller("MockCtrl", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', 
         vm.purification = [{ name: 'Desalted', value: 'Desalted' }, { name: 'Cartridge', value: 'Cartridge' }, { name: 'HPLC', value: 'HPLC' }, { name: 'PAGE', value: 'PAGE' }];
 
         vm.finalDeliveryForm = [{ name: 'Liquid', value: 'Liquid-H2O' }, { name: 'Dry', value: 'Dry-Lyophilised' }];
-        vm.NewOligonucleotideRow = [{ OglioNumber: vm.oligoNumber, Qty: "", OligonucleotideSequence: '', Five5Modifications: vm.fiveModifications, InternalModification: vm.threeModifications, ThreeModifications: vm.threeModifications, SynthesisScale1: vm.synthesisScale1Values, SynthesisScaleValue: "", Modification: "", ModificationValue: "", FinalDeliveryForm: vm.finalDeliveryForm, FinalDeliveryFormValue: "", Purification: vm.purification, PurificationValue: "", GMP3: vm.gmp3, GmpValue: "", Price: 'N/A' ,oligoCarret:''}];
+        vm.NewOligonucleotideRow = [{ OglioNumber: vm.oligoNumber, Qty: "", OligonucleotideSequence: '', Five5Modifications: vm.fiveModifications, InternalModification: vm.threeModifications, ThreeModifications: vm.threeModifications, SynthesisScale1: vm.synthesisScale1Values, SynthesisScaleValue: "", Modification: "", ModificationValue: "", FinalDeliveryForm: vm.finalDeliveryForm, FinalDeliveryFormValue: "", Purification: vm.purification, PurificationValue: "", GMP3: vm.gmp3, GmpValue: "", Price: 'N/A', oligoCarret: '' }];
         vm.countriesList = GenericHelpers.country_list();
 
         //vm.itemSelected = vm.countriesList[5];
@@ -139,12 +139,12 @@ app.controller("MockCtrl", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', 
 
     vm.submitForm = function () {
         //Disable the button
-       // setAllInputsDirty($scope);
+        // setAllInputsDirty($scope);
         $scope.dnaForm.$valid = false;
         $scope.dnaForm.$setPristine();
         $scope.dnaForm.submitted = false;
 
-        };
+    };
     function setAllInputsDirty(scope) {
         angular.forEach(scope, function (value, key) {
             // We skip non-form and non-inputs
@@ -163,15 +163,15 @@ app.controller("MockCtrl", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', 
     }
 
 
-    vm.keyPressInternalModification = function(index,value) {
+    vm.keyPressInternalModification = function (index, value) {
         //append the text
         var elementName = 'OligonucleotideSequence' + index;
-       // var element = document.getElementById(elementName);
-        vm.insertAtCursor(elementName, value);
-       // vm.setSelectionRange(element,vm.NewOligonucleotideRow[index].oligoCarret);
-      // vm.NewOligonucleotideRow[index].OligonucleotideSequence += value;
+        // var element = document.getElementById(elementName);
+        vm.insertAtCursor(elementName, value, index);
+        // vm.setSelectionRange(element,vm.NewOligonucleotideRow[index].oligoCarret);
+        // vm.NewOligonucleotideRow[index].OligonucleotideSequence += value;
     }
-    vm.insertAtCursor = function(myField, myValue) {
+    vm.insertAtCursor = function (myField, myValue, index) {
         //IE support
         if (document.selection) {
             document.getElementById(myField).focus();
@@ -182,12 +182,28 @@ app.controller("MockCtrl", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', 
         else if (document.getElementById(myField).selectionStart || document.getElementById(myField).selectionStart == '0') {
             var startPos = document.getElementById(myField).selectionStart;
             var endPos = document.getElementById(myField).selectionEnd;
-            document.getElementById(myField).value = document.getElementById(myField).value.substring(0, startPos)
-                + myValue
+            var tempValue = document.getElementById(myField).value = document.getElementById(myField).value.substring(0, startPos) + '[' + myValue + ']'
                 + document.getElementById(myField).value.substring(endPos, document.getElementById(myField).value.length);
+            vm.NewOligonucleotideRow[index].OligonucleotideSequence = tempValue;
+
         } else {
-            document.getElementById(myField).value += myValue;
+            var tempValue = document.getElementById(myField).value += '[' + myValue + ']';
+            vm.NewOligonucleotideRow[index].OligonucleotideSequence = tempValue;
         }
+    };
+
+    vm.fiveInchSequence = function (index, value) {
+        //get the old oligo 
+        var temp = vm.NewOligonucleotideRow[index].OligonucleotideSequence;
+        var mutatedvalue = '[' + value + ']' + temp;
+        vm.NewOligonucleotideRow[index].OligonucleotideSequence = mutatedvalue;
+    }
+
+    vm.threeInchSequence = function (index, value) {
+        //get the old oligo 
+        var temp = vm.NewOligonucleotideRow[index].OligonucleotideSequence;
+        var mutatedvalue = temp + '[' + value + ']'
+        vm.NewOligonucleotideRow[index].OligonucleotideSequence = mutatedvalue;
     }
 
 }]);

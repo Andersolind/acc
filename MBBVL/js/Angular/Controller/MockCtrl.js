@@ -106,6 +106,8 @@ app.controller("MockCtrl", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', 
         } else {
             vm.NewOligonucleotideRow[index].Price = 'Not Valid';
         }
+        //Update length for Bases
+        vm.NewOligonucleotideRow[index].NumberOfBases = newOglio.length;
     }
 
     function setupInitialRows() {
@@ -130,7 +132,7 @@ app.controller("MockCtrl", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', 
         vm.purification = [{ name: 'Desalted', value: 'Desalted' }, { name: 'Cartridge', value: 'Cartridge' }, { name: 'HPLC', value: 'HPLC' }, { name: 'PAGE', value: 'PAGE' }];
 
         vm.finalDeliveryForm = [{ name: 'Liquid', value: 'Liquid-H2O' }, { name: 'Dry', value: 'Dry-Lyophilised' }];
-        vm.NewOligonucleotideRow = [{ OglioNumber: vm.oligoNumber, Qty: "", OligonucleotideSequence: '', Five5Modifications: vm.fiveModifications, InternalModification: vm.threeModifications, ThreeModifications: vm.threeModifications, SynthesisScale1: vm.synthesisScale1Values, SynthesisScaleValue: "", Modification: "", ModificationValue: "", FinalDeliveryForm: vm.finalDeliveryForm, FinalDeliveryFormValue: "", Purification: vm.purification, PurificationValue: "", GMP3: vm.gmp3, GmpValue: "", Price: 'N/A', oligoCarret: '' }];
+        vm.NewOligonucleotideRow = [{ OglioNumber: vm.oligoNumber, Qty: "", OligonucleotideSequence: '', Five5Modifications: vm.fiveModifications, InternalModification: vm.threeModifications, ThreeModifications: vm.threeModifications, SynthesisScale1: vm.synthesisScale1Values, SynthesisScaleValue: "", Modification: "", ModificationValue: "", FinalDeliveryForm: vm.finalDeliveryForm, FinalDeliveryFormValue: "", Purification: vm.purification, PurificationValue: "", GMP3: vm.gmp3, GmpValue: "", Price: 'N/A',NumberOfBases:12, GcContent:20, Tm:22, oligoCarret: '' }];
         vm.countriesList = GenericHelpers.country_list();
 
         //vm.itemSelected = vm.countriesList[5];
@@ -204,6 +206,11 @@ app.controller("MockCtrl", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', 
         var temp = vm.NewOligonucleotideRow[index].OligonucleotideSequence;
         var mutatedvalue = temp + '[' + value + ']'
         vm.NewOligonucleotideRow[index].OligonucleotideSequence = mutatedvalue;
+    }
+
+    vm.validateOligo = function (value)
+    {
+        var key = value.keyCode || value.charCode;
     }
 
 }]);

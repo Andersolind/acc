@@ -271,7 +271,7 @@
                                 </td>
                                 @*<th>OLIGO SEQUENCE <br />(5’ – 3’)<a href="">?</a></th>*@
                                 <td>
-                                    <textarea maxlength="150" ng-model-options="{ debounce: 1000 }" ng-click="vm.getCursorPos($event,$index)" ng-keyup="vm.getCursorPos($event,$index)" ng-change="vm.UserQuote($index,rows.Qty,rows.OligonucleotideSequence,scaleValues1,Purification2)" class="form-control" id="OligonucleotideSequence{{$index}}" name="OligonucleotideSequence{{$index}}" ng-model="rows.OligonucleotideSequence" placeholder="Oligonucleotide Sequence" title="Oligonucleotide Sequence"></textarea>
+                                    <textarea maxlength="150"  ng-model-options="{ debounce: 1000 }" ng-click="vm.getCursorPos($event,$index)"  ng-keyup="vm.getCursorPos($event,$index)" ng-change="vm.UserQuote($index,rows.Qty,rows.OligonucleotideSequence,scaleValues1,Purification2)" class="form-control" id="OligonucleotideSequence{{$index}}" name="OligonucleotideSequence{{$index}}" ng-model="rows.OligonucleotideSequence" placeholder="Oligonucleotide Sequence" title="Oligonucleotide Sequence"></textarea>
                                 </td>
                                 @*<th>3’MODIFICATION</th>*@
                             <td>
@@ -290,8 +290,7 @@
                                 @*Extra info*@
                             <tr style="background-color: lightgrey;height:40px;">
                                 <td colspan="4">
-                                    Place holder for heating information
-                                </td>
+                                    No bases : {{rows.NumberOfBases}}; GC Content:{{rows.GcContent}}% Tm: {{rows.Tm }};&deg;</td>
 
                                 <td></td>
                                 <td></td>

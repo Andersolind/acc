@@ -132,7 +132,7 @@ app.controller("MockCtrl", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', 
         vm.purification = [{ name: 'Desalted', value: 'Desalted' }, { name: 'Cartridge', value: 'Cartridge' }, { name: 'HPLC', value: 'HPLC' }, { name: 'PAGE', value: 'PAGE' }];
 
         vm.finalDeliveryForm = [{ name: 'Liquid', value: 'Liquid-H2O' }, { name: 'Dry', value: 'Dry-Lyophilised' }];
-        vm.NewOligonucleotideRow = [{ OglioNumber: vm.oligoNumber, Qty: "", OligonucleotideSequence: '', Five5Modifications: vm.fiveModifications, InternalModification: vm.threeModifications, ThreeModifications: vm.threeModifications, SynthesisScale1: vm.synthesisScale1Values, SynthesisScaleValue: "", Modification: "", ModificationValue: "", FinalDeliveryForm: vm.finalDeliveryForm, FinalDeliveryFormValue: "", Purification: vm.purification, PurificationValue: "", GMP3: vm.gmp3, GmpValue: "", Price: 'N/A',NumberOfBases:12, GcContent:20, Tm:22, oligoCarret: '' }];
+        vm.NewOligonucleotideRow = [{ OglioNumber: vm.oligoNumber, Qty: "", OligonucleotideSequence: '', Five5Modifications: vm.fiveModifications, InternalModification: vm.threeModifications, ThreeModifications: vm.threeModifications, SynthesisScale1: vm.synthesisScale1Values, SynthesisScaleValue: "", Modification: "", ModificationValue: "", FinalDeliveryForm: vm.finalDeliveryForm, FinalDeliveryFormValue: "", Purification: vm.purification, PurificationValue: "", GMP3: vm.gmp3, GmpValue: "", Price: 'N/A', NumberOfBases: 12, GcContent: 20, Tm: 22, oligoCarret: '' }];
         vm.countriesList = GenericHelpers.country_list();
 
         //vm.itemSelected = vm.countriesList[5];
@@ -204,13 +204,78 @@ app.controller("MockCtrl", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', 
     vm.threeInchSequence = function (index, value) {
         //get the old oligo 
         var temp = vm.NewOligonucleotideRow[index].OligonucleotideSequence;
-        var mutatedvalue = temp + '[' + value + ']'
+        var mutatedvalue = temp + '[' + value + ']';
         vm.NewOligonucleotideRow[index].OligonucleotideSequence = mutatedvalue;
     }
 
-    vm.validateOligo = function (value)
-    {
+    vm.validateOligo = function (value) {
         var key = value.keyCode || value.charCode;
     }
+
+
+
+    vm.nearestNeighbor = function (choice) {
+        var theReturn = "";
+        if (this.Sequence.length > 7) {
+            //
+            var K = 1 / (this.primerConcBox * 1E-9);  // Convert from nanomoles to moles
+            var R = 1.987;  //cal/(mole*K);
+            var RlnK = R * Math.log(K); // javascript log is the natural log (ln)
+            this.RlogK = Math.round(1000 * RlnK) / 1000;
+            // Helix initiation Free Energy of 3.4 kcal (Sugimoto et al, 1996)
+            // symmetry function: if symmetrical, subtract another 0.4 - not implemented
+            if (choice == "min") {
+                theReturn = 1000 * ((this.DeltaH("min") - 3.4) / (this.DeltaS("min") + RlnK));
+                theReturn += -272.9;  // Kelvin to Centigrade
+                theReturn += 7.21 * Math.log(this.saltConcentration / 1000);
+                theReturn = Math.round(theReturn);
+            } else {
+                theReturn = 1000 * ((this.DeltaH("max") - 3.4) / (this.DeltaS("max") + RlnK));
+                theReturn += -272.9; // Kelvin to Centigrade
+                theReturn += 7.21 * Math.log(this.saltConcentration / 1000);
+                theReturn = Math.round(theReturn);
+            }
+        } else {
+            this.RlogK = "";
+        }
+        return theReturn;
+    }
+
+    vm.DeltaH = function (choice) {
+        if (this.Sequence.length > 7) {
+            var val = 0.0;
+            if (this.isDeoxy) {
+                val += 8.0 * this.aaCount;
+                val += 5.6 * this.atCount;
+                val += 6.6 * this.taCount;
+                val += 8.2 * this.caCount;
+                val += 9.4 * this.gtCount;
+                val += 6.6 * this.ctCount;
+                val += 8.8 * this.gaCount;
+                val += 11.8 * this.cgCount;
+                val += 10.5 * this.gcCount;
+                val += 10.9 * this.ggCount;
+            } else {
+                val += 6.8 * this.aaCount;
+                val += 9.38 * this.atCount;
+                val += 7.69 * this.taCount;
+                val += 10.44 * this.caCount;
+                val += 11.4 * this.gtCount;
+                val += 10.48 * this.ctCount;
+                val += 12.44 * this.gaCount;
+                val += 10.64 * this.cgCount;
+                val += 14.88 * this.gcCount;
+                val += 13.39 * this.ggCount;
+            }
+            if (choice == "min") {
+                val += this.IUpairVals_min[1];
+            } else {
+                val += this.IUpairVals_max[1];
+            }
+            return Math.round((1000 * val)) / 1000;
+        }
+        return "";
+    }
+
 
 }]);

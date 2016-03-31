@@ -114,6 +114,35 @@
             var err = error;
         });
     };
+    ///
+
+    function ReCalculate(value,index) {
+        var temp;
+        var CompString;
+//        if (!theOligo) {
+//            Calculate(form);
+//            return false;
+//        }
+        temp = CheckBase(value);
+        if (temp == -1) {
+            index
+            if (form.oligoBox.value.length == 0) form.complementBox.value = "";
+            return false;
+        }
+        form.oligoBox.value = temp;
+        theOligo.DoOligoCalc(form, temp);
+        theOligo.GetOligoMods(form);
+        CompString = MakeComplement(form.oligoBox.value, theOligo.isDeoxy);
+        theComplement.DoOligoCalc(form, CompString);
+        if (!theOligo.isSingleStranded) {
+            // calculate the ds MW now that the complement has been made
+            theOligo.DoOligoCalc(form, temp);
+        }
+        theOligo.DoOligoOutput(form, form.oligoBox);
+        form.complementBox.value = FormatBaseString(theComplement.Sequence);
+        return false;
+    }
+
 
     function SetUpDatePicker() {
         $scope.today = function () {

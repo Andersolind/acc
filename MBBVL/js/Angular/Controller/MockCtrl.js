@@ -1,5 +1,5 @@
 ﻿/// <reference path="MockCtrl.js" />
-app.controller("MockCtrl", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', 'acgtPrices', function ($scope, $http, GenericHelpers, ACGTFactory, acgtPrices) {
+app.controller("MockCtrl", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', 'acgtPrices', 'OligoCalcUtilsService', 'ModifierService', function ($scope, $http, GenericHelpers, ACGTFactory, acgtPrices, OligoCalcUtilsService, ModifierService) {
 
     //
     var vm = this;
@@ -40,6 +40,9 @@ app.controller("MockCtrl", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', 
     vm.getCursorPos = function ($event, index) {
         var myEl = $event.target;
         vm.doGetCaretPosition(myEl, index);
+        //Set GC
+      
+     //   vm.nearestNeighbor(index);
     };
 
     vm.doGetCaretPosition = function (oField, index) {
@@ -108,6 +111,10 @@ app.controller("MockCtrl", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', 
         }
         //Update length for Bases
         vm.NewOligonucleotideRow[index].NumberOfBases = newOglio.length;
+        var tempValue = vm.NewOligonucleotideRow[index].OligonucleotideSequence;
+        vm.NewOligonucleotideRow[index].OligonucleotideSequence = OligoCalcUtilsService.CheckBase(vm.NewOligonucleotideRow[index].OligonucleotideSequence);
+
+        ModifierService.DoOligoCalc(vm.NewOligonucleotideRow[index], vm.NewOligonucleotideRow[index].OligonucleotideSequence);
     }
 
     function setupInitialRows() {
@@ -214,11 +221,11 @@ app.controller("MockCtrl", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', 
 
 
 
-    vm.nearestNeighbor = function (choice) {
+    vm.nearestNeighbor = function (choice,index) {
         var theReturn = "";
-        if (this.Sequence.length > 7) {
+        if (vm.NewOligonucleotideRow[index].OligonucleotideSequence.length > 7) {
             //
-            var K = 1 / (this.primerConcBox * 1E-9);  // Convert from nanomoles to moles
+            var K = 1 / (vm.primerConcBox * 1E-9);  // Convert from nanomoles to moles
             var R = 1.987;  //cal/(mole*K);
             var RlnK = R * Math.log(K); // javascript log is the natural log (ln)
             this.RlogK = Math.round(1000 * RlnK) / 1000;

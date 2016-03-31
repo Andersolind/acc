@@ -26,6 +26,14 @@ namespace MBBVL {
                       "~/js/angular/app.js",
                        "~/js/angular/Service/acgtService.js",
                         "~/js/angular/Service/acgtPrices.js",
+                             "~/js/angular/Service/ModifierService.js",
+                         "~/js/angular/Service/OligoCalcUtilsService.js",
+                         "~/js/angular/Service/CalculateNeighborsService.js",
+                         
+                   
+                         
+                        
+
                        "~/js/angular/Fac/factory.js",
                        "~/js/angular/Controller/OrderSequencingctrl.js",
                        "~/js/angular/Controller/OrderOgliCtrl.js",

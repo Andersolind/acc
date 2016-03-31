@@ -1,4 +1,4 @@
-﻿app.service('GenericHelpers', function () {
+﻿app.service('CalculateNeighbors', ['OligoCalcUtilsService', function (OligoCalcUtilsService)  {
 
 
     // Checks that theString contains only bases
@@ -8,10 +8,10 @@
         var rcnt = 0;
         var cha = "";
         theString = theString.toUpperCase();
-        theString = this.RemoveNonPrintingChars(theString);
+        theString = OligoCalcUtilsService.RemoveNonPrintingChars(theString);
         for (var i = 0; i < theString.length; i++) {
             cha = theString.charAt(i);
-            if (IsIUpacBase(cha) || IsBase(cha)) {
+            if (this.IsIUpacBase(cha) || this.IsBase(cha)) {
                 returnString += cha;
                 cnt++;
             } else if (cha != " " && cha != "\n") {
@@ -249,4 +249,4 @@
         return "";
     }
 
-});
+}]);

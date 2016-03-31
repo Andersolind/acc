@@ -282,7 +282,9 @@
     <Content Include="js\Angular\Fac\factory.js" />
     <Content Include="js\Angular\Service\acgtPrices.js" />
     <Content Include="js\Angular\Service\acgtService.js" />
-    <Content Include="js\Angular\Service\calculateNeighbors.js" />
+    <Content Include="js\Angular\Service\calculateNeighborsService.js" />
+    <Content Include="js\Angular\Service\ModifierService.js" />
+    <Content Include="js\Angular\Service\OligoCalcUtilsService.js" />
     <Content Include="js\Angular\TypeaHead\bloodhound.js" />
     <Content Include="js\Angular\TypeaHead\type.js" />
     <Content Include="js\Angular\Directives\Typeahead.js" />

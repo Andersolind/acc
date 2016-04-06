@@ -134,7 +134,7 @@
 
     this.AreThereIUpacBases = function(theSequence) {
         for (var i = 0; i < theSequence.length; i++) {
-            if (IsIUpacBase(theSequence.charAt(i)))
+            if (this.IsIUpacBase(theSequence.charAt(i)))
             { return 1; }
         }
         return 0;

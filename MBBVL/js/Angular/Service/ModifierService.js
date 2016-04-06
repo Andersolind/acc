@@ -193,25 +193,26 @@ app.service('ModifierService', ['CalculateNeighbors', function (CalculateNeighbo
     // direct interface with FORM
 
     this.DoOligoCalc = function (form, theSequence) {
+        this.oligoModifierRow.Sequence = theSequence;
         temp = CalculateNeighbors.CheckBase(theSequence); // external call
         if (temp == -1) { return; } // do not continue if the sequence is not valid!
         this.Sequence = temp;
         this.ODs = this.oligoModifierRow.ODs;
         this.saltConcentration = parseFloat(this.oligoModifierRow.saltConcentration); // parseInt(form.saltConcBox.value);
-        this.primerConcentration = parseFloat(this.oligoModifierRow.primerConcentration;  // parseInt(form.primerConcBox.value);
-        this.hasIUpacBase = CalculateNeighbors.AreThereIUpacBases(this.Sequence);
-        if (debug) alert("Sequence length=" + this.Sequence.length + "; Sequence=" + this.Sequence);
-        temp = form.deoxy.options[form.deoxy.selectedIndex].value;
-        if (temp.indexOf("DNA") >= 0) {
-            this.isDeoxy = 1;
-        } else {
-            this.isDeoxy = 0;
-        }
-        if (temp.indexOf("ds") >= 0) {
-            this.isSingleStranded = 0;
-        } else {
-            this.isSingleStranded = 1;
-        }
+        this.primerConcentration = parseFloat(this.oligoModifierRow.primerConcentration);  // parseInt(form.primerConcBox.value);
+        this.oligoModifierRow.hasIUpacBase = CalculateNeighbors.AreThereIUpacBases(this.oligoModifierRow.Sequence);
+       // if (debug) alert("Sequence length=" + this.Sequence.length + "; Sequence=" + this.Sequence);
+        //temp = form.deoxy.options[form.deoxy.selectedIndex].value;
+        //if (temp.indexOf("DNA") >= 0) {
+        //    this.isDeoxy = 1;
+        //} else {
+        //    this.isDeoxy = 0;
+        //}
+        //if (temp.indexOf("ds") >= 0) {
+        //    this.isSingleStranded = 0;
+        //} else {
+        //    this.isSingleStranded = 1;
+        //}
         this.OligoCalculate();
     }
 
@@ -316,7 +317,7 @@ app.service('ModifierService', ['CalculateNeighbors', function (CalculateNeighbo
     }
 
 
-    function OligoCalculate() {
+    this.OligoCalculate = function() {
         this.OligoCount();
         /*** Do GC calculation ***/
         if (!this.hasIUpacBase) {
@@ -361,38 +362,38 @@ app.service('ModifierService', ['CalculateNeighbors', function (CalculateNeighbo
         }
     }
 
-    function OligoCount() {
-        this.aCount = CountChar("A", this.Sequence);
-        this.cCount = CountChar("C", this.Sequence);
-        this.gCount = CountChar("G", this.Sequence);
-        this.tCount = CountChar("T", this.Sequence);
-        this.uCount = CountChar("U", this.Sequence);
-        this.iCount = CountChar("I", this.Sequence);
-        this.mCount = CountChar("M", this.Sequence);
-        this.rCount = CountChar("R", this.Sequence);
-        this.wCount = CountChar("W", this.Sequence);
-        this.sCount = CountChar("S", this.Sequence);
-        this.yCount = CountChar("Y", this.Sequence);
-        this.kCount = CountChar("K", this.Sequence);
-        this.vCount = CountChar("V", this.Sequence);
-        this.hCount = CountChar("H", this.Sequence);
-        this.dCount = CountChar("D", this.Sequence);
-        this.bCount = CountChar("B", this.Sequence);
-        this.nCount = CountChar("N", this.Sequence);
+     this.OligoCount= function() {
+         this.oligoModifierRow.aCount = this.CountChar("A", this.oligoModifierRow.Sequence);
+         this.oligoModifierRow.cCount = this.CountChar("C", this.oligoModifierRow.Sequence);
+         this.oligoModifierRow.gCount = this.CountChar("G", this.oligoModifierRow.Sequence);
+         this.oligoModifierRow.tCount = this.CountChar("T", this.oligoModifierRow.Sequence);
+         this.oligoModifierRow.uCount = this.CountChar("U", this.oligoModifierRow.Sequence);
+         this.oligoModifierRow.iCount = this.CountChar("I", this.oligoModifierRow.Sequence);
+         this.oligoModifierRow.mCount = this.CountChar("M", this.oligoModifierRow.Sequence);
+         this.oligoModifierRow.rCount = this.CountChar("R", this.oligoModifierRow.Sequence);
+         this.oligoModifierRow.wCount = this.CountChar("W", this.oligoModifierRow.Sequence);
+         this.oligoModifierRow.sCount = this.CountChar("S", this.Sequence);
+         this.oligoModifierRow.yCount = this.CountChar("Y", this.oligoModifierRow.Sequence);
+         this.oligoModifierRow.kCount = this.CountChar("K", this.oligoModifierRow.Sequence);
+         this.oligoModifierRow.vCount = this.CountChar("V", this.oligoModifierRow.Sequence);
+         this.oligoModifierRow.hCount = this.CountChar("H", this.Sequence);
+         this.oligoModifierRow.dCount = this.CountChar("D", this.oligoModifierRow.Sequence);
+         this.oligoModifierRow.bCount = this.CountChar("B", this.oligoModifierRow.Sequence);
+         this.oligoModifierRow.nCount = this.CountChar("N", this.oligoModifierRow.Sequence);
         //Effective a,c,g,t count for different calculations
         //effective counts for A260min()
-        this.eA_A260min = this.aCount;
-        this.eU_A260min = this.uCount;
-        this.eI_A260min = this.iCount;
-        this.eC_A260min = this.cCount + this.mCount + this.sCount + this.yCount + this.vCount
-                            + this.hCount + this.bCount + this.nCount;
-        this.eG_A260min = this.gCount + this.rCount;
-        this.eT_A260min = this.tCount + this.wCount + this.kCount + this.dCount;
+         this.oligoModifierRow.eA_A260min = this.oligoModifierRow.aCount;
+         this.oligoModifierRow.eU_A260min = this.oligoModifierRow.uCount;
+         this.oligoModifierRow.eI_A260min = this.oligoModifierRow.iCount;
+         this.oligoModifierRow.eC_A260min = this.oligoModifierRow.cCount + this.oligoModifierRow.mCount + this.oligoModifierRow.sCount + this.oligoModifierRow.yCount + this.oligoModifierRow.vCount
+                            + this.oligoModifierRow.hCount + this.oligoModifierRow.bCount + this.oligoModifierRow.nCount;
+         this.oligoModifierRow.eG_A260min = this.oligoModifierRow.gCount + this.oligoModifierRow.rCount;
+         this.oligoModifierRow.eT_A260min = this.oligoModifierRow.tCount + this.oligoModifierRow.wCount + this.oligoModifierRow.kCount + this.oligoModifierRow.dCount;
 
-        this.eA_A260max = this.aCount + this.mCount + this.rCount + this.wCount + this.vCount
-                        + this.hCount + this.bCount + this.nCount;
-        this.eC_A260max = this.cCount;
-        this.eG_A260max = this.gCount + this.sCount + this.kCount + this.dCount;
+         this.oligoModifierRow.eA_A260max = this.oligoModifierRow.aCount + this.oligoModifierRow.mCount + this.oligoModifierRow.rCount + this.oligoModifierRow.wCount + this.oligoModifierRow.vCount
+                        + this.oligoModifierRow.hCount + this.oligoModifierRow.bCount + this.oligoModifierRow.nCount;
+         this.oligoModifierRow.eC_A260max = this.oligoModifierRow.cCount;
+         this.oligoModifierRow.eG_A260max = this.oligoModifierRow.gCount + this.oligoModifierRow.sCount + this.oligoModifierRow.kCount + this.oligoModifierRow.dCount;
         this.eT_A260max = this.tCount + this.yCount;
 
         //effective counts for MW()
@@ -782,7 +783,7 @@ app.service('ModifierService', ['CalculateNeighbors', function (CalculateNeighbo
         return "";
     }
 
-    function NearestNeighborTM(choice) {
+    this.NearestNeighborTM= function(choice) {
         var theReturn = "";
         if (this.Sequence.length > 7) {
             //
@@ -807,5 +808,15 @@ app.service('ModifierService', ['CalculateNeighbors', function (CalculateNeighbo
             this.RlogK = "";
         }
         return theReturn;
+    }
+
+    this.CountChar = function (theChar, theSequence) {
+        var returnValue = 0;
+        for (var i = 0; i < theSequence.length; i++) {
+            if (theSequence.charAt(i) == theChar) {
+                returnValue++;
+            }
+        }
+        return returnValue;
     }
 }]);

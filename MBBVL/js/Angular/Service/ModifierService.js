@@ -394,18 +394,19 @@ app.service('ModifierService', ['CalculateNeighbors', function (CalculateNeighbo
                         + this.oligoModifierRow.hCount + this.oligoModifierRow.bCount + this.oligoModifierRow.nCount;
          this.oligoModifierRow.eC_A260max = this.oligoModifierRow.cCount;
          this.oligoModifierRow.eG_A260max = this.oligoModifierRow.gCount + this.oligoModifierRow.sCount + this.oligoModifierRow.kCount + this.oligoModifierRow.dCount;
-        this.eT_A260max = this.tCount + this.yCount;
+         this.oligoModifierRow.eT_A260max = this.oligoModifierRow.tCount + this.oligoModifierRow.yCount;
 
         //effective counts for MW()
-        this.eA_MWmin = this.aCount + this.rCount;
-        this.eC_MWmin = this.eC_A260min;
-        this.eU_MWmin = this.eU_A260min;
-        this.eI_MWmin = this.eI_A260min;
-        this.eG_MWmin = this.gCount;
-        this.eT_MWmin = this.eT_A260min;
+         this.oligoModifierRow.eA_MWmin = this.oligoModifierRow.aCount + this.oligoModifierRow.rCount;
+         this.oligoModifierRow.eC_MWmin = this.oligoModifierRow.eC_A260min;
+         this.oligoModifierRow.eU_MWmin = this.oligoModifierRow.eU_A260min;
+         this.oligoModifierRow.eI_MWmin = this.oligoModifierRow.eI_A260min;
+         this.oligoModifierRow.eG_MWmin = this.oligoModifierRow.gCount;
+         this.oligoModifierRow.eT_MWmin = this.oligoModifierRow.eT_A260min;
 
-        this.eA_MWmax = this.aCount + this.mCount + this.wCount + this.hCount;
-        this.eC_MWmax = this.cCount;
+         this.oligoModifierRow.eA_MWmax = this.oligoModifierRow.aCount + this.oligoModifierRow.mCount + this.oligoModifierRow.wCount + this.oligoModifierRow.hCount;
+         this.oligoModifierRow.eC_MWmax = this.oligoModifierRow.cCount;
+         //Start here anders
         this.eG_MWmax = this.gCount + this.rCount + this.sCount + this.kCount + this.vCount +
                         this.dCount + this.bCount + this.nCount;
         this.eT_MWmax = this.tCount + this.yCount;

@@ -79,7 +79,7 @@
         { return reValue; }
 
         if (this.IsIUpacBase(base)) {
-            if (debug) alert("base0 " + base0 + "base" + base + " base2 " + base2);
+            //if (debug) alert("base0 " + base0 + "base" + base + " base2 " + base2);
             if (base == "M") { IUpacBase = "AC"; }
             else if (base == "R") { IUpacBase = "AG"; }
             else if (base == "W") { IUpacBase = "AT"; }

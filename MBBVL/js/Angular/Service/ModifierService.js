@@ -22,7 +22,7 @@ function NearestNeighborTM( choice)
 
 
 *** */
-app.service('ModifierService', ['CalculateNeighbors', function (CalculateNeighbors) {
+app.service('ModifierService', ['CalculateNeighbors', 'OligoCalcUtilsService', function (CalculateNeighbors, OligoCalcUtilsService) {
     this.oligoModifierRow = {
 
         mCount: 0,
@@ -112,14 +112,14 @@ app.service('ModifierService', ['CalculateNeighbors', function (CalculateNeighbo
         // arrays
         seqArray: [],
         revSeqArray: [],
-        Tm: Tm,
-        WAKTm: WAKTm,
-        GC: GC,
-        MW: MW,
-        A260: A260,
-        DeltaH: DeltaH,
-        DeltaG: DeltaG,
-        DeltaS: DeltaS,
+        Tm: this.Tm,
+        WAKTm: this.WAKTm,
+        GC: this.GC,
+        MW: this.MW,
+        A260: this.A260,
+        DeltaH: this.DeltaH,
+        DeltaG: this.DeltaG,
+        DeltaS: this.DeltaS,
         NearestNeighborTM: '',
         OligoCount: '',
         OligoCalculate: '',
@@ -201,7 +201,9 @@ app.service('ModifierService', ['CalculateNeighbors', function (CalculateNeighbo
         this.saltConcentration = parseFloat(this.oligoModifierRow.saltConcentration); // parseInt(form.saltConcBox.value);
         this.primerConcentration = parseFloat(this.oligoModifierRow.primerConcentration);  // parseInt(form.primerConcBox.value);
         this.oligoModifierRow.hasIUpacBase = CalculateNeighbors.AreThereIUpacBases(this.oligoModifierRow.Sequence);
-       // if (debug) alert("Sequence length=" + this.Sequence.length + "; Sequence=" + this.Sequence);
+        this.oligoModifierRow.isDeoxy = 1;
+        this.isSingleStranded = 1;
+       // if (debug) alert("Sequence length=" + this.Sequence.length + "; Sequence=" + this.oligoModifierRow.Sequence);
         //temp = form.deoxy.options[form.deoxy.selectedIndex].value;
         //if (temp.indexOf("DNA") >= 0) {
         //    this.isDeoxy = 1;
@@ -213,14 +215,15 @@ app.service('ModifierService', ['CalculateNeighbors', function (CalculateNeighbo
         //} else {
         //    this.isSingleStranded = 1;
         //}
-        this.OligoCalculate();
+        var value = this.OligoCalculate();
+        return value;
     }
 
     // direct interface with FORM
     this.DoChangeInMWConcAndODOutput = function (form) {
-        if (debug) alert('MW=' + this.mwValmin);
+      //  if (debug) alert('MW=' + this.mwValmin);
         form.ODreadOnly.value = this.ODs;
-        if (!this.hasIUpacBase) {
+        if (!this.oligoModifierRow.hasIUpacBase) {
             if (this.isSingleStranded) {
                 form.mwBox.value = this.mwValmin;
             } else {
@@ -246,47 +249,47 @@ app.service('ModifierService', ['CalculateNeighbors', function (CalculateNeighbo
     // direct interface with FORM
     this.DoOligoOutput = function (form, theSequenceObj) {
         this.DoChangeInMWConcAndODOutput(form);
-        if (!this.hasIUpacBase) {
-            form.gcBox.value = this.gcValmin;
-            form.tmBox.value = this.basicTmValmin;
-            form.WAKtmBox.value = this.adjustedTmValmin;
-            form.nTmBox.value = this.nearestNeighborTmValmin;
+        if (!this.oligoModifierRow.hasIUpacBase) {
+            form.gcBox.value = this.oligoModifierRow.gcValmin;
+            form.tmBox.value = this.oligoModifierRow.basicTmValmin;
+            form.WAKtmBox.value = this.oligoModifierRow.adjustedTmValmin;
+            form.nTmBox.value = this.oligoModifierRow.nearestNeighborTmValmin;
         } else {
-            form.gcBox.value = this.gcValmin + " to " + this.gcValmax;
-            form.tmBox.value = this.basicTmValmin + " to " + this.basicTmValmax;
-            form.WAKtmBox.value = this.adjustedTmValmin + " to " + this.adjustedTmValmax;
-            form.nTmBox.value = this.nearestNeighborTmValmin + " to " + this.nearestNeighborTmValmax;
+            form.gcBox.value = this.oligoModifierRow.gcValmin + " to " + this.oligoModifierRow.gcValmax;
+            form.tmBox.value = this.oligoModifierRow.basicTmValmin + " to " + this.oligoModifierRow.basicTmValmax;
+            form.WAKtmBox.value = this.oligoModifierRow.adjustedTmValmin + " to " + this.oligoModifierRow.adjustedTmValmax;
+            form.nTmBox.value = this.oligoModifierRow.nearestNeighborTmValmin + " to " + this.oligoModifierRow.nearestNeighborTmValmax;
         }
-        form.RlogKBox.value = this.RlogK;
-        if (!this.hasIUpacBase) {
-            form.deltaHBox.value = this.deltaHValmin;
-            form.deltaGBox.value = this.deltaGValmin;
-            form.deltaSBox.value = this.deltaSValmin;
+        form.RlogKBox.value = this.oligoModifierRow.RlogK;
+        if (!this.oligoModifierRow.hasIUpacBase) {
+            form.deltaHBox.value = this.oligoModifierRow.deltaHValmin;
+            form.deltaGBox.value = this.oligoModifierRow.deltaGValmin;
+            form.deltaSBox.value = this.oligoModifierRow.deltaSValmin;
         } else {
             form.deltaHBox.value = this.deltaHValmin + " to " + this.deltaHValmax;
             form.deltaGBox.value = this.deltaGValmin + " to " + this.deltaGValmax;
             form.deltaSBox.value = this.deltaSValmin + " to " + this.deltaSValmax;
         }
-        form.lBox.value = this.Sequence.length;
-        theSequenceObj.value = FormatBaseString(this.Sequence);
+        form.lBox.value = this.oligoModifierRow.Sequence.length;
+        theSequenceObj.value = FormatBaseString(this.oligoModifierRow.Sequence);
     }
 
     // split out to make changes in famra, OD, etc easier to calc
     this.OligoCalcMWConcAndODs = function () {
         /*** Now do MW calculation ***/
-        if (!this.hasIUpacBase) {
-            this.mwValmin = this.MW("min");
-            this.mwValmax = this.mwValmin;
+        if (!this.oligoModifierRow.hasIUpacBase) {
+            this.oligoModifierRow.mwValmin = this.MW("min");
+            this.oligoModifierRow.mwValmax = this.oligoModifierRow.mwValmin;
         } else {
             this.mwValmin = this.MW("min");
             this.mwValmax = this.MW("max");
         }
-        if (debug) alert("oligoCalc mw val=" + this.mwValmin);
+        //if (debug) alert("oligoCalc mw val=" + this.mwValmin);
         /*** Now do A260 concentration calculation ***/
-        this.concValmin = this.A260("min");
-        this.concValmax = this.A260("max");
-        this.microgramValmin = micrograms(this.mwValmin, this.concValmin); // external call
-        this.microgramValmax = micrograms(this.mwValmax, this.concValmax);
+        this.oligoModifierRow.concValmin = this.A260("min");
+        this.oligoModifierRow.concValmax = this.A260("max");
+        this.oligoModifierRow.microgramValmin = OligoCalcUtilsService.micrograms(this.oligoModifierRow.mwValmin, this.oligoModifierRow.concValmin); // external call
+        this.oligoModifierRow.microgramValmax = OligoCalcUtilsService.micrograms(this.oligoModifierRow.mwValmax, this.oligoModifierRow.concValmax);
     }
 
     // direct interface with FORM
@@ -304,14 +307,14 @@ app.service('ModifierService', ['CalculateNeighbors', function (CalculateNeighbo
         this.ODs = form.ODs.value;
         temp = form.deoxy.options[form.deoxy.selectedIndex].value;
         if (temp.indexOf("DNA") >= 0) {
-            this.isDeoxy = 1;
+            this.oligoModifierRow.isDeoxy = 1;
         } else {
-            this.isDeoxy = 0;
+            this.oligoModifierRow.isDeoxy = 0;
         }
         if (temp.indexOf("ds") >= 0) {
-            this.isSingleStranded = 0;
+            this.oligoModifierRow.isSingleStranded = 0;
         } else {
-            this.isSingleStranded = 1;
+            this.oligoModifierRow.isSingleStranded = 1;
         }
         this.OligoCalculate();
     }
@@ -320,45 +323,45 @@ app.service('ModifierService', ['CalculateNeighbors', function (CalculateNeighbo
     this.OligoCalculate = function() {
         this.OligoCount();
         /*** Do GC calculation ***/
-        if (!this.hasIUpacBase) {
-            this.gcValmin = this.GC("min");
-            this.gcValmax = this.gcValmin;
+        if (!this.oligoModifierRow.hasIUpacBase) {
+            this.oligoModifierRow.gcValmin = this.GC("min");
+            this.oligoModifierRow.gcValmax = this.oligoModifierRow.gcValmin;
         } else {
-            this.gcValmin = this.GC("min");
-            this.gcValmax = this.GC("max");
+            this.oligoModifierRow.gcValmin = this.GC("min");
+            this.oligoModifierRow.gcValmax = this.GC("max");
         }
         this.OligoCalcMWConcAndODs()
 
         /** Calculate numbers for Thermodynamic TM calculation **/
-        if (!this.hasIUpacBase) {
-            this.deltaHValmin = this.DeltaH("min");
-            this.deltaGValmin = this.DeltaG("min");
-            this.deltaSValmin = this.DeltaS("min");
-            this.deltaHValmax = this.deltaHValmin;
-            this.deltaGValmax = this.deltaGValmin;
-            this.deltaSValmax = this.deltaSValmin;
+        if (!this.oligoModifierRow.hasIUpacBase) {
+            this.oligoModifierRow.deltaHValmin = this.DeltaH("min");
+            this.oligoModifierRow.deltaGValmin = this.DeltaG("min");
+            this.oligoModifierRow.deltaSValmin = this.DeltaS("min");
+            this.oligoModifierRow.deltaHValmax = this.oligoModifierRow.deltaHValmin;
+            this.oligoModifierRow.deltaGValmax = this.oligoModifierRow.deltaGValmin;
+            this.oligoModifierRow.deltaSValmax = this.oligoModifierRow.deltaSValmin;
         } else {
-            this.deltaHValmin = this.DeltaH("min");
-            this.deltaGValmin = this.DeltaG("min");
-            this.deltaSValmin = this.DeltaS("min");
-            this.deltaHValmax = this.DeltaH("max");
-            this.deltaGValmax = this.DeltaG("max");
-            this.deltaSValmax = this.DeltaS("max");
+            this.oligoModifierRow.deltaHValmin = this.DeltaH("min");
+            this.oligoModifierRow.deltaGValmin = this.DeltaG("min");
+            this.oligoModifierRow.deltaSValmin = this.DeltaS("min");
+            this.oligoModifierRow.deltaHValmax = this.DeltaH("max");
+            this.oligoModifierRow.deltaGValmax = this.DeltaG("max");
+            this.oligoModifierRow.deltaSValmax = this.DeltaS("max");
         }
-        if (!this.hasIUpacBase) {
-            this.basicTmValmin = this.Tm("min");
-            this.adjustedTmValmin = this.WAKTm("min");
-            this.nearestNeighborTmValmin = this.NearestNeighborTM("min");
-            this.basicTmValmax = this.basicTmValmin;
-            this.adjustedTmValmax = this.adjustedTmValmin;
-            this.nearestNeighborTmValmax = this.adjustedTmValmin;
+        if (!this.oligoModifierRow.hasIUpacBase) {
+            //this.oligoModifierRow.basicTmValmin = this.Tm("min");
+            //this.oligoModifierRow.adjustedTmValmin = this.WAKTm("min");
+         return   this.oligoModifierRow.nearestNeighborTmValmin = this.NearestNeighborTM("min");
+            //this.oligoModifierRow.basicTmValmax = this.oligoModifierRow.basicTmValmin;
+            //this.oligoModifierRow.adjustedTmValmax = this.oligoModifierRow.adjustedTmValmin;
+            //this.oligoModifierRow.nearestNeighborTmValmax = this.oligoModifierRow.adjustedTmValmin;
         } else {
-            this.basicTmValmin = this.Tm("min");
-            this.adjustedTmValmin = this.WAKTm("min");
-            this.nearestNeighborTmValmin = this.NearestNeighborTM("min");
-            this.basicTmValmax = this.Tm("max");
-            this.adjustedTmValmax = this.WAKTm("max");
-            this.nearestNeighborTmValmax = this.NearestNeighborTM("max");
+            //this.oligoModifierRow.basicTmValmin = this.Tm("min");
+            //this.oligoModifierRow.adjustedTmValmin = this.WAKTm("min");
+          return  this.oligoModifierRow.nearestNeighborTmValmin = this.NearestNeighborTM("min");
+            //this.oligoModifierRow.basicTmValmax = this.Tm("max");
+            //this.oligoModifierRow.adjustedTmValmax = this.WAKTm("max");
+            //this.oligoModifierRow.nearestNeighborTmValmax = this.NearestNeighborTM("max");
         }
     }
 
@@ -372,11 +375,11 @@ app.service('ModifierService', ['CalculateNeighbors', function (CalculateNeighbo
          this.oligoModifierRow.mCount = this.CountChar("M", this.oligoModifierRow.Sequence);
          this.oligoModifierRow.rCount = this.CountChar("R", this.oligoModifierRow.Sequence);
          this.oligoModifierRow.wCount = this.CountChar("W", this.oligoModifierRow.Sequence);
-         this.oligoModifierRow.sCount = this.CountChar("S", this.Sequence);
+         this.oligoModifierRow.sCount = this.CountChar("S", this.oligoModifierRow.Sequence);
          this.oligoModifierRow.yCount = this.CountChar("Y", this.oligoModifierRow.Sequence);
          this.oligoModifierRow.kCount = this.CountChar("K", this.oligoModifierRow.Sequence);
          this.oligoModifierRow.vCount = this.CountChar("V", this.oligoModifierRow.Sequence);
-         this.oligoModifierRow.hCount = this.CountChar("H", this.Sequence);
+         this.oligoModifierRow.hCount = this.CountChar("H", this.oligoModifierRow.Sequence);
          this.oligoModifierRow.dCount = this.CountChar("D", this.oligoModifierRow.Sequence);
          this.oligoModifierRow.bCount = this.CountChar("B", this.oligoModifierRow.Sequence);
          this.oligoModifierRow.nCount = this.CountChar("N", this.oligoModifierRow.Sequence);
@@ -407,48 +410,48 @@ app.service('ModifierService', ['CalculateNeighbors', function (CalculateNeighbo
          this.oligoModifierRow.eA_MWmax = this.oligoModifierRow.aCount + this.oligoModifierRow.mCount + this.oligoModifierRow.wCount + this.oligoModifierRow.hCount;
          this.oligoModifierRow.eC_MWmax = this.oligoModifierRow.cCount;
          //Start here anders
-        this.eG_MWmax = this.gCount + this.rCount + this.sCount + this.kCount + this.vCount +
-                        this.dCount + this.bCount + this.nCount;
-        this.eT_MWmax = this.tCount + this.yCount;
+         this.oligoModifierRow.eG_MWmax = this.oligoModifierRow.gCount + this.oligoModifierRow.rCount + this.oligoModifierRow.sCount + this.oligoModifierRow.kCount + this.oligoModifierRow.vCount +
+                         this.oligoModifierRow.dCount + this.oligoModifierRow.bCount + this.oligoModifierRow.nCount;
+         this.oligoModifierRow.eT_MWmax = this.oligoModifierRow.tCount + this.oligoModifierRow.yCount;
 
-        this.eGC_min = this.gCount + this.cCount + this.sCount;
-        this.eGC_max = (this.Sequence.length) - this.aCount - this.tCount - this.wCount - this.uCount;
+         this.oligoModifierRow.eGC_min = this.oligoModifierRow.gCount + this.oligoModifierRow.cCount + this.oligoModifierRow.sCount;
+         this.oligoModifierRow.eGC_max = (this.oligoModifierRow.Sequence.length) - this.oligoModifierRow.aCount - this.oligoModifierRow.tCount - this.oligoModifierRow.wCount - this.oligoModifierRow.uCount;
 
         // count Nearest Neighbors
-        this.aaCount = CountNeighbors("AA", this.Sequence) + CountNeighbors("TT", this.Sequence) + CountNeighbors("UU", this.Sequence);
-        this.atCount = CountNeighbors("AT", this.Sequence) + CountNeighbors("AU", this.Sequence);
-        this.taCount = CountNeighbors("TA", this.Sequence) + CountNeighbors("UA", this.Sequence);
-        this.caCount = CountNeighbors("CA", this.Sequence) + CountNeighbors("TG", this.Sequence) + CountNeighbors("UG", this.Sequence);
-        this.gtCount = CountNeighbors("GT", this.Sequence) + CountNeighbors("AC", this.Sequence) + CountNeighbors("GU", this.Sequence);
-        this.ctCount = CountNeighbors("CT", this.Sequence) + CountNeighbors("AG", this.Sequence) + CountNeighbors("CU", this.Sequence);
-        this.gaCount = CountNeighbors("GA", this.Sequence) + CountNeighbors("TC", this.Sequence) + CountNeighbors("UC", this.Sequence);
-        this.cgCount = CountNeighbors("CG", this.Sequence);
-        this.gcCount = CountNeighbors("GC", this.Sequence);
-        this.ggCount = CountNeighbors("GG", this.Sequence) + CountNeighbors("CC", this.Sequence);
+         this.oligoModifierRow.aaCount = OligoCalcUtilsService.CountNeighbors("AA", this.oligoModifierRow.Sequence) + OligoCalcUtilsService.CountNeighbors("TT", this.oligoModifierRow.Sequence) + OligoCalcUtilsService.CountNeighbors("UU", this.oligoModifierRow.Sequence);
+         this.oligoModifierRow.atCount = OligoCalcUtilsService.CountNeighbors("AT", this.oligoModifierRow.Sequence) + OligoCalcUtilsService.CountNeighbors("AU", this.oligoModifierRow.Sequence);
+         this.oligoModifierRow.taCount = OligoCalcUtilsService.CountNeighbors("TA", this.oligoModifierRow.Sequence) + OligoCalcUtilsService.CountNeighbors("UA", this.oligoModifierRow.Sequence);
+         this.oligoModifierRow.caCount = OligoCalcUtilsService.CountNeighbors("CA", this.oligoModifierRow.Sequence) + OligoCalcUtilsService.CountNeighbors("TG", this.oligoModifierRow.Sequence) + OligoCalcUtilsService.CountNeighbors("UG", this.oligoModifierRow.Sequence);
+         this.oligoModifierRow.gtCount = OligoCalcUtilsService.CountNeighbors("GT", this.oligoModifierRow.Sequence) + OligoCalcUtilsService.CountNeighbors("AC", this.oligoModifierRow.Sequence) + OligoCalcUtilsService.CountNeighbors("GU", this.oligoModifierRow.Sequence);
+         this.oligoModifierRow.ctCount = OligoCalcUtilsService.CountNeighbors("CT", this.oligoModifierRow.Sequence) + OligoCalcUtilsService.CountNeighbors("AG", this.oligoModifierRow.Sequence) + OligoCalcUtilsService.CountNeighbors("CU", this.oligoModifierRow.Sequence);
+         this.oligoModifierRow.gaCount = OligoCalcUtilsService.CountNeighbors("GA", this.oligoModifierRow.Sequence) + OligoCalcUtilsService.CountNeighbors("TC", this.oligoModifierRow.Sequence) + OligoCalcUtilsService.CountNeighbors("UC", this.oligoModifierRow.Sequence);
+         this.oligoModifierRow.cgCount = OligoCalcUtilsService.CountNeighbors("CG", this.oligoModifierRow.Sequence);
+         this.oligoModifierRow.gcCount = OligoCalcUtilsService.CountNeighbors("GC", this.oligoModifierRow.Sequence);
+         this.oligoModifierRow.ggCount = OligoCalcUtilsService.CountNeighbors("GG", this.oligoModifierRow.Sequence) + OligoCalcUtilsService.CountNeighbors("CC", this.oligoModifierRow.Sequence);
         //Calculate IUpac pairs
         /*----08/02/99 fix one bug for nearest Neighbor Calc, */
         for (var j = 0; j < 3; j++) {
-            this.IUpairVals_min[j] = 0;
-            this.IUpairVals_max[j] = 0;
+            this.oligoModifierRow.IUpairVals_min[j] = 0;
+            this.oligoModifierRow.IUpairVals_max[j] = 0;
         }
         /*******************************************************/
-        for (var i = 1; i < this.Sequence.length; i++) {	//first base can not be IUpacbase
-            var base0 = this.Sequence.charAt((i - 1));
-            var base = this.Sequence.charAt(i);
+        for (var i = 1; i < this.oligoModifierRow.Sequence.length; i++) {	//first base can not be IUpacbase
+            var base0 = this.oligoModifierRow.Sequence.charAt((i - 1));
+            var base = this.oligoModifierRow.Sequence.charAt(i);
             var temp = new Array(0, 0, 0);
 
-            temp = CalcIUpair(base0, base, i, this.Sequence, "min");
-            if (debug) alert("temp " + temp[0] + " " + temp[1] + " " + temp[2]);
+            temp = OligoCalcUtilsService.CalcIUpair(base0, base, i, this.oligoModifierRow.Sequence, "min");
+          //  if (debug) alert("temp " + temp[0] + " " + temp[1] + " " + temp[2]);
             for (var j = 0; j < 3; j++) {
-                this.IUpairVals_min[j] += temp[j];
+                this.oligoModifierRow.IUpairVals_min[j] += temp[j];
             }
-            if (debug) alert("mim" + this.IUpairVals_min[0] + " " + this.IUpairVals_min[1] + " " + this.IUpairVals_min[2]);
-            temp = CalcIUpair(base0, base, i, this.Sequence, "max");
-            if (debug) alert("temp " + temp[0] + " " + temp[1] + " " + temp[2]);
+          //  if (debug) alert("mim" + this.oligoModifierRow.IUpairVals_min[0] + " " + this.oligoModifierRow.IUpairVals_min[1] + " " + this.oligoModifierRow.IUpairVals_min[2]);
+            temp = OligoCalcUtilsService.CalcIUpair(base0, base, i, this.oligoModifierRow.Sequence, "max");
+          //  if (debug) alert("temp " + temp[0] + " " + temp[1] + " " + temp[2]);
             for (j = 0; j < 3; j++) {
-                this.IUpairVals_max[j] += temp[j];
+                this.oligoModifierRow.IUpairVals_max[j] += temp[j];
             }
-            if (debug) alert("max" + this.IUpairVals_max[0] + " " + this.IUpairVals_max[1] + " " + this.IUpairVals_max[2]);
+          //  if (debug) alert("max" + this.oligoModifierRow.IUpairVals_max[0] + " " + this.oligoModifierRow.IUpairVals_max[1] + " " + this.oligoModifierRow.IUpairVals_max[2]);
         }
     }
 
@@ -460,181 +463,181 @@ app.service('ModifierService', ['CalculateNeighbors', function (CalculateNeighbo
     U 20800
     Assume 1 OD of a standard 1ml solution (1 cm pathlength)
     -----  */
-    function A260(choice) {
+    this.A260 = function(choice) {
         var div;
-        if (this.Sequence.length > 0) {
-            if (this.isSingleStranded) {
-                if (this.isDeoxy) {
+        if (this.oligoModifierRow.Sequence.length > 0) {
+            if (this.oligoModifierRow.isSingleStranded) {
+                if (this.oligoModifierRow.isDeoxy) {
                     if (choice == "min") {	//calculates the minimum value, use the e_A260max since it is the divident
-                        div = (this.eA_A260max * 15200 +
-                            this.eG_A260max * 12010 +
-                            this.eC_A260max * 7050 +
-                            this.eT_A260max * 8400 +
-                            this.eU_A260max * 9800 +
-                            this.famCount * 20960 +
-                            this.tetCount * 16255 +
-                            this.hexCount * 31580 +
-                            this.tamraCount * 31980);
+                        div = (this.oligoModifierRow.eA_A260max * 15200 +
+                            this.oligoModifierRow.eG_A260max * 12010 +
+                            this.oligoModifierRow.eC_A260max * 7050 +
+                            this.oligoModifierRow.eT_A260max * 8400 +
+                            this.oligoModifierRow.eU_A260max * 9800 +
+                            this.oligoModifierRow.famCount * 20960 +
+                            this.oligoModifierRow.tetCount * 16255 +
+                            this.oligoModifierRow.hexCount * 31580 +
+                            this.oligoModifierRow.tamraCount * 31980);
                     } else { //choice=="max"
-                        div = (this.eA_A260min * 15200 +
-                            this.eG_A260min * 12010 +
-                            this.eC_A260min * 7050 +
-                            this.eT_A260min * 8400 +
-                            this.eU_A260min * 9800 +
-                            this.famCount * 20960 +
-                            this.tetCount * 16255 +
-                            this.hexCount * 31580 +
-                            this.tamraCount * 31980);
+                        div = (this.oligoModifierRow.eA_A260min * 15200 +
+                            this.oligoModifierRow.eG_A260min * 12010 +
+                            this.oligoModifierRow.eC_A260min * 7050 +
+                            this.oligoModifierRow.eT_A260min * 8400 +
+                            this.oligoModifierRow.eU_A260min * 9800 +
+                            this.oligoModifierRow.famCount * 20960 +
+                            this.oligoModifierRow.tetCount * 16255 +
+                            this.oligoModifierRow.hexCount * 31580 +
+                            this.oligoModifierRow.tamraCount * 31980);
                     }
                 } else {
                     if (choice == "min") {	//calculates the minimum value, use the e_A260max since it is the divident
-                        div = (this.eA_A260max * 15400 +
-                            this.eG_A260max * 13700 +
-                            this.eC_A260max * 9000 +
-                            this.eT_A260max * 9400 +
-                            this.eU_A260max * 10000 +
-                            this.famCount * 20960 +
-                            this.tetCount * 16255 +
-                            this.hexCount * 31580 +
-                            this.tamraCount * 31980);
+                        div = (this.oligoModifierRow.eA_A260max * 15400 +
+                            this.oligoModifierRow.eG_A260max * 13700 +
+                            this.oligoModifierRow.eC_A260max * 9000 +
+                            this.oligoModifierRow.eT_A260max * 9400 +
+                            this.oligoModifierRow.eU_A260max * 10000 +
+                            this.oligoModifierRow.famCount * 20960 +
+                            this.oligoModifierRow.tetCount * 16255 +
+                            this.oligoModifierRow.hexCount * 31580 +
+                            this.oligoModifierRow.tamraCount * 31980);
                     } else { //choice=="max"
-                        div = (this.eA_A260min * 15400 +
-                            this.eG_A260min * 13700 +
-                            this.eC_A260min * 9000 +
-                            this.eT_A260min * 9400 +
-                            this.eU_A260min * 10000 +
-                            this.famCount * 20960 +
-                            this.tetCount * 16255 +
-                            this.hexCount * 31580 +
-                            this.tamraCount * 31980);
+                        div = (this.oligoModifierRow.eA_A260min * 15400 +
+                            this.oligoModifierRow.eG_A260min * 13700 +
+                            this.oligoModifierRow.eC_A260min * 9000 +
+                            this.oligoModifierRow.eT_A260min * 9400 +
+                            this.oligoModifierRow.eU_A260min * 10000 +
+                            this.oligoModifierRow.famCount * 20960 +
+                            this.oligoModifierRow.tetCount * 16255 +
+                            this.oligoModifierRow.hexCount * 31580 +
+                            this.oligoModifierRow.tamraCount * 31980);
                     }
                 }
             } else {
-                if (this.isDeoxy) {
-                    div = this.Sequence.length * 2 * 6400;
+                if (this.oligoModifierRow.isDeoxy) {
+                    div = this.oligoModifierRow.Sequence.length * 2 * 6400;
                 } else {
-                    div = this.Sequence.length * 2 * 8000;
+                    div = this.oligoModifierRow.Sequence.length * 2 * 8000;
                 }
             }
             // units are in microMoles/liter
-            return (Math.round(this.ODs * 1000000000 / div) / 1000);
+            return (Math.round(this.oligoModifierRow.ODs * 1000000000 / div) / 1000);
 
         }
         return "";
     }
 
-    function GetMod_A260() {
+    this.GetMod_A260= function() {
         return 0;
     }
 
-    function MW(choice) {
+    this.MW = function(choice) {
         var mw;
-        if (this.Sequence.length > 0) {
-            if (this.isDeoxy) {
+        if (this.oligoModifierRow.Sequence.length > 0) {
+            if (this.oligoModifierRow.isDeoxy) {
                 if (choice == "min") {
-                    mw = 313.21 * this.eA_MWmin +
-                            329.21 * this.eG_MWmin +
-                            289.18 * this.eC_MWmin +
-                            304.2 * this.eT_MWmin +
-                            290.169 * this.eU_MWmin +
-                            314. * this.eI_MWmin
+                    mw = 313.21 * this.oligoModifierRow.eA_MWmin +
+                            329.21 * this.oligoModifierRow.eG_MWmin +
+                            289.18 * this.oligoModifierRow.eC_MWmin +
+                            304.2 * this.oligoModifierRow.eT_MWmin +
+                            290.169 * this.oligoModifierRow.eU_MWmin +
+                            314. * this.oligoModifierRow.eI_MWmin
                             - 61.96;
                 } else {
-                    mw = 313.21 * this.eA_MWmax +
-                            329.21 * this.eG_MWmax +
-                            289.18 * this.eC_MWmax +
-                            304.2 * this.eT_MWmax +
-                            290.169 * this.eU_MWmax +
-                            314. * this.eI_MWmax
+                    mw = 313.21 * this.oligoModifierRow.eA_MWmax +
+                            329.21 * this.oligoModifierRow.eG_MWmax +
+                            289.18 * this.oligoModifierRow.eC_MWmax +
+                            304.2 * this.oligoModifierRow.eT_MWmax +
+                            290.169 * this.oligoModifierRow.eU_MWmax +
+                            314. * this.oligoModifierRow.eI_MWmax
                             - 61.96;
                 }
             } else { // is riboNucleotide
                 if (choice == "min") {
-                    mw = 329.21 * this.eA_MWmin +
-                            345.21 * this.eG_MWmin +
-                            305.18 * this.eC_MWmin +
-                            320.2 * this.eT_MWmin +
-                            306.169 * this.eU_MWmin +
-                            330 * this.eI_MWmin
+                    mw = 329.21 * this.oligoModifierRow.eA_MWmin +
+                            345.21 * this.oligoModifierRow.eG_MWmin +
+                            305.18 * this.oligoModifierRow.eC_MWmin +
+                            320.2 * this.oligoModifierRow.eT_MWmin +
+                            306.169 * this.oligoModifierRow.eU_MWmin +
+                            330 * this.oligoModifierRow.eI_MWmin
                             + 159;
 
                 } else {
-                    mw = 329.21 * this.eA_MWmax +
-                            345.21 * this.eG_MWmax +
-                            305.18 * this.eC_MWmax +
-                            320.2 * this.eT_MWmax +
-                            306.169 * this.eU_MWmax +
-                            330 * this.eI_MWmax
+                    mw = 329.21 * this.oligoModifierRow.eA_MWmax +
+                            345.21 * this.oligoModifierRow.eG_MWmax +
+                            305.18 * this.oligoModifierRow.eC_MWmax +
+                            320.2 * this.oligoModifierRow.eT_MWmax +
+                            306.169 * this.oligoModifierRow.eU_MWmax +
+                            330 * this.oligoModifierRow.eI_MWmax
                             + 159;
                 }
             }
-            var new_mw = mw + this.FivePrimeMW;
-            new_mw += this.ThreePrimeMW;
+            var new_mw = mw + this.oligoModifierRow.FivePrimeMW;
+            new_mw += this.oligoModifierRow.ThreePrimeMW;
             new_mw = Math.round(10 * new_mw) / 10;
             return new_mw;
         }
         return "";
     }
 
-    function GC(choice) {
-        if (this.Sequence.length > 0) {
+    this.GC = function(choice) {
+        if (this.oligoModifierRow.Sequence.length > 0) {
             if (choice == "min") {
-                return Math.round(100 * this.eGC_min / this.Sequence.length)
+                return Math.round(100 * this.oligoModifierRow.eGC_min / this.oligoModifierRow.Sequence.length)
             } else {
-                return Math.round(100 * this.eGC_max / this.Sequence.length);
+                return Math.round(100 * this.oligoModifierRow.eGC_max / this.oligoModifierRow.Sequence.length);
             }
         }
         return "";
     }
 
-    function Tm(choice) {
-        if (this.Sequence.length > 0) {
-            if (this.Sequence.length < 14) {
+    this.Tm = function(choice) {
+        if (this.oligoModifierRow.Sequence.length > 0) {
+            if (this.oligoModifierRow.Sequence.length < 14) {
                 if (choice == "min") {
-                    return Math.round(2 * (this.Sequence.length - this.eGC_min) + 4 * (this.eGC_min));
+                    return Math.round(2 * (this.oligoModifierRow.Sequence.length - this.eGC_min) + 4 * (this.eGC_min));
                 } else {
-                    return Math.round(2 * (this.Sequence.length - this.eGC_max) + 4 * (this.eGC_max));
+                    return Math.round(2 * (this.oligoModifierRow.Sequence.length - this.eGC_max) + 4 * (this.eGC_max));
                 }
             }
             else {
                 if (choice == "min") {
-                    return Math.round(64.9 + 41 * ((this.eGC_min - 16.4) / this.Sequence.length));
+                    return Math.round(64.9 + 41 * ((this.eGC_min - 16.4) / this.oligoModifierRow.Sequence.length));
                 } else {
-                    return Math.round(64.9 + 41 * ((this.eGC_max - 16.4) / this.Sequence.length));
+                    return Math.round(64.9 + 41 * ((this.eGC_max - 16.4) / this.oligoModifierRow.Sequence.length));
                 }
             }
         }
         return "";
     }
 
-    function WAKTm(choice) {
-        if (this.Sequence.length > 0) {
-            if (this.isDeoxy) {
-                if (this.Sequence.length < 14) {
+    this.WAKTm = function(choice) {
+        if (this.oligoModifierRow.Sequence.length > 0) {
+            if (this.oligoModifierRow.isDeoxy) {
+                if (this.oligoModifierRow.Sequence.length < 14) {
                     if (choice == "min") {
-                        return Math.round(2 * (this.Sequence.length - this.eGC_min) + 4 * (this.eGC_min) +
+                        return Math.round(2 * (this.oligoModifierRow.Sequence.length - this.eGC_min) + 4 * (this.eGC_min) +
                             21.6 + (7.21 * Math.log(this.saltConcentration / 1000)));
                     } else {
-                        return Math.round(2 * (this.Sequence.length - this.eGC_max) + 4 * (this.eGC_max) +
+                        return Math.round(2 * (this.oligoModifierRow.Sequence.length - this.eGC_max) + 4 * (this.eGC_max) +
                             21.6 + (7.21 * Math.log(this.saltConcentration / 1000)));
                     }
                 }
                 else {
                     if (choice == "min") {
-                        return Math.round(100.5 + (0.41 * this.gcValmin) - (820 / this.Sequence.length) +
+                        return Math.round(100.5 + (0.41 * this.gcValmin) - (820 / this.oligoModifierRow.Sequence.length) +
                             (7.21 * Math.log(this.saltConcentration / 1000)));
                     } else {
-                        return Math.round(100.5 + (0.41 * this.gcValmax) - (820 / this.Sequence.length) +
+                        return Math.round(100.5 + (0.41 * this.gcValmax) - (820 / this.oligoModifierRow.Sequence.length) +
                             (7.21 * Math.log(this.saltConcentration / 1000)));
                     }
                 }
             } else {
-                if (this.Sequence.length > 20) {
+                if (this.oligoModifierRow.Sequence.length > 20) {
                     if (choice == "min") {
-                        return Math.round(79.8 + (0.584 * this.gcValmin) + (11.8 * (this.gcValmin / 100) * (this.gcValmin / 100)) - (820 / this.Sequence.length) +
+                        return Math.round(79.8 + (0.584 * this.gcValmin) + (11.8 * (this.gcValmin / 100) * (this.gcValmin / 100)) - (820 / this.oligoModifierRow.Sequence.length) +
                             (8.03 * Math.log(this.saltConcentration / 1000)));
                     } else {
-                        return Math.round(79.8 + (0.584 * this.gcValmax) - (820 / this.Sequence.length) +
+                        return Math.round(79.8 + (0.584 * this.gcValmax) - (820 / this.oligoModifierRow.Sequence.length) +
                             (8.03 * Math.log(this.saltConcentration / 1000)));
                     }
                 } else {
@@ -655,61 +658,61 @@ app.service('ModifierService', ['CalculateNeighbors', function (CalculateNeighbo
         NOTE: Javascript Math.log() calls a NATURAL LOG, not Log base 10!
     */
 
-    function DeltaG(choice) {
-        if (this.Sequence.length > 7) {
+    this.DeltaG = function(choice) {
+        if (this.oligoModifierRow.Sequence.length > 7) {
             var val = -5.0;
             // Helix initiation Free Energy of 5 kcal.
             // symmetry function: if symmetrical, subtract another 0.4
-            val += 1.2 * this.aaCount;
-            val += 0.9 * this.atCount;
-            val += 0.9 * this.taCount;
-            val += 1.7 * this.caCount;
-            val += 1.5 * this.gtCount;
-            val += 1.5 * this.ctCount;
-            val += 1.5 * this.gaCount;
-            val += 2.8 * this.cgCount;
-            val += 2.3 * this.gcCount;
-            val += 2.1 * this.ggCount;
+            val += 1.2 * this.oligoModifierRow.aaCount;
+            val += 0.9 * this.oligoModifierRow.atCount;
+            val += 0.9 * this.oligoModifierRow.taCount;
+            val += 1.7 * this.oligoModifierRow.caCount;
+            val += 1.5 * this.oligoModifierRow.gtCount;
+            val += 1.5 * this.oligoModifierRow.ctCount;
+            val += 1.5 * this.oligoModifierRow.gaCount;
+            val += 2.8 * this.oligoModifierRow.cgCount;
+            val += 2.3 * this.oligoModifierRow.gcCount;
+            val += 2.1 * this.oligoModifierRow.ggCount;
             if (choice == "min") {
-                val += this.IUpairVals_min[0];
+                val += this.oligoModifierRow.IUpairVals_min[0];
             } else {
-                val += this.IUpairVals_max[0];
+                val += this.oligoModifierRow.IUpairVals_max[0];
             }
             return Math.round((1000 * val)) / 1000;
         }
         return "";
     }
 
-    function DeltaH(choice) {
+    this.DeltaH = function(choice) {
         if (this.Sequence.length > 7) {
             var val = 0.0;
-            if (this.isDeoxy) {
-                val += 8.0 * this.aaCount;
-                val += 5.6 * this.atCount;
-                val += 6.6 * this.taCount;
-                val += 8.2 * this.caCount;
-                val += 9.4 * this.gtCount;
-                val += 6.6 * this.ctCount;
-                val += 8.8 * this.gaCount;
-                val += 11.8 * this.cgCount;
-                val += 10.5 * this.gcCount;
-                val += 10.9 * this.ggCount;
+            if (this.oligoModifierRow.isDeoxy) {
+                val += 8.0 * this.oligoModifierRow.aaCount;
+                val += 5.6 * this.oligoModifierRow.atCount;
+                val += 6.6 * this.oligoModifierRow.taCount;
+                val += 8.2 * this.oligoModifierRow.caCount;
+                val += 9.4 * this.oligoModifierRow.gtCount;
+                val += 6.6 * this.oligoModifierRow.ctCount;
+                val += 8.8 * this.oligoModifierRow.gaCount;
+                val += 11.8 * this.oligoModifierRow.cgCount;
+                val += 10.5 * this.oligoModifierRow.gcCount;
+                val += 10.9 * this.oligoModifierRow.ggCount;
             } else {
-                val += 6.8 * this.aaCount;
-                val += 9.38 * this.atCount;
-                val += 7.69 * this.taCount;
-                val += 10.44 * this.caCount;
-                val += 11.4 * this.gtCount;
-                val += 10.48 * this.ctCount;
-                val += 12.44 * this.gaCount;
-                val += 10.64 * this.cgCount;
-                val += 14.88 * this.gcCount;
-                val += 13.39 * this.ggCount;
+                val += 6.8 * this.oligoModifierRow.aaCount;
+                val += 9.38 * this.oligoModifierRow.atCount;
+                val += 7.69 * this.oligoModifierRow.taCount;
+                val += 10.44 * this.oligoModifierRow.caCount;
+                val += 11.4 * this.oligoModifierRow.gtCount;
+                val += 10.48 * this.oligoModifierRow.ctCount;
+                val += 12.44 * this.oligoModifierRow.gaCount;
+                val += 10.64 * this.oligoModifierRow.cgCount;
+                val += 14.88 * this.oligoModifierRow.gcCount;
+                val += 13.39 * this.oligoModifierRow.ggCount;
             }
             if (choice == "min") {
-                val += this.IUpairVals_min[1];
+                val += this.oligoModifierRow.IUpairVals_min[1];
             } else {
-                val += this.IUpairVals_max[1];
+                val += this.oligoModifierRow.IUpairVals_max[1];
             }
             return Math.round((1000 * val)) / 1000;
         }
@@ -748,36 +751,36 @@ app.service('ModifierService', ['CalculateNeighbors', function (CalculateNeighbo
     */
 
 
-    function DeltaS(choice) {
+    this.DeltaS=function(choice) {
         if (this.Sequence.length > 7) {
             var val = 0;
-            if (this.isDeoxy) {
-                val += 21.9 * this.aaCount;
-                val += 15.2 * this.atCount;
-                val += 18.4 * this.taCount;
-                val += 21.0 * this.caCount;
-                val += 25.5 * this.gtCount;
-                val += 16.4 * this.ctCount;
-                val += 23.5 * this.gaCount;
-                val += 29.0 * this.cgCount;
-                val += 26.4 * this.gcCount;
-                val += 28.4 * this.ggCount;
+            if (this.oligoModifierRow.isDeoxy) {
+                val += 21.9 * this.oligoModifierRow.aaCount;
+                val += 15.2 * this.oligoModifierRow.atCount;
+                val += 18.4 * this.oligoModifierRow.taCount;
+                val += 21.0 * this.oligoModifierRow.caCount;
+                val += 25.5 * this.oligoModifierRow.gtCount;
+                val += 16.4 * this.oligoModifierRow.ctCount;
+                val += 23.5 * this.oligoModifierRow.gaCount;
+                val += 29.0 * this.oligoModifierRow.cgCount;
+                val += 26.4 * this.oligoModifierRow.gcCount;
+                val += 28.4 * this.oligoModifierRow.ggCount;
             } else {
-                val += 19.0 * this.aaCount;
-                val += 26.7 * this.atCount;
-                val += 20.5 * this.taCount;
-                val += 26.9 * this.caCount;
-                val += 29.5 * this.gtCount;
-                val += 27.1 * this.ctCount;
-                val += 32.5 * this.gaCount;
-                val += 26.7 * this.cgCount;
-                val += 36.9 * this.gcCount;
-                val += 32.7 * this.ggCount;
+                val += 19.0 * this.oligoModifierRow.aaCount;
+                val += 26.7 * this.oligoModifierRow.atCount;
+                val += 20.5 * this.oligoModifierRow.taCount;
+                val += 26.9 * this.oligoModifierRow.caCount;
+                val += 29.5 * this.oligoModifierRow.gtCount;
+                val += 27.1 * this.oligoModifierRow.ctCount;
+                val += 32.5 * this.oligoModifierRow.gaCount;
+                val += 26.7 * this.oligoModifierRow.cgCount;
+                val += 36.9 * this.oligoModifierRow.gcCount;
+                val += 32.7 * this.oligoModifierRow.ggCount;
             }
             if (choice == "min") {
-                val += this.IUpairVals_min[2];
+                val += this.oligoModifierRow.IUpairVals_min[2];
             } else {
-                val += this.IUpairVals_max[2];
+                val += this.oligoModifierRow.IUpairVals_max[2];
             }
             return Math.round((1000 * val)) / 1000;
         }

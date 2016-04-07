@@ -114,7 +114,8 @@ app.controller("MockCtrl", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', 
         var tempValue = vm.NewOligonucleotideRow[index].OligonucleotideSequence;
         vm.NewOligonucleotideRow[index].OligonucleotideSequence = OligoCalcUtilsService.CheckBase(vm.NewOligonucleotideRow[index].OligonucleotideSequence);
 
-        ModifierService.DoOligoCalc(vm.NewOligonucleotideRow[index], vm.NewOligonucleotideRow[index].OligonucleotideSequence);
+        vm.NewOligonucleotideRow[index].Tm = ModifierService.DoOligoCalc(vm.NewOligonucleotideRow[index], vm.NewOligonucleotideRow[index].OligonucleotideSequence);
+      //  var thiss = value;
     }
 
     function setupInitialRows() {
@@ -139,7 +140,7 @@ app.controller("MockCtrl", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', 
         vm.purification = [{ name: 'Desalted', value: 'Desalted' }, { name: 'Cartridge', value: 'Cartridge' }, { name: 'HPLC', value: 'HPLC' }, { name: 'PAGE', value: 'PAGE' }];
 
         vm.finalDeliveryForm = [{ name: 'Liquid', value: 'Liquid-H2O' }, { name: 'Dry', value: 'Dry-Lyophilised' }];
-        vm.NewOligonucleotideRow = [{ OglioNumber: vm.oligoNumber, Qty: "", OligonucleotideSequence: '', Five5Modifications: vm.fiveModifications, InternalModification: vm.threeModifications, ThreeModifications: vm.threeModifications, SynthesisScale1: vm.synthesisScale1Values, SynthesisScaleValue: "", Modification: "", ModificationValue: "", FinalDeliveryForm: vm.finalDeliveryForm, FinalDeliveryFormValue: "", Purification: vm.purification, PurificationValue: "", GMP3: vm.gmp3, GmpValue: "", Price: 'N/A', NumberOfBases: 12, GcContent: 20, Tm: 22, oligoCarret: '' }];
+        vm.NewOligonucleotideRow = [{ OglioNumber: vm.oligoNumber, Qty: "", OligonucleotideSequence: '', Five5Modifications: vm.fiveModifications, InternalModification: vm.threeModifications, ThreeModifications: vm.threeModifications, SynthesisScale1: vm.synthesisScale1Values, SynthesisScaleValue: "", Modification: "", ModificationValue: "", FinalDeliveryForm: vm.finalDeliveryForm, FinalDeliveryFormValue: "", Purification: vm.purification, PurificationValue: "", GMP3: vm.gmp3, GmpValue: "", Price: 'N/A', NumberOfBases: 0, GcContent: 0, Tm: 0, oligoCarret: '' }];
         vm.countriesList = GenericHelpers.country_list();
 
         //vm.itemSelected = vm.countriesList[5];

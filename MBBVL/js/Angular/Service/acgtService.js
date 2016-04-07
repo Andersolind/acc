@@ -15,7 +15,7 @@
     }
 
     this.newOligonucleotideRow = function (oglioNumber,fiveModifications, threeModifications, synthesisScale1Values, finalDeliveryForm, purification) {
-        var properties = { OglioNumber: oglioNumber, Qty: "", OligonucleotideSequence: '', Five5Modifications: fiveModifications, InternalModification: threeModifications, ThreeModifications: threeModifications, SynthesisScale1: synthesisScale1Values, SynthesisScaleValue: "", Modification: "", ModificationValue: "", FinalDeliveryForm: finalDeliveryForm, FinalDeliveryFormValue: "", Purification: purification, PurificationValue: "", Price: "", NumberOfBases:12, GcContent: 20, TM: 22 };
+        var properties = { OglioNumber: oglioNumber, Qty: "", OligonucleotideSequence: '', Five5Modifications: fiveModifications, InternalModification: threeModifications, ThreeModifications: threeModifications, SynthesisScale1: synthesisScale1Values, SynthesisScaleValue: "", Modification: "", ModificationValue: "", FinalDeliveryForm: finalDeliveryForm, FinalDeliveryFormValue: "", Purification: purification, PurificationValue: "", Price: "", NumberOfBases:0, GcContent: 0, TM: 0 };
         return properties;
     }
 

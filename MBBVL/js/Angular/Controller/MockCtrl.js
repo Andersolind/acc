@@ -4,7 +4,7 @@ app.controller("MockCtrl", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', 
     //
     var vm = this;
     vm.isBilling = false;
-
+    vm.validValues = [  'b','v', 'n', 'a', 'g', 's', 't', 'v', 'l', 'i', 'k', 'r', 'h', 'w', 'f', 'p', 'n', 'q', 'm', 'c', 'd', 'e', 'y'];
     var i = 1;
     vm.oligoNumber = i++;
     setupInitialRows();
@@ -110,12 +110,31 @@ app.controller("MockCtrl", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', 
             vm.NewOligonucleotideRow[index].Price = 'Not Valid';
         }
         //Update length for Bases
+        //Move to a service method..
         vm.NewOligonucleotideRow[index].NumberOfBases = newOglio.length;
         var tempValue = vm.NewOligonucleotideRow[index].OligonucleotideSequence;
-        vm.NewOligonucleotideRow[index].OligonucleotideSequence = OligoCalcUtilsService.CheckBase(vm.NewOligonucleotideRow[index].OligonucleotideSequence);
+        if (tempValue.indexOf("[") > 0) {
+            var getBeforeSplit = tempValue.split("[")[0];
+            var getAfterSplit = tempValue.split("]")[1];
+            var endResult = getBeforeSplit + getAfterSplit;
+            vm.NewOligonucleotideRow[index].OligonucleotideSequence = OligoCalcUtilsService.CheckBase(endResult);
 
-        vm.NewOligonucleotideRow[index].Tm = ModifierService.DoOligoCalc(vm.NewOligonucleotideRow[index], vm.NewOligonucleotideRow[index].OligonucleotideSequence);
-      //  var thiss = value;
+            vm.NewOligonucleotideRow[index].Tm = ModifierService.DoOligoCalc(vm.NewOligonucleotideRow[index], vm.NewOligonucleotideRow[index].OligonucleotideSequence);
+            vm.NewOligonucleotideRow[index].OligonucleotideSequence = tempValue.toUpperCase();
+        }
+        else
+        {
+            vm.NewOligonucleotideRow[index].OligonucleotideSequence = OligoCalcUtilsService.CheckBase(vm.NewOligonucleotideRow[index].OligonucleotideSequence);
+
+            vm.NewOligonucleotideRow[index].Tm = ModifierService.DoOligoCalc(vm.NewOligonucleotideRow[index], vm.NewOligonucleotideRow[index].OligonucleotideSequence);
+          
+        }
+
+       
+        //Check if [] exists..
+
+        //crop out the rest of the words 
+      
     }
 
     function setupInitialRows() {
@@ -218,6 +237,12 @@ app.controller("MockCtrl", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', 
 
     vm.validateOligo = function (value) {
         var key = value.keyCode || value.charCode;
+    }
+
+    vm.isBaseCode = function($event)
+    {
+        return false;
+        GenericHelpers.checkForSpecialCharacters($event);
     }
 
 

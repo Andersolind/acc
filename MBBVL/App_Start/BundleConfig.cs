@@ -29,11 +29,7 @@ namespace MBBVL {
                        "~/js/angular/Service/ModifierService.js",
                          "~/js/angular/Service/OligoCalcUtilsService.js",
                          "~/js/angular/Service/CalculateNeighborsService.js",
-                         
-                   
-                         
-                        
-
+                       "~/js/angular/Directives/preventKeyPress.js",
                        "~/js/angular/Fac/factory.js",
                        "~/js/angular/Controller/OrderSequencingctrl.js",
                        "~/js/angular/Controller/OrderOgliCtrl.js",

@@ -113,7 +113,7 @@
                     for (k = 0; k < 2; k++)
                     { temp2[k] = 0.0; }
 
-                } else if (!IsIUpacBase(base2)) {
+                } else if (!this.IsIUpacBase(base2)) {
                     pair2 = base + base2;
                     //alert("pair2 "+pair2);
                     if (pair2 == "AA") { temp2[0] = 1.2; temp2[1] = 8.0; temp2[2] = 21.9; }
@@ -126,7 +126,7 @@
                     else if (pair2 == "CG") { temp2[0] = 2.8; temp2[1] = 11.8; temp2[2] = 29.0; }
                     else if (pair2 == "GC") { temp2[0] = 2.3; temp2[1] = 10.5; temp2[2] = 26.4; }
                     else if (pair2 == "GG") { temp2[0] = 2.1; temp2[1] = 10.9; temp2[2] = 28.4; }
-                } else if (IsIUpacBase(base2)) {
+                } else if (this.IsIUpacBase(base2)) {
                     base0 = base; base = base2; i++;
                     temp2 = CalcIUpair(base0, base, i, theSequence, choice);
                     i--;

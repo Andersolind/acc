@@ -254,7 +254,7 @@
                             </td>
                             @*<th>5’MODIFICATION </th>*@
                             <td>
-                                <select class="form-control text-center" ng-model="vm.fiveInchMod"  ng-change="vm.fiveInchSequence($index,vm.fiveInchMod)">
+                                <select class="form-control text-center" ng-model="vm.fiveInchMod"  @*ng-change="vm.fiveInchSequence($index,vm.fiveInchMod)*@">
                                     <optgroup ng-repeat="header in rows.Five5Modifications" label="{{ header.name }}">
                                         <option value="">--- Select ---</option>
                                         <option ng-repeat="item in header.items" value="{{ item.value }}">{{ item.name }}</option>
@@ -272,12 +272,12 @@
                             </td>
                             @*<th>OLIGO SEQUENCE <br />(5’ – 3’)<a href="">?</a></th>*@
                             <td>
-                                <textarea maxlength="150"  ng-model-options="{ debounce: 1000 }" ng-click="vm.getCursorPos($event,$index)"  ng-keyup="vm.getCursorPos($event,$index)" ng-change="vm.UserQuote($index,rows.Qty,rows.OligonucleotideSequence,scaleValues1,Purification2)" class="form-control" id="OligonucleotideSequence{{$index}}" name="OligonucleotideSequence{{$index}}" ng-model="rows.OligonucleotideSequence" placeholder="Oligonucleotide Sequence" title="Oligonucleotide Sequence"></textarea>
+                                <textarea maxlength="150"  ng-model-options="{ debounce: 1000 }" ng-click="vm.getCursorPos($event,$index)"  ng-keyup="vm.getCursorPos($event,$index)" ng-change="vm.UserQuote($index,rows.Qty,rows.OligonucleotideSequence,scaleValues1,Purification2)" my-validator valid-values="vm.validValues" class="form-control" id="OligonucleotideSequence{{$index}}" name="OligonucleotideSequence{{$index}}" ng-model="rows.OligonucleotideSequence" placeholder="Oligonucleotide Sequence" title="Oligonucleotide Sequence"></textarea>
                             </td>
                             @*<th>3’MODIFICATION</th>*@
                             <td>
                              
-                                <select  class="form-control" ng-model="vm.threeInchValue" ng-change="vm.threeInchSequence($index,vm.threeInchValue)" >
+                                <select  class="form-control" ng-model="vm.threeInchValue" @*ng-change="vm.threeInchSequence($index,vm.threeInchValue)*@" >
                                     <optgroup ng-repeat="header in rows.ThreeModifications" label="{{ header.name }}">
                                         <option value="">--- Select  ---</option>
                                         <option ng-repeat="item in header.items" value="{{ item.value }}">{{ item.name }}</option>

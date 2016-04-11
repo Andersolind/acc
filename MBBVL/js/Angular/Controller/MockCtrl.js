@@ -118,15 +118,22 @@ app.controller("MockCtrl", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', 
             var getAfterSplit = tempValue.split("]")[1];
             var endResult = getBeforeSplit + getAfterSplit;
             vm.NewOligonucleotideRow[index].OligonucleotideSequence = OligoCalcUtilsService.CheckBase(endResult);
-
-            vm.NewOligonucleotideRow[index].Tm = ModifierService.DoOligoCalc(vm.NewOligonucleotideRow[index], vm.NewOligonucleotideRow[index].OligonucleotideSequence);
+            //
+            var getFinalValues = ModifierService.DoOligoCalc(vm.NewOligonucleotideRow[index], vm.NewOligonucleotideRow[index].OligonucleotideSequence);
+            vm.NewOligonucleotideRow[index].Tm = getFinalValues.neighbors;
+           
+            vm.NewOligonucleotideRow[index].GcContent = getFinalValues.gc;
+         //   vm.NewOligonucleotideRow[index].Tm = ModifierService.DoOligoCalc(vm.NewOligonucleotideRow[index], vm.NewOligonucleotideRow[index].OligonucleotideSequence);
             vm.NewOligonucleotideRow[index].OligonucleotideSequence = tempValue.toUpperCase();
         }
         else
         {
             vm.NewOligonucleotideRow[index].OligonucleotideSequence = OligoCalcUtilsService.CheckBase(vm.NewOligonucleotideRow[index].OligonucleotideSequence);
+            var getFinalValues = ModifierService.DoOligoCalc(vm.NewOligonucleotideRow[index], vm.NewOligonucleotideRow[index].OligonucleotideSequence);
+                
+            vm.NewOligonucleotideRow[index].Tm = getFinalValues.neighbors;
 
-            vm.NewOligonucleotideRow[index].Tm = ModifierService.DoOligoCalc(vm.NewOligonucleotideRow[index], vm.NewOligonucleotideRow[index].OligonucleotideSequence);
+            vm.NewOligonucleotideRow[index].GcContent = getFinalValues.gc;
           
         }
 

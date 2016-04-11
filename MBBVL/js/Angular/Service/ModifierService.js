@@ -349,16 +349,20 @@ app.service('ModifierService', ['CalculateNeighbors', 'OligoCalcUtilsService', f
             this.oligoModifierRow.deltaSValmax = this.DeltaS("max");
         }
         if (!this.oligoModifierRow.hasIUpacBase) {
+            var finalValues = { gc: this.oligoModifierRow.gcValmin = this.GC("min"), neighbors: this.oligoModifierRow.nearestNeighborTmValmin = this.NearestNeighborTM("min") };
+            return finalValues;
             //this.oligoModifierRow.basicTmValmin = this.Tm("min");
             //this.oligoModifierRow.adjustedTmValmin = this.WAKTm("min");
-         return   this.oligoModifierRow.nearestNeighborTmValmin = this.NearestNeighborTM("min");
+       //  return   this.oligoModifierRow.nearestNeighborTmValmin = this.NearestNeighborTM("min");
             //this.oligoModifierRow.basicTmValmax = this.oligoModifierRow.basicTmValmin;
             //this.oligoModifierRow.adjustedTmValmax = this.oligoModifierRow.adjustedTmValmin;
             //this.oligoModifierRow.nearestNeighborTmValmax = this.oligoModifierRow.adjustedTmValmin;
         } else {
+            var finalValues = { gc: this.oligoModifierRow.gcValmin = this.GC("min"), neighbors: this.oligoModifierRow.nearestNeighborTmValmin = this.NearestNeighborTM("min") };
+            return finalValues;
             //this.oligoModifierRow.basicTmValmin = this.Tm("min");
             //this.oligoModifierRow.adjustedTmValmin = this.WAKTm("min");
-          return  this.oligoModifierRow.nearestNeighborTmValmin = this.NearestNeighborTM("min");
+      //    return  this.oligoModifierRow.nearestNeighborTmValmin = this.NearestNeighborTM("min");
             //this.oligoModifierRow.basicTmValmax = this.Tm("max");
             //this.oligoModifierRow.adjustedTmValmax = this.WAKTm("max");
             //this.oligoModifierRow.nearestNeighborTmValmax = this.NearestNeighborTM("max");

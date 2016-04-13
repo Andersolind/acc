@@ -1399,9 +1399,12 @@ h6,
     font-size: 12px;
 }
 
+
 p {
     margin: 0 0 2px;
+    line-height: 200%;
 }
+
 
 .lead {
     margin-bottom: 20px;

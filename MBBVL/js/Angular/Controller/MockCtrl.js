@@ -4,7 +4,7 @@ app.controller("MockCtrl", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', 
     //
     var vm = this;
     vm.isBilling = false;
-    vm.validValues = [  'b','v', 'n', 'a', 'g', 's', 't', 'v', 'l', 'i', 'k', 'r', 'h', 'w', 'f', 'p', 'n', 'q', 'm', 'c', 'd', 'e', 'y'];
+    vm.validValues = [  'b','v', 'n', 'a', 'g', 's', 't', 'v', 'i', 'k', 'r', 'h', 'w', 'f', 'p', 'n', 'q', 'm', 'c', 'd', 'e', 'y'];
     var i = 1;
     vm.oligoNumber = i++;
     setupInitialRows();
@@ -180,6 +180,8 @@ app.controller("MockCtrl", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', 
         $scope.dnaForm.$setPristine();
         $scope.dnaForm.submitted = false;
 
+        var model = $scope.WrapperModel;
+
     };
     function setAllInputsDirty(scope) {
         angular.forEach(scope, function (value, key) {
@@ -217,6 +219,11 @@ app.controller("MockCtrl", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', 
             //MOZILLA and others
         else if (document.getElementById(myField).selectionStart || document.getElementById(myField).selectionStart == '0') {
             var startPos = document.getElementById(myField).selectionStart;
+            if (startPos == '0')
+            {
+                return false;
+            }
+
             var endPos = document.getElementById(myField).selectionEnd;
             var tempValue = document.getElementById(myField).value = document.getElementById(myField).value.substring(0, startPos) + '[' + myValue + ']'
                 + document.getElementById(myField).value.substring(endPos, document.getElementById(myField).value.length);

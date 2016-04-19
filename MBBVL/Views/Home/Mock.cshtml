@@ -84,8 +84,8 @@
                         </div>
                         @*Extention*@
                         <div class="form-group col-md-6" ng-class="{'has-error' : dnaForm.txtShippingExtention.$invalid && !dnaForm.txtShippingExtention.$pristine}">
-                            <label class="control-label" for="lblPhone">*Extention</label>
-                            <input type="text" class="form-control" id="txtShippingExtention" name="txtShippingExtention" ng-model="vm.WrapperModel.Shipping.Extention" placeholder="Extention" title="Extention" required>
+                            <label class="control-label" for="lblPhone">Extention</label>
+                            <input type="text" class="form-control" id="txtShippingExtention" name="txtShippingExtention" ng-model="vm.WrapperModel.Shipping.Extention" placeholder="Extention" title="Extention">
                             <p ng-show="dnaForm.txtShippingExtention.$invalid && !dnaForm.txtShippingExtention.$pristine" class="help-block">Extention is required.</p>
                         </div>
                         @*Shiping Email*@
@@ -207,6 +207,12 @@
                 <h3 class="panel-title"> Oligonucleotide Order Form</h3>
             </div>
 
+            <div class="row">
+                <div class="col-lg-10">
+                    <button class="btn btn-default" ng-click="vm.OligonucleotideRow()"><span class="glyphicon glyphicon-plus-sign"></span> Add Row</button>
+                </div>
+            </div>
+
             <div class="panel-body">
                 <fieldset></fieldset>
                 <div ng-repeat="rows in vm.NewOligonucleotideRow">
@@ -306,6 +312,9 @@
                     <button class="btn btn-primary" ng-click="vm.OligonucleotideRow()">Add Another Oligo</button>
                     <button class="btn btn-danger" ng-click="vm.removeRow($index)">Remove this Oligo</button>
 
+                </div>
+                <div ng-if="!vm.NewOligonucleotideRow.length">
+                  <h2> Your cart is empty</h2>
                 </div>
             </div>
         </div>

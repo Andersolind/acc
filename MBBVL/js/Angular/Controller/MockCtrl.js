@@ -14,6 +14,11 @@ app.controller("MockCtrl", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', 
         vm.oligoNumber = i++;
         vm.NewOligonucleotideRow.push(GenericHelpers.newOligonucleotideRow(vm.oligoNumber, vm.fiveModifications, vm.threeModifications, vm.synthesisScale1Values, vm.finalDeliveryForm, vm.purification));
     };
+    vm.WrapperModel = {
+        Billing: {},
+        Shipping: {},
+        Oligosequence: vm.NewOligonucleotideRow
+    };
 
     vm.removeRow = function (idx) {
         vm.oligoNumber = i--;
@@ -24,7 +29,6 @@ app.controller("MockCtrl", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', 
     vm.isShippingTheSame = function (isClicked) {
 
         if (isClicked) {
-
             vm.WrapperModel.Billing.Country = vm.WrapperModel.Shipping.Country;
             vm.WrapperModel.Billing.FirstName = vm.WrapperModel.Shipping.FirstName;
             vm.WrapperModel.Billing.LastName = vm.WrapperModel.Shipping.LastName;
@@ -34,7 +38,9 @@ app.controller("MockCtrl", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', 
             vm.WrapperModel.Billing.Phone = vm.WrapperModel.Shipping.Phone;
             vm.WrapperModel.Billing.Extention = vm.WrapperModel.Shipping.Extention;
             vm.WrapperModel.Billing.Email = vm.WrapperModel.Shipping.Email;
-        }
+            vm.WrapperModel.Billing.PO = vm.WrapperModel.Shipping.PO;
+
+            }
     }
 
     vm.getCursorPos = function ($event, index) {
@@ -179,8 +185,19 @@ app.controller("MockCtrl", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', 
         $scope.dnaForm.$valid = false;
         $scope.dnaForm.$setPristine();
         $scope.dnaForm.submitted = false;
+        
 
-        var model = $scope.WrapperModel;
+        var model = $scope.vm.WrapperModel;
+
+
+
+        ACGTFactory.serverService(url, "Post", model).success(function (model, status) {
+            if (status == 200) {
+                window.location = "/home/thankyou";
+            }
+        }).error(function (error) {
+            var err = error;
+        });
 
     };
     function setAllInputsDirty(scope) {

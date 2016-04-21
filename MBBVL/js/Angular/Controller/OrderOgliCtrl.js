@@ -95,14 +95,14 @@
 
     
         //Get all the form variables from the page and get ready to submit to our model
-        var url = "/api/Oligosequence/";
+        var url = "/api/Oligonucleotide/OligoInsert";
 
         //See if the billing is the same 
         $scope.WrapperModel.isBillingAddress = $scope.isBillingAddress;
         //Get the country
         $scope.WrapperModel.Billing.Country = $scope.BillingCountry.name;
         if (!$scope.isBillingAddress) {
-            $scope.WrapperModel.Shipping.Country = $scope.ShippingCountry.name;
+            $scope.WrapperModel.Shipping.Country = $scope.WrapperModel.Shipping.ShippingCountry.name;
         }
         var model = $scope.WrapperModel;
         

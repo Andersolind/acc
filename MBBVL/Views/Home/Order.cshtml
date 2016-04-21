@@ -49,22 +49,23 @@
                 <a style="color: white; text-decoration: underline;" href="#" data-toggle="modal" data-target="#OligonucleotideForms"> For Oligonucleotide printable forms Click Here</a>
             </div>
             <div class="panel-body">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-6" ng-class="{'has-error' : dnaForm.txtBillingFirstName.$invalid && !dnaForm.txtBillingFirstName.$pristine}">
                     <label class="control-label" for="txtFirstName">First Name</label>
-                    <input type="text" class="form-control" id="txtFirstName" name="txtFirstName" ng-model="WrapperModel.Billing.FirstName" placeholder="First Name" title="First Name">
-
+                    <input type="text" class="form-control" id="txtBillingFirstName" name="txtBillingFirstName" ng-model="WrapperModel.Billing.FirstName" placeholder="First Name" title="First Name" required>
+                    <p ng-show="dnaForm.txtBillingFirstName.$invalid && !dnaForm.txtBillingFirstName.$pristine" class="help-block">Your  name is required.</p>
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-6" ng-class="{'has-error' : dnaForm.txtLastName.$invalid && !dnaForm.txtLastName.$pristine}">
                     <label class="control-label" for="txtLastName">Last Name</label>
-                    <input type="text" class="form-control" id="txtLastName" name="txtLastName" ng-model="WrapperModel.Billing.LastName" placeholder="Last Name" title="Last Name">
+                    <input type="text" class="form-control" id="txtLastName" name="txtLastName" ng-model="WrapperModel.Billing.LastName" placeholder="Last Name" title="Last Name" required>
+                    <p ng-show="dnaForm.txtLastName.$invalid && !dnaForm.txtLastName.$pristine" class="help-block">Your Last name is required.</p>
                 </div>
                 <div class="form-group col-md-6">
-                    <label  class="control-label" for="txtShippingInstitution">Institution / Company Name</label>
+                    <label  class="control-label" for="txtShippingInstitution">Institution</label>
                     <input type="text" class="form-control" id="txtShippingInstitution" name="txtBillingAddress" ng-model="WrapperModel.Billing.Institution" placeholder="Institution" title="Institution">
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-6"  ng-class="{ 'has-error': dnaForm.drpBillingCountry.$error.required }">
                     <label class="control-label" >Country</label>
-                    <select data-ng-model="BillingCountry" 
+                    <select name="drpBillingCountry" data-ng-model="BillingCountry" required
                             class="form-control" data-ng-options="act.name for act in countriesList"></select>
                 </div>
                 <div class="form-group col-md-6">
@@ -75,10 +76,10 @@
                     <label class="control-label" for="txtBillAddress">Postal Code</label>
                     <input type="text" class="form-control" id="txtPostalCode" name="txtPostalCode" ng-model="WrapperModel.Billing.PostalCode" placeholder="Postal Code" title="Postal Code">
                 </div>
-                <div class="form-group col-md-6" >
+                <div class="form-group col-md-6" ng-class="{'has-error' : dnaForm.lblBillingPhone.$invalid && !dnaForm.lblBillingPhone.$pristine}">
                     <label class="control-label" for="lblPhone">Phone</label>
-                    <input type="text" class="form-control" id="lblPhone" name="lblPhone" ng-model="WrapperModel.Billing.BillingPhone" placeholder="Billing Phone" title="Billing Phone">
-                </div>
+                    <input type="text" class="form-control" id="lblBillingPhone" name="lblBillingPhone" ng-model="WrapperModel.Billing.BillingPhone" placeholder="Billing Phone" title="Billing Phone">
+                    <p ng-show="dnaForm.txtLastName.$invalid && !dnaForm.txtLastName.$pristine" class="help-block">Your Last name is required.</p></div>
                 <div class="form-group col-md-6">
                     <label class="control-label" for="lblPhone">Extention</label>
                     <input type="text" class="form-control" id="txtExtention" name="txtExtention" ng-model="WrapperModel.Billing.Extention" placeholder="Extention" title="Extention">
@@ -112,27 +113,27 @@
                     </div>
                 </div> 
             </div>
-            <div class="panel-body" ng-show="!isBillingAddress">
+            <div class="panel-body" ng-if="!isBillingAddress">
 
-                <div class="form-group col-md-6">
-                    <label class="control-label"  for="txtFullName">First Name</label>
-
-                    <input type="text" class="form-control" id="txtFirstName" name="txtFullName" ng-model="WrapperModel.Shipping.FirstName" placeholder="First Name" title="First Name">
+                <div class="form-group col-md-6" ng-class="{'has-error' : dnaForm.txtShippingFirstName.$invalid && !dnaForm.txtShippingFirstName.$pristine}">
+                    <label class="control-label" for="txtFullName">First Name</label>
+                    <input type="text" class="form-control" id="txtShippingFirstName" name="txtShippingFirstName" ng-model="WrapperModel.Shipping.FirstName" placeholder="First Name" title="First Name" required>
+                    <p ng-show="dnaForm.txtShippingFirstName.$invalid && !dnaForm.txtShippingFirstName.$pristine" class="help-block">Your  name is required.</p>
 
                 </div>
-                <div class="form-group col-md-6">
-                    <label class="control-label"  for="txtLastName">Last Name</label>
-
-                    <input type="text" class="form-control" id="txtLastName" name="txtLastName" ng-model="WrapperModel.Shipping.LastName" placeholder="Last Name" title="Last Name">
+                <div class="form-group col-md-6" ng-class="{'has-error' : dnaForm.txtShippingLastName.$invalid && !dnaForm.txtShippingLastName.$pristine}">
+                    <label class="control-label" for="txtLastName">Last Name</label>
+                    <input type="text" class="form-control" id="txtShippingLastName" name="txtShippingLastName" ng-model="WrapperModel.Shipping.LastName" placeholder="Last Name" title="Last Name"required>
+                    <p ng-show="dnaForm.txtShippingLastName.$invalid && !dnaForm.txtShippingLastName.$pristine" class="help-block">Your  name is required.</p>
 
                 </div>
                 <div class="form-group col-md-6">
                     <label class="control-label"  for="txtShippingInstitution">Institution / Company Name</label>
                     <input type="text" class="form-control" id="txtShippingInstitution" name="txtShippingAddress" ng-model="WrapperModel.Shipping.Institution" placeholder="Institution" title="Building and Room">
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-6" ng-class="{ 'has-error': dnaForm.drpShippingCountry.$error.required }">
                     <label class="control-label">Country</label>
-                    <select data-ng-model="ShippingCountry"
+                    <select name="drpShippingCountry" ng-model="WrapperModel.Shipping.ShippingCountry" required
                             class="form-control" data-ng-options="act.name for act in countriesList"></select>
                 </div>
                 <div class="form-group col-md-6">
@@ -200,17 +201,17 @@
                     <tbody>
                         <tr>
 
-                            <td style="width:250px;">
-                                <input type="text" class="form-control" id="txtPrimerName" name="PrimerName" ng-model="rows.PrimerName" placeholder="Enter Primer Name" title="Primer Name" required>
-                                <span ng-show="dnaForm.PrimerName.$dirty && dnaForm.PrimerName.$invalid">  </span>
-                                <span style="color:red" ng-show="dnaForm.PrimerName.$error.required">primer name is required.</span>
+                            <td style="width:250px;" ng-class="{ 'has-error': dnaForm.txtPrimerName.$error.required }">
+                                <input type="text" class="form-control" id="txtPrimerName" name="txtPrimerName" ng-model="rows.PrimerName" placeholder="Enter Primer Name" title="Primer Name" required>
+                            
+                               
                             </td>
                             <td>
                                 <input type="text" style="width:50px;" class="form-control" ng-change="UserQuote($index,rows.Qty,rows.OligonucleotideSequence,scaleValues1,Purification2,olgGmp)" id="txtQty" name="txtQty" ng-model="rows.Qty" placeholder="Qty" title="Qty">
 
                             </td>
-                            <td>
-                                <input type="text" ng-change="UserQuote($index,rows.Qty,rows.OligonucleotideSequence,scaleValues1,Purification2,olgGmp)" class="form-control" id="txtOligonucleotideSequence" name="OligonucleotideSequence" ng-model="rows.OligonucleotideSequence" placeholder="Oligonucleotide Sequence" title="Oligonucleotide Sequence">
+                            <td ng-class="{ 'has-error': dnaForm.txtOligonucleotideSequence.$error.required }">
+                                <input type="text" ng-change="UserQuote($index,rows.Qty,rows.OligonucleotideSequence,scaleValues1,Purification2,olgGmp)" class="form-control" id="txtOligonucleotideSequence" name="txtOligonucleotideSequence" ng-model="rows.OligonucleotideSequence" placeholder="Oligonucleotide Sequence" title="Oligonucleotide Sequence" required>
 
                             </td>
                             <td>

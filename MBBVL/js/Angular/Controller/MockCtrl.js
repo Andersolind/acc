@@ -4,7 +4,8 @@ app.controller("MockCtrl", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', 
     //
     var vm = this;
     vm.isBilling = false;
-    vm.validValues = [  'b','v', 'n', 'a', 'g', 's', 't', 'v', 'i', 'k', 'r', 'h', 'w', 'f', 'p', 'n', 'q', 'm', 'c', 'd', 'e', 'y'];
+    //Constants
+    vm.validValues = ['b', 'v', 'n', 'a', 'g', 's', 't', 'v', 'k', 'r', 'h', 'w', 'n', 'm', 'c', 'd', 'y'];
     var i = 1;
     vm.oligoNumber = i++;
     setupInitialRows();
@@ -40,15 +41,15 @@ app.controller("MockCtrl", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', 
             vm.WrapperModel.Billing.Email = vm.WrapperModel.Shipping.Email;
             vm.WrapperModel.Billing.PO = vm.WrapperModel.Shipping.PO;
 
-            }
+        }
     }
 
     vm.getCursorPos = function ($event, index) {
         var myEl = $event.target;
         vm.doGetCaretPosition(myEl, index);
         //Set GC
-      
-     //   vm.nearestNeighbor(index);
+
+        //   vm.nearestNeighbor(index);
     };
 
     vm.doGetCaretPosition = function (oField, index) {
@@ -127,27 +128,26 @@ app.controller("MockCtrl", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', 
             //
             var getFinalValues = ModifierService.DoOligoCalc(vm.NewOligonucleotideRow[index], vm.NewOligonucleotideRow[index].OligonucleotideSequence);
             vm.NewOligonucleotideRow[index].Tm = getFinalValues.neighbors;
-           
+
             vm.NewOligonucleotideRow[index].GcContent = getFinalValues.gc;
-         //   vm.NewOligonucleotideRow[index].Tm = ModifierService.DoOligoCalc(vm.NewOligonucleotideRow[index], vm.NewOligonucleotideRow[index].OligonucleotideSequence);
+            //   vm.NewOligonucleotideRow[index].Tm = ModifierService.DoOligoCalc(vm.NewOligonucleotideRow[index], vm.NewOligonucleotideRow[index].OligonucleotideSequence);
             vm.NewOligonucleotideRow[index].OligonucleotideSequence = tempValue.toUpperCase();
         }
-        else
-        {
+        else {
             vm.NewOligonucleotideRow[index].OligonucleotideSequence = OligoCalcUtilsService.CheckBase(vm.NewOligonucleotideRow[index].OligonucleotideSequence);
             var getFinalValues = ModifierService.DoOligoCalc(vm.NewOligonucleotideRow[index], vm.NewOligonucleotideRow[index].OligonucleotideSequence);
-                
+
             vm.NewOligonucleotideRow[index].Tm = getFinalValues.neighbors;
 
             vm.NewOligonucleotideRow[index].GcContent = getFinalValues.gc;
-          
+
         }
 
-       
+
         //Check if [] exists..
 
         //crop out the rest of the words 
-      
+
     }
 
     function setupInitialRows() {
@@ -180,12 +180,15 @@ app.controller("MockCtrl", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', 
     }
 
     vm.submitForm = function () {
+
+        //Get all the form variables from the page and get ready to submit to our model
+        var url = "/api/Oligosequence/OligoInsert";
         //Disable the button
         // setAllInputsDirty($scope);
         $scope.dnaForm.$valid = false;
         $scope.dnaForm.$setPristine();
         $scope.dnaForm.submitted = false;
-        
+
 
         var model = $scope.vm.WrapperModel;
 
@@ -221,10 +224,8 @@ app.controller("MockCtrl", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', 
     vm.keyPressInternalModification = function (index, value) {
         //append the text
         var elementName = 'OligonucleotideSequence' + index;
-        // var element = document.getElementById(elementName);
         vm.insertAtCursor(elementName, value, index);
-        // vm.setSelectionRange(element,vm.NewOligonucleotideRow[index].oligoCarret);
-        // vm.NewOligonucleotideRow[index].OligonucleotideSequence += value;
+ 
     }
     vm.insertAtCursor = function (myField, myValue, index) {
         //IE support
@@ -236,8 +237,7 @@ app.controller("MockCtrl", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', 
             //MOZILLA and others
         else if (document.getElementById(myField).selectionStart || document.getElementById(myField).selectionStart == '0') {
             var startPos = document.getElementById(myField).selectionStart;
-            if (startPos == '0')
-            {
+            if (startPos == '0') {
                 return false;
             }
 
@@ -270,76 +270,75 @@ app.controller("MockCtrl", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', 
         var key = value.keyCode || value.charCode;
     }
 
-    vm.isBaseCode = function($event)
-    {
-        return false;
-        GenericHelpers.checkForSpecialCharacters($event);
-    }
+    //vm.isBaseCode = function ($event) {
+    //    return false;
+    //    GenericHelpers.checkForSpecialCharacters($event);
+    //}
 
 
 
-    vm.nearestNeighbor = function (choice,index) {
-        var theReturn = "";
-        if (vm.NewOligonucleotideRow[index].OligonucleotideSequence.length > 7) {
-            //
-            var K = 1 / (vm.primerConcBox * 1E-9);  // Convert from nanomoles to moles
-            var R = 1.987;  //cal/(mole*K);
-            var RlnK = R * Math.log(K); // javascript log is the natural log (ln)
-            this.RlogK = Math.round(1000 * RlnK) / 1000;
-            // Helix initiation Free Energy of 3.4 kcal (Sugimoto et al, 1996)
-            // symmetry function: if symmetrical, subtract another 0.4 - not implemented
-            if (choice == "min") {
-                theReturn = 1000 * ((this.DeltaH("min") - 3.4) / (this.DeltaS("min") + RlnK));
-                theReturn += -272.9;  // Kelvin to Centigrade
-                theReturn += 7.21 * Math.log(this.saltConcentration / 1000);
-                theReturn = Math.round(theReturn);
-            } else {
-                theReturn = 1000 * ((this.DeltaH("max") - 3.4) / (this.DeltaS("max") + RlnK));
-                theReturn += -272.9; // Kelvin to Centigrade
-                theReturn += 7.21 * Math.log(this.saltConcentration / 1000);
-                theReturn = Math.round(theReturn);
-            }
-        } else {
-            this.RlogK = "";
-        }
-        return theReturn;
-    }
+    //vm.nearestNeighbor = function (choice, index) {
+    //    var theReturn = "";
+    //    if (vm.NewOligonucleotideRow[index].OligonucleotideSequence.length > 7) {
+    //        //
+    //        var K = 1 / (vm.primerConcBox * 1E-9);  // Convert from nanomoles to moles
+    //        var R = 1.987;  //cal/(mole*K);
+    //        var RlnK = R * Math.log(K); // javascript log is the natural log (ln)
+    //        this.RlogK = Math.round(1000 * RlnK) / 1000;
+    //        // Helix initiation Free Energy of 3.4 kcal (Sugimoto et al, 1996)
+    //        // symmetry function: if symmetrical, subtract another 0.4 - not implemented
+    //        if (choice == "min") {
+    //            theReturn = 1000 * ((this.DeltaH("min") - 3.4) / (this.DeltaS("min") + RlnK));
+    //            theReturn += -272.9;  // Kelvin to Centigrade
+    //            theReturn += 7.21 * Math.log(this.saltConcentration / 1000);
+    //            theReturn = Math.round(theReturn);
+    //        } else {
+    //            theReturn = 1000 * ((this.DeltaH("max") - 3.4) / (this.DeltaS("max") + RlnK));
+    //            theReturn += -272.9; // Kelvin to Centigrade
+    //            theReturn += 7.21 * Math.log(this.saltConcentration / 1000);
+    //            theReturn = Math.round(theReturn);
+    //        }
+    //    } else {
+    //        this.RlogK = "";
+    //    }
+    //    return theReturn;
+    //}
 
-    vm.DeltaH = function (choice) {
-        if (this.Sequence.length > 7) {
-            var val = 0.0;
-            if (this.isDeoxy) {
-                val += 8.0 * this.aaCount;
-                val += 5.6 * this.atCount;
-                val += 6.6 * this.taCount;
-                val += 8.2 * this.caCount;
-                val += 9.4 * this.gtCount;
-                val += 6.6 * this.ctCount;
-                val += 8.8 * this.gaCount;
-                val += 11.8 * this.cgCount;
-                val += 10.5 * this.gcCount;
-                val += 10.9 * this.ggCount;
-            } else {
-                val += 6.8 * this.aaCount;
-                val += 9.38 * this.atCount;
-                val += 7.69 * this.taCount;
-                val += 10.44 * this.caCount;
-                val += 11.4 * this.gtCount;
-                val += 10.48 * this.ctCount;
-                val += 12.44 * this.gaCount;
-                val += 10.64 * this.cgCount;
-                val += 14.88 * this.gcCount;
-                val += 13.39 * this.ggCount;
-            }
-            if (choice == "min") {
-                val += this.IUpairVals_min[1];
-            } else {
-                val += this.IUpairVals_max[1];
-            }
-            return Math.round((1000 * val)) / 1000;
-        }
-        return "";
-    }
+    //vm.DeltaH = function (choice) {
+    //    if (this.Sequence.length > 7) {
+    //        var val = 0.0;
+    //        if (this.isDeoxy) {
+    //            val += 8.0 * this.aaCount;
+    //            val += 5.6 * this.atCount;
+    //            val += 6.6 * this.taCount;
+    //            val += 8.2 * this.caCount;
+    //            val += 9.4 * this.gtCount;
+    //            val += 6.6 * this.ctCount;
+    //            val += 8.8 * this.gaCount;
+    //            val += 11.8 * this.cgCount;
+    //            val += 10.5 * this.gcCount;
+    //            val += 10.9 * this.ggCount;
+    //        } else {
+    //            val += 6.8 * this.aaCount;
+    //            val += 9.38 * this.atCount;
+    //            val += 7.69 * this.taCount;
+    //            val += 10.44 * this.caCount;
+    //            val += 11.4 * this.gtCount;
+    //            val += 10.48 * this.ctCount;
+    //            val += 12.44 * this.gaCount;
+    //            val += 10.64 * this.cgCount;
+    //            val += 14.88 * this.gcCount;
+    //            val += 13.39 * this.ggCount;
+    //        }
+    //        if (choice == "min") {
+    //            val += this.IUpairVals_min[1];
+    //        } else {
+    //            val += this.IUpairVals_max[1];
+    //        }
+    //        return Math.round((1000 * val)) / 1000;
+    //    }
+    //    return "";
+    //}
 
 
 }]);

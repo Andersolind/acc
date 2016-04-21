@@ -11,7 +11,7 @@ namespace MBBVL.App_Start {
         public static void Register(HttpConfiguration configuration) {
 
             configuration.MapHttpAttributeRoutes();
-            configuration.Routes.MapHttpRoute("API Default", "api/{controller}/{id}",
+            configuration.Routes.MapHttpRoute("API Default", "api/{controller}/{action}/{id}",
                 new { id = RouteParameter.Optional });
         }
     }

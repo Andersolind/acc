@@ -26,7 +26,7 @@ namespace MBBVL.Controllers.Sequencing {
         }
 
         // POST api/<controller>
-        [HttpPost]
+        [HttpPost, Route("SequenceInsert")]
         public IHttpActionResult Post(SequencingWrapperModel model) {
             //Insert into database
             SequencingWrapperModel templateData = new SequencingWrapperModel();

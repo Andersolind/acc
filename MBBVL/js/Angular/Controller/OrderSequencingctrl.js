@@ -107,7 +107,7 @@
 
     $scope.submitForm = function () {
         //Get all the form variables from the page and get ready to submit to our model
-        var url = "/api/Sequence/";
+        var url = "/api/Sequence/SequenceInsert";
         var model = $scope.SequencingWrapperModel;
         $scope.disableSubmit = true;
         //

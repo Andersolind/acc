@@ -260,7 +260,7 @@
                             </td>
                             @*<th>5’MODIFICATION </th>*@
                             <td>
-                                <select class="form-control text-center" ng-model="vm.fiveInchMod"  @*ng-change="vm.fiveInchSequence($index,vm.fiveInchMod)*@">
+                                <select class="form-control text-center" ng-model="vm.fiveInchMod"  ng-change="vm.fiveInchSequence($index,vm.fiveInchMod)">
                                     <optgroup ng-repeat="header in rows.Five5Modifications" label="{{ header.name }}">
                                         <option value="">--- Select ---</option>
                                         <option ng-repeat="item in header.items" value="{{ item.value }}">{{ item.name }}</option>

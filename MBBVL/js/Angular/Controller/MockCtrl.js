@@ -25,6 +25,26 @@ app.controller("MockCtrl", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', 
         vm.oligoNumber = i--;
         vm.NewOligonucleotideRow.splice(idx, 1);
     };
+    //Move this into a service
+    //synthesisScale1Values Key press values
+    vm.keyPressSynthesisScale1Values = function (index, value) {
+        vm.NewOligonucleotideRow[index].SynthesisScaleValue = value;
+    };
+    //
+    vm.keyPressFinalDeliveryForm = function (index, value) {
+        vm.NewOligonucleotideRow[index].FinalDeliveryFormValue = value;
+    };
+    //
+    vm.keyPressPurification = function (index, value) {
+        vm.NewOligonucleotideRow[index].PurificationValue = value;
+    };
+    //Insert Text value for the five inch
+    vm.fiveInchSequence = function (index, value) {
+        //get the old oligo 
+        //   var temp = vm.NewOligonucleotideRow[index].OligonucleotideSequence;
+        // var mutatedvalue = '[' + value + ']' + temp;
+        vm.NewOligonucleotideRow[index].fiveInchSequenceValue = value;
+    }
 
 
     vm.isShippingTheSame = function (isClicked) {
@@ -130,7 +150,7 @@ app.controller("MockCtrl", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', 
             vm.NewOligonucleotideRow[index].Tm = getFinalValues.neighbors;
 
             vm.NewOligonucleotideRow[index].GcContent = getFinalValues.gc;
-            //   vm.NewOligonucleotideRow[index].Tm = ModifierService.DoOligoCalc(vm.NewOligonucleotideRow[index], vm.NewOligonucleotideRow[index].OligonucleotideSequence);
+           
             vm.NewOligonucleotideRow[index].OligonucleotideSequence = tempValue.toUpperCase();
         }
         else {
@@ -188,9 +208,8 @@ app.controller("MockCtrl", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', 
         $scope.dnaForm.$valid = false;
         $scope.dnaForm.$setPristine();
         $scope.dnaForm.submitted = false;
-
-
         var model = $scope.vm.WrapperModel;
+        //Need to check for internal modifications 
 
 
 
@@ -237,10 +256,12 @@ app.controller("MockCtrl", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', 
             //MOZILLA and others
         else if (document.getElementById(myField).selectionStart || document.getElementById(myField).selectionStart == '0') {
             var startPos = document.getElementById(myField).selectionStart;
+            //We do not need to insert the internal modification if they have not selected a point in the oligo sequence..
             if (startPos == '0') {
                 return false;
             }
-
+            //If we made it this far we can track the internal modification
+            vm.NewOligonucleotideRow[index].InternalModificationValue = myValue;
             var endPos = document.getElementById(myField).selectionEnd;
             var tempValue = document.getElementById(myField).value = document.getElementById(myField).value.substring(0, startPos) + '[' + myValue + ']'
                 + document.getElementById(myField).value.substring(endPos, document.getElementById(myField).value.length);
@@ -252,12 +273,7 @@ app.controller("MockCtrl", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', 
         }
     };
 
-    vm.fiveInchSequence = function (index, value) {
-        //get the old oligo 
-        var temp = vm.NewOligonucleotideRow[index].OligonucleotideSequence;
-        var mutatedvalue = '[' + value + ']' + temp;
-        vm.NewOligonucleotideRow[index].OligonucleotideSequence = mutatedvalue;
-    }
+  
 
     vm.threeInchSequence = function (index, value) {
         //get the old oligo 
@@ -270,75 +286,6 @@ app.controller("MockCtrl", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', 
         var key = value.keyCode || value.charCode;
     }
 
-    //vm.isBaseCode = function ($event) {
-    //    return false;
-    //    GenericHelpers.checkForSpecialCharacters($event);
-    //}
-
-
-
-    //vm.nearestNeighbor = function (choice, index) {
-    //    var theReturn = "";
-    //    if (vm.NewOligonucleotideRow[index].OligonucleotideSequence.length > 7) {
-    //        //
-    //        var K = 1 / (vm.primerConcBox * 1E-9);  // Convert from nanomoles to moles
-    //        var R = 1.987;  //cal/(mole*K);
-    //        var RlnK = R * Math.log(K); // javascript log is the natural log (ln)
-    //        this.RlogK = Math.round(1000 * RlnK) / 1000;
-    //        // Helix initiation Free Energy of 3.4 kcal (Sugimoto et al, 1996)
-    //        // symmetry function: if symmetrical, subtract another 0.4 - not implemented
-    //        if (choice == "min") {
-    //            theReturn = 1000 * ((this.DeltaH("min") - 3.4) / (this.DeltaS("min") + RlnK));
-    //            theReturn += -272.9;  // Kelvin to Centigrade
-    //            theReturn += 7.21 * Math.log(this.saltConcentration / 1000);
-    //            theReturn = Math.round(theReturn);
-    //        } else {
-    //            theReturn = 1000 * ((this.DeltaH("max") - 3.4) / (this.DeltaS("max") + RlnK));
-    //            theReturn += -272.9; // Kelvin to Centigrade
-    //            theReturn += 7.21 * Math.log(this.saltConcentration / 1000);
-    //            theReturn = Math.round(theReturn);
-    //        }
-    //    } else {
-    //        this.RlogK = "";
-    //    }
-    //    return theReturn;
-    //}
-
-    //vm.DeltaH = function (choice) {
-    //    if (this.Sequence.length > 7) {
-    //        var val = 0.0;
-    //        if (this.isDeoxy) {
-    //            val += 8.0 * this.aaCount;
-    //            val += 5.6 * this.atCount;
-    //            val += 6.6 * this.taCount;
-    //            val += 8.2 * this.caCount;
-    //            val += 9.4 * this.gtCount;
-    //            val += 6.6 * this.ctCount;
-    //            val += 8.8 * this.gaCount;
-    //            val += 11.8 * this.cgCount;
-    //            val += 10.5 * this.gcCount;
-    //            val += 10.9 * this.ggCount;
-    //        } else {
-    //            val += 6.8 * this.aaCount;
-    //            val += 9.38 * this.atCount;
-    //            val += 7.69 * this.taCount;
-    //            val += 10.44 * this.caCount;
-    //            val += 11.4 * this.gtCount;
-    //            val += 10.48 * this.ctCount;
-    //            val += 12.44 * this.gaCount;
-    //            val += 10.64 * this.cgCount;
-    //            val += 14.88 * this.gcCount;
-    //            val += 13.39 * this.ggCount;
-    //        }
-    //        if (choice == "min") {
-    //            val += this.IUpairVals_min[1];
-    //        } else {
-    //            val += this.IUpairVals_max[1];
-    //        }
-    //        return Math.round((1000 * val)) / 1000;
-    //    }
-    //    return "";
-    //}
 
 
 }]);

@@ -35,7 +35,13 @@ namespace MBBVL {
                        "~/js/angular/Controller/OrderOgliCtrl.js",
                         "~/js/angular/Controller/MockCtrl.js",
                        "~/js/angular/Controller/PickUpCtrl.js",
+                        
                       "~/Scripts/respond.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/Directives").Include(
+                  "~/js/angular/OligoFormDirective/OligoDirective.js",
+                   "~/js/angular/OligoFormDirective/OligoFormCtrl.js"
+                  ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/Bootstrap/bootstrap.css",

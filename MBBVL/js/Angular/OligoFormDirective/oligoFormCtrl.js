@@ -1,10 +1,10 @@
 ﻿/// <reference path="MockCtrl.js" />
-app.controller("MockCtrl", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', 'acgtPrices', 'OligoCalcUtilsService', 'ModifierService','$window', function ($scope, $http, GenericHelpers, ACGTFactory, acgtPrices, OligoCalcUtilsService, ModifierService,$window) {
+app.controller("oligoFormCtrl", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', 'acgtPrices', 'OligoCalcUtilsService', 'ModifierService', function ($scope, $http, GenericHelpers, ACGTFactory, acgtPrices, OligoCalcUtilsService, ModifierService) {
 
     //
     var vm = this;
     //Sets the form edit
-    vm.hasSubmitted = false;
+    vm.hasSubmitted = true;
     vm.isBilling = false;
     //Constants
     vm.validValues = ['b', 'v', 'n', 'a', 'g', 's', 't', 'v', 'k', 'r', 'h', 'w', 'n', 'm', 'c', 'd', 'y'];
@@ -283,10 +283,6 @@ app.controller("MockCtrl", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', 
         var key = value.keyCode || value.charCode;
     }
 
-    vm.scrollTo = function () {
-        $window.scrollTo(0,0);
-        vm.hasSubmitted != vm.hasSubmitted;
-    }
 
 
 }]);

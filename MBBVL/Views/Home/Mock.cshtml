@@ -24,6 +24,10 @@
 
 <div ng-controller="MockCtrl as vm" ng-app="acgt">
 
+    <div ng-repeat="(key,val) in vm.alerts" class="alert {{key}}">
+        <div ng-repeat="msg in val">{{msg}}</div>
+    </div>
+
     <h2>Oligonucleotide Order Form</h2>
     <form name="dnaForm" class="form-horizontal pushFooter" novalidate>
         <input hidden type="text" name="vm.primerConcBox" value="50">
@@ -143,10 +147,10 @@
                         </div>
 
                         @*Country*@
-                        <div class="form-group col-md-6" ng-disabled="vm.hasSubmitted" ng-class="{'has-error' : dnaForm.billingCountryDrp.$invalid && !dnaForm.billingCountryDrp.$pristine}">
+                        <div class="form-group col-md-6"  ng-class="{'has-error' : dnaForm.billingCountryDrp.$invalid && !dnaForm.billingCountryDrp.$pristine}">
                             <label class="control-label">Country</label>
 
-                            <select id="accountselector" name="billingCountryDrp" ng-model="vm.WrapperModel.Billing.Country" class="form-control" style="width: 100%;">
+                            <select id="accountselector" name="billingCountryDrp" ng-disabled="vm.hasSubmitted" ng-model="vm.WrapperModel.Billing.Country" class="form-control" style="width: 100%;">
                                 <option value="">--- Select an option ---</option>
                                 <option data-ng-repeat="(key, value) in vm.countriesList" value="{{key}}">{{value.name}}</option>
                             </select>
@@ -334,7 +338,7 @@
 
         <div ng-if="vm.hasSubmitted">
             <input type="submit" class="btn btn-primary" ng-click="vm.submitForm()">
-            <input type="submit" class="btn btn-danger" ng-click="vm.hasSubmitted=!vm.hasSubmitted">
+            <input type="submit" value="Cancel" class="btn btn-danger" ng-click="vm.hasSubmitted=!vm.hasSubmitted">
         </div>
     </form>
 

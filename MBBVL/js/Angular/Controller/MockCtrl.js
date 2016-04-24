@@ -1,10 +1,12 @@
 ﻿/// <reference path="MockCtrl.js" />
-app.controller("MockCtrl", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', 'acgtPrices', 'OligoCalcUtilsService', 'ModifierService','$window', function ($scope, $http, GenericHelpers, ACGTFactory, acgtPrices, OligoCalcUtilsService, ModifierService,$window) {
+app.controller("MockCtrl", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', 'acgtPrices', 'OligoCalcUtilsService', 'ModifierService', '$window', 'alertsManager', function ($scope, $http, GenericHelpers, ACGTFactory, acgtPrices, OligoCalcUtilsService, ModifierService, $window, alertsManager) {
 
     //
     var vm = this;
     //Sets the form edit
     vm.hasSubmitted = false;
+    //Alerts 
+    vm.alerts = alertsManager.alerts;
     vm.isBilling = false;
     //Constants
     vm.validValues = ['b', 'v', 'n', 'a', 'g', 's', 't', 'v', 'k', 'r', 'h', 'w', 'n', 'm', 'c', 'd', 'y'];
@@ -169,7 +171,6 @@ app.controller("MockCtrl", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', 
             vm.NewOligonucleotideRow[index].Tm = getFinalValues.neighbors;
 
             vm.NewOligonucleotideRow[index].GcContent = getFinalValues.gc;
-
         }
 
     }
@@ -284,9 +285,26 @@ app.controller("MockCtrl", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', 
     }
 
     vm.scrollTo = function () {
-        $window.scrollTo(0,0);
-        vm.hasSubmitted != vm.hasSubmitted;
+        vm.hasSubmitted = true;
+        $window.scrollTo(0, 0);
+        alertsManager.addAlert('Noooo!', 'alert-danger');
+      
     }
 
 
 }]);
+
+app.factory('alertsManager', function () {
+    return {
+        alerts: {},
+        addAlert: function (message, type) {
+            this.alerts[type] = this.alerts[type] || [];
+            this.alerts[type].push(message);
+        },
+        clearAlerts: function () {
+            for (var x in this.alerts) {
+                delete this.alerts[x];
+            }
+        }
+    };
+});

@@ -265,8 +265,8 @@
                                 </td>
                                 @*<th>5’MODIFICATION </th>*@
                                 <td>
-                                    <select class="form-control text-center" ng-model="vm.fiveInchMod" ng-change="vm.fiveInchSequence($index,vm.fiveInchMod)">
-                                        <optgroup ng-repeat="header in rows.Five5Modifications" label="{{ header.name }}">
+                                    <select class="form-control text-center"  ng-disabled="vm.hasSubmitted"ng-model="vm.fiveInchMod" ng-change="vm.fiveInchSequence($index,vm.fiveInchMod)">
+                                        <optgroup  ng-repeat="header in rows.Five5Modifications" label="{{ header.name }}">
                                             <option value="">--- Select ---</option>
                                             <option ng-repeat="item in header.items" value="{{ item.value }}">{{ item.name }}</option>
                                         </optgroup>
@@ -274,8 +274,8 @@
                                 </td>
                                 @*<th>INTERNAL MODIFICATION </th>*@
                                 <td>
-                                    <select ng-model="vm.value" ng-change="vm.keyPressInternalModification($index,vm.value)" class="form-control">
-                                        <optgroup ng-disabled="vm.hasSubmitted" ng-repeat="header in rows.InternalModification" label="{{ header.name }}">
+                                    <select ng-model="vm.value" ng-disabled="vm.hasSubmitted" ng-change="vm.keyPressInternalModification($index,vm.value)" class="form-control">
+                                        <optgroup  ng-repeat="header in rows.InternalModification" label="{{ header.name }}">
                                             <option value="">--- Select ---</option>
                                             <option ng-repeat="item in header.items" value="{{ item.value }}">{{ item.name }}</option>
                                         </optgroup>
@@ -288,15 +288,15 @@
                                 @*<th>3’MODIFICATION</th>*@
                                 <td>
 
-                                    <select class="form-control" ng-model="vm.threeInchValue" ng-change="vm.threeInchSequence($index,vm.threeInchValue)">
-                                        <optgroup input ng-disabled="vm.hasSubmitted" ng-repeat="header in rows.ThreeModifications" label="{{ header.name }}">
+                                    <select ng-disabled="vm.hasSubmitted" class="form-control" ng-model="vm.threeInchValue" ng-change="vm.threeInchSequence($index,vm.threeInchValue)">
+                                        <optgroup input  ng-repeat="header in rows.ThreeModifications" label="{{ header.name }}">
                                             <option value="">--- Select  ---</option>
                                             <option ng-repeat="item in header.items" value="{{ item.value }}">{{ item.name }}</option>
                                         </optgroup>
                                     </select>
                                 </td>
                                 <td>
-                                    <select id="finalDeliveryForm" class="form-control" ng-change="keyPressFinalDeliveryForm($index,finalDeliveryForm2)" name="finalDeliveryForm" ng-model="finalDeliveryForm2" ng-options="deliveryForm.name as deliveryForm.value for deliveryForm in rows.FinalDeliveryForm"><option value="">--- Select an option ---</option></select>
+                                    <select id="finalDeliveryForm" ng-disabled="vm.hasSubmitted" class="form-control" ng-change="vm.keyPressFinalDeliveryForm($index,finalDeliveryForm2)" name="finalDeliveryForm" ng-model="finalDeliveryForm2" ng-options="deliveryForm.name as deliveryForm.value for deliveryForm in rows.FinalDeliveryForm"><option value="">--- Select an option ---</option></select>
                                 </td>
 
                                 @*Extra info*@

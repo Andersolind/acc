@@ -787,6 +787,254 @@ namespace MBBVL.Core
             CreateEmailForAnders(m.billing.Email, "Andersolind@gmail.com", template);
             return olForm;
         }
+        public string SetUpNewbill(OligoInsertModel model)
+        {
+            OligoInsertModel m = new OligoInsertModel();
+
+            m.billing = model.billing;
+            m.shipping = model.shipping;
+            m.oligosequence = model.oligosequence;
+            //headers
+            //var ship = "<table><td align='center' style='padding: 40px 0 30 px 0;'><img src='http://youneedafavor.com/images/logo.png'>";
+            var ship = "<table><td>";
+            ship += "<h1>Dear" + " " + model.billing.FirstName + " " + "here is your Oligonucleotide Order</h1></td></table>";
+            if (!model.isBillingAddress)
+            {
+                ship += "<table width='100' style='float:left' cellpadding='0' cellspacing='0' border='0' >";
+                ship += "<thead>";
+                ship += "<tr>";
+                ship += "<th style='color:blue; text-decoration: underline;'><h1>Shipping Information</h1></th>";
+                ship += "</tr>";
+                ship += "</thead>";
+
+                // First Name 
+                ship += "<tr>";
+                ship += "<td valign='top'>";
+                ship += "<label for='first_name'>First Name</label>";
+                ship += "</td>";
+                ship += "<td valign='top'>";
+                ship += m.shipping.FirstName;
+                ship += "</td>";
+                ship += "</tr>";
+                // Last Name 
+                ship += "<tr>";
+                ship += "<td valign='top'>";
+                ship += "<label for='first_name'>Last Name</label>";
+                ship += "</td>";
+                ship += "<td valign='top'>";
+                ship += m.shipping.LastName;
+                ship += "</td>";
+                ship += "</tr>";
+                //Institution
+                ship += "<tr>";
+                ship += "<td valign='top'>";
+                ship += "<label for='fullName'>Institution</label>";
+                ship += "</td>";
+                ship += "<td valign='top'>";
+                ship += m.shipping.Institution;
+                ship += "</td>";
+                ship += "</tr>";
+                //Country
+                ship += "<tr>";
+                ship += "<td valign='top'>";
+                ship += "<label for='fullName'>Country</label>";
+                ship += "</td>";
+                ship += "<td valign='top'>";
+                ship += m.shipping.Country;
+                ship += "</td>";
+                ship += "</tr>";
+                //Shipping address
+                ship += "<tr>";
+                ship += "<td valign='top'>";
+                ship += "<label for='fullName'>Shipping Address</label>";
+                ship += "</td>";
+                ship += "<td valign='top'>";
+                ship += m.shipping.ShippingAddress;
+                ship += "</td>";
+                ship += "</tr>";
+                //Postal Code
+                ship += "<tr>";
+                ship += "<td valign='top'>";
+                ship += "<label for='fullName'>Postal Code</label>";
+                ship += "</td>";
+                ship += "<td valign='top'>";
+                ship += m.shipping.PostalCode;
+                ship += "</td>";
+                ship += "</tr>";
+                //
+                ship += "<tr>";
+                ship += "<td valign='top'>";
+                ship += "<label for='fullName'>Shipping Phone</label>";
+                ship += "</td>";
+                ship += "<td valign='top'>";
+                ship += m.shipping.Phone;
+                ship += "</td>";
+                ship += "</tr>";
+                ship += "<tr>";
+                ship += "<td valign='top'>";
+                ship += "<label for='shippingEmail'>Shipping Email</label>";
+                ship += "</td>";
+                ship += "<td valign='top'>";
+                ship += m.shipping.Email;
+                ship += "</td>";
+                ship += "</tr>";
+                ship += "</table>";
+                //Po number
+                ship += "<tr>";
+                ship += "<td valign='top'>";
+                ship += "<label for='fullName'>Postal Code</label>";
+                ship += "</td>";
+                ship += "<td valign='top'>";
+                ship += m.shipping.Po;
+                ship += "</td>";
+                ship += "</tr>";
+            }
+            //Billing
+
+
+            var bill = "<table width='100' style='float:left' cellpadding='0' cellspacing='0' border='0'>";
+            bill += "<thead>";
+            bill += "<tr>";
+            bill += "<th style='color:blue; text-decoration: underline;'><h1>Billing Information</h1></th>";
+            bill += "</tr>";
+            bill += "</thead>";
+
+            // First Name 
+            bill += "<tr>";
+            bill += "<td valign='top'>";
+            bill += "<label for='first_name'>First Name</label>";
+            bill += "</td>";
+            bill += "<td valign='top'>";
+            bill += m.billing.FirstName;
+            bill += "</td>";
+            bill += "</tr>";
+            // Last Name 
+            bill += "<tr>";
+            bill += "<td valign='top'>";
+            bill += "<label for='first_name'>Last Name</label>";
+            bill += "</td>";
+            bill += "<td valign='top'>";
+            bill += m.billing.LastName;
+            bill += "</td>";
+            bill += "</tr>";
+            //Institution
+            bill += "<tr>";
+            bill += "<td valign='top'>";
+            bill += "<label for='first_name'>Institution</label>";
+            bill += "</td>";
+            bill += "<td valign='top'>";
+            bill += m.billing.Institution;
+            bill += "</td>";
+            bill += "</tr>";
+            //Country
+            bill += "<tr>";
+            bill += "<td valign='top'>";
+            bill += "<label for='first_name'>Country</label>";
+            bill += "</td>";
+            bill += "<td valign='top'>";
+            bill += m.billing.Country;
+            bill += "</td>";
+            bill += "</tr>";
+            //Billing Address
+            bill += "<tr>";
+            bill += "<td valign='top'>";
+            bill += "<label for='first_name'>Billing Address</label>";
+            bill += "</td>";
+            bill += "<td valign='top'>";
+            bill += m.billing.BillingAddress;
+            bill += "</td>";
+            bill += "</tr>";
+            //Postal Code
+            bill += "<tr>";
+            bill += "<td valign='top'>";
+            bill += "<label for='first_name'>Postal Code</label>";
+            bill += "</td>";
+            bill += "<td valign='top'>";
+            bill += m.billing.PostalCode;
+            bill += "</td>";
+            bill += "</tr>";
+            //Billing Phone 
+            bill += "<tr>";
+            bill += "<td valign='top'>";
+            bill += "<label for='first_name'>Billing Phone</label>";
+            bill += "</td>";
+            bill += "<td valign='top'>";
+            bill += m.billing.BillingPhone;
+            bill += "</td>";
+            bill += "</tr>";
+            //Billing Email
+            bill += "<tr>";
+            bill += "<td valign='top'>";
+            bill += "<label for='first_name'>Billing Email</label>";
+            bill += "</td>";
+            bill += "<td valign='top'>";
+            bill += m.billing.Email;
+            bill += "</td>";
+            bill += "</tr>";
+            //Po Number
+            ship += "<tr>";
+            ship += "<td valign='top'>";
+            ship += "<label for='fullName'>Postal Code</label>";
+            ship += "</td>";
+            ship += "<td valign='top'>";
+            ship += m.billing.Po;
+            ship += "</td>";
+            ship += "</tr>";
+            //Notes
+            bill += "<tr>";
+            bill += "<td valign='top'>";
+            bill += "<label for='first_name'> Notes</label>";
+            bill += "</td>";
+            bill += "<td valign='top'>";
+            bill += m.billing.Notes;
+            bill += "</td>";
+
+            bill += "</tr> </table>";
+
+
+            var olForm = "<div style='padding-top:500px'><h1  style='color:blue;text-decoration: underline;page-break-before:always'>Oligonucleotide Sequence</h1>";
+            olForm += "<table style='width:100%' border='1'>";
+            olForm += "<tr  style='width:100%'>";
+            olForm += "<td class='boldCell'>Qty</td>";
+            olForm += "<td class='boldCell'>PrimerName</td>";
+            olForm += "<td class='boldCell'>SynthesisScale</td>";
+            olForm += "<td class='boldCell'>Purification</td>";
+            olForm += "<td class='boldCell'>5'Modification</td>";
+            olForm += "<td class='boldCell'>Internal Modification</td>";
+            olForm += "<td class='boldCell'>OligonucleotideSequence</td>";
+            olForm += "<td class='boldCell'>3'Modification</td>";
+            olForm += "<td class='boldCell'>FinalDeliveryForm</td>";
+            olForm += "<td class='boldCell'>Price</td>";
+            olForm += "<td class='boldCell'>OligoID</td>";
+
+
+            // more cells here as needed
+            olForm += "</tr>";
+
+            for (int i = 0; i < m.oligosequence.Count(); i++)
+            {
+                olForm += "<tr>";
+                olForm += "<td class='boldCell'>" + m.oligosequence[i].Qty + "</td>";
+                olForm += "<td class='boldCell'>" + m.oligosequence[i].PrimerName + "</td>";
+                olForm += "<td class='boldCell'>" + m.oligosequence[i].SynthesisScaleValue + "</td>";
+                olForm += "<td class='boldCell'>" + m.oligosequence[i].PurificationValue + "</td>";
+                olForm += "<td class='boldCell'>" + m.oligosequence[i].FiveInchSequenceValue + "</td>";
+                olForm += "<td class='boldCell'>" + m.oligosequence[i].InternalModificationValue + "</td>";
+                olForm += "<td class='boldCell'>" + CreateString(m.oligosequence[i].OligonucleotideSequence) + "</td>";
+                olForm += "<td class='boldCell'>" + m.oligosequence[i].ThreeInchValue + "</td>";                 
+                olForm += "<td class='boldCell'>" + m.oligosequence[i].FinalDeliveryFormValue + "</td>";
+                olForm += "<td class='boldCell'>" + m.oligosequence[i].Price + "</td>";
+                olForm += "<td class='boldCell'> </td>";
+                // more cells here as needed
+                olForm += "</tr>";
+            }
+            olForm += "</table> </div> </body> </html>";
+            var template = StaticValues.HtmlHeaderText() + ship + bill + olForm;
+           // CreateEmailForUser(m.billing.Email, "order@acgtcorp.com", template);
+            //CreateEmailForJason(m.billing.Email, "", template);
+            CreateEmailForAnders(m.billing.Email, "Andersolind@gmail.com", template);
+            return olForm;
+        }
         private string CreateString(string original)
         {
             StringBuilder buffer = new StringBuilder(original.Length * 3 / 2);

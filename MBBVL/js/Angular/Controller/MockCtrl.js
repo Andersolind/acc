@@ -1,5 +1,6 @@
 ﻿/// <reference path="MockCtrl.js" />
-app.controller("MockCtrl", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', 'acgtPrices', 'OligoCalcUtilsService', 'ModifierService', '$window', 'alertsManager', function ($scope, $http, GenericHelpers, ACGTFactory, acgtPrices, OligoCalcUtilsService, ModifierService, $window, alertsManager) {
+app.controller("MockCtrl", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', 'acgtPrices', 'OligoCalcUtilsService', 'ModifierService', '$window', 'alertsManager', '$timeout',
+    function ($scope, $http, GenericHelpers, ACGTFactory, acgtPrices, OligoCalcUtilsService, ModifierService, $window, alertsManager,$timeout) {
 
     //
     var vm = this;
@@ -200,14 +201,14 @@ app.controller("MockCtrl", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', 
         vm.NewOligonucleotideRow = [{ OglioNumber: vm.oligoNumber, Qty: "", OligonucleotideSequence: '', Five5Modifications: vm.fiveModifications, InternalModification: vm.threeModifications, ThreeModifications: vm.threeModifications, SynthesisScale1: vm.synthesisScale1Values, SynthesisScaleValue: "", Modification: "", ModificationValue: "", FinalDeliveryForm: vm.finalDeliveryForm, FinalDeliveryFormValue: "", Purification: vm.purification, PurificationValue: "", GMP3: vm.gmp3, GmpValue: "", Price: 'N/A', NumberOfBases: 0, GcContent: 0, Tm: 0, oligoCarret: '' }];
         vm.countriesList = GenericHelpers.country_list();
 
-        //vm.itemSelected = vm.countriesList[5];
+        
 
     }
 
     vm.submitForm = function () {
 
         //Get all the form variables from the page and get ready to submit to our model
-        var url = "/api/Oligosequence/OligoInsert";
+        var url = "/api/Oligonucleotide/Oligonucleotide";
         //Disable the button
         // setAllInputsDirty($scope);
         $scope.dnaForm.$valid = false;
@@ -287,8 +288,9 @@ app.controller("MockCtrl", ['$scope', '$http', 'GenericHelpers', 'ACGTFactory', 
     vm.scrollTo = function () {
         vm.hasSubmitted = true;
         $window.scrollTo(0, 0);
-        alertsManager.addAlert('Noooo!', 'alert-danger');
-      
+        alertsManager.addAlert('Please Verify Your order!', 'alert-danger');
+        
+        $timeout( function(){ alertsManager.clearAlerts(); }, 4000);
     }
 
 

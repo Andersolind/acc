@@ -41,6 +41,8 @@ namespace MBBVL.Models {
         [Display(Name = "Email")]
         [EmailAddress]
         public string Email { get; set; }
+
+        public string Po { get; set; }
         public Guid UserId { get; set; }
     }
     public class PickUp {
@@ -104,6 +106,7 @@ namespace MBBVL.Models {
         [Display(Name = "Email")]
         public string Email { get; set; }
         public string Notes { get; set; }
+        public string Po { get; set; }
         public Guid UserId { get; set; }
 
     }
@@ -133,6 +136,45 @@ namespace MBBVL.Models {
         public string FinalDeliveryFormValue { get; set; }
         [Display(Name = "Purification")]
         public string PurificationValue { get; set; }
+        [Display(Name = "Price")]
+        public string Price { get; set; }
+        public Guid UserId { get; set; }
+
+    }
+
+    public class OligoModel
+    {
+       
+        public int Qty { get; set; }
+        public string PrimerName { get; set; }
+
+      
+        public string SynthesisScaleValue { get; set; }
+       
+        public string PurificationValue { get; set; }
+        public string FiveInchSequenceValue { get; set; }
+        public string InternalModificationValue { get; set; }
+
+        public string ThreeInchValue { get; set; }
+        
+        public int SequenceId { get; set; }
+        
+        
+        [Display(Name = "Oligonucleotide Sequence")]
+
+        public string OligonucleotideSequence { get; set; }
+
+        public string OligonucleotideSequenceValue { get; set; }
+       
+        [Display(Name = "GMP2(Y/N)")]
+        public bool GMP2 { get; set; }
+        [Display(Name = "Modification")]
+        public string Modification { get; set; }
+        [Display(Name = "Modification Values")]
+        public string ModificationValue { get; set; }
+        [Display(Name = "Final Delivery")]
+        public string FinalDeliveryFormValue { get; set; }
+      
         [Display(Name = "Price")]
         public string Price { get; set; }
         public Guid UserId { get; set; }
@@ -219,6 +261,13 @@ namespace MBBVL.Models {
         public bool isBillingAddress { get; set; }
         public Billing billing { get; set; }
         public List<Oligosequence> oligosequence { get; set; }
+    }
+    public class OligoInsertModel
+    {
+        public Shipping shipping { get; set; }
+        public bool isBillingAddress { get; set; }
+        public Billing billing { get; set; }
+        public List<OligoModel> oligosequence { get; set; }
     }
 
 

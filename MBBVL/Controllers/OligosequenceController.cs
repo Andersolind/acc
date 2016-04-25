@@ -179,7 +179,7 @@ namespace MBBVL.Controllers
                     //Internal Modification
                     ol.InternalModificationValue = model.oligosequence[i].InternalModificationValue;
                     //OligonucleotideSequence
-                    ol.OligonucleotideSequence = model.oligosequence[i].OligonucleotideSequenceValue;
+                    ol.OligonucleotideSequence = model.oligosequence[i].OligonucleotideSequence;
                     //3'Modification
                     ol.ThreeInchValue = model.oligosequence[i].ThreeInchValue;
                     //Final Delevery

@@ -53,7 +53,7 @@ namespace MBBVL {
                       "~/Content/Bootstrap/SubPages.css",
                       "~/Content/Bootstrap/SideNavBar.css"));
 
-            bundles.Add(new StyleBundle("~/Content/MakeOver").Include(
+            bundles.Add(new StyleBundle("~/Content/New").Include(
                "~/Content/Bootstrap/bootstrap.css",
                     "~/Content/MakeOver/animate.min.css",
                     "~/Content/MakeOver/font-awesome.min.css",

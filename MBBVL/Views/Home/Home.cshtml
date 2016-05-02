@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_Layout - SubPages.cshtml";
+}
+<div class="item active" style="background-image: url(/Content/Background.png)" >
+    <div style="padding-top:100px; padding-bottom:200px;">
+
+        <div>
+            <h1 style="font-size:60px">Order today</h1>
+            <p font-size:20px;">
+                Order your DNA sequencing or oligonucleotide<br />
+                through our new, efficient online ordering system.<br />
+                Fast turn around and high quality service.<br />
+            </p>
+            <br />
+        </div>
+        <a href="@Url.Action("Order", "Sequencing")">
+            <img src="~/Content/Images/ACGT-S.png" />
+        </a>
+
+        <br>
+        <br>
+
+        <a href="@Url.Action("Order", "Home")">
+            <img src="~/Content/Images/ACGT-O.png" />
+        </a>
+
+    </div>
+    </div>

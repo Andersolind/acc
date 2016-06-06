@@ -5,8 +5,11 @@
     //Check box values
 
     var formData = {};
+
+    var vm = this;
+
     //Sample Row
-    $scope.AddSampleRow = function () {
+    vm.AddSampleRow = function () {
         //Push a new row
         $scope.NavigationConfig.push(GenericHelpers.list($scope.gmp3));
     };

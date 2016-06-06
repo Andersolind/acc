@@ -25,9 +25,7 @@
         var newOglio = sequence.replace(/ /g, '');
         if (gmp != 'yes') {
             if (qty != "" && sequence != "" && typeof synthesisscale != 'undefined' && typeof purification != 'undefined') {
-                var getNumber;
-
-                getNumber = qty * newOglio.length * ConvertSynsithisScale(synthesisscale) + ConvertPurification(purification);
+                var getNumber = qty * newOglio.length * ConvertSynsithisScale(synthesisscale) + ConvertPurification(purification);
                 $scope.OligonucleotideRow[index].OligonucleotideSequenceValue = newOglio;
                 $scope.OligonucleotideRow[index].Price = getNumber;
                 if ($scope.OligonucleotideRow[index].ModificationValue.length > 1) {
@@ -78,8 +76,7 @@
 
             case "0.04":
                 return 0.50;
-            case "0.04":
-                return 0.50;
+           
             case "0.2":
                 return 1.00;
             case "1":
